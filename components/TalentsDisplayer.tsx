@@ -29,15 +29,12 @@ const TalentsDisplayer = ({ talentId }:any) => {
         TALENT_DATA.map((val:any, i:any) => 
             <Talent
                 name={val.name}
-                image={val.image}
-                lastname={val.lastname}
+                profile_image={val.image}
+                last_name={val.lastname}
                 age={val.age}
                 phone={val.phone}
-                location={val.location}
                 email={val.email}
-                dob={val.dob}
                 description={val.description}
-                industrie={val.industrie}
                 languages={val.languages}
                 licenses={val.licenses}
                 credentials={val.credentials}
