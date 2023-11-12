@@ -31,7 +31,7 @@ h3 {
 
 }
 
-//Buttons
+//Banner and Buttons
 button {
     border: 1px solid;
     border-radius: 80px;
@@ -47,8 +47,9 @@ button {
 .purple-b {
     border: none;
     color: #FFF;
-    background-color: #5F34F5;
+    background: linear-gradient(to right, #8D78E0 20%, #5F34F5 100%);
 }
+
 
 .orange {
     color: $orange;
@@ -57,6 +58,16 @@ button {
 .teal {
     color: $teal;
 }
+
+.register-menu {
+    transform: translateX(100%);
+    transition: all 600ms ease;
+    z-index: 50;
+}
+
+.register-menu-open {
+    transform: translateX(0);
+  }
 
 //Header
 
@@ -95,20 +106,33 @@ nav {
 }
 
 .progress {
-    background: linear-gradient(to right,#FF8149 33%, #7087E5 66%,#3EC1AA 100%);
     border-radius: 25px;
+    width: 300px;
     animation: progress_bar 7s infinite;
 }
 
 @keyframes progress_bar {
-    33% {
+    0% {
         width: 33%;
+        background-color: #FF8149;
+    }
+    33% {
+        width: 66%;
+        background-color: #7087E5;
     }
     66% {
-        width: 66%;
+        width: 100%;
+        background-color: #3EC1AA;
+    }
+    100% {
+        width: 33%;
+        background-color: #FF8149;
     }
 
 }
+
+//background: linear-gradient(to right,#FF8149 33%, #7087E5 66%,#3EC1AA 100%);
+
 
 
 .item {

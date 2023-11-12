@@ -5,13 +5,13 @@ const How = () => {
     <div className='h-screen how flex md:pl-20'>
       <div className='md:w-2/5 flex flex-col justify-center'>
         <h1 className='font-bold'>How it works</h1>
-        <div className='words overflow-hidden h-[40px] md:my-2'>
+        <div className='words overflow-hidden h-[40px] md:my-4'>
           <h3 className={'block h-full text-[20px] md:text-[32px] orange'}>Register</h3>
           <h3 className={'block h-full text-[20px] md:text-[32px] '}>Create a profile</h3>
           <h3 className={'block h-full text-[20px] md:text-[32px] teal'}>Find job</h3>
         </div>
-        <div className='overflow-hidden h-[40px] w-[350px] md:my-2 progress'/>
-        <p className='text-white'>
+        <div className='overflow-hidden h-[40px] md:my-2 progress'/>
+        <p className='text-white md:pt-4'>
             Getting a job has never been easier. All you have to do is register and complete your profile.
             After a few hours you will receive news from us with the job offer that best suits
             your preferences.  
