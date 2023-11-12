@@ -1,0 +1,40 @@
+//Colors
+$purple: #7052E5;
+$title-blue: #1A335D;
+$orange: #FF8149;
+$teal: #3EC1AA;
+
+
+//Fonts
+$poppins: 'Poppins';
+$poppins-bold: 'Poppins-Bold';
+$opensans-regular: 'OpenSans-Regular';
+$opensans-bold: 'OpenSans-Bold';
+
+@font-face {
+  font-family: 'OpenSans-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/assets/fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'OpenSans-Bold';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/assets/fonts/OpenSans-SemiBold.ttf');
+  }
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/assets/fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/assets/fonts/Poppins-Bold.ttf');
+}

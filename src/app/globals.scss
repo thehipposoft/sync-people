@@ -1,6 +1,115 @@
+@import 'variables.scss';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+a, li, span {
+    font-family: $poppins;
+}
+
+p {
+    font-family: $opensans-regular;
+}
+
+h1, h2, h3, h4 {
+    font-family: $poppins;
+    color: $title-blue;
+    margin: 0;
+}
+
+h1 {
+    font-size: 64px;
+    line-height: 1em;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 32px;
+    line-height: 1.2em;
+
+}
+
+//Buttons
+button {
+    border: 1px solid;
+    border-radius: 80px;
+    padding: 10px 20px;
+    font-weight: 600;
+}
+
+.white-b {
+    border-color: #5B24F2;
+    color: #8D78E0;
+}
+
+.purple-b {
+    border: none;
+    color: #FFF;
+    background-color: #5F34F5;
+}
+
+.orange {
+    color: $orange;
+}
+
+.teal {
+    color: $teal;
+}
+
+//Header
+
+nav {
+    color: $title-blue;
+}
+
+//How
+
+.how {
+    background-color: $purple;
+}
+
+/*Spinning words*/
+.words h3 {
+    animation: spin_words 7s infinite;
+}
+
+@keyframes spin_words {
+    20% {
+        transform: translateY(-112%);
+    }
+
+    35% {
+        transform: translateY(-100%);
+    }
+
+    45% {
+        transform: translateY(-212%);
+    }
+
+    60% {
+        transform: translateY(-200%);
+    }
+
+}
+
+.progress {
+    background: linear-gradient(to right,#FF8149 33%, #7087E5 66%,#3EC1AA 100%);
+    border-radius: 25px;
+    animation: progress_bar 7s infinite;
+}
+
+@keyframes progress_bar {
+    33% {
+        width: 33%;
+    }
+    66% {
+        width: 66%;
+    }
+
+}
+
 
 .item {
     color: #000;
