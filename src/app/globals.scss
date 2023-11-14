@@ -111,6 +111,12 @@ nav {
     animation: progress_bar 7s infinite;
 }
 
+//Discover
+
+.discover {
+    background: linear-gradient(#8D78E0, #15DFBB);
+}
+
 @keyframes progress_bar {
     0% {
         width: 33%;

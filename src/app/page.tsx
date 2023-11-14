@@ -5,6 +5,8 @@ import How from '../../components/How'
 import WhyUs from '../../components/WhyUs'
 import Categories from '../../components/Categories'
 import Companies from '../../components/Companies'
+import RegisterMenu from '../../components/RegisterMenu'
+import Discover from '../../components/Discover'
 
 
 export default function Home() {
@@ -16,6 +18,7 @@ export default function Home() {
       <WhyUs />
       <Categories />
       <Companies />
+      <Discover />
     </main>
   )
 }
