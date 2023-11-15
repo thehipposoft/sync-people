@@ -7,6 +7,8 @@ import Categories from '../../components/Categories'
 import Companies from '../../components/Companies'
 import RegisterMenu from '../../components/RegisterMenu'
 import Discover from '../../components/Discover'
+import Contact from '../../components/Contact'
+import LoginMenu from '../../components/LoginMenu'
 
 
 export default function Home() {
@@ -19,6 +21,8 @@ export default function Home() {
       <Categories />
       <Companies />
       <Discover />
+      <Contact />
+      <LoginMenu /> 
     </main>
   )
 }

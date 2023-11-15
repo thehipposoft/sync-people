@@ -28,7 +28,10 @@ h1 {
 h3 {
     font-size: 32px;
     line-height: 1.2em;
+}
 
+h4 {
+    font-size: 26px;
 }
 
 //Banner and Buttons
@@ -137,52 +140,26 @@ nav {
 
 }
 
-//background: linear-gradient(to right,#FF8149 33%, #7087E5 66%,#3EC1AA 100%);
+//Global form styles
 
-
-
-.item {
-    color: #000;
+input {
+    background-color: transparent;
+    border: 1px solid $title-blue;
+    border-radius: 2em;
+    padding: 5px 12px;
 }
 
-.input {
-    border-radius: 5px;
-    height: 20px;
-    width: 300px;
-    transition: 300ms;
-    background-color: #565b5f1e;
-    padding: 20px 10px;
-    margin: 5px 0;
+section {
+    margin: 1em 0;
 }
 
-.input.error {
-border: 3px solid #cc0017;
-background-color: #cc001712;
-font-weight: 600;
+label {
+    padding-bottom: 4px;
 }
 
-.input_box {
-    width: 300px;
-    transition: 300ms;
-    border-radius: 5px;
-    background-color: #565b5f1e;
-    padding: 20px 25px;
-    margin: 5px 0;
-    resize: none;
-}
+//Forms w clip paths 
 
-.input_box::placeholder {
-font-size: 19px;
-}
-
-.contact-input-button {
-    border-radius: 5px;
-    margin-top: 10%;
-    transition: all 300ms;
-    height: 40px;
-    background-color: #334b5ed5;
-
-    &:hover {
-        background-color: red;
-    }
+.triangle {
+    clip-path: polygon(75% 0, 100% 100%, 100% 0);
+    background-color: #7052E5;
 }
