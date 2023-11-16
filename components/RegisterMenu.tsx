@@ -9,7 +9,7 @@ const RegisterMenu = (menuIsOpen:any) => {
         <div className='w-full md:h-screen left-0 cursor-pointer opacity-30 bg-slate-400 absolute' />
         <div className={`w-[80vw] h-screen mx-auto bg-slate-100 relative flex justify-center`}>
             <div className='w-1/2 flex flex-col'>
-                <div className='relative h-[500px]'>
+                <div className='relative h-[500px] max-w-[545px]'>
                     <div className='triangle h-[350px] w-[250px] absolute left-[-44%]'/>
                     <div className=' bg-[#FF8149] h-[450px] w-[350px] absolute rounded-b-[100px]'/>
                     <Image className='absolute z-10 top-8 left-[-10px]' src={'/assets/images/register.png'} alt={''} width={375} height={300} />

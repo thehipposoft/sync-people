@@ -120,6 +120,11 @@ nav {
     background: linear-gradient(#8D78E0, #15DFBB);
 }
 
+.money-blue {
+    filter: invert(80%) sepia(21%) saturate(2448%) hue-rotate(189deg) brightness(100%) contrast(86%);
+    transform: rotate(354deg);
+}
+
 @keyframes progress_bar {
     0% {
         width: 33%;
