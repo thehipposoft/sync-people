@@ -27,7 +27,7 @@ const Discover = () => {
               </div>
               <div className='flex flex-col items-center md:p-4'>
                   <Image src={'/assets/images/vectors/user.svg'} alt={''} width={35} height={50} />
-                  <p className='font-semibold text-[#1A335D] text-xl pt-2'>People</p>
+                  <p className='font-semibold text-[#1A335D] text-xl pt-2'>Population</p>
               </div>
           </div>
         </div>

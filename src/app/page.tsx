@@ -9,6 +9,7 @@ import RegisterMenu from '../../components/RegisterMenu'
 import Discover from '../../components/Discover'
 import Contact from '../../components/Contact'
 import LoginMenu from '../../components/LoginMenu'
+import Footer from '../../components/Footer'
 
 
 export default function Home() {
@@ -22,7 +23,7 @@ export default function Home() {
       <Companies />
       <Discover />
       <Contact />
-      <LoginMenu /> 
+      <Footer />
     </main>
   )
 }

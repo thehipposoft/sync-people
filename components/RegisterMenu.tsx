@@ -1,12 +1,11 @@
 import React, {useState} from 'react'
 import Image from 'next/image'
 
-const RegisterMenu = (menuIsOpen:any) => {
+const RegisterMenu = ({ menuIsOpen, closeMenu }:any) => {
 
 
   return (
-    <div className={`${menuIsOpen ? 'translate-x-0' : ''} translate-x-full absolute flex w-full left-0 top-0 duration-500 `}>
-        <div className='w-full md:h-screen left-0 cursor-pointer opacity-30 bg-slate-400 absolute' />
+    <div className={`absolute overflow-hidden flex w-full left-0 top-0 duration-700  ${menuIsOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className={`w-[80vw] h-screen mx-auto bg-slate-100 relative flex justify-center`}>
             <div className='w-1/2 flex flex-col'>
                 <div className='relative h-[500px] max-w-[545px]'>
@@ -47,10 +46,12 @@ const RegisterMenu = (menuIsOpen:any) => {
                         <input type="password" name="" id=""/>
                     </section>
                     <section>
-                        <input type="submit" value="Register" className='purple-b md:py-2 md:px-8 md:mt-2' />
+                        <input type="submit" value="Register" className='purple-b md:py-2 md:px-8 md:mt-2 cursor-pointer' />
                     </section>
+                    <p className='text-center pt-3'>Already have an account? <a href="/login" className='font-semibold underline'>Login</a></p>
                 </form>
             </div>
+            <div className='absolute right-11 top-4 font-extrabold cursor-pointer' onClick={closeMenu}>X</div>
         </div>
     </div>
   )

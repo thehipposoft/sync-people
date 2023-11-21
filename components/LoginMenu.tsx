@@ -17,7 +17,7 @@ const LoginMenu = () => {
                         <input type="password" name="" id=""/>
                     </section>
                     <section>
-                        <input type="submit" value="Login" className='purple-b md:py-2 md:px-8 md:mt-4' />
+                        <input type="submit" value="Login" className='purple-b md:py-2 md:px-8 md:mt-4 cursor-pointer' />
                     </section> 
                 </form>
                 <p className='text-center'>Don't have an account? <a href="/" className='font-semibold underline'>Register</a></p>

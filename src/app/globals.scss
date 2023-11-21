@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+}
+
 
 a, li, span {
     font-family: $poppins;
@@ -74,7 +78,7 @@ button {
 
 //Header
 
-nav {
+nav, li {
     color: $title-blue;
 }
 
@@ -147,11 +151,12 @@ nav {
 
 //Global form styles
 
-input {
+input, .input {
     background-color: transparent;
     border: 1px solid $title-blue;
     border-radius: 2em;
     padding: 5px 12px;
+    resize: none;
 }
 
 section {
