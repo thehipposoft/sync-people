@@ -4,7 +4,7 @@ import Image from 'next/image'
 const LoginMenu = () => {
   return (
     <div className='flex'>
-        <div className='flex items-center md:pl-20 md:w-[65%] bg-[#F5F5F5]'>
+        <div className='flex items-center md:pl-20 md:w-[65%] bg-[#EBEFFF]'>
             <div>
                 <h1 className='text-5xl'>Welcome back!</h1>
                 <form className='md:pt-6 md:w-[500px]'>
@@ -20,7 +20,15 @@ const LoginMenu = () => {
                         <input type="submit" value="Login" className='purple-b md:py-2 md:px-8 md:mt-4 cursor-pointer' />
                     </section> 
                 </form>
-                <p className='text-center'>Don't have an account? <a href="/" className='font-semibold underline'>Register</a></p>
+                <p className='text-center pt-6'>Don't have an account? <a href="/" className='font-semibold underline'>Register</a></p>
+                <div className='flex justify-around items-center w-[450px] pt-10'>
+                    <Image src={'/assets/logo.png'} width={150} height={100} alt='Sync logo' />
+                    <div className='flex justify-end items-end'>
+                        <Image src={'/assets/images/vectors/facebook.svg'} width={30} height={30} alt='icon' className='mr-2' />
+                        <Image src={'/assets/images/vectors/twitter.svg'} width={30} height={30} alt='icon' className='mx-4' />
+                        <Image src={'/assets/images/vectors/linkedin.svg'} width={30} height={30} alt='icon' className='ml-2' />
+                    </div>
+                </div>
             </div>
         </div>
         <div className='bg-[#AFB3FF]'>

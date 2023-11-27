@@ -5,8 +5,8 @@ const RegisterMenu = ({ menuIsOpen, closeMenu }:any) => {
 
 
   return (
-    <div className={`absolute overflow-hidden flex w-full left-0 top-0 duration-700  ${menuIsOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        <div className={`w-[80vw] h-screen mx-auto bg-slate-100 relative flex justify-center`}>
+    <div className={`absolute overflow-hidden flex w-full left-0 top-0 duration-700 bg-[#EBEFFF] ${menuIsOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`w-[80vw] h-screen mx-auto bg-[#EBEFFF] relative flex justify-center`}>
             <div className='w-1/2 flex flex-col'>
                 <div className='relative h-[500px] max-w-[545px]'>
                     <div className='triangle h-[350px] w-[250px] absolute left-[-44%]'/>
@@ -16,13 +16,13 @@ const RegisterMenu = ({ menuIsOpen, closeMenu }:any) => {
                 <div className='relative flex justify-between w-[350px]'>
                     <Image src={'/assets/logo.png'} width={150} height={100} alt='Sync logo' />
                     <div className='flex justify-end items-end'>
-                        <Image src={'/assets/images/mail.png'} width={30} height={30} alt='icon'  />
-                        <Image src={'/assets/images/mail.png'} width={30} height={30} alt='icon' className='mx-4' />
-                        <Image src={'/assets/images/mail.png'} width={30} height={30} alt='icon' />
+                        <Image src={'/assets/images/vectors/facebook.svg'} width={30} height={30} alt='icon'  />
+                        <Image src={'/assets/images/vectors/twitter.svg'} width={30} height={30} alt='icon' className='mx-4' />
+                        <Image src={'/assets/images/vectors/linkedin.svg'} width={30} height={30} alt='icon' />
                     </div>
                 </div>
             </div>
-            <div className='w-1/2'>
+            <div className='w-1/2 pt-8'>
                 <h4 className='md:pt-8 font-semibold'>Please fill out our form to Register!</h4>
                 <form className='md:pt-2 md:w-[450px]'>
                     <section className='flex flex-col'>

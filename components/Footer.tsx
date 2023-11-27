@@ -26,10 +26,10 @@ const Footer = () => {
         <div>
             <h4 className='font-bold text-xl'>Join our community</h4>
             <div className='flex pt-4'>
-                <a><Image src={'/assets/images/phone.png'} alt='icon' width={20} height={20} className='mx-2' /></a>
-                <a><Image src={'/assets/images/phone.png'} alt='icon' width={20} height={20} className='mx-2' /></a>
-                <a><Image src={'/assets/images/phone.png'} alt='icon' width={20} height={20} className='mx-2' /></a>
-                <a><Image src={'/assets/images/phone.png'} alt='icon' width={20} height={20} className='mx-2' /></a>
+                <a className='mr-2'><Image src={'/assets/images/vectors/google.svg'} alt='icon' width={35} height={35}  /></a>
+                <a className='mx-2'><Image src={'/assets/images/vectors/facebook.svg'} alt='icon' width={35} height={35}  /></a>
+                <a className='mx-2'><Image src={'/assets/images/vectors/twitter.svg'} alt='icon' width={35} height={35}  /></a>
+                <a className='mx-2'><Image src={'/assets/images/vectors/linkedin.svg'} alt='icon' width={35} height={35} /></a>
             </div>
         </div>
       </div>

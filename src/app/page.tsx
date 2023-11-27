@@ -11,6 +11,8 @@ import Contact from '../../components/Contact'
 import LoginMenu from '../../components/LoginMenu'
 import Footer from '../../components/Footer'
 import ProfileDashboard from '../../components/ProfileDashboard'
+import Welcome from '../../components/Welcome'
+import DiscoverPlaces from '../../components/DiscoverPlaces'
 
 
 export default function Home() {
@@ -23,9 +25,9 @@ export default function Home() {
       <Categories />
       <Companies />
       <Discover />
+      <DiscoverPlaces />
       <Contact />
       <Footer />
-      <ProfileDashboard />
     </main>
   )
 }
