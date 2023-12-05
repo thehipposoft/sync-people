@@ -25,7 +25,6 @@ export default function Home() {
       <Categories />
       <Companies />
       <Discover />
-      <DiscoverPlaces />
       <Contact />
       <Footer />
     </main>

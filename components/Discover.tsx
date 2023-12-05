@@ -1,10 +1,20 @@
-import React from 'react'
+'use client'
+import React, {useState} from 'react'
 import Image from 'next/image'
+import DiscoverPlaces from './DiscoverPlaces'
 
 const Discover = () => {
+
+  const [ openDiscover, setOpenDiscover ] = useState(false);
+
+  const toggleDiscover = () => {
+    setOpenDiscover(!openDiscover)
+    console.log(openDiscover)
+  }
+
   return (
-    <div className='discover rounded-bl-[200px]'>
-      <div className='max-w-[1350px] mx-auto md:pl-20 pb-20 pt-32 flex '>
+    <div className='discover rounded-bl-[200px] relative'>
+      <div className='max-w-[1350px] mx-auto md:pl-20 pb-20 pt-32 flex'>
         <div className='w-1/2'>
           <h1>Discover Australia</h1>
           <div className='flex'>
@@ -38,7 +48,12 @@ const Discover = () => {
                 <div className={`bg-[url('/assets/images/discover/discover-1.png')] bg-cover bg-center rounded-t-[200px] h-[300px]`}></div>
                 <div className='bg-[#7052E5] rounded-bl-[100px] h-[320px] flex flex-col justify-end items-end'>
                   <div className='pr-10 pb-10'>
-                    <p className='text-white text-xl pb-2'>+ Discover places</p>
+                    <button 
+                      className='text-white text-xl pb-2 border-none hover:underline'
+                      onClick={toggleDiscover}
+                    >
+                      + Discover places
+                    </button>
                   </div>
                 </div>
               </div>
@@ -54,6 +69,7 @@ const Discover = () => {
           </div>
         </div>
       </div>
+      <DiscoverPlaces isOpen={openDiscover} closeDiscover={toggleDiscover}/>
     </div>
   )
 }

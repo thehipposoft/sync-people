@@ -10,7 +10,6 @@ const Banner = () => {
 
   const toggleMenu = () => {
       setOpenMenu(!openMenu)
-      console.log(openMenu)    
   };
 
 

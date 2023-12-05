@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import React from 'react';
 
-const DiscoverPlaces = () => {
+const DiscoverPlaces = ({isOpen, closeDiscover}:any) => {
     return (
-        <div className='discover rounded-bl-[200px]'>
-            <div className='pl-20 pt-24'>
+        <div className={`${isOpen ? 'translate-x-0' : 'translate-x-full'} discover w-full rounded-bl-[200px] fixed top-0 left-0 duration-500`}>
+            <div className='pl-20 pt-24 relative'>
                 <h1>Discover Places</h1>
+                <button className='border-none absolute right-12 top-20 hover:underline' onClick={closeDiscover}>&larr; BACK</button>
                 <div className='grid grid-cols-4 py-20'>
                     <div className='flex flex-col w-[300px]'>
                         <Image src={'/assets/images/discover/discoverPlaces1.png'} className='rounded-2xl h-[245px]' alt='' width={300} height={290} />
