@@ -70,7 +70,7 @@ const ClientDetail = () => {
                 </ul>
                 <div className='pt-4'>
                     <p>New Activity</p>
-                    <select name="activity" id="activity" placeholder='-Select your title-' className='p-2 my-4'>
+                    <select name="activity" id="activity" placeholder={'-Select your title-'} className='p-2 my-4'>
                         <option value="activity-1">Activity #1</option>
                         <option value="activity-2">Activity #2</option>
                         <option value="activity-3">Activity #3</option>
