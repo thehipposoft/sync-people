@@ -7,12 +7,9 @@ import ProfilePreview from '../../../components/ProfilePreview'
 
 export default async function ProfilePage() {
     return(
-        <div className="">
+        <div className="h-screen overflow-hidden">
             <Header />
             <Welcome />
-            <ProfileDashboard />
-            <ProfileForm />
-            <ProfilePreview />
         </div>
     )
 }

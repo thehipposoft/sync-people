@@ -17,6 +17,15 @@ p {
     font-family: $opensans-regular;
 }
 
+.p-bold {
+    font-family: $opensans-extra;
+    font-weight: 800;
+}
+
+strong {
+    font-family: $opensans-bold;
+}
+
 h1, h2, h3, h4, h5 {
     font-family: $poppins;
     color: $title-blue;
@@ -151,21 +160,28 @@ button {
 
 //Global form styles
 
+input[type=checkbox] {
+    width: auto;
+}
+
 input, select, .input {
     background-color: transparent;
     border: 1px solid #656ED3;
     border-radius: 2em;
     padding: 5px 12px;
     resize: none;
+    width: 100%;
 }
+
 
 section {
     margin: 1em 0;
 }
 
 label {
-    padding-bottom: 4px;
-    color: #1A335D;
+    font-family: $poppins;
+    color: $title-blue;
+    font-weight: 600;
 }
 
 select {

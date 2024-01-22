@@ -8,10 +8,15 @@ const RegisterMenu = ({ menuIsOpen, closeMenu }:any) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
-/*
-    const handleSubmit = async (e) => {
 
-      };
+/*
+const handleSubmit = (e:any) => {
+    e.preventDefault()
+    const data = Object.fromEntries(
+        new FormData(e.target)
+    );
+    console.log(JSON.stringify(data))
+};
 */
 
   return (
@@ -34,12 +39,14 @@ const RegisterMenu = ({ menuIsOpen, closeMenu }:any) => {
             </div>
             <div className='w-1/2 pt-8'>
                 <h4 className='md:pt-8 font-semibold'>Please fill out our form to Register!</h4>
-                <form className='md:pt-2 md:w-[450px]'>
+                <form 
+                className='md:pt-2 md:w-[450px]'
+                >
                     <section className='flex flex-col'>
-                        <label htmlFor="text">Full name:</label>
+                        <label htmlFor="text" >Full name:</label>
                         <input 
                             type="text" 
-                            name="Full name" 
+                            name="name" 
                             id="" 
                             value={name} 
                             onChange={(e) => setName(e.target.value)}
@@ -50,7 +57,7 @@ const RegisterMenu = ({ menuIsOpen, closeMenu }:any) => {
                         <label htmlFor="text">Username:</label>
                         <input 
                             type="text" 
-                            name="Full name" 
+                            name="username" 
                             id="" 
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
@@ -61,7 +68,7 @@ const RegisterMenu = ({ menuIsOpen, closeMenu }:any) => {
                         <label htmlFor="text">Email:</label>
                         <input 
                             type="email" 
-                            name="" 
+                            name="email" 
                             id="" 
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -87,7 +94,7 @@ const RegisterMenu = ({ menuIsOpen, closeMenu }:any) => {
                         <input 
                             type="submit" 
                             value="Register" 
-                            className='purple-b md:py-2 md:px-8 md:mt-2 cursor-pointer' 
+                            className='purple-b md:py-2 md:px-8 md:mt-2 cursor-pointer'
                         />
                     </section>
                     <p className='text-center pt-3'>Already have an account? <a href="/login" className='font-semibold underline'>Login</a></p>

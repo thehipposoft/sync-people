@@ -3,26 +3,27 @@ import React from 'react';
 
 const ProfileForm = () => {
     return (
-        <div className=' pl-20 pt-12'>
+        <div className='px-20 pt-12 relative bg-white w-[90vw] h-[95vh]'>
             <div className='flex flex-col'>
-                <Image src={'/assets/logo.png'} alt='Sync people logo' width={100} height={100} />
-                <span className='blue text-lg'>Connecting <strong>Talents</strong><br />to <strong>Opportunities.</strong></span>  
+                <Image src={'/assets/logo.png'} alt='Sync people logo' width={90} height={100} />
+                <p className='blue'>Connecting <strong>Talents</strong></p>
+                <p className='blue'>to <strong>Opportunities</strong></p>
             </div>
-            <div className='flex flex-col pt-16'>
+            <div className='flex flex-col pt-10 mx-auto'>
                 <div className='flex items-center'>
-                    <Image src={'/assets/images/vectors/education.svg'} alt='' width={50} height={50}/>
-                    <h4 className='font-bold pl-2'>1. Education and work experience</h4>
+                    <Image src={'/assets/images/vectors/education.svg'} alt='' width={35} height={30}/>
+                    <h4 className='font-bold pl-4'>1. Education and work experience</h4>
                 </div>
-                <span className='blue text-6xl pt-4'>Great Choice!</span>
+                <span className='blue text-5xl pt-2'>Great Choice!</span>
                 <p className='pt-2'>Now tell us a little bit about you...</p>
-                <form className='md:pt-6 md:w-[500px]'>
+                <form className='md:pt-2 md:w-[500px]'>
                     <section className='flex flex-col'>
                         <label htmlFor="text" >Education Level:</label>
                         <select name="cars" id="cars">
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
+                            <option value="level-1">Level #1</option>
+                            <option value="level-2">Level #2</option>
+                            <option value="level-3">Level #3</option>
+                            <option value="level-4">Level #4</option>
                          </select>
                     </section>
                     <section className='flex flex-col'>

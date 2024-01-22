@@ -1,5 +1,4 @@
 
-
 export default async function getTalents() {
     const response = await fetch('http://sync-staging.thehipposoft.com/wp-json/wp/v2/talent')
     if (!response.ok) {

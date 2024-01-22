@@ -8,6 +8,7 @@ $teal: #3EC1AA;
 //Fonts
 $poppins: 'Poppins';
 $poppins-bold: 'Poppins-Bold';
+$opensans-extra: 'OpenSans-ExtraBold';
 $opensans-regular: 'OpenSans-Regular';
 $opensans-bold: 'OpenSans-Bold';
 
@@ -25,6 +26,12 @@ $opensans-bold: 'OpenSans-Bold';
     src: url('/assets/fonts/OpenSans-SemiBold.ttf');
   }
 
+@font-face {
+    font-family: 'OpenSans-ExtraBold';
+    font-style: normal;
+    font-weight: 800;
+    src: url('/assets/fonts/OpenSans-ExtraBold.ttf');
+  }
 @font-face {
   font-family: 'Poppins';
   font-style: normal;

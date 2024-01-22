@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
+
 const Footer = () => {
   return (
     <div className='flex pl-20 my-12'>
@@ -28,7 +29,7 @@ const Footer = () => {
             <div className='flex pt-4'>
                 <a className='mr-2'><Image src={'/assets/images/vectors/google.svg'} alt='icon' width={35} height={35}  /></a>
                 <a className='mx-2'><Image src={'/assets/images/vectors/facebook.svg'} alt='icon' width={35} height={35}  /></a>
-                <a className='mx-2'><Image src={'/assets/images/vectors/twitter.svg'} alt='icon' width={35} height={35}  /></a>
+                <a className='mx-2'><Image src={'/assets/images/vectors/twitter.svg'} alt='icon' width={35} height={40}  /></a>
                 <a className='mx-2'><Image src={'/assets/images/vectors/linkedin.svg'} alt='icon' width={35} height={35} /></a>
             </div>
         </div>
