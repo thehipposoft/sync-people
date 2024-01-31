@@ -19,7 +19,7 @@ const Discover = () => {
           <h1>Discover Australia</h1>
           <div className='flex'>
               <h1>with</h1>
-              <Image src='/assets/logo.png' alt='Sync-people logo' width={155} height={80} className='md:pt-3 md:ml-3' />
+              <Image src='/assets/logo.svg' alt='Sync-people logo' width={220} height={180} className='md:pt-3 md:ml-3' />
           </div>
           <p className='text-white md:pt-4 w-5/6'>Discover a world of career opportunities in the most exciting country on the planet . Get ready for a life-changing adventure!</p>
           <div className='grid grid-cols-2 md:pt-12 w-[450px]'>

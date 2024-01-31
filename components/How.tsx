@@ -18,7 +18,7 @@ const How = () => {
               your preferences.  
               Let us do the hard work for you. Leave it to Sync.
           </p>
-          <div className='flex'><button className='md:mx-2 md:mt-8 text-white border-white'>Let's get started</button></div>
+          <div className='flex'><button className='md:mx-2 md:mt-8 text-white border-white border px-6 py-2 rounded-3xl'>Let's get started</button></div>
         </div>
         <div>
 

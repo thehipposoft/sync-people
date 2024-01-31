@@ -30,7 +30,7 @@ const DiscoverPlaces = ({isOpen, closeDiscover}:any) => {
                     </div>
                 </div>
                 <div className='flex justify-end pr-10 pb-10'>
-                    <Image src={'/assets/logo.png'} alt='Sync people logo' width={150} height={150}/>
+                    <Image src={'/assets/logo.svg'} alt='Sync people logo' width={150} height={150}/>
                 </div>
             </div>
         </div>

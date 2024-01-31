@@ -1,3 +1,12 @@
+import React, {useState} from "react"
+
+
+function handleChange(event) {
+    setNewLanguages(event.target.value)
+    console.log(languages)
+}
+
+
 const FORM_SLIDES = [
     {
         id: 1,
@@ -94,6 +103,19 @@ const FORM_SLIDES = [
                         </div>
                     </section>
                     <section className='flex gap-4'>
+
+                        <div className='w-1/2'>
+                            <label className="block pb-2">Level of English:</label>
+                            <select
+                                name="level"
+                            >
+                                <option value="1">Level #1</option>
+                                <option value="2">Level #2</option>
+                                <option value="3">Level #3</option>
+
+                            </select>
+                        </div>
+
                         <div className='w-1/2'>
                             <label className="block pb-2">Languages:</label>
                             <select
@@ -108,30 +130,19 @@ const FORM_SLIDES = [
                                 <option value="5">Language #5</option>
                             </select>
                         </div>
-
-                        <div className='w-1/2'>
-                            <label className="block pb-2">Level of English:</label>
-                            <select
-                                name="level"
-                            >
-                                <option value="1">Level #1</option>
-                                <option value="2">Level #2</option>
-                                <option value="3">Level #3</option>
-
-                            </select>
-                        </div>
+  
                     </section>
 
                     <section className='flex gap-4'>
                         <div className='w-1/2'>
-                            <label className="block pb-2">Contry of birth (opt):</label>
+                            <label className="block pb-2">Citizenship:</label>
                             <select
                                 name="country"
                                 className=" rounded"
                             >
-                                <option value="1">Contry #1</option>
-                                <option value="2">Contry #2</option>
-                                <option value="3">Contry #3</option>
+                                <option value="1">Citizenship #1</option>
+                                <option value="2">Citizenship #2</option>
+                                <option value="3">Citizenship #3</option>
 
                             </select>
                         </div>

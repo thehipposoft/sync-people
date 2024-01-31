@@ -10,13 +10,13 @@ const ClientDetail = () => {
             <h2 className='py-6 text-center text-xl'>VIC CLEANING PTY LTD</h2>
             <div className='flex gap-2 pt-2 justify-center'>
                 <div className='p-4 bg-[#EBEFFF] rounded-full'>
-                    <Image src={'/assets/images/vectors/conversation.svg'} alt='icon' width={25} height={25} />
+                    <Image src={'/assets/images/vectors/education.svg'} alt='icon' width={25} height={25} />
                 </div>
                 <div className='p-4 bg-[#EBEFFF] rounded-full'>
-                    <Image src={'/assets/images/vectors/conversation.svg'} alt='icon' width={25} height={25} />
+                    <Image src={'/assets/images/vectors/education.svg'} alt='icon' width={25} height={25} />
                 </div>
                 <div className='p-4 bg-[#EBEFFF] rounded-full'>
-                    <Image src={'/assets/images/vectors/conversation.svg'} alt='icon' width={25} height={25} />
+                    <Image src={'/assets/images/vectors/education.svg'} alt='icon' width={25} height={25} />
                 </div>
             </div>
             <div className='px-3'>
@@ -29,7 +29,7 @@ const ClientDetail = () => {
                             </svg>
                             <p>Status</p>
                         </div>
-                        <span className='p-1 bg-green-400'>Active</span>
+                        <span className='p-2 rounded-xl bg-[#EEFDF3]'>Active</span>
                     </li>
                     <li className='flex justify-between'>
                         <div className='flex gap-2'>

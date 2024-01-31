@@ -40,7 +40,7 @@ const FormSlider = ({ slides, closeMenu, currentIndexProp }:FormSliderTypes) => 
                         X
                 </p>
             <div className='flex flex-col'>
-                <Image src={'/assets/logo.png'} alt='Sync people logo' width={90} height={100} />
+                <Image src={'/assets/logo.svg'} alt='Sync people logo' width={90} height={100} />
                 <p className='blue'>Connecting <strong>Talents</strong></p>
                 <p className='blue'>to <strong>Opportunities</strong></p>
             </div>
@@ -62,7 +62,6 @@ const FormSlider = ({ slides, closeMenu, currentIndexProp }:FormSliderTypes) => 
                                 <span className='blue text-5xl pt-2'>{val.subtitle}</span>
                                 <p className='pb-4'>{val.description}</p>
                                     {val.content}
-
                             </div>
                         )
                     })

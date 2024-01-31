@@ -7,7 +7,7 @@ const Footer = () => {
     <div className='flex pl-20 my-12'>
       <div className='w-1/2 flex'>
         <div>
-            <Image src={'/assets/logo.png'} alt='Sync-people logo' width={150} height={150} />
+            <Image src={'/assets/logo.svg'} alt='Sync-people logo' width={150} height={150} />
             <p className='pt-2'>
                 Contact us for more information 
             </p>

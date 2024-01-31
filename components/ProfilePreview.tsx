@@ -8,7 +8,7 @@ const ProfilePreview = () => {
             <div className='bg-[#EBEFFF] flex justify-between px-12 py-20'>
                 <div className='w-[600px] flex flex-col'>
                     <div className='flex flex-col'>
-                        <Image src={'/assets/logo.png'} width={150} height={150} alt='Sync people logo' />
+                        <Image src={'/assets/logo.svg'} width={150} height={150} alt='Sync people logo' />
                         <h1 className='pt-4'>Mario <strong>Moreno.</strong></h1>
                         <p className='pt-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec commodo non nunc vel porta. Curabitur faucibus quam quis velit faucibus, at gravida arcu posuere. </p>
                     </div>

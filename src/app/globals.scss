@@ -47,16 +47,14 @@ h4 {
     font-size: 26px;
 }
 
-//Banner and Buttons
-button {
-    border: 1px solid;
-    border-radius: 80px;
-    padding: 10px 20px;
-    font-weight: 600;
+.h-bold {
+    font-family: $poppins-bold;
 }
 
+//Banner and Buttons
 .white-b {
     border-color: #5B24F2;
+    border: solid 1px;
     color: #8D78E0;
 }
 

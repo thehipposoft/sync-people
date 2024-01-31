@@ -31,7 +31,7 @@ const MusicModal = ({ isOpen, closeMenu }:MusicModalTypes) => {
                     </p>
                     <div>
                         <Link href={'/create-profile'}>
-                            <button className='my-2 purple-b px-12'>
+                            <button className='my-2 purple-b px-12 py-2 rounded-3xl'>
                                 Start
                             </button>
                         </Link>

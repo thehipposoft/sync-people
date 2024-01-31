@@ -22,7 +22,7 @@ const LoginMenu = () => {
                 </form>
                 <p className='text-center pt-6'>Don't have an account? <a href="/" className='font-semibold underline'>Register</a></p>
                 <div className='flex justify-around items-center w-[450px] pt-10'>
-                    <Image src={'/assets/logo.png'} width={150} height={100} alt='Sync logo' />
+                    <Image src={'/assets/logo.svg'} width={150} height={100} alt='Sync logo' />
                     <div className='flex justify-end items-end'>
                         <Image src={'/assets/images/vectors/facebook.svg'} width={30} height={30} alt='icon' className='mr-2' />
                         <Image src={'/assets/images/vectors/twitter.svg'} width={30} height={30} alt='icon' className='mx-4' />

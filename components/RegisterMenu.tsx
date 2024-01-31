@@ -29,7 +29,7 @@ const handleSubmit = (e:any) => {
                     <Image className='absolute z-10 top-8 left-[-10px]' src={'/assets/images/register.png'} alt={''} width={375} height={300} />
                 </div>
                 <div className='relative flex justify-between w-[350px]'>
-                    <Image src={'/assets/logo.png'} width={150} height={100} alt='Sync logo' />
+                    <Image src={'/assets/logo.svg'} width={150} height={100} alt='Sync logo' />
                     <div className='flex justify-end items-end'>
                         <Image src={'/assets/images/vectors/facebook.svg'} width={30} height={30} alt='icon'  />
                         <Image src={'/assets/images/vectors/twitter.svg'} width={30} height={30} alt='icon' className='mx-4' />

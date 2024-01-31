@@ -16,7 +16,7 @@ const Welcome = () => {
             <MusicModal isOpen={open} closeMenu={toggleModal}/>
             <div className='bg-[#EBEFFF] pt-20 h-[90vh]'>
                 <div className='flex flex-col pl-16'>
-                    <Image src={'/assets/logo.png'} alt='Sync people logo' width={170} height={150} />
+                    <Image src={'/assets/logo.svg'} alt='Sync people logo' width={170} height={150} />
                     <span className='blue text-7xl pt-8'>Welcome <strong>Mario!</strong></span>
                 </div>
                 <div className='h-[140px] w-[300px] mt-24 bg-[#1A335D] rounded-r-full flex justify-center items-center shadow-xl'>

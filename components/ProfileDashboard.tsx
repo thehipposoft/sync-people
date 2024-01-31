@@ -23,7 +23,7 @@ const ProfileDashboard = () => {
                 <div className='bg-[#EBEFFF] p-20 rounded-sm'>
                     <div className='flex justify-between'>
                         <div className='w-1/2 flex flex-col justify-end'>
-                            <Image src={'/assets/logo.png'} alt='Sync-people logo' width={150} height={150} />
+                            <Image src={'/assets/logo.svg'} alt='Sync-people logo' width={150} height={150} />
                             <p className='text-5xl blue'>Let's <strong>Sync</strong></p>
                         </div>
                         <div className='w-1/2 flex items-end justify-end'>
