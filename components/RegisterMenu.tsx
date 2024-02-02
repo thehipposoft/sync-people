@@ -20,7 +20,7 @@ const handleSubmit = (e:any) => {
 */
 
   return (
-    <div className={`fixed flex w-full left-0 top-0 duration-700 bg-[#EBEFFF] ${menuIsOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+    <div className={`fixed flex w-full left-0 top-0 duration-700 bg-[#EBEFFF] z-20 ${menuIsOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className={`w-[80vw] h-screen mx-auto bg-[#EBEFFF] relative flex justify-center`}>
             <div className='w-1/2 flex flex-col'>
                 <div className='relative h-[500px] max-w-[545px]'>

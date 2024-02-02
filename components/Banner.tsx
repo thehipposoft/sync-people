@@ -31,7 +31,6 @@ const Banner = () => {
         <Image src={'/assets/images/banner.png'} alt='Video image' width={500} height={400} priority/>
         <Image className='absolute left-[48%] bottom-[48%]' src={'/assets/images/banner-vector.png'} alt='Video play button' width={50} height={50} />
       </div>
-      <RegisterMenu menuIsOpen={openMenu} closeMenu={toggleMenu} />
     </div>
   )
 }
