@@ -9,7 +9,7 @@ type FormSliderTypes = {
         description: string,
         content: any,
     }[],
-    closeMenu: any,
+    closeMenu?: any,
     currentIndexProp: number,
 }
 
@@ -72,7 +72,7 @@ const FormSlider = ({ slides, closeMenu, currentIndexProp }:FormSliderTypes) => 
                 {
                     currentIndex != 0 ?
                     <button 
-                        className='text-[#FF8149] border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
+                        className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
                         onClick={showPrev}
                     >
                         Back
@@ -80,7 +80,7 @@ const FormSlider = ({ slides, closeMenu, currentIndexProp }:FormSliderTypes) => 
                      : ''
                  }
                 <button 
-                    className='text-[#FF8149] border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
+                    className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
                     onClick={showNext}
                 >
                     Next

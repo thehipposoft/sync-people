@@ -1,5 +1,3 @@
-import Image from "next/image"
-import SideMenu from "../../../components/SideMenu"
 import SideNav from "../../../components/SideNav"
 import JobSearchForm from "../../../components/JobSearchForm"
 import Footer from "../../../components/Footer"

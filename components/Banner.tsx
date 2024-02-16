@@ -21,7 +21,9 @@ const Banner = () => {
         <h1 className='text-[#8D78E0]'>new age of work</h1>
         <h3 className='md:pt-4'>Connecting Companies to <strong>Talent,</strong><br/> and Job Seekers to <strong>Opportunities.</strong></h3>
         <div className='flex md:mt-8'>
-            <a href="#contact"><button className='md:mr-4 white-b px-6 py-2 rounded-3xl'>Looking for talents</button></a>
+            <Link href="/business">
+              <button className='md:mr-4 white-b px-6 py-2 rounded-3xl'>Looking for talents</button>
+            </Link>
             <Link href={'/profile-form'}>
               <button className='md:mx-4 purple-b px-6 py-2 rounded-3xl'>Looking for work</button>
             </Link>

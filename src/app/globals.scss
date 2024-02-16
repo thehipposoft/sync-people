@@ -56,12 +56,26 @@ h4 {
     border-color: #5B24F2;
     border: solid 1px;
     color: #8D78E0;
+    transition: all 350ms ease;
+
+
+    &:hover {
+        color: #fff;
+        background-color: #7052E5;
+    }
 }
 
 .purple-b {
-    border: none;
+    border: 1px solid;
     color: #FFF;
-    background: linear-gradient(to right, #8D78E0 20%, #5F34F5 100%);
+    background-color: #7052E5;
+    transition: all 350ms ease;
+
+    &:hover {
+        border: solid 1px #7052E5;
+        background: #FFF;
+        color: #7052E5;
+    }
 }
 
 
@@ -125,17 +139,6 @@ h4 {
     animation: progress_bar 7s infinite;
 }
 
-//Discover
-
-.discover {
-    background: linear-gradient(#8D78E0, #15DFBB);
-}
-
-.money-blue {
-    filter: invert(80%) sepia(21%) saturate(2448%) hue-rotate(189deg) brightness(100%) contrast(86%);
-    transform: rotate(354deg);
-}
-
 @keyframes progress_bar {
     0% {
         width: 33%;
@@ -156,13 +159,26 @@ h4 {
 
 }
 
+//Discover
+
+.discover {
+    background: linear-gradient(#8D78E0, #15DFBB);
+}
+
+.money-blue {
+    filter: invert(80%) sepia(21%) saturate(2448%) hue-rotate(189deg) brightness(100%) contrast(86%);
+    transform: rotate(354deg);
+}
+
+
+
 //Global form styles
 
 input[type=checkbox] {
     width: auto;
 }
 
-input, select, .input {
+input, .input {
     background-color: transparent;
     border: 1px solid #656ED3;
     border-radius: 2em;
@@ -184,6 +200,18 @@ label {
 
 select {
     padding: 8px;
+    border: 1px solid #656ED3;
+    border-radius: 2em;
+    padding: 5px 12px;
+    resize: none;
+    width: 100%;
+
+    appearance: none;
+    background-image: url("/assets/images/vectors/arrrow.svg");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem top 50%;
+    background-size: 0.65rem auto;
+
 }
 
 //Forms w clip paths 
@@ -191,4 +219,13 @@ select {
 .triangle {
     clip-path: polygon(75% 0, 100% 100%, 100% 0);
     background-color: #7052E5;
+}
+
+.heart {
+    transition: all 300ms ease;
+
+    &:hover {
+        fill: #DEE1E6;
+        cursor: pointer;
+    }
 }

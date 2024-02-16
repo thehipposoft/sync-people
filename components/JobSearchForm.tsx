@@ -6,7 +6,9 @@ const JobSearchForm = () => {
         <div className=''>
             <div className='flex flex-col md:w-full'>
                 <div className='flex justify-between px-4 py-2 w-full h-16'>
-                    <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
+                    <Link href={'/'}>
+                        <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
+                    </Link>
                     <div className='flex justify-end gap-6 py-1'>
                         <button className='text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licenses</button>
                         <button className='text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Jobs</button>
@@ -227,6 +229,11 @@ const JobSearchForm = () => {
                                     <Link href={'/my-profile'}>
                                         <button className=' py-2 hover:text-[#326B88] border-[#326B88] border rounded-md px-4 bg-[#326B88] hover:bg-white text-white duration-500 cursor-pointer'>
                                             Save
+                                        </button>
+                                    </Link>
+                                    <Link href={'/business-market'}>
+                                        <button className=' py-2 text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] bg-white hover:text-white duration-500 cursor-pointer'>
+                                            Go to Market
                                         </button>
                                     </Link>
                                 </div>

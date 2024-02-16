@@ -4,7 +4,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='flex pl-20 my-12'>
+    <div className='flex pl-20 py-12 bg-[#FAFAFB]'>
       <div className='w-1/2 flex'>
         <div>
             <Image src={'/assets/logo.svg'} alt='Sync-people logo' width={150} height={150} />

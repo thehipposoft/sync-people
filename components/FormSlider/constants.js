@@ -13,7 +13,7 @@ const FORM_SLIDES = [
         title: '1. Personal information, education and work experience',
         subtitle: 'Great choice!',
         description: 'Now tell us a little bit about...',
-        content: <form className='md:pt-2 md:w-[1000px] h-[450px] overflow-scroll px-4'>
+        content: <form className='md:pt-2 px-6'>
                     <section className='flex gap-4'>
                         <div className='w-1/2'>
                             <label htmlFor="name" className="block pb-2">First name:</label>
@@ -138,7 +138,7 @@ const FORM_SLIDES = [
                             <label className="block pb-2">Citizenship:</label>
                             <select
                                 name="country"
-                                className=" rounded"
+                                className=" rounded-3xl"
                             >
                                 <option value="1">Citizenship #1</option>
                                 <option value="2">Citizenship #2</option>
@@ -151,7 +151,7 @@ const FORM_SLIDES = [
                             <select
                                 multiple
                                 name="credentials"
-                                className=" rounded"
+                                className=" rounded-3xl"
                             >
                                 <option value="1">Credential #1</option>
                                 <option value="2">Credential #2</option>
@@ -173,7 +173,7 @@ const FORM_SLIDES = [
         title: '2. Location, schedule and preferences',
         subtitle: 'Great choice!',
         description: 'Now tell us a little bit about...',
-        content: <form className='md:pt-2 h-[450px] overflow-scroll md:w-[1000px]'>
+        content: <form className='md:pt-2 px-6'>
                     <section className='flex gap-4'>
                         <div className='w-1/2'>
                             <label htmlFor="address" className="block pb-2">Address:</label>
@@ -416,9 +416,9 @@ const FORM_SLIDES = [
                             <option value="Visa#4">Visa#4</option>
                         </select>
                     </section>
-                    <div className='grid grid-cols-4 pt-10 gap-2 w-[90%] 2xl:w-[70%]'>
+                    <div className='grid grid-cols-4 pt-10 gap-2 2xl:w-[70%] px-5'>
                             <div 
-                                className='bg-white pt-6 flex flex-col justify-center items-center w-[240px] h-[180px] rounded-lg shadow-xl '
+                                className='bg-white pt-6 flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl '
                             >
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
@@ -426,7 +426,7 @@ const FORM_SLIDES = [
                                 <p className='text-center pt-3 w-1/2 min-h-[64px]'>Lorem ipsum</p>
                             </div>
                             <div 
-                                className='bg-white pt-6 flex flex-col justify-center items-center w-[240px] h-[180px] rounded-lg shadow-xl '
+                                className='bg-white pt-6 flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl '
                             >
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
@@ -434,7 +434,7 @@ const FORM_SLIDES = [
                                 <p className='text-center pt-3 w-1/2 min-h-[64px]'>Lorem ipsum</p>
                             </div>
                             <div 
-                                className='bg-white pt-6 flex flex-col justify-center items-center w-[240px] h-[180px] rounded-lg shadow-xl'
+                                className='bg-white pt-6 flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl'
                             >
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
@@ -442,7 +442,7 @@ const FORM_SLIDES = [
                                 <p className='text-center pt-3 w-2/3 min-h-[64px]'>Lorem ipsum</p>
                             </div>
                             <div 
-                                className='bg-white pt-6 flex flex-col justify-center items-center w-[240px] h-[180px] rounded-lg shadow-xl'
+                                className='bg-white pt-6 flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl'
                             >
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
@@ -455,8 +455,8 @@ const FORM_SLIDES = [
     {
         id: 4,
         title: '4. Extras',
-        subtitle: 'Great choice!',
-        description: 'Now tell us a little bit about...',
+        subtitle: '',
+        description: '',
         content: <form className='md:pt-2 md:w-[500px]'>
                     <section className='flex flex-col'>
                         <label htmlFor="text" >Education Level:</label>

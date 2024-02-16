@@ -21,8 +21,8 @@ const Header = () => {
           <a href="#contact" className='md:mx-2 md:p-2 hover:opacity-50 duration-300'>About</a>
           <a href="/login" className='md:mx-2 md:p-2 hover:opacity-50 duration-300'>Contact</a>
           <div className='flex gap-3 mx-4'>
-            <button className='white-b py-2 px-4 rounded-xl'>Log In</button>
-            <button className='purple-b py-2 px-4 rounded-xl' onClick={toggleMenu}>Sign Up</button>
+            <Link href={'/login'}><button className='white-b py-2 px-4 rounded-xl'>Log In</button></Link>
+            <Link href={'/sign-up'}><button className='purple-b py-2 px-4 rounded-xl'>Sign Up</button></Link>
           </div>
         </nav>
         <RegisterMenu menuIsOpen={openMenu} closeMenu={toggleMenu} />

@@ -1,13 +1,15 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const MyProfile = () => {
     return (
         <div className='flex'>
-
             <div className='flex flex-col md:w-full'>
                 <div className='flex justify-between px-4 py-2 w-full h-16'>
-                    <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
+                    <Link href={'/'}>
+                        <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
+                    </Link>
                     <div className='flex justify-end gap-6 py-1'>
                         <button className='text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licenses</button>
                         <button className='text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Jobs</button>
@@ -82,7 +84,9 @@ const MyProfile = () => {
                                     I also did a workshop where I learnt my barista skills. I hold an RSA Licence.</p>
                             </div>
                             <div className='pt-6'>
-                                <button className='bg-[#306987] py-2 px-4 text-white rounded-lg'>+ Add Job Search</button>
+                                <Link href={'/job-search'}>
+                                    <button className='bg-[#306987] hover:text-[#326B88] duration-500 border-[#326B88] border hover:bg-white py-2 px-4 text-white rounded-lg'>+ Add Job Search</button>
+                                </Link>
                             </div>
                         </div>
                     </div>
