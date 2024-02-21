@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const SignUpMenu = () => {
+const SignUpMenu = ({ user }:any) => {
     return (
         <div className='flex'>
             <div className='flex items-center justify-center h-screen w-screen bg-[#EBEFFF]'>
@@ -11,11 +11,11 @@ const SignUpMenu = () => {
                     <form className='md:pt-6'>
                         <section className='flex gap-4'>
                             <div className='w-1/2'>
-                                <label htmlFor="text" className='pb-1'>First name</label>
+                                <label htmlFor="text" className='pb-2'>First name</label>
                                 <input type="text" name="first-name" id="" className=''/>
                             </div>
                             <div className='w-1/2'>
-                                <label htmlFor="text" className='pb-1'>Last name</label>
+                                <label htmlFor="text" className='pb-2'>Last name</label>
                                 <input type="text" name="first-name" id="" className=''/>
                             </div>
                         </section>
@@ -32,7 +32,7 @@ const SignUpMenu = () => {
                             <label htmlFor="">By signing up, I agree with the <strong className='text-[#7052E5]'>Terms of Use</strong> & <strong className='text-[#7052E5]'>Privacy Policy</strong></label>
                         </section>
                         <section className='py-4'>
-                            <Link href={'/profile-form'}>
+                            <Link href={`${user === 'business' ? '/business-form' : 'profile-form'}`}>
                                 <input type="submit" value="Sign up" className='purple-b md:py-2 md:px-8 cursor-pointer w-1/4' />
                             </Link>
                         </section> 

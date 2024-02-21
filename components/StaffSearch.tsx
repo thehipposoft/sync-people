@@ -6,16 +6,16 @@ const StaffSearch = () => {
     return (
         <div className=''>
             <div className='flex flex-col md:w-full'>
-                <div className='flex justify-between px-4 py-2 w-full h-16'>
-                    <Link href={'/'}>
-                        <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
-                    </Link>
-                    <div className='flex justify-end gap-6 py-1'>
-                        <button className='text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licenses</button>
-                        <button className='text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Jobs</button>
-                        <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full' />
-                    </div>
+            <div className='flex justify-between items-center px-8 py-2 w-full  bg-white'>
+                <Link href={'/'}>
+                    <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
+                </Link>
+                <div className='flex justify-end gap-6 py-1'>
+                    <Link href={'/staff-market'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Staff</button></Link>
+                    <Link href={'/business-profile'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>My Profile</button></Link>
+                    <img src={"/assets/images/business/mylk-logo.png"} alt="Profile picture" className='rounded-full w-10' />
                 </div>
+            </div>
                 <div className='bg-[#FAFAFB] w-full flex justify-center gap-12'>
                     <div className='flex flex-col h-full'>
                         <div className="rounded-2xl my-4 md:w-[900px] bg-white border">
@@ -246,6 +246,11 @@ const StaffSearch = () => {
                                     <Link href={'/business-profile'}>
                                         <button className=' py-2 hover:text-[#326B88] hover:bg-white border-[#326B88] border rounded-md px-4 bg-[#326B88]  text-white duration-500 cursor-pointer'>
                                             Save
+                                        </button>
+                                    </Link>
+                                    <Link href={'/staff-market'}>
+                                        <button className=' py-2 hover:text-[#326B88] hover:bg-white border-[#326B88] border rounded-md px-4 bg-[#326B88]  text-white duration-500 cursor-pointer'>
+                                            Market
                                         </button>
                                     </Link>
                                 </div>

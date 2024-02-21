@@ -4,7 +4,7 @@ import SignUpMenu from '../../../components/SignUpMenu'
 export default async function SignUpPage() {
     return(
         <div className="">
-            <SignUpMenu />
+            <SignUpMenu user='jobseeker' />
         </div>
     )
 }

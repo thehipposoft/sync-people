@@ -1,10 +1,11 @@
+import Image from 'next/image'
 import React from 'react'
 
 const How = () => {
   return (
-    <div className='h-screen how flex md:pl-20'>
-      <div className='flex items-center max-w-[1350px] mx-auto'>
-        <div className='md:w-2/5 flex flex-col justify-center'>
+    <div className='h-screen how flex md:pl-20' id='how'>
+      <div className='flex items-center 2xl:justify-between max-w-[1350px] mx-auto'>
+        <div className='md:w-[35%] flex flex-col justify-center'>
           <h1 className='font-bold text-white pb-8'>How it works</h1>
           <div className='words overflow-hidden h-[40px] md:my-4'>
             <h3 className={'block h-full text-[20px] md:text-[32px] orange'}>Register</h3>
@@ -20,8 +21,8 @@ const How = () => {
           </p>
           <div className='flex'><button className='md:mx-2 md:mt-8 text-white border-white border px-6 py-2 rounded-3xl'>Let's get started</button></div>
         </div>
-        <div>
-
+        <div className='pl-12'>
+          <Image src={'/assets/images/how-it-works.png'} alt='' width={800} height={350} />
         </div>
       </div>
     </div>

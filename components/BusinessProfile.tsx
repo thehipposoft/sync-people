@@ -6,16 +6,15 @@ const BusinessProfile = () => {
     return (
         <div className='flex'>
             <div className='flex flex-col md:w-full'>
-                <div className='flex justify-between px-4 py-2 w-full h-16'>
-                    <Link href={'/'}>
-                        <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
-                    </Link>
-                    <div className='flex justify-end gap-6 py-1'>
-                        <button className='text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licenses</button>
-                        <button className='text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Jobs</button>
-                        <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full' />
-                    </div>
+            <div className='flex justify-between items-center px-8 py-2 w-full  bg-white'>
+                <Link href={'/'}>
+                    <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
+                </Link>
+                <div className='flex justify-end gap-6 py-1'>
+                    <Link href={'/staff-market'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Staff</button></Link>
+                    <img src={"/assets/images/business/mylk-logo.png"} alt="Profile picture" className='rounded-full w-10' />
                 </div>
+            </div>
                 <div className='bg-[#FAFAFB] w-full flex justify-center gap-12'>
                     <div>
                         <div className='flex flex-col rounded-2xl my-4 mx-auto md:w-[900px] bg-white border'>

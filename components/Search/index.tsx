@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const SearchComponent = ({ data }:any) => {
+const SearchComponent = ({ data, user }:any) => {
 
     const [selectedFilters, setSelectedFilters] = useState([]);
     const [favourite, setFavourite] = useState(false);
@@ -18,14 +18,33 @@ const SearchComponent = ({ data }:any) => {
 
     return (
         <div className='pb-8 bg-[#FAFAFB]'>
-            <div className='flex items-center justify-around bg-white border-b'>
-                    <Link href={'/'}>
-                        <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
-                    </Link>
-                <section className='w-[350px]'>
+            <div className='flex justify-between items-center px-8 py-2 w-full  bg-white'>
+                <Link href={'/'}>
+                    <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
+                </Link>
+                <section className='w-[450px] my-0'>
                     <input type="text" name="search" id="search" placeholder='Search'/>
                 </section>
-                <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full w-14 h-14 mr-8' />
+                {
+                    user === 'business' ?
+                    <div className='flex justify-end gap-6 py-1'>
+                        <Link href={'/business-profile'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>My Profile</button></Link>
+                        <img src={"/assets/images/business/mylk-logo.png"} alt="Profile picture" className='rounded-full w-10' />
+                    </div>
+                    :
+                    user === 'licence' ?
+                    <div className='flex justify-end gap-6 py-1'>
+                        <Link href={'/business-market'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Jobs</button></Link>
+                        <Link href={'/my-profile'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>My Profile</button></Link>
+                        <img src={"/assets/images/cv.png"} alt="Profile picture" className='rounded-full w-10' />
+                    </div>
+                    :
+                    <div className='flex justify-end gap-6 py-1'>
+                        <Link href={'/training-and-licences'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licences</button></Link>
+                        <Link href={'/my-profile'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>My Profile</button></Link>
+                        <img src={"/assets/images/cv.png"} alt="Profile picture" className='rounded-full w-10' />
+                    </div>
+                }
             </div>
             <div className='flex justify-around gap-6 pt-6 px-12'>
                 <div className='w-[20vw] rounded-2xl border flex flex-col bg-white'>
@@ -373,6 +392,12 @@ const SearchComponent = ({ data }:any) => {
                                         :
                                         <p className='text-lg text-black h-bold'>{value.name}</p>
                                     }
+                                    {
+                                        value.institution ? 
+                                        <p className='opacity-90'>{value.institution}</p>
+                                        :
+                                        <></>
+                                    }
                                     <p className='text-[#0095A9] h-bold'>{value.city}, {value.state} {value.cp}</p>
                                     <div className='flex'>
                                         <img src="/assets/images/vectors/star.svg" alt="" />
@@ -384,6 +409,9 @@ const SearchComponent = ({ data }:any) => {
                                     {
                                         value.age ?
                                         <p className='opacity-50'>{value.reviews} Reviews from Employers</p>
+                                        :
+                                        value.institution ?
+                                        <p className='opacity-50'>{value.reviews} Reviews from Students</p>
                                         :
                                         <p className='opacity-50'>{value.reviews} Reviews from Employees</p>
                                     }

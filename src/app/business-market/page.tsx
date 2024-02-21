@@ -8,7 +8,7 @@ export default function BusinessMarketPage() {
         <div className="flex">
             <SideNav />
             <div className="flex flex-col w-full">
-                <SearchComponent  data={BUSINESS_RESULTS}/>
+                <SearchComponent  data={BUSINESS_RESULTS} />
                 <Footer />
             </div>
         </div>

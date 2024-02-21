@@ -349,13 +349,13 @@ const CreateProfile = () => {
                         </div>
 
                         <div className='w-1/2'>
-                            <label className="mb-2 pb-2">Licenses</label>
+                            <label className="mb-2 pb-2">Licences</label>
                             <div className='block'>
                                 <div className='flex items-center gap-2'>
                                     
                                     <input
                                         type="checkbox"
-                                        name="licenses"
+                                        name="licences"
                                         value="white-card"
                                     />
                                     <label className='text-black'>White Card</label>
@@ -364,7 +364,7 @@ const CreateProfile = () => {
                                     
                                     <input
                                         type="checkbox"
-                                        name="licenses"
+                                        name="licences"
                                         value="rsa"
                                     />
                                     <label className='text-black'>RSA</label>
@@ -373,7 +373,7 @@ const CreateProfile = () => {
                                     
                                     <input
                                         type="checkbox"
-                                        name="licenses"
+                                        name="licences"
                                         value="wwc"
                                     />
                                     <label className='text-black'>WWC</label>
@@ -382,17 +382,17 @@ const CreateProfile = () => {
                                     
                                     <input
                                         type="checkbox"
-                                        name="licenses"
-                                        value="driver-license"
+                                        name="licences"
+                                        value="driver-licence"
                                     />
-                                    <label className='text-black'>Driver license</label>
+                                    <label className='text-black'>Driver licence</label>
                                 </div>
 
                                 <div className='flex items-center gap-2'>
                                     
                                     <input
                                         type="checkbox"
-                                        name="licenses"
+                                        name="licences"
                                         value="police-check"
                                     />
                                     <label className='text-black'>Police Check</label>
@@ -400,7 +400,7 @@ const CreateProfile = () => {
                                 <div className='flex items-center gap-2'>
                                     <input
                                         type="checkbox"
-                                        name="licenses"
+                                        name="licences"
                                         value="other"
                                     />
                                     <label className='text-black'>Other</label>

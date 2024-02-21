@@ -11,9 +11,8 @@ const BusinessCreateProfile = () => {
                         <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
                     </Link>
                     <div className='flex justify-end gap-6 py-1'>
-                        <button className='text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licenses</button>
-                        <button className='text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Jobs</button>
-                        <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full' />
+                        <Link href={'/staff-market'}><button className='text-[#326B88] h-full border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Staff</button></Link>
+                        <img src="/assets/images/business/mylk-logo.png" alt="Profile picture" className='rounded-full' />
                     </div>
                 </div>
                 <div className='bg-[#FAFAFB] w-full flex justify-center gap-12'>

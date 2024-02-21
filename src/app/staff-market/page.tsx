@@ -9,7 +9,7 @@ export default function StaffMarketPage() {
         <div className="flex">
             <SideNav />
             <div className="flex flex-col w-full">
-                <SearchComponent data={STAFF_RESULTS} />
+                <SearchComponent data={STAFF_RESULTS} user='business' />
                 <Footer />
             </div>
         </div>
