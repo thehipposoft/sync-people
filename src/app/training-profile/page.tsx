@@ -1,13 +1,13 @@
 import SideNav from "../../../components/SideNav"
 import Footer from "../../../components/Footer"
-import BusinessProfile from "../../../components/BusinessProfile"
+import TrainingProfile from "../../../components/TrainingProfile"
 
-export default async function CompanyProfilePage() {
+export default async function TrainingProfilePage() {
     return(
         <div className="flex">
             <SideNav />
             <div className="flex flex-col w-full">
-                <BusinessProfile />
+                <TrainingProfile />
                 <Footer />
             </div>
         </div>

@@ -4,7 +4,7 @@ import SideNav from "../../../components/SideNav";
 import { LICENCES_RESULTS } from "../../../components/Search/constants"
 
 
-export default function StaffMarketPage() {
+export default function TrainingMarketPage() {
     return(
         <div className="flex">
             <SideNav />

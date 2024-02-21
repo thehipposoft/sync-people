@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
+import Link from 'next/link'
 
 const How = () => {
   return (
@@ -19,7 +20,7 @@ const How = () => {
               your preferences.  
               Let us do the hard work for you. Leave it to Sync.
           </p>
-          <div className='flex'><button className='md:mx-2 md:mt-8 text-white border-white border px-6 py-2 rounded-3xl'>Let's get started</button></div>
+          <Link href={'/worker-sign-up'} className='flex'><button className='md:mx-2 md:mt-8 text-white border-white border px-6 py-2 rounded-3xl hover:text-[#8D78E0] hover:bg-white duration-300'>Let's get started</button></Link>
         </div>
         <div className='pl-12'>
           <Image src={'/assets/images/how-it-works.png'} alt='' width={800} height={350} />

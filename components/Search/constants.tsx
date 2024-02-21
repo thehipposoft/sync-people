@@ -342,7 +342,7 @@ const LICENCES_RESULTS = [
         price: '$180 | 2.5 hours',
         cp: '3186',
         reviews: '28',
-        linkTo: '/company-profile',
+        linkTo: '/training-profile',
     },
     {
         name: "Latte Art",
@@ -353,7 +353,7 @@ const LICENCES_RESULTS = [
         price: '$160 | 2 hours',
         cp: '3186',
         reviews: '52',
-        linkTo: '/company-profile',
+        linkTo: '/training-profile',
     },
     {
         name: "Advaned Espresso",
@@ -364,7 +364,7 @@ const LICENCES_RESULTS = [
         price: '$250 | 3 hours',
         cp: '3186',
         reviews: '35',
-        linkTo: '/company-profile',
+        linkTo: '/training-profile',
     },
     {
         name: "Nationaly Recognised...",
@@ -375,7 +375,7 @@ const LICENCES_RESULTS = [
         price: '$199 | 5 hours',
         cp: '3186',
         reviews: '12',
-        linkTo: '/company-profile',
+        linkTo: '/training-profile',
     },
     {
         name: "Coffe Appreciation",
@@ -386,7 +386,7 @@ const LICENCES_RESULTS = [
         price: '$80 | 1 hour',
         cp: '3186',
         reviews: '26',
-        linkTo: '/company-profile',
+        linkTo: '/training-profile',
     },
     {
         name: "Barista Course National",
@@ -397,7 +397,7 @@ const LICENCES_RESULTS = [
         price: '$119 | 3 hours',
         cp: '3186',
         reviews: '47',
-        linkTo: '/company-profile',
+        linkTo: '/training-profile',
     },
     {
         name: "Barista Masterclass",
@@ -408,7 +408,7 @@ const LICENCES_RESULTS = [
         price: '$1490 | 4 days',
         cp: '3186',
         reviews: '38',
-        linkTo: '/company-profile',
+        linkTo: '/training-profile',
     },
     {
         name: "RSA & Barista Package",
@@ -420,7 +420,7 @@ const LICENCES_RESULTS = [
         price: '$359 | 8 hours',
         cp: '3186',
         reviews: '19',
-        linkTo: '/company-profile',
+        linkTo: '/training-profile',
     },
     {
         name: "Barista Coffee Making",
@@ -431,7 +431,7 @@ const LICENCES_RESULTS = [
         price: '$119 | 4 hours',
         cp: '3186',
         reviews: '34',
-        linkTo: '/company-profile',
+        linkTo: '/training-profile',
     },
     {
         name: "Coffee Art",
@@ -442,7 +442,7 @@ const LICENCES_RESULTS = [
         price: '$90 | 3 hours',
         cp: '3186',
         reviews: '25',
-        linkTo: '/company-profile',
+        linkTo: '/training-profile',
     },
     {
         name: "How to Make Espresso",
@@ -453,7 +453,7 @@ const LICENCES_RESULTS = [
         price: '$150 | 2 hours',
         cp: '3186',
         reviews: '14',
-        linkTo: '/company-profile',
+        linkTo: '/training-profile',
     },
     {
         name: "Barista Coffee Course",
@@ -464,7 +464,7 @@ const LICENCES_RESULTS = [
         price: '$120 | 6 hours',
         cp: '3186',
         reviews: '31',
-        linkTo: '/company-profile',
+        linkTo: '/training-profile',
     },
 ]
 

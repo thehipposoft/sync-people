@@ -151,36 +151,67 @@ const SearchComponent = ({ data, user }:any) => {
                             </div>
                             <div className='flex flex-col gap-1 pt-3'>
                                 <div className='flex items-center gap-2 '>
-                                    <label className='text-black'>
+                                    <label className='text-black flex items-center'>
                                         <input
                                             type="checkbox"
                                             name="industrie"
                                             value="hospitality"
                                             className='mr-2'
                                         />
-                                        STARS
+                                        <Image src={'/assets/images/vectors/star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/empty-star.svg'} alt='' width={17} height={15}/>
+                                        <p className='pl-1'>& Up</p>
                                     </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <label className='text-black'>
+                                    <label className='text-black flex items-center'>
                                         <input
                                             type="checkbox"
                                             name="industrie"
                                             value="construction"
                                             className='mr-2'
                                         />
-                                        STARS
+                                        <Image src={'/assets/images/vectors/star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/empty-star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/empty-star.svg'} alt='' width={17} height={15}/>
+                                        <p className='pl-1'>& Up</p>
                                     </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <label className='text-black'>
+                                    <label className='text-black flex items-center'>
                                         <input
                                             type="checkbox"
                                             name="industrie"
                                             value="construction"
                                             className='mr-2'
                                         />
-                                        STARS
+                                        <Image src={'/assets/images/vectors/star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/empty-star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/empty-star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/empty-star.svg'} alt='' width={17} height={15}/>
+                                        <p className='pl-1'>& Up</p>
+                                    </label>
+                                </div>
+                                <div className='flex items-center gap-2 '>
+                                    <label className='text-black flex items-center'>
+                                        <input
+                                            type="checkbox"
+                                            name="industrie"
+                                            value="construction"
+                                            className='mr-2'
+                                        />
+                                        <Image src={'/assets/images/vectors/star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/empty-star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/empty-star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/empty-star.svg'} alt='' width={17} height={15}/>
+                                        <Image src={'/assets/images/vectors/empty-star.svg'} alt='' width={17} height={15}/>
+                                        <p className='pl-1'>& Up</p>
                                     </label>
                                 </div>
                             </div>

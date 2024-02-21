@@ -12,7 +12,7 @@ const WhyUs = () => {
             your preferences.  
             Let us do the hard work for you. Leave it to Sync.
         </p>
-        <div className='flex'><a href="/worker-sign-up"><button className='md:mx-2 md:mt-8 text-[#8D78E0] border-[#5B24F2] border px-6 py-2 rounded-3xl'>Create a Profile</button></a></div>
+        <a href="/worker-sign-up"><button className='md:mx-2 md:mt-8 text-[#8D78E0] border-[#5B24F2] hover:bg-[#8D78E0] hover:border-[#8D78E0] hover:text-white duration-300 border px-6 py-2 rounded-3xl'>Create a Profile</button></a>
       </div>
       <div className='flex justify-center items-center'>
         <Image src={'/assets/images/whyus.png'} width={450} height={400} alt='' />
