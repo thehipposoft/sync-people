@@ -233,3 +233,19 @@ select {
         cursor: pointer;
     }
 }
+
+.fav-button:hover {
+    background-color: #326B88;
+    color: #FFF;
+    path {
+        stroke: #FFF;
+    }
+}
+
+.sync-button:hover {
+    background-color: #FFF;
+    color: #326B88;
+    path {
+        fill: #326B88;
+    }
+}

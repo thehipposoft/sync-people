@@ -9,6 +9,7 @@ const STAFF_RESULTS = [
         cp: '3000',
         rate: '97',
         reviews: '6',
+        linkTo: '/staff-profile',
     },
     {
         name: 'Shane',
@@ -20,7 +21,7 @@ const STAFF_RESULTS = [
         rate: '95',
         cp: '3182',
         reviews: '11',
-
+        linkTo: '/staff-profile',
     },
     {
         name: 'Diana',
@@ -32,7 +33,7 @@ const STAFF_RESULTS = [
         rate: '92',
         cp: '3065',
         reviews: '3',
-
+        linkTo: '/staff-profile',
     },
     {
         name: 'Johanna',
@@ -44,6 +45,7 @@ const STAFF_RESULTS = [
         rate: '91',
         cp: '3186',
         reviews: '5',
+        linkTo: '/staff-profile',
     },
     {
         name: 'Nadia',
@@ -55,6 +57,7 @@ const STAFF_RESULTS = [
         rate: '90',
         cp: '3101',
         reviews: '10',
+        linkTo: '/staff-profile',
     },
     {
         name: 'Sonia',
@@ -66,6 +69,7 @@ const STAFF_RESULTS = [
         rate: '88',
         cp: '3144',
         reviews: '15',
+        linkTo: '/staff-profile',
     },
     {
         name: 'Ben',
@@ -77,6 +81,7 @@ const STAFF_RESULTS = [
         rate: '87',
         cp: '3008',
         reviews: '21',
+        linkTo: '/staff-profile',
     },
     {
         name: 'Anna',
@@ -88,6 +93,7 @@ const STAFF_RESULTS = [
         rate: '86',
         cp: '3013',
         reviews: '0',
+        linkTo: '/staff-profile',
     },
     {
         name: 'Dominic',
@@ -98,6 +104,7 @@ const STAFF_RESULTS = [
         state: 'VIC',
         rate: '84',
         cp: '3181',
+        linkTo: '/staff-profile',
     },
     {
         name: 'Ruth',
@@ -109,6 +116,7 @@ const STAFF_RESULTS = [
         rate: '84',
         cp: '3008',
         reviews: '7',
+        linkTo: '/staff-profile',
     },
     {
         name: 'Laura',
@@ -120,6 +128,7 @@ const STAFF_RESULTS = [
         rate: '83',
         cp: '3187',
         reviews: '2',
+        linkTo: '/staff-profile',
     },
     {
         name: 'Carlos',
@@ -131,6 +140,7 @@ const STAFF_RESULTS = [
         rate: '82',
         cp: '3204',
         reviews: '5',
+        linkTo: '/staff-profile',
     },
     {
         name: 'Beth',
@@ -142,6 +152,7 @@ const STAFF_RESULTS = [
         rate: '81',
         cp: '3008',
         reviews: '2',
+        linkTo: '/staff-profile',
     },
     {
         name: 'Stephanie',
@@ -153,6 +164,7 @@ const STAFF_RESULTS = [
         rate: '80',
         cp: '3013',
         reviews: '3',
+        linkTo: '/staff-profile',
     },
     {
         name: 'Endo',
@@ -164,6 +176,7 @@ const STAFF_RESULTS = [
         rate: '79',
         cp: '3206',
         reviews: '10',
+        linkTo: '/staff-profile',
     },
 ]
 
@@ -176,6 +189,7 @@ const BUSINESS_RESULTS = [
         cp: '3181',
         rate: '97',
         reviews: '2',
+        linkTo: '/company-profile',
     },
     {
         name: 'The Baths Middle Brighton',
@@ -185,6 +199,7 @@ const BUSINESS_RESULTS = [
         rate: '95',
         cp: '3181',
         reviews: '5',
+        linkTo: '/company-profile',
     },
     {
         name: 'Mylk Cafe',
@@ -194,6 +209,7 @@ const BUSINESS_RESULTS = [
         rate: '92',
         cp: '3186',
         reviews: '7',
+        linkTo: '/company-profile',
     },
     {
         name: 'Holy Grounds Cafe',
@@ -203,6 +219,7 @@ const BUSINESS_RESULTS = [
         rate: '91',
         cp: '3181',
         reviews: '1',
+        linkTo: '/company-profile',
     },
     {
         name: 'Brighton Soul Espresso',
@@ -212,6 +229,7 @@ const BUSINESS_RESULTS = [
         rate: '90',
         cp: '3181',
         reviews: '9',
+        linkTo: '/company-profile',
     },
     {
         name: 'Pantry Brighton',
@@ -220,6 +238,7 @@ const BUSINESS_RESULTS = [
         state: 'VIC',
         rate: '88',
         cp: '3186',
+        linkTo: '/company-profile',
     },
     {
         name: "Ninna's Kitchen",
@@ -229,6 +248,7 @@ const BUSINESS_RESULTS = [
         rate: '87',
         cp: '3181',
         reviews: '12',
+        linkTo: '/company-profile',
     },
     {
         name: 'Laurent Bakery Brighton',
@@ -238,6 +258,7 @@ const BUSINESS_RESULTS = [
         rate: '85',
         cp: '3181',
         reviews: '4',
+        linkTo: '/company-profile',
     },
     {
         name: 'Blitz Bar Brighton',
@@ -247,6 +268,7 @@ const BUSINESS_RESULTS = [
         rate: '84',
         cp: '3186',
         reviews: '16',
+        linkTo: '/company-profile',
     },
     {
         name: 'Dendy Deli',
@@ -256,6 +278,7 @@ const BUSINESS_RESULTS = [
         rate: '84',
         cp: '3181',
         reviews: '1',
+        linkTo: '/company-profile',
     },
     {
         name: 'Botticelli of Brighton',
@@ -265,6 +288,7 @@ const BUSINESS_RESULTS = [
         rate: '82',
         cp: '3181',
         reviews: '3',
+        linkTo: '/company-profile',
     },
     {
         name: 'Waterfront Brighton',
@@ -274,6 +298,7 @@ const BUSINESS_RESULTS = [
         rate: '80',
         cp: '3186',
         reviews: '8',
+        linkTo: '/company-profile',
     },
     {
         name: 'Superrandom',
@@ -283,6 +308,7 @@ const BUSINESS_RESULTS = [
         rate: '79',
         cp: '3181',
         reviews: '14',
+        linkTo: '/company-profile',
     },
     {
         name: 'The Little Ox',
@@ -292,6 +318,7 @@ const BUSINESS_RESULTS = [
         rate: '78',
         cp: '3181',
         reviews: '11',
+        linkTo: '/company-profile',
     },
     {
         name: "Saint Martin's",
@@ -301,6 +328,7 @@ const BUSINESS_RESULTS = [
         rate: '75',
         cp: '3186',
         reviews: '9',
+        linkTo: '/company-profile',
     },
 ]
 
@@ -311,9 +339,10 @@ const LICENCES_RESULTS = [
         institution: 'Melbourne Coffe Academy',
         city: 'Melbourne',
         state: 'VIC',
-        rate: '75',
+        price: '$180 | 2.5 hours',
         cp: '3186',
         reviews: '28',
+        linkTo: '/company-profile',
     },
     {
         name: "Latte Art",
@@ -321,9 +350,10 @@ const LICENCES_RESULTS = [
         institution: 'Melbourne Coffe Academy',
         city: 'Melbourne',
         state: 'VIC',
-        rate: '75',
+        price: '$160 | 2 hours',
         cp: '3186',
         reviews: '52',
+        linkTo: '/company-profile',
     },
     {
         name: "Advaned Espresso",
@@ -331,9 +361,10 @@ const LICENCES_RESULTS = [
         institution: 'Melbourne Coffe Academy',
         city: 'Melbourne',
         state: 'VIC',
-        rate: '75',
+        price: '$250 | 3 hours',
         cp: '3186',
         reviews: '35',
+        linkTo: '/company-profile',
     },
     {
         name: "Nationaly Recognised...",
@@ -341,9 +372,10 @@ const LICENCES_RESULTS = [
         institution: 'Australian Barista School',
         city: 'Melbourne',
         state: 'VIC',
-        rate: '75',
+        price: '$199 | 5 hours',
         cp: '3186',
         reviews: '12',
+        linkTo: '/company-profile',
     },
     {
         name: "Coffe Appreciation",
@@ -351,9 +383,10 @@ const LICENCES_RESULTS = [
         institution: 'Melbourne Coffe Academy',
         city: 'Melbourne',
         state: 'VIC',
-        rate: '75',
+        price: '$80 | 1 hour',
         cp: '3186',
         reviews: '26',
+        linkTo: '/company-profile',
     },
     {
         name: "Barista Course National",
@@ -361,9 +394,10 @@ const LICENCES_RESULTS = [
         institution: 'Australian Barista School',
         city: 'Melbourne',
         state: 'VIC',
-        rate: '75',
+        price: '$119 | 3 hours',
         cp: '3186',
         reviews: '47',
+        linkTo: '/company-profile',
     },
     {
         name: "Barista Masterclass",
@@ -371,9 +405,10 @@ const LICENCES_RESULTS = [
         institution: 'Melbourne Coffe Academy',
         city: 'Melbourne',
         state: 'VIC',
-        rate: '75',
+        price: '$1490 | 4 days',
         cp: '3186',
         reviews: '38',
+        linkTo: '/company-profile',
     },
     {
         name: "RSA & Barista Package",
@@ -382,8 +417,10 @@ const LICENCES_RESULTS = [
         city: 'Melbourne',
         state: 'VIC',
         rate: '75',
+        price: '$359 | 8 hours',
         cp: '3186',
         reviews: '19',
+        linkTo: '/company-profile',
     },
     {
         name: "Barista Coffee Making",
@@ -391,9 +428,10 @@ const LICENCES_RESULTS = [
         institution: 'Barista Course Melbourne',
         city: 'Melbourne',
         state: 'VIC',
-        rate: '75',
+        price: '$119 | 4 hours',
         cp: '3186',
         reviews: '34',
+        linkTo: '/company-profile',
     },
     {
         name: "Coffee Art",
@@ -401,9 +439,10 @@ const LICENCES_RESULTS = [
         institution: 'Barista Course Melbourne',
         city: 'Melbourne',
         state: 'VIC',
-        rate: '75',
+        price: '$90 | 3 hours',
         cp: '3186',
         reviews: '25',
+        linkTo: '/company-profile',
     },
     {
         name: "How to Make Espresso",
@@ -411,9 +450,10 @@ const LICENCES_RESULTS = [
         institution: 'Market Lane Coffe',
         city: 'Melbourne',
         state: 'VIC',
-        rate: '75',
+        price: '$150 | 2 hours',
         cp: '3186',
         reviews: '14',
+        linkTo: '/company-profile',
     },
     {
         name: "Barista Coffee Course",
@@ -421,9 +461,10 @@ const LICENCES_RESULTS = [
         institution: 'Short Courses Australia',
         city: 'Melbourne',
         state: 'VIC',
-        rate: '75',
+        price: '$120 | 6 hours',
         cp: '3186',
         reviews: '31',
+        linkTo: '/company-profile',
     },
 ]
 

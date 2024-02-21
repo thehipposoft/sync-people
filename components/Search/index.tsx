@@ -46,7 +46,7 @@ const SearchComponent = ({ data, user }:any) => {
                     </div>
                 }
             </div>
-            <div className='flex justify-around gap-6 pt-6 px-12'>
+            <div className='flex justify-around gap-6 pt-6 px-8'>
                 <div className='w-[20vw] rounded-2xl border flex flex-col bg-white'>
                     <div className='grid col-span-1 '>
                         <div className='flex justify-between py-4 border-b mx-4'>
@@ -62,28 +62,38 @@ const SearchComponent = ({ data, user }:any) => {
                             </div>
                             <div className='flex flex-col gap-1 pt-3'>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="industrie"
-                                        value="hospitality"
-                                    />
-                                    <label className='text-black'>Hospitality</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="industrie"
+                                            value="hospitality"
+                                            className='mr-2'
+                                        />
+                                        Hospitality
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="industrie"
-                                        value="construction"
-                                    />
-                                    <label className='text-black'>Tourism</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="industrie"
+                                            value="construction"
+                                            className='mr-2'
+                                        />
+                                        Tourism
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="industrie"
-                                        value="construction"
-                                    />
-                                    <label className='text-black'>Farming</label>
+
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="industrie"
+                                            value="construction"
+                                            className='mr-2'
+                                        />
+                                            Farming
+                                    </label>
                                 </div>
                             </div>
                             <p className='text-[#0095A9] pt-2 cursor-pointer hover:underline'>See more</p>
@@ -97,28 +107,37 @@ const SearchComponent = ({ data, user }:any) => {
                             </div>
                             <div className='flex flex-col gap-1 pt-3'>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="industrie"
-                                        value="hospitality"
-                                    />
-                                    <label className='text-black'>Melbourne & Inner Suburbs</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="industrie"
+                                            value="hospitality"
+                                            className='mr-2'
+                                        />
+                                        Melbourne & Inner Suburbs
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="industrie"
-                                        value="construction"
-                                    />
-                                    <label className='text-black'>Melbourne, VIC 3000</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="industrie"
+                                            value="construction"
+                                            className='mr-2'
+                                        />
+                                        Melbourne, VIC 3000
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="industrie"
-                                        value="construction"
-                                    />
-                                    <label className='text-black'>Geelong, VIC 3220</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="industrie"
+                                            value="construction"
+                                            className='mr-2'
+                                        />
+                                        Geelong, VIC 3220
+                                    </label>
                                 </div>
                             </div>
                             <p className='text-[#0095A9] pt-2 cursor-pointer hover:underline'>See more</p>
@@ -132,28 +151,37 @@ const SearchComponent = ({ data, user }:any) => {
                             </div>
                             <div className='flex flex-col gap-1 pt-3'>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="industrie"
-                                        value="hospitality"
-                                    />
-                                    <label className='text-black'>STARS</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="industrie"
+                                            value="hospitality"
+                                            className='mr-2'
+                                        />
+                                        STARS
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="industrie"
-                                        value="construction"
-                                    />
-                                    <label className='text-black'>STARS</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="industrie"
+                                            value="construction"
+                                            className='mr-2'
+                                        />
+                                        STARS
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="industrie"
-                                        value="construction"
-                                    />
-                                    <label className='text-black'>STARS</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="industrie"
+                                            value="construction"
+                                            className='mr-2'
+                                        />
+                                        STARS
+                                    </label>
                                 </div>
                             </div>
                             <p className='text-[#0095A9] pt-2 cursor-pointer hover:underline'>See more</p>
@@ -167,12 +195,15 @@ const SearchComponent = ({ data, user }:any) => {
                             </div>
                             <div className='flex flex-col gap-1 pt-3'>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="industrie"
-                                        value="hospitality"
-                                    />
-                                    <label className='text-black'>STARS</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="industrie"
+                                            value="construction"
+                                            className='mr-2'
+                                        />
+                                        STARS
+                                    </label>
                                 </div>
                             </div>
                             <p className='text-[#0095A9] pt-2 cursor-pointer hover:underline'>See more</p>
@@ -186,20 +217,27 @@ const SearchComponent = ({ data, user }:any) => {
                             </div>
                             <div className='flex flex-col gap-1 pt-3'>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="search-level"
-                                        value="active"
-                                    />
-                                    <label className='text-black'>Active</label>
+
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="search-level"
+                                            value="active"
+                                            className='mr-2'
+                                        />
+                                            Active
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="search-level"
-                                        value="pasive"
-                                    />
-                                    <label className='text-black'>Pasive</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="search-level"
+                                            value="pasive"
+                                            className='mr-2'
+                                        />
+                                            Pasive
+                                    </label>
                                 </div>
                             </div>
                             <p className='text-[#0095A9] pt-2 cursor-pointer hover:underline'>See more</p>
@@ -213,28 +251,37 @@ const SearchComponent = ({ data, user }:any) => {
                             </div>
                             <div className='flex flex-col gap-1 pt-3'>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="uptaded"
-                                        value="last-7-days"
-                                    />
-                                    <label className='text-black'>Last 7 days</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="uptaded"
+                                            value="last-7-days"
+                                            className='mr-2'
+                                        />
+                                        Last 7 days
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="uptaded"
-                                        value="last-30-days"
-                                    />
-                                    <label className='text-black'>Last 30 days</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="uptaded"
+                                            value="last-30-days"
+                                            className='mr-2'
+                                        />
+                                        Last 30 days
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="uptaded"
-                                        value="last-60-days"
-                                    />
-                                    <label className='text-black'>Last 60 days</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="uptaded"
+                                            value="last-60-days"
+                                            className='mr-2'
+                                        />
+                                        Last 60 days
+                                    </label>
                                 </div>
                             </div>
                             <p className='text-[#0095A9] pt-2 cursor-pointer hover:underline'>See more</p>
@@ -248,28 +295,37 @@ const SearchComponent = ({ data, user }:any) => {
                             </div>
                             <div className='flex flex-col gap-1 pt-3'>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="uptaded"
-                                        value="last-7-days"
-                                    />
-                                    <label className='text-black'>Full-time</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="work-type"
+                                            value="full-time"
+                                            className='mr-2'
+                                        />
+                                        Full-time
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="uptaded"
-                                        value="last-30-days"
-                                    />
-                                    <label className='text-black'>Part-time</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="work-type"
+                                            value="part-time"
+                                            className='mr-2'
+                                        />
+                                        Part-time
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="uptaded"
-                                        value="last-60-days"
-                                    />
-                                    <label className='text-black'>Casual</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="work-type"
+                                            value="casual"
+                                            className='mr-2'
+                                        />
+                                        Casual
+                                    </label>
                                 </div>
                             </div>
                             <p className='text-[#0095A9] pt-2 cursor-pointer hover:underline'>See more</p>
@@ -282,61 +338,82 @@ const SearchComponent = ({ data, user }:any) => {
                                 </svg>
                             </div>
                             <div className='flex flex-col gap-1 pt-3'>
-                                <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="uptaded"
-                                        value="last-7-days"
-                                    />
-                                    <label className='text-black'>Monday</label>
+                            <div className='flex items-center gap-2 '>
+                                    <label className='text-black'>
+                                            <input
+                                                type="checkbox"
+                                                name="availability"
+                                                value="monday"
+                                                className='mr-2'
+                                            />
+                                                Monday
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="uptaded"
-                                        value="last-30-days"
-                                    />
-                                    <label className='text-black'>Tuesday</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="availability"
+                                            value="tuesday"
+                                            className='mr-2'
+                                        />
+                                            Tuesday
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="uptaded"
-                                        value="last-60-days"
-                                    />
-                                    <label className='text-black'>Wednesday</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="availability"
+                                            value="wednesday"
+                                            className='mr-2'
+                                        />
+                                            Wednesday
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="uptaded"
-                                        value="last-60-days"
-                                    />
-                                    <label className='text-black'>Thursday</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="availability"
+                                            value="thursday"
+                                            className='mr-2'
+                                        />
+                                            Thursday
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="uptaded"
-                                        value="last-60-days"
-                                    />
-                                    <label className='text-black'>Friday</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="availability"
+                                            value="friday"
+                                            className='mr-2'
+                                        />
+                                            Friday
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="uptaded"
-                                        value="last-60-days"
-                                    />
-                                    <label className='text-black'>Saturday</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="availability"
+                                            value="saturday"
+                                            className='mr-2'
+                                        />
+                                            Saturday
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    <input
-                                        type="checkbox"
-                                        name="uptaded"
-                                        value="last-60-days"
-                                    />
-                                    <label className='text-black'>Sunday</label>
+                                    <label className='text-black'>
+                                        <input
+                                            type="checkbox"
+                                            name="availability"
+                                            value="sunday"
+                                            className='mr-2'
+                                        />
+                                            Sunday
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -365,32 +442,42 @@ const SearchComponent = ({ data, user }:any) => {
                             data.map((value:any, index:any) => {
                                 return(
                                   <div className='flex flex-col gap-1' key={index}>
-                                    <div
-                                        className={`relative bg-center bg-cover
-                                         flex justify-center items-end w-56 h-56`}
-                                         style={{
-                                            backgroundImage: `url(${value.profileImage})`
-                                         }}
-                                    >
-                                        <svg 
-                                            width="28" 
-                                            height="32"
-                                            viewBox="0 0 33 32" 
-                                            fill="none" 
-                                            xmlns="http://www.w3.org/2000/svg" 
-                                            className={`${favourite ? 'fill-red-600' : '' } absolute top-2 right-2 heart`}
+                                    <a href={value.linkTo} className='search-box hover:cursor-pointer'>
+                                        <div
+                                            className={`relative bg-center bg-cover 
+                                            flex justify-center items-end w-56 h-56`}
+                                            style={{
+                                                backgroundImage: `url(${value.profileImage})`
+                                            }}
                                         >
-                                            <path d="M26.5834 7.51661C24.0274 4.96061 19.8826 4.96061 17.3266 7.51661C17.0114 7.83181 16.7378 8.17181 16.5002 8.52861C16.2626 8.17181 15.989 7.83181 15.6738 7.51741C13.1178 4.96141 8.973 4.96141 6.417 7.51741C3.861 10.0734 3.861 14.2182 6.417 16.7742L16.5002 26.8566L26.5834 16.7734C29.1394 14.2174 29.1394 10.0734 26.5834 7.51661Z" stroke="#DEE1E6" stroke-width="1.92" stroke-miterlimit="10" stroke-linecap="square"/>
-                                        </svg>
-                                        <p className='p-2 bg-[#7052E5]/70 rounded-3xl text-white mb-4'>
-                                            Match rate {value.rate}%
-                                        </p>
-                                    </div>
+                                            <svg 
+                                                width="28" 
+                                                height="32"
+                                                viewBox="0 0 33 32" 
+                                                fill="none" 
+                                                xmlns="http://www.w3.org/2000/svg" 
+                                                className={`${favourite ? 'fill-red-600' : '' } absolute top-2 right-2 heart`}
+                                            >
+                                                <path d="M26.5834 7.51661C24.0274 4.96061 19.8826 4.96061 17.3266 7.51661C17.0114 7.83181 16.7378 8.17181 16.5002 8.52861C16.2626 8.17181 15.989 7.83181 15.6738 7.51741C13.1178 4.96141 8.973 4.96141 6.417 7.51741C3.861 10.0734 3.861 14.2182 6.417 16.7742L16.5002 26.8566L26.5834 16.7734C29.1394 14.2174 29.1394 10.0734 26.5834 7.51661Z" stroke="#DEE1E6" stroke-width="1.92" stroke-miterlimit="10" stroke-linecap="square"/>
+                                            </svg>
+                                            {
+                                                value.price ? 
+                                                <p className='p-2 bg-[#7052E5]/70 rounded-3xl text-white mb-4'>
+                                                    {value.price}
+                                                </p>
+                                                :
+                                                <p className='p-2 bg-[#7052E5]/70 rounded-3xl text-white mb-4'>
+                                                    Match rate {value.rate}%
+                                                </p>
+                                            }
+
+                                        </div>
+                                    </a>
                                     {
                                         value.age ?
-                                        <p className='text-lg text-black h-bold'>{value.name}, {value.age} - {value.rol}</p>
+                                        <p className='text-lg text-black h-bold search-name'>{value.name}, {value.age} - {value.rol}</p>
                                         :
-                                        <p className='text-lg text-black h-bold'>{value.name}</p>
+                                        <p className='text-lg text-black h-bold search-name'>{value.name}</p>
                                     }
                                     {
                                         value.institution ? 

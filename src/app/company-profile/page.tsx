@@ -7,7 +7,7 @@ export default async function BusinessProfilePage() {
         <div className="flex">
             <SideNav />
             <div className="flex flex-col w-full">
-                <BusinessProfile user='business'/>
+                <BusinessProfile />
                 <Footer />
             </div>
         </div>
