@@ -46,96 +46,106 @@ const JobSearchForm = () => {
                             <form className='md:pt-2 px-6'>
                                 <section className='flex gap-4'>
                                     <div className='w-1/2'>
-                                        <label htmlFor="industry" className='pb-2'>Seeking industry</label>
+                                        <label htmlFor="industry" className='pb-2 h-bold'>Seeking industry</label>
                                         <select name="industry" id="industry">
-                                            <option value="industry#1">Industry#1</option>
-                                            <option value="industry#2">Industry#2</option>
-                                            <option value="industry#3">Industry#3</option>
-                                            <option value="industry#4">Industry#4</option>
+                                            <option value="role#1">Hospitality</option>
+                                            <option value="role#2">Construction</option>
+                                            <option value="role#3">Cleaning</option>
+                                            <option value="role#4">Warehousing</option>
                                         </select>
                                     </div>
 
                                     <div className='w-1/2'>
-                                        <label htmlFor="role" className='pb-2'>Desired Role</label>
-                                        <select name="role" id="role">
-                                            <option value="role#1">Role#1</option>
-                                            <option value="role#2">Role#2</option>
-                                            <option value="role#3">Role#3</option>
-                                            <option value="role#4">Role#4</option>
-                                        </select>
+                                        <label htmlFor="role" className='pb-2 h-bold'>Desired Role</label>
+                                        <input type="text" defaultValue={'Barista'} />
                                     </div>
                                 </section>
                                 <section className='flex gap-4'>
                                     <div className='w-1/2'>
-                                        <label className="mb-2 pb-2">Days Available</label>
+                                        <label className="mb-2 pb-2 h-bold">Days Available</label>
                                         <div className='block'>
                                             <div className='flex items-center gap-2 '>
-                                                <input
-                                                    type="checkbox"
-                                                    name="days"
-                                                    value="monday"
-                                                />
-                                                <label className='text-black'>Monday</label>
-                                            </div>
-                                            <div className='flex items-center gap-2'>
-                                                <input
-                                                    type="checkbox"
-                                                    name="days"
-                                                    value="Tuesday"
-                                                />
-                                                <label className='text-black'>Tuesday</label>
+                                                <label className='text-black'>
+                                                        <input
+                                                            type="checkbox"
+                                                            name="availability"
+                                                            value="monday"
+                                                            className='mr-2'
+                                                        />
+                                                            Monday
+                                                </label>
                                             </div>
                                             <div className='flex items-center gap-2 '>
-                                                <input
-                                                    type="checkbox"
-                                                    name="days"
-                                                    value="Wednesday"
-                                                />
-                                                <label className='text-black'>Wednesday</label>
+                                                <label className='text-black'>
+                                                    <input
+                                                        type="checkbox"
+                                                        name="availability"
+                                                        value="tuesday"
+                                                        className='mr-2'
+                                                    />
+                                                        Tuesday
+                                                </label>
+                                            </div>
+                                                <div className='flex items-center gap-2 '>
+                                                    <label className='text-black'>
+                                                        <input
+                                                            type="checkbox"
+                                                            name="availability"
+                                                            value="wednesday"
+                                                            className='mr-2'
+                                                        />
+                                                            Wednesday
+                                                    </label>
                                             </div>
                                             <div className='flex items-center gap-2 '>
-                                                
-                                                <input
-                                                    type="checkbox"
-                                                    name="days"
-                                                    value="Thursday"
-                                                />
-                                                <label className='text-black'>Thursday</label>
-                                            
-                                            </div>
-
-                                            <div className='flex items-center gap-2'>
-                                            
-                                                <input
-                                                    type="checkbox"
-                                                    name="days"
-                                                    value="Friday"
-                                                />
-                                                <label className='text-black'>Friday</label>
+                                                <label className='text-black'>
+                                                    <input
+                                                        type="checkbox"
+                                                        name="availability"
+                                                        value="thursday"
+                                                        className='mr-2'
+                                                    />
+                                                        Thursday
+                                                </label>
                                             </div>
                                             <div className='flex items-center gap-2 '>
-                                            
-                                                <input
-                                                    type="checkbox"
-                                                    name="days"
-                                                    value="Saturday"
-                                                />
-                                                <label className='text-black'>Saturday</label>
+                                                <label className='text-black'>
+                                                    <input
+                                                        type="checkbox"
+                                                        name="availability"
+                                                        value="friday"
+                                                        className='mr-2'
+                                                    />
+                                                        Friday
+                                                </label>
                                             </div>
                                             <div className='flex items-center gap-2 '>
-                                                
-                                                <input
-                                                    type="checkbox"
-                                                    name="days"
-                                                    value="Sunday"
-                                                />
-                                                <label className='text-black'>Sunday</label>
+                                                <label className='text-black'>
+                                                    <input
+                                                        type="checkbox"
+                                                        name="availability"
+                                                        value="saturday"
+                                                        className='mr-2'
+                                                    />
+                                                        Saturday
+                                                </label>
+                                            </div>
+                                            <div className='flex items-center gap-2 '>
+                                                <label className='text-black'>
+                                                    <input
+                                                        type="checkbox"
+                                                        name="availability"
+                                                        value="sunday"
+                                                        className='mr-2'
+                                                    />
+                                                        Sunday
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div className='w-1/2'>
-                                        <label htmlFor="availability_day" className="block pb-2">Availability day</label>
+                                        <label htmlFor="availability_day" className="block pb-2 h-bold">Availability day</label>
                                         <input
                                             type="date"
                                             id="availability_day"
@@ -148,20 +158,36 @@ const JobSearchForm = () => {
                                                 <div className='w-full'>
                                                     <label htmlFor="industry" className='pb-2'>From</label>
                                                     <select name="industry" id="industry">
-                                                        <option value="industry#1">#1</option>
-                                                        <option value="industry#2">#2</option>
-                                                        <option value="industry#3">#3</option>
-                                                        <option value="industry#4">#4</option>
+                                                        <option value="industry#1">7 am</option>
+                                                        <option value="industry#2">8 am</option>
+                                                        <option value="industry#3">9 am</option>
+                                                        <option value="industry#4">10 am</option>
+                                                        <option value="industry#1">11 am</option>
+                                                        <option value="industry#2">12 pm</option>
+                                                        <option value="industry#3">1 pm</option>
+                                                        <option value="industry#4">2 pm</option>
+                                                        <option value="industry#1">3 pm</option>
+                                                        <option value="industry#2">4 pm</option>
+                                                        <option value="industry#3">5 pm</option>
+                                                        <option value="industry#4">6 pm</option>
                                                     </select>
                                                 </div>
 
                                                 <div className='w-full'>
                                                     <label htmlFor="role" className='pb-2'>To</label>
                                                     <select name="role" id="role">
-                                                        <option value="role#1">#1</option>
-                                                        <option value="role#2">#2</option>
-                                                        <option value="role#3">#3</option>
-                                                        <option value="role#4">#4</option>
+                                                        <option value="industry#3">1 pm</option>
+                                                        <option value="industry#4">2 pm</option>
+                                                        <option value="industry#1">3 pm</option>
+                                                        <option value="industry#2">4 pm</option>
+                                                        <option value="industry#3">5 pm</option>
+                                                        <option value="industry#4">6 pm</option>
+                                                        <option value="industry#4">7 pm</option>
+                                                        <option value="industry#1">8 pm</option>
+                                                        <option value="industry#2">9 pm</option>
+                                                        <option value="industry#3">10 pm</option>
+                                                        <option value="industry#4">11 pm</option>
+                                                        <option value="industry#4">12 am</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -175,56 +201,62 @@ const JobSearchForm = () => {
                             
                             <section className='flex gap-4'>
                                 <div className='w-1/2'>
-                                    <label htmlFor="phone" className="block pb-2">Expected Salary (Hourly Rate)</label>
-                                    <input
-                                        type="tel"
-                                        id="phone"
-                                        name="phone"
-                                        required
-                                    />
-                                </div>
+                                        <label className="block pb-2 h-bold">Expected Salary (hourly rate)</label>
+                                        <select
+                                            name="job-location"
+                                            className=""
+                                        >
+                                            <option value="1"> $25.00 - $30.00</option>
+                                            <option value="2"> $30.00 - $40.00</option>
+                                            <option value="3"> $40.00 - $50.00</option>
 
+                                        </select>
+                                    </div>
                                 <div className='w-1/2'>
-                                    <label htmlFor="email" className="block pb-2">Desired Weekly Hours</label>
+                                    <label htmlFor="email" className="block pb-2 h-bold">Weekly Hours</label>
                                     <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
+                                        type="number"
+                                        id="weekly-hours"
+                                        name="weekly-hours"
                                         required
+                                        defaultValue={40}
                                     />
                                 </div>
                             </section>
                             <section className='flex gap-4'>
                                 <div className='w-1/2'>
-                                    <label className="block pb-2">Preferred Location:</label>
+                                    <label className="block pb-2 h-bold">Preferred Location:</label>
                                     <select
-                                        name="country"
-                                        className=""
-                                    >
-                                        <option value="1"> #1</option>
-                                        <option value="2"> #2</option>
-                                        <option value="3"> #3</option>
+                                            name="job-location"
+                                            className=""
+                                        >
+                                            <option value="1"> Victoria</option>
+                                            <option value="2"> New South Wale</option>
+                                            <option value="3"> Queensland</option>
+                                            <option value="4"> South Australia</option>
+                                            <option value="5"> Western Australia</option>
+                                            <option value="6"> Northern Territory</option>
 
-                                    </select>
+                                        </select>
                                 </div>
                                 <div className='w-1/2'>
-                                    <label className="block pb-2">Transportation:</label>
+                                    <label className="block pb-2 h-bold">Transportation:</label>
                                     <select
                                         name="country"
                                         className=""
                                     >
-                                        <option value="1"> #1</option>
-                                        <option value="2"> #2</option>
-                                        <option value="3"> #3</option>
+                                        <option value="1">Own vehicle</option>
+                                        <option value="2">Public transport</option>
+                                        <option value="3"> None</option>
 
                                     </select>
                                 </div>
 
                             </section>
-                                <section className='flex flex-col'>
-                                    <label htmlFor="about" className='pb-2'>Additional Notes</label>
-                                    <textarea name="" id="about" cols={6} rows={5} className='resize-none bg-[#F8F9FA] p-2'></textarea>
-                                </section>
+                            <section className='flex flex-col'>
+                                <label htmlFor="about" className='pb-2 h-bold mt-4'>Additional Notes</label>
+                                <textarea name="" id="about" cols={6} rows={5} className='resize-none bg-[#F8F9FA] p-2'></textarea>
+                            </section>
                                 <div className='flex justify-end gap-2 my-8'>
                                     <Link href={'/my-profile'}>
                                         <button className=' py-2 hover:text-[#326B88] border-[#326B88] border rounded-md px-4 bg-[#326B88] hover:bg-white text-white duration-500 cursor-pointer'>

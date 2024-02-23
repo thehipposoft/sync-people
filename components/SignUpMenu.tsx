@@ -28,8 +28,10 @@ const SignUpMenu = ({ user }:any) => {
                             <input type="password" name="" id="" className=''/>
                         </section>
                         <section className='flex gap-2'>
-                            <input type='checkbox' name='terms' />
-                            <label htmlFor="">By signing up, I agree with the <strong className='text-[#7052E5]'>Terms of Use</strong> & <strong className='text-[#7052E5]'>Privacy Policy</strong></label>
+                            <input type='checkbox' name='terms' id='terms' />
+                            <label htmlFor="terms">
+                                By signing up, I agree with the <strong className='text-[#7052E5]'>Terms of Use</strong> & <strong className='text-[#7052E5]'>Privacy Policy</strong>
+                            </label>
                         </section>
                         <section className='py-4'>
                             <Link href={`${user === 'business' ? '/business-form' : 'profile-form'}`}>

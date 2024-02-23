@@ -226,15 +226,10 @@ const SearchComponent = ({ data, user }:any) => {
                             </div>
                             <div className='flex flex-col gap-1 pt-3'>
                                 <div className='flex items-center gap-2 '>
-                                    <label className='text-black'>
-                                        <input
-                                            type="checkbox"
-                                            name="industrie"
-                                            value="construction"
-                                            className='mr-2'
-                                        />
-                                        STARS
-                                    </label>
+                                    $
+                                    <input type="number" />
+                                    to
+                                    <input type="number" />
                                 </div>
                             </div>
                             <p className='text-[#0095A9] pt-2 cursor-pointer hover:underline'>See more</p>
@@ -369,7 +364,7 @@ const SearchComponent = ({ data, user }:any) => {
                                 </svg>
                             </div>
                             <div className='flex flex-col gap-1 pt-3'>
-                            <div className='flex items-center gap-2 '>
+                                <div className='flex items-center gap-2 '>
                                     <label className='text-black'>
                                             <input
                                                 type="checkbox"

@@ -53,7 +53,7 @@ const ProfileForm = () => {
                                 <button className='text-[#326B88] border rounded-3xl border-[#326B88] px-6 py-1 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Go Premium!</button>
                             </div>
                         </div>
-                        <div className='mt-12 flex flex-col gap-2 items-end pr-14 hidden'>
+                        <div className='mt-12 flex-col gap-2 items-end pr-14 hidden'>
                             {
                                 currentIndex === 0 ?
                                 <div>

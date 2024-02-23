@@ -190,6 +190,13 @@ input, .input {
     resize: none;
     width: 100%;
 }
+//Number inputs without arrows
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 
 section {

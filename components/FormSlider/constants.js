@@ -109,9 +109,10 @@ const FORM_SLIDES = [
                             <select
                                 name="level"
                             >
-                                <option value="1">Level #1</option>
-                                <option value="2">Level #2</option>
-                                <option value="3">Level #3</option>
+                                <option value="1">Fluent</option>
+                                <option value="2">Proficient</option>
+                                <option value="3">Basic</option>
+                                <option value="4">None</option>
 
                             </select>
                         </div>
@@ -123,33 +124,27 @@ const FORM_SLIDES = [
                                 name="languages"
                                 className="rounded"
                             >
-                                <option value="1">Language #1</option>
-                                <option value="2">Language #2</option>
-                                <option value="3">Language #3</option>
-                                <option value="4">Language #4</option>
-                                <option value="5">Language #5</option>
+                                <option value="1">Spanish</option>
+                                <option value="2">French</option>
+                                <option value="3">German</option>
+                                <option value="4">Japanese</option>
+                                <option value="5">Italian</option>
                             </select>
                         </div>
-  
                     </section>
-
                     <section className='flex gap-4'>
                         <div className='w-1/2'>
-                            <label className="block pb-2">Citizenship:</label>
-                            <select
-                                name="country"
-                                className=" rounded-3xl"
-                            >
-                                <option value="1">Citizenship #1</option>
-                                <option value="2">Citizenship #2</option>
-                                <option value="3">Citizenship #3</option>
-
-                            </select>
+                            <label htmlFor="citizenship" className="block pb-2">Citizenship:</label>
+                            <input
+                                type="text"
+                                id="citizenship"
+                                name="citizenship"
+                                required
+                            />
                         </div>
                         <div className='w-1/2'>
                         <label className="block pb-2">Academic credentials (opt):</label>
                             <select
-                                multiple
                                 name="credentials"
                                 className=" rounded-3xl"
                             >
@@ -160,7 +155,6 @@ const FORM_SLIDES = [
                                 <option value="5">Credential #5</option>
                             </select>
                         </div>
-
                     </section>
                     <section className='flex flex-col'>
                         <label htmlFor="about" className='pb-2'>Write about yourself</label>
@@ -201,7 +195,7 @@ const FORM_SLIDES = [
                         </div>
                         <div className='w-1/4' >
                             <label htmlFor="cp" className='block pb-2'>CP:</label>
-                            <input type="text" id='cp' name='cp' />
+                            <input type="number" id='cp' name='cp' className=""/>
                         </div>
                     </section>
                     <div className="flex">
@@ -254,33 +248,39 @@ const FORM_SLIDES = [
                                         type="checkbox"
                                         name="industrie"
                                         value="construction"
+                                        id="construction"
                                     />
-                                    <label className='text-black'>Construction</label>
+                                    <label className='text-black'  htmlFor="construction">
+                                        Construction
+                                    </label>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <input
                                         type="checkbox"
                                         name="industrie"
                                         value="cleaning"
+                                        id="cleaning"
                                     />
-                                    <label className='text-black'>Cleaning</label>
+                                    <label className='text-black' htmlFor="cleaning">Cleaning</label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
                                     <input
                                         type="checkbox"
                                         name="industrie"
+                                        id="warehousing"
                                         value="warehousing"
                                     />
-                                    <label className='text-black'>Warehousing</label>
+                                    <label className='text-black' htmlFor="warehousing">Warehousing</label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
                                     
                                     <input
                                         type="checkbox"
                                         name="industrie"
+                                        id="logistics"
                                         value="logistics"
                                     />
-                                    <label className='text-black'>Logistics </label>
+                                    <label className='text-black' htmlFor="logistics">Logistics </label>
                                    
                                 </div>
 
@@ -289,45 +289,50 @@ const FORM_SLIDES = [
                                     <input
                                         type="checkbox"
                                         name="industrie"
+                                        id="farming"
                                         value="farming"
                                     />
-                                     <label className='text-black'>Farming / Solar farming</label>
+                                     <label className='text-black' htmlFor="farming">Farming / Solar farming</label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
                                    
                                     <input
                                         type="checkbox"
                                         name="industrie"
+                                        id="hospitality"
                                         value="hospitality"
                                     />
-                                     <label className='text-black'>Hospitality</label>
+                                     <label className='text-black' htmlFor="hospitality">Hospitality</label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
                                     
                                     <input
                                         type="checkbox"
                                         name="industrie"
+                                        id="retail"
                                         value="Retail"
                                     />
-                                    <label className='text-black'>retail</label>
+                                    <label className='text-black' htmlFor="retail">retail</label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
                                     
                                     <input
                                         type="checkbox"
                                         name="industrie"
+                                        id="age-care"
                                         value="age-care"
                                     />
-                                    <label className='text-black'>Age Care</label>
+                                    <label className='text-black' htmlFor="age-care">Age Care</label>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     
                                     <input
                                         type="checkbox"
                                         name="industrie"
+                                        id="other"
                                         value="other"
                                     />
-                                    <label className='text-black'>Other</label>
+                                    <label className='text-black' htmlFor="other">Other</label>
                                 </div>
                                 <input type="text" name="Other" id="other" className='mt-4' placeholder='Other' />
                             </div>
@@ -337,40 +342,43 @@ const FORM_SLIDES = [
                             <label className="mb-2 pb-2">Licences</label>
                             <div className='block'>
                                 <div className='flex items-center gap-2'>
-                                    
                                     <input
                                         type="checkbox"
                                         name="licences"
                                         value="white-card"
+                                        id="white-card"
                                     />
-                                    <label className='text-black'>White Card</label>
+                                    <label className='text-black' htmlFor="white-card">White Card</label>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     
                                     <input
                                         type="checkbox"
                                         name="licences"
+                                        id="rsa"
                                         value="rsa"
                                     />
-                                    <label className='text-black'>RSA</label>
+                                    <label className='text-black' htmlFor="rsa">RSA</label>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     
                                     <input
                                         type="checkbox"
                                         name="licences"
+                                        id="wwc"
                                         value="wwc"
                                     />
-                                    <label className='text-black'>WWC</label>
+                                    <label className='text-black' htmlFor="wwc">WWC</label>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     
                                     <input
                                         type="checkbox"
                                         name="licences"
+                                        id="driver-licence"
                                         value="driver-licence"
                                     />
-                                    <label className='text-black'>Driver licence</label>
+                                    <label className='text-black' htmlFor="driver-licence">Driver licence</label>
                                 </div>
 
                                 <div className='flex items-center gap-2'>
@@ -378,17 +386,19 @@ const FORM_SLIDES = [
                                     <input
                                         type="checkbox"
                                         name="licences"
+                                        id="police-check"
                                         value="police-check"
                                     />
-                                    <label className='text-black'>Police Check</label>
+                                    <label className='text-black' htmlFor="police-check">Police Check</label>
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <input
                                         type="checkbox"
                                         name="licences"
                                         value="other"
+                                        id="other-2"
                                     />
-                                    <label className='text-black'>Other</label>
+                                    <label className='text-black' htmlFor="other-2">Other</label>
                                 </div>
                                 <input type="text" name="Other" id="other" className='mt-4' placeholder='Other' />
 
@@ -416,38 +426,34 @@ const FORM_SLIDES = [
                             <option value="Visa#4">Visa#4</option>
                         </select>
                     </section>
-                    <div className='grid grid-cols-4 pt-10 gap-2 2xl:w-[70%] px-5'>
+                    <div className='grid grid-cols-4 pt-10 gap-4 px-5'>
                             <div 
-                                className='bg-white pt-6 flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl '
+                                className='bg-white flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl '
                             >
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
                                 </svg>
-                                <p className='text-center pt-3 w-1/2 min-h-[64px]'>Lorem ipsum</p>
                             </div>
                             <div 
-                                className='bg-white pt-6 flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl '
+                                className='bg-white  flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl '
                             >
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
                                 </svg>
-                                <p className='text-center pt-3 w-1/2 min-h-[64px]'>Lorem ipsum</p>
                             </div>
                             <div 
-                                className='bg-white pt-6 flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl'
+                                className='bg-white  flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl'
                             >
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
                                 </svg>
-                                <p className='text-center pt-3 w-2/3 min-h-[64px]'>Lorem ipsum</p>
                             </div>
                             <div 
-                                className='bg-white pt-6 flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl'
+                                className='bg-white  flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl'
                             >
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
                                 </svg>
-                                <p className='text-center pt-3 w-2/3 min-h-[64px]'>Lorem ipsum</p>
                             </div>
                         </div>
                 </form>,
