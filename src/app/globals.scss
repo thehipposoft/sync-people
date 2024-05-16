@@ -38,6 +38,12 @@ h1 {
     font-weight: 600;
 }
 
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 48px;
+    }
+}
+
 h3 {
     font-size: 32px;
     line-height: 1.2em;
@@ -225,7 +231,7 @@ select {
 
 }
 
-//Forms w clip paths 
+//Forms w clip paths
 
 .triangle {
     clip-path: polygon(75% 0, 100% 100%, 100% 0);

@@ -15,12 +15,12 @@ const Banner = () => {
 
 
   return (
-    <div className='md:h-[80vh] flex items-center justify-center  md:mb-[10vh] mx-auto'>
+    <div className='md:h-[80vh] flex items-center justify-center md:mb-[10vh] mx-auto flex-wrap p-6 md:p-0'>
       <div className='md:w-1/2 flex flex-col '>
-        <h1 className=''>Welcome to the</h1>  
-        <h1 className='text-[#8D78E0]'>new age of work</h1>
+        <h1 className=''>Welcome to the</h1>
+        <h1 className='text-[#8D78E0] mb-4 md:mb-0'>new age of work</h1>
         <h3 className='md:pt-4 light'>Connecting Companies to <strong>Talent,</strong><br/> and Job Seekers to <strong>Opportunities.</strong></h3>
-        <div className='flex md:mt-8'>
+        <div className='flex md:mt-8 mt-4 flex-wrap gap-4 md:gap-0 mb-3 md:mb-0'>
             <Link href="/business-sign-up">
               <button className='md:mr-4 white-b px-6 py-2 rounded-3xl'>Looking for talents</button>
             </Link>
