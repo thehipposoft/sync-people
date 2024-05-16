@@ -14,15 +14,15 @@ const Discover = () => {
 
   return (
     <div className='discover rounded-bl-[200px] relative'>
-      <div className='max-w-[1350px] mx-auto md:pl-20 pb-20 pt-32 flex'>
-        <div className='w-1/2'>
+      <div className='max-w-[1350px] mx-auto px-4 md:pl-20 pb-20 pt-10 md:pt-32 flex flex-wrap '>
+        <div className='w-full md:w-1/2'>
           <h1>Discover Australia</h1>
           <div className='flex'>
-              <h1>with</h1>
+              <h1 className='mr-3 md:mr-0'>with</h1>
               <Image src='/assets/logo.svg' alt='Sync-people logo' width={220} height={180} className='md:pt-3 md:ml-3' />
           </div>
-          <p className='text-white md:pt-4 w-5/6'>Discover a world of career opportunities in the most exciting country on the planet . Get ready for a life-changing adventure!</p>
-          <div className='grid grid-cols-2 md:pt-12 w-[450px]'>
+          <p className='text-white md:pt-4 md:w-5/ mt-4 md:mt-0'>Discover a world of career opportunities in the most exciting country on the planet . Get ready for a life-changing adventure!</p>
+          <div className='grid grid-cols-2 md:pt-12 md:w-[450px] mt-8 md:mt-0 mb-10 md:mb-0'>
               <div className='flex flex-col items-center md:p-4'>
                   <Image src={'/assets/images/vectors/time.svg'} alt={''} width={40} height={50} />
                   <p className='font-semibold text-[#1A335D] text-xl pt-2'>Time</p>
@@ -41,14 +41,14 @@ const Discover = () => {
               </div>
           </div>
         </div>
-        <div className='w-1/2'>
+        <div className='w-full md:w-1/2'>
           <div className='pl-5'>
-            <div className='grid grid-cols-2 w-[600px] gap-5'>
-              <div className='flex flex-col w-[280px] h-[600px] col-span-1'>
+            <div className='grid grid-cols-1 md:grid-cols-2 md:w-[600px] gap-5'>
+              <div className='flex flex-col md:w-[280px] md:h-[600px] col-span-1'>
                 <div className={`bg-[url('/assets/images/discover/discover-1.png')] bg-cover bg-center rounded-t-[200px] h-[300px]`}></div>
                 <div className='bg-[#7052E5] rounded-bl-[100px] h-[320px] flex flex-col justify-end items-end'>
                   <div className='pr-10 pb-10'>
-                    <button 
+                    <button
                       className='text-white text-xl pb-2 border-none hover:underline'
                       onClick={toggleDiscover}
                     >

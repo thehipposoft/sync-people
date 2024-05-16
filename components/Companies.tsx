@@ -2,9 +2,9 @@ import React from 'react'
 
 const Companies = () => {
   return (
-    <div className='flex flex-col items-center bg-[#1A335D] h-[350px]'>
-      <h1 className='text-white text-[38px] md:pt-16 font-semibold'>Some of the companies we work with</h1>
-      <div className='flex pt-16 gap-28'>
+    <div className='flex flex-col items-center bg-[#1A335D] md:h-[350px] p-6 md:p-0'>
+      <h1 className='text-white text-2xl md:text-[38px] md:pt-16 font-semibold'>Some of the companies we work with</h1>
+      <div className='flex pt-16 gap-10 md:gap-28 flex-wrap justify-center'>
         <svg width="59" height="59" viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M23.9165 29.1455H34.1665L29.0409 17.1873L23.9165 29.1455Z" fill="#F1F1F1"/>
           <path d="M29.0415 0.104004L0 10.476L5.97944 45.7407L29.0415 58.187L52.0868 45.7407L58.083 10.476L29.0415 0.104004ZM40.4507 41.5919L37.0033 34.3315H21.0784L17.6324 41.5919H12.4464L29.0415 5.28999L45.6367 41.5919H40.4507Z" fill="#F1F1F1"/>
