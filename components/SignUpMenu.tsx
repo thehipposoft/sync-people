@@ -5,19 +5,27 @@ import Link from 'next/link';
 const SignUpMenu = ({ user }:any) => {
     return (
         <div className='flex'>
-            <div className='flex items-center justify-center h-screen w-screen bg-[#EBEFFF]'>
+            <div className='flex items-center justify-center h-screen md:w-screen px-4 bg-[#EBEFFF]'>
                 <div className='bg-white rounded-2xl border p-8 shadow-xl'>
                     <h1 className='text-5xl text-center'>Sign up</h1>
-                    <form className='md:pt-6'>
-                        <section className='flex gap-4'>
-                            <div className='w-1/2'>
-                                <label htmlFor="text" className='pb-2'>First name</label>
+                    <form className='md:pt-6 pt-4'>
+                        <section className='md:flex hidden gap-4'>
+                            <div className='w-1/2 flex flex-col gap-1'>
+                                <label htmlFor="text" className=''>First name</label>
                                 <input type="text" name="first-name" id="" className=''/>
                             </div>
-                            <div className='w-1/2'>
-                                <label htmlFor="text" className='pb-2'>Last name</label>
+                            <div className='w-1/2 flex flex-col gap-1'>
+                                <label htmlFor="text" className=''>Last name</label>
                                 <input type="text" name="first-name" id="" className=''/>
                             </div>
+                        </section>
+                        <section className='flex flex-col md:hidden gap-1'>
+                                <label htmlFor="text" className=''>First name</label>
+                                <input type="text" name="first-name" id="" className=''/>
+                        </section>
+                        <section className='flex flex-col md:hidden gap-1'>
+                                <label htmlFor="text" className=''>Last name</label>
+                                <input type="text" name="first-name" id="" className=''/>
                         </section>
                         <section className='flex flex-col'>
                             <label htmlFor="text" className='pb-1'>Email</label>
@@ -35,7 +43,7 @@ const SignUpMenu = ({ user }:any) => {
                         </section>
                         <section className='py-4'>
                             <Link href={`${user === 'business' ? '/business-form' : 'profile-form'}`}>
-                                <input type="submit" value="Sign up" className='purple-b md:py-2 md:px-8 cursor-pointer w-1/4' />
+                                <input type="submit" value="Sign up" className='purple-b py-2 px-8 cursor-pointer md:w-1/4' />
                             </Link>
                         </section> 
                     </form>

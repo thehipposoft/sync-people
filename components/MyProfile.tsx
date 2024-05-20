@@ -8,19 +8,21 @@ const MyProfile = ({ user }:any) => {
             <div className='flex flex-col md:w-full'>
                 {
                     user === 'business' ?
-                    <div className='flex justify-between items-center px-8 py-2 w-full  bg-white'>
-                        <Link href={'/'}>
-                            <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
+                    <div className='flex justify-between items-center md:px-8 px-2 py-2 w-full bg-white'>
+                        <Link href={'/'} className='hidden md:block'>
+                            <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} className='md:w-full w-[140px]'/>
                         </Link>
-                        <div className='flex justify-end gap-6 py-1'>
-                            <Link href={'/business-profile'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>My Profile</button></Link>
-                            <Link href={'/staff-market'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Staff</button></Link>
-                            <img src={"/assets/images/business/mylk-logo.png"} alt="Profile picture" className='rounded-full w-10' />
+                        <div className='flex justify-end gap-6'>
+                            <div className='flex flex-col md:flex-row gap-2 md:gap-0'>
+                                <Link href={'/business-profile'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>My Profile</button></Link>
+                                <Link href={'/staff-market'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Staff</button></Link>
+                            </div>
+                            <img src={"/assets/images/business/mylk-logo.png"} alt="Profile picture" className='rounded-full md:w-10 w-16' />
                         </div>
                     </div>
                     :
                     <div className='flex justify-between items-center px-8 py-2 w-full bg-white'>
-                        <Link href={'/'}>
+                        <Link href={'/'} className='hidden md:block'>
                             <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
                         </Link>
                         <div className='flex justify-end gap-6 py-1'>
@@ -30,13 +32,13 @@ const MyProfile = ({ user }:any) => {
                         </div>
                     </div>
                 }
-                <div className='bg-[#FAFAFB] w-full flex justify-center gap-12'>
+                <div className='bg-[#FAFAFB] md:w-full md:flex justify-center gap-12'>
                     <div>
                         <div className='flex flex-col rounded-2xl my-4 mx-auto md:w-[900px] bg-white border'>
-                            <div className={`bg-[url('/assets/images/profileBg.png')] bg-cover bg-center h-[300px] rounded-t-2xl relative`}>
-                                <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full border-neutral-300 border w-[120px] h-[120px] absolute left-4 bottom-4' />
+                            <div className={`bg-[url('/assets/images/profileBg.png')] bg-cover bg-center h-[250px] md:h-[300px] rounded-t-2xl relative`}>
+                                <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full border-neutral-300 border w-24 md:w-[120px] md:h-[120px] absolute left-4 bottom-4' />
                             </div>
-                            <div className='flex justify-between px-8 py-6'>
+                            <div className='flex flex-col md:flex-row justify-between px-8 py-6'>
                                 <div className='flex flex-col gap-3'>
                                     {
                                         user === 'business' ?
@@ -60,14 +62,14 @@ const MyProfile = ({ user }:any) => {
                                         </svg>
                                         <p>diana.ross@gmail.com</p>
                                     </div>
-                                    <div className={`${user === 'business' ? '' : 'hidden'} flex gap-2 pt-4`}>
-                                        <button className='h-full flex items-center border-[#326B88] border rounded-md px-4 py-2 bg-[#326B88] text-white duration-500 cursor-pointer sync-button'>
+                                    <div className={`${user === 'business' ? '' : 'hidden'} flex flex-col md:flex-row gap-2 pt-4`}>
+                                        <button className='h-full w-fit md:w-auto flex items-center border-[#326B88] border rounded-md px-4 py-2 bg-[#326B88] text-white duration-500 cursor-pointer sync-button'>
                                             <svg width="20" height="20" viewBox="0 0 28 34" fill="none" xmlns="http://www.w3.org/2000/svg" className='mr-1 pr-1'>
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1251 1C12.2354 1 10.4231 1.75067 9.08695 3.08686C7.75075 4.42306 7.00008 6.23533 7.00008 8.125C7.00008 10.0147 7.75075 11.8269 9.08695 13.1631C10.4231 14.4993 12.2354 15.25 14.1251 15.25C16.0148 15.25 17.827 14.4993 19.1632 13.1631C20.4994 11.8269 21.2501 10.0147 21.2501 8.125C21.2501 6.23533 20.4994 4.42306 19.1632 3.08686C17.827 1.75067 16.0148 1 14.1251 1ZM9.25008 8.125C9.25008 6.83207 9.7637 5.59209 10.6779 4.67785C11.5922 3.76361 12.8322 3.25 14.1251 3.25C15.418 3.25 16.658 3.76361 17.5722 4.67785C18.4865 5.59209 19.0001 6.83207 19.0001 8.125C19.0001 9.41793 18.4865 10.6579 17.5722 11.5721C16.658 12.4864 15.418 13 14.1251 13C12.8322 13 11.5922 12.4864 10.6779 11.5721C9.7637 10.6579 9.25008 9.41793 9.25008 8.125ZM14.1251 17.5C10.6556 17.5 7.45758 18.289 5.08908 19.621C2.75508 20.935 1.00008 22.924 1.00008 25.375V25.528C0.998584 27.271 0.997084 29.458 2.91558 31.021C3.85908 31.789 5.18058 32.3365 6.96558 32.6965C8.75358 33.0595 11.0861 33.25 14.1251 33.25C17.1641 33.25 19.4951 33.0595 21.2861 32.6965C23.0711 32.3365 24.3911 31.789 25.3361 31.021C27.2546 29.458 27.2516 27.271 27.2501 25.528V25.375C27.2501 22.924 25.4951 20.935 23.1626 19.621C20.7926 18.289 17.5961 17.5 14.1251 17.5ZM3.25008 25.375C3.25008 24.0985 4.18308 22.7125 6.19158 21.583C8.16558 20.473 10.9676 19.75 14.1266 19.75C17.2826 19.75 20.0846 20.473 22.0586 21.583C24.0686 22.7125 25.0001 24.0985 25.0001 25.375C25.0001 27.337 24.9401 28.441 23.9141 29.275C23.3591 29.728 22.4291 30.1705 20.8391 30.4915C19.2536 30.8125 17.0861 31 14.1251 31C11.1641 31 8.99508 30.8125 7.41108 30.4915C5.82108 30.1705 4.89108 29.728 4.33608 29.2765C3.31008 28.441 3.25008 27.337 3.25008 25.375Z" fill="#FFF" stroke="" stroke-width="1.5"/>
                                             </svg>
                                             Sync & Connect
                                         </button>
-                                        <button className='h-full flex text-[#326B88] border-[#326B88] border rounded-md px-3 py-2 duration-500 cursor-pointer fav-button'>
+                                        <button className='h-full w-fit md:w-auto flex text-[#326B88] border-[#326B88] border rounded-md px-3 py-2 duration-500 cursor-pointer fav-button'>
                                             <svg width="25" height="25" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg" className='pr-1'>
                                                 <path d="M26.5834 7.51661C24.0274 4.96061 19.8826 4.96061 17.3266 7.51661C17.0114 7.83181 16.7378 8.17181 16.5002 8.52861C16.2626 8.17181 15.989 7.83181 15.6738 7.51741C13.1178 4.96141 8.973 4.96141 6.417 7.51741C3.861 10.0734 3.861 14.2182 6.417 16.7742L16.5002 26.8566L26.5834 16.7734C29.1394 14.2174 29.1394 10.0734 26.5834 7.51661Z" stroke="#326B88" stroke-width="1.92" stroke-miterlimit="10" stroke-linecap="square"/>
                                             </svg>
@@ -81,7 +83,7 @@ const MyProfile = ({ user }:any) => {
                                     <p>Want to stand out?</p>
                                     <button className='text-[#326B88] border rounded-3xl border-[#326B88] px-6 py-1'>Go Premium!</button>
                                 </div>
-                                <div className='flex flex-col text-right gap-4'>
+                                <div className='flex flex-col md:text-right gap-4 pt-4 md:pt-0'>
                                     <div>
                                         <h2 className='text-xl'>Industries of Preference</h2>
                                         <p>Hospitality, Cleaning</p>
@@ -101,7 +103,7 @@ const MyProfile = ({ user }:any) => {
                                 <p>Ex consectetur veniam eiusmod in laboris aliquip exercitation eu culpa elit laborum laboris consectetur incididunt dolor. Sit nostrud reprehenderit adipisicing officia anim dolor cupidatat veniam eiusmod. Veniam aute mollit irure dolor id eu quis irure sint. Aliqua ullamco elit laboris eu aliquip.</p>
                             </div>
                         </div>
-                        <div className='flex flex-col rounded-2xl my-4 mx-auto w-[900px] bg-white px-8 py-6 border'>
+                        <div className='flex flex-col rounded-2xl my-4 mx-auto md:w-[900px] bg-white px-8 py-6 border'>
                             <div className='flex justify-between'>
                                 <h2 className='text-xl'>Work Experience</h2>
                                 <button className='rounded-lg p-2 bg-[#f3f4f6]'>Sort by: Newest</button>
@@ -114,7 +116,7 @@ const MyProfile = ({ user }:any) => {
                                 <p>Aliqua id aliquip pariatur veniam veniam voluptate id adipisicing Lorem labore pariatur aute anim proident non. Pariatur mollit enim do nostrud aliqua id do ex aliquip est occaecat laboris velit exercitation culpa exercitation pariatur id voluptate.</p>
                             </div>
                         </div>
-                        <div className='flex flex-col rounded-2xl my-4 mx-auto w-[900px] bg-white px-8 py-6 border'>
+                        <div className='flex flex-col rounded-2xl my-4 mx-auto md:w-[900px] bg-white px-8 py-6 border'>
                             <div className='flex justify-between'>
                                 <h2 className='text-xl'>Job Searches</h2>
                                 <button className='rounded-lg p-2 bg-[#f3f4f6]'>Sort by: Newest</button>
@@ -134,7 +136,7 @@ const MyProfile = ({ user }:any) => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex flex-col my-4 gap-4'>
+                    <div className='md:flex hidden flex-col my-4 gap-4'>
                         <Image src={'/assets/images/publicity/ads-1.png'} alt='' width={200} height={150} />
                         <Image src={'/assets/images/publicity/ads-2.png'} alt='' width={200} height={150} />
                         <Image src={'/assets/images/publicity/ads-3.png'} alt='' width={200} height={150} />

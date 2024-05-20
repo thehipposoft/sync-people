@@ -8,17 +8,17 @@ const BusinessProfile = ({ user }:any) => {
             <div className='flex flex-col md:w-full'>
                 {
                     user === 'business' ?
-                    <div className='flex justify-between items-center px-8 py-2 w-full  bg-white'>
-                        <Link href={'/'}>
+                    <div className='flex md:justify-between items-center px-4 md:px-8 py-2 gap-4 md:gap-0 w-full bg-white'>
+                        <Link href={'/'} className=''>
                             <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
                         </Link>
-                        <div className='flex justify-end gap-6 py-1'>
-                            <Link href={'/staff-market'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Staff</button></Link>
+                        <div className='flex justify-end md:gap-6 gap-3 py-1'>
+                            <Link href={'/staff-market'}><button className='h-full text-sm text-[#326B88] border-[#326B88] border rounded-md md:px-4 px-1 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Staff</button></Link>
                             <img src={"/assets/images/business/mylk-logo.png"} alt="Profile picture" className='rounded-full w-10' />
                         </div>
                     </div>
                     :
-                    <div className='flex justify-between items-center px-8 py-2 w-full  bg-white'>
+                    <div className='flex md:justify-between items-center px-4 md:px-8 py-2 gap-4 md:gap-0 w-full bg-white'>
                         <Link href={'/'}>
                             <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
                         </Link>
@@ -30,13 +30,13 @@ const BusinessProfile = ({ user }:any) => {
                     </div>
                 }
 
-                <div className='bg-[#FAFAFB] w-full flex justify-center gap-12'>
+                <div className='bg-[#FAFAFB] md:w-full md:flex justify-center gap-12'>
                     <div>
                         <div className='flex flex-col rounded-2xl my-4 mx-auto md:w-[900px] bg-white border'>
-                            <div className={`bg-[url('/assets/images/business/mylk-bg.png')] bg-cover bg-center h-[500px] rounded-t-2xl relative`}>
-                                <img src="/assets/images/business/mylk-logo.png" alt="Profile picture" className='rounded-full border-neutral-300 border w-[150px] h-[150px] absolute left-4 bottom-4' />
+                            <div className={`bg-[url('/assets/images/business/mylk-bg.png')] bg-cover bg-center md:w-full h-[200px] md:h-[500px] rounded-t-2xl relative`}>
+                                <img src="/assets/images/business/mylk-logo.png" alt="Profile picture" className='rounded-full border-neutral-300 border w-20 md:w-[150px] md:h-[150px] absolute left-4 bottom-4' />
                             </div>
-                            <div className='flex justify-between px-8 py-6'>
+                            <div className='flex flex-col gap-16 md:gap-0 md:flex-row md:justify-between px-8 py-6'>
                                 <div className='flex flex-col gap-3'>
                                     <h2 className='text-2xl h-bold'>Mylk Cafe</h2>
                                     <p>Brighton, VIC, 2306</p>
@@ -68,13 +68,13 @@ const BusinessProfile = ({ user }:any) => {
                                         </button>
                                     </div>
                                 </div>
-                                <div className={`${user === 'business' ? '' : 'hidden'} flex flex-col gap-2 text-cente items-center`}>
+                                <div className={`${user === 'business' ? '' : 'hidden'} flex flex-col gap-2 text-cente md:items-center`}>
                                     <Image src={'/assets/images/profileStrength.png'} alt='percentage of strength' width={120} height={120} />
                                     <h2 className='h-bold'>Profile Strength</h2>
                                     <p>Want to stand out?</p>
-                                    <button className='text-[#326B88] border rounded-3xl border-[#326B88] px-6 py-1'>Go Premium!</button>
+                                    <button className='text-[#326B88] border rounded-3xl border-[#326B88] px-6 py-1 md:w-auto w-fit'>Go Premium!</button>
                                 </div>
-                                <div className='flex flex-col text-right gap-4'>
+                                <div className='flex flex-col md:text-right gap-4'>
                                     <div>
                                         <h2 className='text-xl'>Operating Industries</h2>
                                         <p>Hospitality, Cleaning</p>
@@ -94,7 +94,7 @@ const BusinessProfile = ({ user }:any) => {
                                 <p>Mylk is a cherished coffee shop nestled in the heart of Brighton, Victoria, offering a warm, inviting atmosphere for locals and visitors alike. Renowned for its dedication to quality, Mylk serves a variety of expertly crafted coffees, teas, and gourmet treats that cater to a wide range of tastes and dieary preferences. Beyond its exceptional beverages and food, Mylk prides itself of being a community hub, where people from all walks of life come together to relax, work, or catch up with friends. With a focus on ustainability and supporting local suppliers, Mylk is not just a place to grab a coffee- it's a palce where connections are made, and the community is strenghtened. Weather you're starting your day wiat a morning espresso or winding down with a cozy latter, Mylk is committed to making every visit a memorable experience.</p>
                             </div>
                         </div>
-                        <div className='flex flex-col rounded-2xl my-4 mx-auto w-[900px] bg-white px-8 py-6 border'>
+                        <div className='flex flex-col rounded-2xl my-4 mx-auto md:w-[900px] bg-white px-8 py-6 border'>
                             <h2 className='text-2xl h-bold'>Staff Searches</h2>
                             <div className='flex justify-between'>
                                 <div className='flex flex-col'>
@@ -132,7 +132,7 @@ const BusinessProfile = ({ user }:any) => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex flex-col my-4 gap-4'>
+                    <div className='md:flex hidden flex-col my-4 gap-4'>
                         <Image src={'/assets/images/publicity/ads-1.png'} alt='' width={200} height={150} />
                         <Image src={'/assets/images/publicity/ads-2.png'} alt='' width={200} height={150} />
                         <Image src={'/assets/images/publicity/ads-3.png'} alt='' width={200} height={150} />

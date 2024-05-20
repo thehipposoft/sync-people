@@ -13,7 +13,7 @@ const Discover = () => {
   }
 
   return (
-    <div className='discover rounded-bl-[200px] relative'>
+    <div className='discover hidden md:block rounded-bl-[200px] relative'>
       <div className='max-w-[1350px] mx-auto px-4 md:pl-20 pb-20 pt-10 md:pt-32 flex flex-wrap '>
         <div className='w-full md:w-1/2'>
           <h1>Discover Australia</h1>

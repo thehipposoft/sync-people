@@ -2,8 +2,8 @@ import React from 'react'
 
 const Companies = () => {
   return (
-    <div className='flex flex-col items-center bg-[#1A335D] md:h-[350px] p-6 md:p-0'>
-      <h1 className='text-white text-2xl md:text-[38px] md:pt-16 font-semibold'>Some of the companies we work with</h1>
+    <div className='flex flex-col items-center bg-[#1A335D] md:h-[350px] py-20 md:py-0 px-6 md:px-0'>
+      <h1 className='text-white text-3xl md:text-[38px] md:pt-16 font-semibold'>Some of the companies we work with</h1>
       <div className='flex pt-16 gap-10 md:gap-28 flex-wrap justify-center'>
         <svg width="59" height="59" viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M23.9165 29.1455H34.1665L29.0409 17.1873L23.9165 29.1455Z" fill="#F1F1F1"/>

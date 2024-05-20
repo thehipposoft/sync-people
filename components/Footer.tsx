@@ -4,7 +4,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='flex md:pl-20 py-12 bg-[#FAFAFB] px-6 md:px-0 flex-wrap'>
+    <div className='flex md:pl-20 md:py-12 py-6 bg-[#FAFAFB] px-6 md:px-0 flex-wrap'>
       <div className='md:w-1/2 w-full flex'>
         <div>
             <Image src={'/assets/logo.svg'} alt='Sync-people logo' width={150} height={150} />
@@ -13,8 +13,8 @@ const Footer = () => {
             </p>
         </div>
       </div>
-      <div className='md:w-1/2 w-full flex justify-around flex-wrap mt-4 md:mt-0'>
-        <div>
+      <div className='md:w-1/2 w-full flex md:justify-around flex-wrap mt-4 md:mt-0'>
+        <div className='hidden md:block'>
             <h4 className='font-bold text-xl'>Pages</h4>
             <ul>
                 <li className='py-1'><a href="">Home</a></li>
@@ -26,7 +26,7 @@ const Footer = () => {
         </div>
         <div>
             <h4 className='font-bold text-xl'>Join our community</h4>
-            <div className='flex pt-4 flex-col md:flex-row gap-8 md:gap-0 items-center'>
+            <div className='flex pt-4 md:flex-row gap-4 md:gap-0 items-center'>
                 <a className='md:mr-2'><Image src={'/assets/images/vectors/google.svg'} alt='icon' width={35} height={35}  /></a>
                 <a className='md:mx-2'><Image src={'/assets/images/vectors/facebook.svg'} alt='icon' width={35} height={35}  /></a>
                 <a className='md:mx-2'><Image src={'/assets/images/vectors/twitter.svg'} alt='icon' width={35} height={40}  /></a>

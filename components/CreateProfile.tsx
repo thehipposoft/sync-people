@@ -295,7 +295,7 @@ const CreateProfile = () => {
                                         name="industrie"
                                         value="logistics"
                                     />
-                                    <label className='text-black'>Logistics </label>
+                                    <label className='text-black'>Logistics</label>
                                    
                                 </div>
 

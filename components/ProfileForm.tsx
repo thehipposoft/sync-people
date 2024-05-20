@@ -26,17 +26,17 @@ const ProfileForm = () => {
     return (
         <div className=''>
             <div className='flex flex-col md:w-full'>
-                <div className='flex justify-between items-center px-8 py-2 w-full bg-white'>
-                    <Link href={'/'}>
-                        <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
+                <div className='flex justify-between items-center md:px-8 py-2 w-full bg-white'>
+                    <Link href={'/'} className='hidden md:block'>
+                        <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} className='md:w-auto w-[120px]'/>
                     </Link>
-                    <div className='flex justify-end gap-6 py-1'>
-                        <Link href={'/training-and-licences'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licences</button></Link>
-                        <Link href={'/business-market'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Jobs</button></Link>
-                        <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full w-10' />
+                    <div className='flex justify-end gap-4 py-1 px-2 md:px-0'>
+                            <Link href={'/training-and-licences'}><button className='md:h-full text-[#326B88] border-[#326B88] border rounded-md md:px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licences</button></Link>
+                            <Link href={'/business-market'}><button className='md:h-full text-[#326B88] border-[#326B88] border rounded-md md:px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Jobs</button></Link>
+                        <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full md:w-10 w-16' />
                     </div>
                 </div>
-                <div className='bg-[#FAFAFB] w-full flex justify-center gap-12'>
+                <div className='bg-[#FAFAFB] w-full flex justify-center gap-12 px-2 md:px-0'>
                     <div className='flex flex-col rounded-2xl my-4 md:w-[900px] px-4 bg-white border'>
                         <div className='border-b'>
                             <h1 className='text-3xl h-bold py-3 pl-4'>Create profile</h1>
@@ -44,16 +44,16 @@ const ProfileForm = () => {
                         <div className='flex justify-between'>
                             <div className='pt-4 pl-2'>
                                 <h2 className='pl-4 h-bold text-xl'>General information</h2>
-                                <Image src={'/assets/images/cv.png'} alt='Profile picture' width={160} height={160} className='ml-6 mt-4'/>
+                                <Image src={'/assets/images/cv.png'} alt='Profile picture' width={160} height={160} className='ml-6 mt-4 md:w-[150px] w-36'/>
                             </div>
                             <div className='flex flex-col gap-1 text-center items-center pt-4 pr-8'>
                                 <Image src={'/assets/images/profileStrength.png'} alt='percentage of strength' width={140} height={120} />
                                 <p className='h-bold'>Profile Strength</p>
                                 <p>Want to stand out?</p>
-                                <button className='text-[#326B88] border rounded-3xl border-[#326B88] px-6 py-1 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Go Premium!</button>
+                                <button className='text-[#326B88] border rounded-3xl border-[#326B88] md:px-6 px-2 py-1 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Go Premium!</button>
                             </div>
                         </div>
-                        <div className='mt-12 flex-col gap-2 items-end pr-14 hidden'>
+                        <div className='mt-12 flex-col gap-2 items-end pr-14 hidden md:block'>
                             {
                                 currentIndex === 0 ?
                                 <div>
@@ -82,12 +82,12 @@ const ProfileForm = () => {
                             }
 
                         </div>
-                        <div className='flex overflow-hidden '>
+                        <div className='md:flex overflow-hidden  '>
                             {
                                 FORM_SLIDES.map((val, index) => {
                                     return(
                                         <div
-                                            className='flex flex-col duration-700 min-w-[900px] px-4'
+                                            className='flex flex-col duration-700 md:min-w-[900px] md:px-4 py-6 md:py-0'
                                             key={index}
                                             style={{
                                                 translate: `${-100 * currentIndex}%`,
@@ -97,7 +97,7 @@ const ProfileForm = () => {
                                                 <Image src={'/assets/images/vectors/education.svg'} alt='' width={35} height={30}/>
                                                 <h4 className='font-bold pl-4 text-xl'>{val.title}</h4>
                                             </div>
-                                            <span className='blue text-4xl pt-2'>{val.subtitle}</span>
+                                            <span className='blue md:text-4xl text-2xl pt-2'>{val.subtitle}</span>
                                             <p className='pb-4'>{val.description}</p>
                                                 {val.content}
                                         </div>
@@ -106,8 +106,8 @@ const ProfileForm = () => {
                             }
 
                         </div>
-                        <div className='flex justify-center'>{currentIndex + 1} | {FORM_SLIDES.length}</div>
-                        <div className='flex gap-6 justify-center py-6'>
+                        <div className='md:flex hidden justify-center'>{currentIndex + 1} | {FORM_SLIDES.length}</div>
+                        <div className='md:flex hidden gap-6 justify-center py-6'>
                             {
                                 currentIndex != 0 ?
                                 <button 
@@ -138,7 +138,7 @@ const ProfileForm = () => {
                             }
                         </div>
                     </div>
-                    <div className='flex flex-col my-4 gap-4'>
+                    <div className='md:flex hidden flex-col my-4 gap-4'>
                         <Image src={'/assets/images/publicity/ads-1.png'} alt='' width={200} height={150} />
                         <Image src={'/assets/images/publicity/ads-2.png'} alt='' width={200} height={150} />
                         <Image src={'/assets/images/publicity/ads-3.png'} alt='' width={200} height={150} />

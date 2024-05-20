@@ -6,7 +6,7 @@ const JobSearchForm = () => {
         <div className=''>
             <div className='flex flex-col md:w-full'>
             <div className='flex justify-between items-center px-8 py-2 w-full  bg-white'>
-                    <Link href={'/'}>
+                    <Link href={'/'} className="hidden md:block">
                         <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
                     </Link>
                     <div className='flex justify-end gap-6 py-1'>
@@ -15,14 +15,14 @@ const JobSearchForm = () => {
                         <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full w-10' />
                     </div>
                 </div>
-                <div className='bg-[#FAFAFB] w-full flex justify-center gap-12'>
+                <div className='bg-[#FAFAFB] w-full flex justify-center gap-12 md:px-1'>
                     <div className='flex flex-col h-full'>
                         <div className="rounded-2xl my-4 md:w-[900px] bg-white border">
                             <div className='border-b'>
-                                <h1 className='text-3xl h-bold py-3 pl-4'>Create an Active Job Search</h1>
+                                <h1 className='text-2xl md:text-3xl h-bold py-3 pl-4'>Create an Active Job Search</h1>
                             </div>
-                            <div className='flex justify-between'>
-                                <div className='pt-4 pl-2 flex items-center gap-8'>
+                            <div className='flex  justify-between'>
+                                <div className='pt-4 md:pl-2 pb-4 md:pb-0 flex flex-col md:flex-row items-center gap-8'>
                                     <Image src={'/assets/images/cv.png'} alt='Profile picture' width={160} height={160} className='ml-6 mt-4'/>
                                     <div className="flex flex-col gap-2">
                                         <h2 className="text-2xl font-bold">Diana Ross</h2>
@@ -44,8 +44,8 @@ const JobSearchForm = () => {
                                 <p>Active</p>
                             </div>
                             <form className='md:pt-2 px-6'>
-                                <section className='flex gap-4'>
-                                    <div className='w-1/2'>
+                                <section className='flex flex-col md:flex-row gap-4'>
+                                    <div className='md:w-1/2'>
                                         <label htmlFor="industry" className='pb-2 h-bold'>Seeking industry</label>
                                         <select name="industry" id="industry">
                                             <option value="role#1">Hospitality</option>
@@ -55,13 +55,13 @@ const JobSearchForm = () => {
                                         </select>
                                     </div>
 
-                                    <div className='w-1/2'>
+                                    <div className='md:w-1/2'>
                                         <label htmlFor="role" className='pb-2 h-bold'>Desired Role</label>
                                         <input type="text" defaultValue={'Barista'} />
                                     </div>
                                 </section>
-                                <section className='flex gap-4'>
-                                    <div className='w-1/2'>
+                                <section className='flex flex-col md:flex-row gap-4'>
+                                    <div className='md:w-1/2'>
                                         <label className="mb-2 pb-2 h-bold">Days Available</label>
                                         <div className='block'>
                                             <div className='flex items-center gap-2 '>
@@ -144,7 +144,7 @@ const JobSearchForm = () => {
                                         </div>
                                     </div>
 
-                                    <div className='w-1/2'>
+                                    <div className='md:w-1/2'>
                                         <label htmlFor="availability_day" className="block pb-2 h-bold">Availability day</label>
                                         <input
                                             type="date"
@@ -194,13 +194,9 @@ const JobSearchForm = () => {
                                         </div>
 
                                     </div>
-                            </section>
-                            <section className='flex gap-4'>
- 
-                                </section>
-                            
-                            <section className='flex gap-4'>
-                                <div className='w-1/2'>
+                            </section>                           
+                            <section className='flex flex-col md:flex-row gap-4'>
+                                <div className='md:w-1/2'>
                                         <label className="block pb-2 h-bold">Expected Salary (hourly rate)</label>
                                         <select
                                             name="job-location"
@@ -212,7 +208,7 @@ const JobSearchForm = () => {
 
                                         </select>
                                     </div>
-                                <div className='w-1/2'>
+                                <div className='md:w-1/2'>
                                     <label htmlFor="email" className="block pb-2 h-bold">Weekly Hours</label>
                                     <input
                                         type="number"
@@ -223,8 +219,8 @@ const JobSearchForm = () => {
                                     />
                                 </div>
                             </section>
-                            <section className='flex gap-4'>
-                                <div className='w-1/2'>
+                            <section className='flex flex-col md:flex-row gap-4'>
+                                <div className='md:w-1/2'>
                                     <label className="block pb-2 h-bold">Preferred Location:</label>
                                     <select
                                             name="job-location"
@@ -239,7 +235,7 @@ const JobSearchForm = () => {
 
                                         </select>
                                 </div>
-                                <div className='w-1/2'>
+                                <div className='md:w-1/2'>
                                     <label className="block pb-2 h-bold">Transportation:</label>
                                     <select
                                         name="country"
@@ -272,7 +268,7 @@ const JobSearchForm = () => {
                         </form>
                         </div>
                     </div>
-                    <div className='flex flex-col my-4 gap-4'>
+                    <div className='hidden md:flex flex-col my-4 gap-4'>
                         <Image src={'/assets/images/publicity/ads-1.png'} alt='' width={200} height={150} />
                         <Image src={'/assets/images/publicity/ads-2.png'} alt='' width={200} height={150} />
                         <Image src={'/assets/images/publicity/ads-3.png'} alt='' width={200} height={150} />

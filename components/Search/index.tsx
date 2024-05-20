@@ -18,36 +18,36 @@ const SearchComponent = ({ data, user }:any) => {
 
     return (
         <div className='pb-8 bg-[#FAFAFB]'>
-            <div className='flex justify-between items-center px-8 py-2 w-full  bg-white'>
-                <Link href={'/'}>
+            <div className='flex justify-between items-center px-4 md:px-8 py-2 w-full  bg-white'>
+                <Link href={'/'} className='hidden md:block'>
                     <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
                 </Link>
-                <section className='w-[450px] my-0'>
+                <section className='hidden md:block w-[450px] my-0'>
                     <input type="text" name="search" id="search" placeholder='Search'/>
                 </section>
                 {
                     user === 'business' ?
-                    <div className='flex justify-end gap-6 py-1'>
+                    <div className='flex justify-end md:gap-6 gap-2 py-1'>
                         <Link href={'/business-profile'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>My Profile</button></Link>
-                        <img src={"/assets/images/business/mylk-logo.png"} alt="Profile picture" className='rounded-full w-10' />
+                        <img src={"/assets/images/business/mylk-logo.png"} alt="Profile picture" className='rounded-full md:w-10 w-12' />
                     </div>
                     :
                     user === 'licence' ?
-                    <div className='flex justify-end gap-6 py-1'>
+                    <div className='flex justify-end md:gap-6 gap-2 py-1'>
                         <Link href={'/business-market'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Jobs</button></Link>
                         <Link href={'/my-profile'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>My Profile</button></Link>
-                        <img src={"/assets/images/cv.png"} alt="Profile picture" className='rounded-full w-10' />
+                        <img src={"/assets/images/cv.png"} alt="Profile picture" className='rounded-full md:w-10 w-12' />
                     </div>
                     :
-                    <div className='flex justify-end gap-6 py-1'>
+                    <div className='flex justify-end md:gap-6 gap-2 py-1'>
                         <Link href={'/training-and-licences'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licences</button></Link>
                         <Link href={'/my-profile'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>My Profile</button></Link>
-                        <img src={"/assets/images/cv.png"} alt="Profile picture" className='rounded-full w-10' />
+                        <img src={"/assets/images/cv.png"} alt="Profile picture" className='rounded-full md:w-10 w-12' />
                     </div>
                 }
             </div>
-            <div className='flex justify-around gap-6 pt-6 px-8'>
-                <div className='w-[20vw] rounded-2xl border flex flex-col bg-white'>
+            <div className='flex flex-col md:flex-row justify-around gap-6 pt-6 md:px-8 px-2'>
+                <div className='md:w-[20vw] rounded-2xl border flex md:flex-col bg-white'>
                     <div className='grid col-span-1 '>
                         <div className='flex justify-between py-4 border-b mx-4'>
                             <p>Filters</p>
@@ -445,7 +445,7 @@ const SearchComponent = ({ data, user }:any) => {
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col bg-white rounded-2xl border  py-4'>
+                <div className='flex flex-col bg-white rounded-2xl border py-4'>
                     <div className='border-b'>
                         <h2 className='h-bold text-black text-3xl font-semibold pb-4 pl-8'>Results for <span className='text-[#0095A9] h-bold font-extrabold'>"Barista"</span></h2>
                     </div>
@@ -463,15 +463,15 @@ const SearchComponent = ({ data, user }:any) => {
                     <div>
                         {selectedFilters}
                     </div>
-                    <div className='grid grid-cols-3 gap-6 px-8'>
+                    <div className='grid md:grid-cols-3 grid-cols-2 md:gap-6 gap-2 md:px-8 px-2'>
                         {
                             data.map((value:any, index:any) => {
                                 return(
-                                  <div className='flex flex-col gap-1' key={index}>
+                                  <div className='flex flex-col gap-1 my-4 md:my-0' key={index}>
                                     <a href={value.linkTo} className='search-box hover:cursor-pointer'>
                                         <div
-                                            className={`relative bg-center bg-cover 
-                                            flex justify-center items-end w-56 h-56`}
+                                            className={`relative bg-center bg-cover rounded-2xl
+                                            flex justify-center items-end md:w-56 w-40 h-44 md:h-56`}
                                             style={{
                                                 backgroundImage: `url(${value.profileImage})`
                                             }}
@@ -501,9 +501,9 @@ const SearchComponent = ({ data, user }:any) => {
                                     </a>
                                     {
                                         value.age ?
-                                        <p className='text-lg text-black h-bold search-name'>{value.name}, {value.age} - {value.rol}</p>
+                                        <p className='md:text-lg text-black h-bold search-name'>{value.name}, {value.age} - {value.rol}</p>
                                         :
-                                        <p className='text-lg text-black h-bold search-name'>{value.name}</p>
+                                        <p className='md:text-lg text-black h-bold search-name'>{value.name}</p>
                                     }
                                     {
                                         value.institution ? 
@@ -511,7 +511,7 @@ const SearchComponent = ({ data, user }:any) => {
                                         :
                                         <></>
                                     }
-                                    <p className='text-[#0095A9] h-bold'>{value.city}, {value.state} {value.cp}</p>
+                                    <p className='text-[#0095A9] h-bold md:w-full w-3/4'>{value.city}, {value.state} {value.cp}</p>
                                     <div className='flex'>
                                         <img src="/assets/images/vectors/star.svg" alt="" />
                                         <img src="/assets/images/vectors/star.svg" alt="" />
@@ -534,7 +534,7 @@ const SearchComponent = ({ data, user }:any) => {
                         }
                     </div>
                 </div>
-                <div className='flex flex-col my-4 gap-4'>
+                <div className='md:flex hidden flex-col my-4 gap-4'>
                         <Image src={'/assets/images/publicity/ads-1.png'} alt='' width={200} height={150} />
                         <Image src={'/assets/images/publicity/ads-2.png'} alt='' width={200} height={150} />
                         <Image src={'/assets/images/publicity/ads-3.png'} alt='' width={200} height={150} />

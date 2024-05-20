@@ -13,9 +13,9 @@ const FORM_SLIDES = [
         title: '1. Personal information, education and work experience',
         subtitle: 'Great choice!',
         description: 'Now tell us a little bit about...',
-        content: <form className='md:pt-2 px-6'>
-                    <section className='flex gap-4'>
-                        <div className='w-1/2'>
+        content: <form className='md:pt-2 md:px-6'>
+                    <section className='flex flex-col md:flex-row gap-4'>
+                        <div className='md:w-1/2'>
                             <label htmlFor="name" className="block pb-2">First name:</label>
                                 <input
                                     type="text"
@@ -25,7 +25,7 @@ const FORM_SLIDES = [
                                 />
                         </div>
 
-                        <div className='w-1/2'>
+                        <div className='md:w-1/2'>
                             <label htmlFor="last_name" className="block pb-2">Last name:</label>
                             <input
                                 type="text"
@@ -36,8 +36,8 @@ const FORM_SLIDES = [
                         </div>
                     </section>
                     
-                    <section className='flex gap-4'>
-                        <div className='w-1/2'>
+                    <section className='flex flex-col md:flex-row gap-4'>
+                        <div className='md:w-1/2'>
                             <label htmlFor="phone" className="block pb-2">Phone:</label>
                             <input
                                 type="tel"
@@ -47,7 +47,7 @@ const FORM_SLIDES = [
                             />
                         </div>
 
-                        <div className='w-1/2'>
+                        <div className='md:w-1/2'>
                             <label htmlFor="email" className="block pb-2">Email:</label>
                             <input
                                 type="email"
@@ -58,8 +58,8 @@ const FORM_SLIDES = [
                         </div>
                     </section>
 
-                    <section className='flex gap-4'>
-                        <div className='w-1/2'>
+                    <section className='flex flex-col md:flex-row gap-4'>
+                        <div className='md:w-1/2'>
                             <label htmlFor="date_of_birth" className="block pb-2">DOB:</label>
                             <input
                                 type="date"
@@ -69,7 +69,7 @@ const FORM_SLIDES = [
                             />
                         </div>
 
-                        <div className='w-1/2 flex flex-col justify-center'>
+                        <div className='md:w-1/2 flex flex-col justify-center'>
                             <label className="pb-1">To which gender identity do you most identify?</label>
                             <div className='flex justify-between'>
                                 <div className='flex items-center'>
@@ -102,9 +102,9 @@ const FORM_SLIDES = [
                             </div>
                         </div>
                     </section>
-                    <section className='flex gap-4'>
+                    <section className='flex flex-col md:flex-row gap-4'>
 
-                        <div className='w-1/2'>
+                        <div className='md:w-1/2'>
                             <label className="block pb-2">Level of English:</label>
                             <select
                                 name="level"
@@ -117,7 +117,7 @@ const FORM_SLIDES = [
                             </select>
                         </div>
 
-                        <div className='w-1/2'>
+                        <div className='md:w-1/2'>
                             <label className="block pb-2">Languages:</label>
                             <select
                                 multiple
@@ -132,8 +132,8 @@ const FORM_SLIDES = [
                             </select>
                         </div>
                     </section>
-                    <section className='flex gap-4'>
-                        <div className='w-1/2'>
+                    <section className='flex flex-col md:flex-row gap-4'>
+                        <div className='md:w-1/2'>
                             <label htmlFor="citizenship" className="block pb-2">Citizenship:</label>
                             <input
                                 type="text"
@@ -142,7 +142,7 @@ const FORM_SLIDES = [
                                 required
                             />
                         </div>
-                        <div className='w-1/2'>
+                        <div className='md:w-1/2'>
                         <label className="block pb-2">Academic credentials (opt):</label>
                             <select
                                 name="credentials"
@@ -168,8 +168,8 @@ const FORM_SLIDES = [
         subtitle: 'Great choice!',
         description: 'Now tell us a little bit about...',
         content: <form className='md:pt-2 px-6'>
-                    <section className='flex gap-4'>
-                        <div className='w-1/2'>
+                    <section className='flex flex-col md:flex-row gap-4'>
+                        <div className='md:w-1/2'>
                             <label htmlFor="address" className="block pb-2">Address:</label>
                             <input
                                 type="text"
@@ -179,7 +179,7 @@ const FORM_SLIDES = [
                             />
                         </div>
 
-                        <div className='w-1/4'>
+                        <div className='md:w-1/4'>
                             <label htmlFor="state" className="block pb-2">State:</label>
                             <select
                                 id="state"
@@ -193,13 +193,13 @@ const FORM_SLIDES = [
                                 <option value="Northern Territory">Northern Territory</option>
                             </select>
                         </div>
-                        <div className='w-1/4' >
+                        <div className='md:w-1/4' >
                             <label htmlFor="cp" className='block pb-2'>CP:</label>
                             <input type="number" id='cp' name='cp' className=""/>
                         </div>
                     </section>
-                    <div className="flex">
-                        <section className="w-1/2">
+                    <div className="flex flex-col md:flex-row">
+                        <section className="md:w-1/2">
                                 <label htmlFor="">What is your availability?</label> <br />
                                 <div className='flex flex-wrap pt-2'>
                                     <div className='border py-2 px-2 rounded-lg'>
@@ -234,7 +234,7 @@ const FORM_SLIDES = [
                                     </div>
                                 </div>
                         </section>
-                        <section className='flex flex-col w-1/2'>
+                        <section className='flex flex-col md:w-1/2'>
                             <label htmlFor="available-from" className='pb-2'>Available from</label>
                             <input type="date" name="available-from" id="available-from" />
                         </section>
@@ -426,7 +426,7 @@ const FORM_SLIDES = [
                             <option value="Visa#4">Visa#4</option>
                         </select>
                     </section>
-                    <div className='grid grid-cols-4 pt-10 gap-4 px-5'>
+                    <div className='grid md:grid-cols-4 pt-10 gap-4 px-5'>
                             <div 
                                 className='bg-white flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl '
                             >
@@ -435,21 +435,21 @@ const FORM_SLIDES = [
                                 </svg>
                             </div>
                             <div 
-                                className='bg-white  flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl '
+                                className='bg-white hidden md:flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl '
                             >
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
                                 </svg>
                             </div>
                             <div 
-                                className='bg-white  flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl'
+                                className='bg-white hidden md:flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl'
                             >
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
                                 </svg>
                             </div>
                             <div 
-                                className='bg-white  flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl'
+                                className='bg-white hidden md:flex flex-col justify-center items-center w-[200px] h-[180px] rounded-lg shadow-xl'
                             >
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
