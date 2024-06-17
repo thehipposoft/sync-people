@@ -90,7 +90,7 @@ const TrainingProfile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex flex-col my-4 gap-4'>
+                    <div className='hidden flex-col my-4 gap-4'>
                         <Image src={'/assets/images/publicity/ads-1.png'} alt='' width={200} height={150} />
                         <Image src={'/assets/images/publicity/ads-2.png'} alt='' width={200} height={150} />
                         <Image src={'/assets/images/publicity/ads-3.png'} alt='' width={200} height={150} />
