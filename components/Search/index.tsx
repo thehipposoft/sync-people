@@ -26,6 +26,12 @@ const SearchComponent = ({ data, user }:any) => {
                     <input type="text" name="search" id="search" placeholder='Search'/>
                 </section>
                 {
+                    user === 'no-logged' ?
+                    <div className='flex w-full md:w-auto justify-between md:gap-6 gap-2 py-1'>
+                        <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} className='md:hidden' />
+                        <Link href={'/'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 py-2 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Home</button></Link>
+                    </div>
+                    :
                     user === 'business' ?
                     <div className='flex justify-end md:gap-6 gap-2 py-1'>
                         <Link href={'/business-profile'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>My Profile</button></Link>

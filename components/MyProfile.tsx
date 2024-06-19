@@ -135,6 +135,25 @@ const MyProfile = ({ user }:any) => {
                                 </Link>
                             </div>
                         </div>
+                        <div className={` ${user === 'business' ? 'hidden' : ''} flex flex-col rounded-2xl my-4 mx-auto md:w-[900px] bg-white px-8 py-6 border`}>
+                            <div className='flex justify-between'>
+                                <h2 className='text-xl'>Recommended Course/Training</h2>
+                            </div>
+                            <div className='flex flex-col pt-4'>
+                                <h2 className='text-xl'>Latte Art</h2>
+                                <p className='opacity-70'>Melbourne Coffee Academy - $160 | 2 hours</p>
+                                <p className='opacity-70'>From 16th March 2025</p>
+                                <p className='opacity-70'>Melbourne, VIC 3186</p>
+                            </div>
+                            <div className={'pt-6 flex gap-4'}>
+                                <Link href={'/training-profile'}>
+                                    <button className='bg-[#306987] hover:text-[#326B88] duration-500 border-[#326B88] border hover:bg-white py-2 px-4 text-white rounded-lg'>See more</button>
+                                </Link>
+                                <Link href={'/training-and-licences'}>
+                                    <button className='bg-[#306987] hover:text-[#326B88] duration-500 border-[#326B88] border hover:bg-white py-2 px-4 text-white rounded-lg'>All Courses</button>
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                     <div className='hidden flex-col my-4 gap-4'>
                         <Image src={'/assets/images/publicity/ads-1.png'} alt='' width={200} height={150} />
