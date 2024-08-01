@@ -1,9 +1,8 @@
 'use client'
 import Image from 'next/image';
 import Link from 'next/link';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { FORM_SLIDES } from './FormSlider/constants';
-import FormSlider from './FormSlider';
 
 const ProfileForm = () => {
 
@@ -11,7 +10,7 @@ const ProfileForm = () => {
 
     function showNext() {
         setCurrentIndex((index) => {
-            if (index === FORM_SLIDES.length - 1) return 0;
+            if (index === FORM_SLIDES.length - 1) return 0; 
             return index + 1;
         })
     }
@@ -41,66 +40,64 @@ const ProfileForm = () => {
                         <div className='border-b'>
                             <h1 className='text-3xl h-bold py-3 pl-4'>Create profile</h1>
                         </div>
-                        <div className='flex justify-between'>
+                        <div className='flex gap-80 md:w-[850px] mx-auto'>
                             <div className='pt-4 pl-2'>
-                                <h2 className='pl-4 h-bold text-xl'>General information</h2>
                                 <Image src={'/assets/images/cv.png'} alt='Profile picture' width={160} height={160} className='ml-6 mt-4 md:w-[150px] w-36'/>
                             </div>
-                            <div className='flex flex-col gap-1 text-center items-center pt-4 pr-8'>
+                            <div className='mt-12 flex-col gap-2 items-end hidden md:block'>
+                            {
+                                currentIndex === 0 ?
+                                <div>
+                                    <p className='text-[#FF8149] text-lg pb-2'>25% completed</p>
+                                    <div className='bg-gradient-to-r from-[#FF8149] to-[#7087E5] h-[30px] w-[60px] rounded-3xl duration-500' />
+                                </div>
+                                :
+                                currentIndex === 1 ?
+                                <div>
+                                    <p className='text-[#FF8149] text-lg pb-2'>50% completed</p>
+                                    <div className='bg-gradient-to-r from-[#FF8149] to-[#7087E5] h-[30px] w-[120px] rounded-3xl duration-500' />
+                                </div>
+                                :
+                                currentIndex === 2 ?
+                                <div>
+                                    <p className='text-[#7087E5] text-lg pb-2'>75% completed</p>
+                                    <div className='bg-gradient-to-r from-[#FF8149] via-[#7087E5] to-[#3EC1AA] h-[30px] w-[180px] rounded-3xl duration-500' />
+                                </div>
+                                :
+                                currentIndex === 3 ?
+                                <div>
+                                    <p className='text-[#3EC1AA] text-lg pb-2'>100% completed</p>
+                                    <div className='bg-gradient-to-r from-[#FF8149] via-[#7087E5] to-[#3EC1AA] h-[30px] w-[240px] rounded-3xl duration-500' />
+                                </div>
+                                : ''
+                            }
+                        </div>
+                            <div className='hidden flex-col gap-1 text-center items-center pt-8 pr-8'>
                                 <Image src={'/assets/images/profileStrength.png'} alt='percentage of strength' width={140} height={120} />
                                 <p className='h-bold'>Profile Strength</p>
                                 <p>Want to stand out?</p>
                                 <button className='text-[#326B88] border rounded-3xl border-[#326B88] md:px-6 px-2 py-1 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Go Premium!</button>
                             </div>
                         </div>
-                        <div className='mt-12 flex-col gap-2 items-end pr-14 hidden md:block'>
-                            {
-                                currentIndex === 0 ?
-                                <div>
-                                    <p className='text-[#FF8149] text-lg pb-2'>25% completed</p>
-                                    <div className='bg-gradient-to-r from-[#FF8149] to-[#7087E5] h-[30px] w-[70px] rounded-3xl' />
-                                </div>
-                                :
-                                currentIndex === 1 ?
-                                <div>
-                                    <p className='text-[#FF8149] text-lg pb-2'>50% completed</p>
-                                    <div className='bg-gradient-to-r from-[#FF8149] to-[#7087E5] h-[30px] w-[120px] rounded-3xl' />
-                                </div>
-                                :
-                                currentIndex === 2 ?
-                                <div>
-                                    <p className='text-[#7087E5] text-lg pb-2'>75% completed</p>
-                                    <div className='bg-gradient-to-r from-[#FF8149] via-[#7087E5] to-[#3EC1AA] h-[30px] w-[180px] rounded-3xl' />
-                                </div>
-                                :
-                                currentIndex === 3 ?
-                                <div>
-                                    <p className='text-[#3EC1AA] text-lg pb-2'>100% completed</p>
-                                    <div className='bg-gradient-to-r from-[#FF8149] via-[#7087E5] to-[#3EC1AA] h-[30px] w-[190px] rounded-3xl' />
-                                </div>
-                                : ''
-                            }
 
-                        </div>
-                        <div className='md:flex overflow-hidden  '>
+                        <div className='md:flex overflow-hidden'>
                             {
                                 FORM_SLIDES.map((val, index) => {
                                     return(
-                                        <div
-                                            className='flex flex-col duration-700 md:min-w-[900px] md:px-4 py-6 md:py-0'
+                                        <form
+                                            className='flex flex-col duration-700 md:min-w-[850px] md:px-4 py-6 md:py-0'
                                             key={index}
                                             style={{
                                                 translate: `${-100 * currentIndex}%`,
                                             }}
                                         >
-                                            <div className='flex items-center pt-4'>
-                                                <Image src={'/assets/images/vectors/education.svg'} alt='' width={35} height={30}/>
+                                            <div className='flex items-center py-8'>
+                                                <Image src={'/assets/images/vectors/user.svg'} alt='' width={35} height={30}/>
                                                 <h4 className='font-bold pl-4 text-xl'>{val.title}</h4>
                                             </div>
-                                            <span className='blue md:text-4xl text-2xl pt-2'>{val.subtitle}</span>
-                                            <p className='pb-4'>{val.description}</p>
+                                            <p className='pb-4 text-[#1A335D]'>{val.description}</p>
                                                 {val.content}
-                                        </div>
+                                        </form>
                                     )
                                 })
                             }
