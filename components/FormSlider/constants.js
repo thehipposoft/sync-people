@@ -101,18 +101,18 @@ const FORM_SLIDES = [
         title: '2. Schedule and preferences',
         vector: '/assets/images/vectors/time.svg',
         description: 'Come on this is just the beginning',
-        content: <div className='md:pt-2 px-6 flex gap-16'>
-                    <section className="flex flex-col gap-6 w-1/2">
+        content: <div className='md:pt-2 px-6 flex md:flex-row flex-col md:gap-16 gap-4'>
+                    <section className="flex flex-col gap-6 md:w-1/2">
                         <div className="flex flex-col gap-2">
                             <label htmlFor="available-from" >Available from</label>
                             <input type="date" name="available-from" id="available-from" /> 
                         </div>
                         <div>
                             <p className="pb-4">Preffered working hours</p>
-                            <div className="flex justify-between">
+                            <div className="flex justify-between gap-2">
                                 <div className="flex flex-col gap-2">
                                     <label htmlFor="from-hours">From:</label>
-                                    <select name="from" id="from-hours" className="pr-20 pl-4">
+                                    <select name="from" id="from-hours" className="md:pr-20 pr-10 pl-4">
                                         <option value="7AM">7:00 AM</option>
                                         <option value="8AM">8:00 AM</option>
                                         <option value="9AM">9:00 AM</option>
@@ -135,7 +135,7 @@ const FORM_SLIDES = [
                                 </div>
                                 <div className="flex flex-col gap-2">
                                     <label htmlFor="to-hours">To:</label>
-                                    <select name="to" id="to-hours" className="pr-20 pl-4">
+                                    <select name="to" id="to-hours" className="md:pr-20 pr-10 pl-4">
                                         <option value="7AM">7:00 AM</option>
                                         <option value="8AM">8:00 AM</option>
                                         <option value="9AM">9:00 AM</option>
@@ -172,7 +172,7 @@ const FORM_SLIDES = [
                             </select>
                         </div>
                     </section>
-                    <section className="w-1/2">
+                    <section className="md:w-1/2">
                         <div className="flex flex-col gap-1">
                             <label htmlFor="days-available">Days Available</label>
                                 <label className="flex gap-2 text-black">
@@ -216,18 +216,18 @@ const FORM_SLIDES = [
     {
         id: 3,
         title: '3. Personal Documentation',
-        vector: '/assets/images/vectors/time.svg',
+        vector: '/assets/images/vectors/industry.svg',
         subtitle: "Fantastic! We're almost done",
         description: 'Now we need you to upload some files...supported format is .jpg .pdf',
         content: <div className='md:pt-2'>
                     <section className='flex flex-col '>
                         <label htmlFor="document-type" className='pb-2'>Document Type</label>
-                        <select name="document-type" id="document-type" className="w-1/2">
+                        <select name="document-type" id="document-type" className="md:w-1/2">
                             <option value="photo">Photo</option>
                             <option value="video">Video</option>
                             <option value="certificate">Certificate</option>
                         </select>
-                        <div className="flex flex-col gap-6 mt-12">
+                        <div className="flex flex-col gap-6 mt-12 mx-auto md:mx-0">
                             <label for="file-upload" className="h-52 w-56 rounded-2xl shadow-xl flex flex-col gap-4 cursor-pointer justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>

@@ -36,12 +36,12 @@ const ProfileForm = () => {
                     </div>
                 </div>
                 <div className='bg-[#FAFAFB] w-full flex justify-center gap-12 px-2 md:px-0'>
-                    <div className='flex flex-col rounded-2xl my-4 md:w-[900px] px-4 bg-white border'>
+                    <div className='flex flex-col rounded-2xl my-4 md:w-[900px] md:px-4 px-6 bg-white border'>
                         <div className='border-b'>
                             <h1 className='text-3xl h-bold py-3 pl-4'>Create profile</h1>
                         </div>
-                        <div className='flex gap-80 md:w-[850px] mx-auto'>
-                            <div className='pt-4 pl-2'>
+                        <div className='flex md:gap-80 md:w-[850px] mx-auto'>
+                            <div className='pt-4 md:pl-2'>
                                 <Image src={'/assets/images/cv.png'} alt='Profile picture' width={160} height={160} className='ml-6 mt-4 md:w-[150px] w-36'/>
                             </div>
                             <div className='mt-12 flex-col gap-2 items-end hidden md:block'>
