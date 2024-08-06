@@ -23,7 +23,7 @@ const ProfileForm = () => {
     }
 
     return (
-        <div className=''>
+        <div>
             <div className='flex flex-col md:w-full'>
                 <div className='flex justify-between items-center md:px-8 py-2 w-full bg-white'>
                     <Link href={'/'} className='hidden md:block'>
@@ -45,33 +45,33 @@ const ProfileForm = () => {
                                 <Image src={'/assets/images/cv.png'} alt='Profile picture' width={160} height={160} className='ml-6 mt-4 md:w-[150px] w-36'/>
                             </div>
                             <div className='mt-12 flex-col gap-2 items-end hidden md:block'>
-                            {
-                                currentIndex === 0 ?
-                                <div>
-                                    <p className='text-[#FF8149] text-lg pb-2'>25% completed</p>
-                                    <div className='bg-gradient-to-r from-[#FF8149] to-[#7087E5] h-[30px] w-[60px] rounded-3xl duration-500' />
-                                </div>
-                                :
-                                currentIndex === 1 ?
-                                <div>
-                                    <p className='text-[#FF8149] text-lg pb-2'>50% completed</p>
-                                    <div className='bg-gradient-to-r from-[#FF8149] to-[#7087E5] h-[30px] w-[120px] rounded-3xl duration-500' />
-                                </div>
-                                :
-                                currentIndex === 2 ?
-                                <div>
-                                    <p className='text-[#7087E5] text-lg pb-2'>75% completed</p>
-                                    <div className='bg-gradient-to-r from-[#FF8149] via-[#7087E5] to-[#3EC1AA] h-[30px] w-[180px] rounded-3xl duration-500' />
-                                </div>
-                                :
-                                currentIndex === 3 ?
-                                <div>
-                                    <p className='text-[#3EC1AA] text-lg pb-2'>100% completed</p>
-                                    <div className='bg-gradient-to-r from-[#FF8149] via-[#7087E5] to-[#3EC1AA] h-[30px] w-[240px] rounded-3xl duration-500' />
-                                </div>
-                                : ''
-                            }
-                        </div>
+                                {
+                                    currentIndex === 0 ?
+                                    <div>
+                                        <p className='text-[#FF8149] text-lg pb-2'>25% completed</p>
+                                        <div className='bg-gradient-to-r from-[#FF8149] to-[#7087E5] h-[30px] w-[60px] rounded-3xl duration-500' />
+                                    </div>
+                                    :
+                                    currentIndex === 1 ?
+                                    <div>
+                                        <p className='text-[#FF8149] text-lg pb-2'>50% completed</p>
+                                        <div className='bg-gradient-to-r from-[#FF8149] to-[#7087E5] h-[30px] w-[120px] rounded-3xl duration-500' />
+                                    </div>
+                                    :
+                                    currentIndex === 2 ?
+                                    <div>
+                                        <p className='text-[#7087E5] text-lg pb-2'>75% completed</p>
+                                        <div className='bg-gradient-to-r from-[#FF8149] via-[#7087E5] to-[#3EC1AA] h-[30px] w-[180px] rounded-3xl duration-500' />
+                                    </div>
+                                    :
+                                    currentIndex === 3 ?
+                                    <div>
+                                        <p className='text-[#3EC1AA] text-lg pb-2'>100% completed</p>
+                                        <div className='bg-gradient-to-r from-[#FF8149] via-[#7087E5] to-[#3EC1AA] h-[30px] w-[240px] rounded-3xl duration-500' />
+                                    </div>
+                                    : ''
+                                }
+                            </div>
                             <div className='hidden flex-col gap-1 text-center items-center pt-8 pr-8'>
                                 <Image src={'/assets/images/profileStrength.png'} alt='percentage of strength' width={140} height={120} />
                                 <p className='h-bold'>Profile Strength</p>
@@ -80,29 +80,33 @@ const ProfileForm = () => {
                             </div>
                         </div>
 
-                        <div className='md:flex overflow-hidden'>
+                        <form className='md:flex overflow-hidden'>
+
                             {
                                 FORM_SLIDES.map((val, index) => {
                                     return(
-                                        <form
+                                        <div
                                             className='flex flex-col duration-700 md:min-w-[850px] md:px-4 py-6 md:py-0'
                                             key={index}
                                             style={{
                                                 translate: `${-100 * currentIndex}%`,
                                             }}
                                         >
-                                            <div className='flex items-center py-8'>
-                                                <Image src={'/assets/images/vectors/user.svg'} alt='' width={35} height={30}/>
-                                                <h4 className='font-bold pl-4 text-xl'>{val.title}</h4>
+                                            <div className='flex items-center justify-between py-8'>
+                                                <div className='flex items-center'>
+                                                    <Image src={val.vector} alt='' width={35} height={30}/>
+                                                    <h4 className='font-bold pl-4 text-xl'>{val.title}</h4>
+                                                </div>
+ 
                                             </div>
                                             <p className='pb-4 text-[#1A335D]'>{val.description}</p>
                                                 {val.content}
-                                        </form>
+                                        </div>
                                     )
                                 })
                             }
+                        </form>
 
-                        </div>
                         <div className='md:flex hidden justify-center'>{currentIndex + 1} | {FORM_SLIDES.length}</div>
                         <div className='md:flex hidden gap-6 justify-center py-6'>
                             {

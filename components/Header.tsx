@@ -14,18 +14,16 @@ const Header = () => {
   };
 
   return (
-    <div className='fixed bg-white w-full md:py-2 px-8 md:px-0 flex-wrap p-6 md:p-0 z-30'>
-      <div className='w-[1250px] flex justify-between mx-auto'>
+    <div className='fixed bg-white w-full md:py-2 py-2 px-8 md:px-0 flex-wrap z-30'>
+      <div className='md:w-[1250px] flex justify-between items-center  mx-auto'>
         <Link href={'/'}>
             <Image src={'/assets/logo.svg'} alt='Sync-people logo' width={220} height={150} className='' />
           </Link>
-          <button className='flex justify-center items-center md:hidden' onClick={toggleMenu}>
-            <svg viewBox="0 0 100 80" width="40" height="40">
-              <rect width="100" height="20" rx="10" fill='#1A335D'></rect>
-              <rect y="30" width="100" height="20" rx="10" fill='#1A335D'></rect>
-              <rect y="60" width="100" height="20" rx="10" fill='#1A335D'></rect>
+            <svg viewBox="0 0 100 80" width="40" height="40" onClick={toggleMenu} className='md:hidden block'>
+              <rect width="100" height="15" rx="10" fill='#1A335D'></rect>
+              <rect y="30" width="100" height="15" rx="10" fill='#1A335D'></rect>
+              <rect y="60" width="100" height="15" rx="10" fill='#1A335D'></rect>
             </svg>
-          </button>
           <nav className='md:flex justify-center hidden items-center flex-wrap w-full md:w-fit gap-6 md:gap-0'>
             <a href="" className='md:mx-2 md:p-2 hover:opacity-50 duration-300'>Home</a>
             <a href="#how" className='md:mx-2 md:p-2 hover:opacity-50 duration-300'>About</a>

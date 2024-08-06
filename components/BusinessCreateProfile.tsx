@@ -140,6 +140,10 @@ const BusinessCreateProfile = () => {
                                     <label htmlFor="about" className='pb-2 p-bold'>Company Description</label>
                                     <textarea name="" id="about" cols={6} rows={5} className='resize-none bg-[#F8F9FA] p-2'></textarea>
                                 </section>
+                                <section className='flex flex-col'>
+                                    <label htmlFor="contact" className='pb-2 p-bold'>Website Adress and social media links:</label>
+                                    <textarea name="contact" id="contact" cols={6} rows={5} className='resize-none bg-[#F8F9FA] p-2'></textarea>
+                                </section>
                                 <div className='flex justify-end gap-2 my-8'>
                                     <Link href={'/business-profile'}>
                                         <button className=' py-2 hover:text-[#326B88] border-[#326B88] border rounded-md px-4 bg-[#326B88] hover:bg-white text-white duration-500 cursor-pointer'>
