@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 
@@ -27,10 +28,10 @@ const Footer = () => {
         <div>
             <h4 className='font-bold text-xl'>Join our community</h4>
             <div className='flex pt-4 md:flex-row gap-4 md:gap-0 items-center'>
-                <a className='md:mr-2'><Image src={'/assets/images/vectors/google.svg'} alt='icon' width={35} height={35}  /></a>
-                <a className='md:mx-2'><Image src={'/assets/images/vectors/facebook.svg'} alt='icon' width={35} height={35}  /></a>
-                <a className='md:mx-2'><Image src={'/assets/images/vectors/twitter.svg'} alt='icon' width={35} height={40}  /></a>
-                <a className='md:mx-2'><Image src={'/assets/images/vectors/linkedin.svg'} alt='icon' width={35} height={35} /></a>
+                <Link href={''} className='md:mr-2'><Image src={'/assets/images/vectors/google.svg'} alt='icon' width={35} height={35}  /></Link>
+                <Link href={'https://www.facebook.com/profile.php?id=61561044445028'} className='md:mx-2'><Image src={'/assets/images/vectors/facebook.svg'} alt='icon' width={35} height={35}  /></Link>
+                <Link href={''} className='md:mx-2'><Image src={'/assets/images/vectors/twitter.svg'} alt='icon' width={35} height={40}  /></Link>
+                <Link href={'https://www.linkedin.com/company/insyncx/about/'} className='md:mx-2'><Image src={'/assets/images/vectors/linkedin.svg'} alt='icon' width={35} height={35} /></Link>
             </div>
         </div>
       </div>

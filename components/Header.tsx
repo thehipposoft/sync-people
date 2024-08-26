@@ -14,7 +14,7 @@ const Header = () => {
   };
 
   return (
-    <div className='fixed bg-white w-full md:py-2 py-2 px-8 md:px-0 flex-wrap z-30'>
+    <div className=' bg-white w-full md:py-0 py-2 px-8 md:px-0 flex-wrap z-30'>
       <div className='md:w-[1250px] flex justify-between items-center  mx-auto'>
         <Link href={'/'}>
             <Image src={'/assets/logo.svg'} alt='Sync-people logo' width={220} height={150} className='' />
