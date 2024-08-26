@@ -70,7 +70,7 @@ const BusinessProfile = ({ user }:any) => {
                                 </div>
                                 <div className={`${user === 'business' ? '' : 'hidden'} flex flex-col gap-2 text-cente md:items-center`}>
                                     <Image src={'/assets/images/profileStrength.png'} alt='percentage of strength' width={120} height={120} />
-                                    <h2 className='h-bold'>Profile Strength</h2>
+                                    <h2 className='h-bold text-lg'>Profile Strength</h2>
                                     <p>Want to stand out?</p>
                                     <button className='text-[#326B88] border rounded-3xl border-[#326B88] px-6 py-1 md:w-auto w-fit'>Go Premium!</button>
                                 </div>
@@ -130,6 +130,20 @@ const BusinessProfile = ({ user }:any) => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div className={`${user === 'business' ? 'hidden' : ''} flex flex-col rounded-2xl my-4 mx-auto md:w-[900px] bg-white px-8 py-6 border`}>
+                            <h2 className='text-2xl h-bold'>Matching Criteria</h2>
+                                <div className='flex flex-col gap-4'>
+                                    <ul className='flex flex-col pt-4'>
+                                        <li className='text-[#3ec16c]'>&#8226; Location</li>
+                                        <li className='text-[#3ec16c]'>&#8226; Expected Salary $25 - $30</li>
+                                        <li className='text-[#3ec16c]'>&#8226; Weekly Hours: 40</li>
+                                    </ul>
+                                    <div>
+                                        <h2 className='text-lg'>Not matching</h2>
+                                        <p className='text-[#ff5e49] pt-2'>&#8226; Transportation</p>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                     <div className='hidden flex-col my-4 gap-4'>

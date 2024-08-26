@@ -204,7 +204,7 @@ const StaffSearch = () => {
 
                                     <div className='md:w-1/2'>
                                         <div className="flex flex-col gap-2 mt-4">
-                                            <h2 className="h-bold mt-2">Preferred Working Hours</h2>
+                                            <h2 className="h-bold mt-2 text-base">Preferred Working Hours</h2>
                                             <div className="flex gap-4">
                                                 <div className='w-full'>
                                                     <label htmlFor="industry" className='pb-2'>From</label>

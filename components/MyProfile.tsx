@@ -103,8 +103,11 @@ const MyProfile = ({ user }:any) => {
                                 </div>
                             </div>
                             <div className='flex flex-col px-8 pb-6'>
-                                <strong>About Diana</strong>
+                                <h3 className='text-lg'>About Diana</h3>
                                 <p>Ex consectetur veniam eiusmod in laboris aliquip exercitation eu culpa elit laborum laboris consectetur incididunt dolor. Sit nostrud reprehenderit adipisicing officia anim dolor cupidatat veniam eiusmod. Veniam aute mollit irure dolor id eu quis irure sint. Aliqua ullamco elit laboris eu aliquip.</p>
+                            </div>
+                            <div className='flex justify-end px-8 pb-6'>
+                                <Link href={'profile-form'} className='bg-[#306987] hover:text-[#326B88] duration-500 border-[#326B88] border hover:bg-white py-2 px-4 text-white rounded-lg'>Edit Profile</Link>
                             </div>
                         </div>
                         <div className='flex flex-col rounded-2xl my-4 mx-auto md:w-[900px] bg-white px-8 py-6 border'>
@@ -158,6 +161,7 @@ const MyProfile = ({ user }:any) => {
                                 </Link>
                             </div>
                         </div>
+
                     </div>
                     <div className='hidden flex-col my-4 gap-4'>
                         <Image src={'/assets/images/publicity/ads-1.png'} alt='' width={200} height={150} />

@@ -153,7 +153,7 @@ const JobSearchForm = () => {
                                             required
                                         />
                                         <div className="flex flex-col gap-2 mt-4">
-                                            <h2 className="h-bold mt-2">Preferred Working Hours</h2>
+                                            <h2 className="h-bold mt-2 text-base">Preferred Working Hours</h2>
                                             <div className="flex gap-4">
                                                 <div className='w-full'>
                                                     <label htmlFor="industry" className='pb-2'>From</label>
@@ -194,7 +194,7 @@ const JobSearchForm = () => {
                                         </div>
 
                                     </div>
-                            </section>                           
+                            </section>
                             <section className='flex flex-col md:flex-row gap-4'>
                                 <div className='md:w-1/2'>
                                         <label className="block pb-2 h-bold">Expected Salary (hourly rate)</label>
