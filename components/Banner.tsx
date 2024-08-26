@@ -28,7 +28,7 @@ const Banner = () => {
             </Link>
         </div>
       </div>
-      <div className='flex gap-10 md:hidden flex-col px-4 mt-[45%]'>
+      <div className='flex gap-10 md:hidden flex-col px-4 mt-4'>
         <h1 className='text-6xl'>Welcome to the <span className='text-[#8D78E0]'>new age of work.</span></h1>
         <h3 className=' light text-2xl'>Connecting Companies to <strong>Talent,</strong><br/> and Job Seekers to <strong>Opportunities.</strong></h3>
         <div className='flex flex-wrap gap-4 mb-3'>
@@ -40,7 +40,7 @@ const Banner = () => {
             </Link>
         </div>
       </div>
-      <div className='group cursor-pointer relative flex justify-center items-center w-full h-72 md:w-[540px] md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] md:mt-[10%] mt-[40%] mb-24' onClick={toggleModal}>
+      <div className='group cursor-pointer relative flex justify-center items-center w-full h-72 md:w-[540px] md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-24' onClick={toggleModal}>
         <Image src={'/assets/images/banner-overlay.png'} alt='Video image' fill priority objectFit='contain'/>
         <div className='w-full h-full bg-gradient-to-bl from-[#3EC1AA] via-[#7087E5] to-[#7052E5] md:opacity-40 opacity-70 duration-700 group-hover:opacity-80 rounded-3xl rounded-br-[8rem] absolute z-10' />
         <div className='relative bottom-[2%] z-20 flex flex-col items-center gap-6'>

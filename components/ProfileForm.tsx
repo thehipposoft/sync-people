@@ -10,7 +10,7 @@ const ProfileForm = () => {
 
     function showNext() {
         setCurrentIndex((index) => {
-            if (index === FORM_SLIDES.length - 1) return 0; 
+            if (index === FORM_SLIDES.length - 1) return 0;
             return index + 1;
         })
     }
@@ -30,9 +30,12 @@ const ProfileForm = () => {
                         <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} className='md:w-auto w-[120px]'/>
                     </Link>
                     <div className='flex justify-end gap-4 py-1 px-2 md:px-0'>
-                            <Link href={'/training-and-licences'}><button className='md:h-full text-[#326B88] border-[#326B88] border rounded-md md:px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licences</button></Link>
-                            <Link href={'/business-market'}><button className='md:h-full text-[#326B88] border-[#326B88] border rounded-md md:px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Jobs</button></Link>
-                        <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full md:w-10 w-16' />
+                        <Link href={'/training-and-licences'}><button className='md:h-full text-[#326B88] border-[#326B88] border rounded-md md:px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licences</button></Link>
+                        <Link href={'/business-market'}><button className='md:h-full text-[#326B88] border-[#326B88] border rounded-md md:px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Jobs</button></Link>
+                        <Link href={'/profile-form'}>
+                            <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full md:w-10 w-16' />
+                        </Link>
+
                     </div>
                 </div>
                 <div className='bg-[#FAFAFB] w-full flex justify-center gap-12 px-2 md:px-0'>
@@ -97,7 +100,7 @@ const ProfileForm = () => {
                                                     <Image src={val.vector} alt='' width={35} height={30}/>
                                                     <h4 className='font-bold pl-4 text-xl'>{val.title}</h4>
                                                 </div>
- 
+
                                             </div>
                                             <p className='pb-4 text-[#1A335D]'>{val.description}</p>
                                                 {val.content}
@@ -111,7 +114,7 @@ const ProfileForm = () => {
                         <div className='md:flex hidden gap-6 justify-center py-6'>
                             {
                                 currentIndex != 0 ?
-                                <button 
+                                <button
                                     className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
                                     onClick={showPrev}
                                 >
@@ -121,7 +124,7 @@ const ProfileForm = () => {
                             }
                             {
                                 currentIndex != FORM_SLIDES.length - 1 ?
-                                <button 
+                                <button
                                     className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
                                     onClick={showNext}
                                 >

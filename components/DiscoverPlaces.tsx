@@ -3,7 +3,7 @@ import React from 'react';
 
 const DiscoverPlaces = ({isOpen, closeDiscover}:any) => {
     return (
-        <div className={`${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'} bg-[#8D78E0] h-screen w-full rounded-bl-[200px] fixed top-0 left-0 duration-1000`}>
+        <div className={`${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'} bg-[#8D78E0] h-screen w-full rounded-bl-[200px] fixed top-0 left-0 duration-1000 z-50`}>
             <div className='max-w-[1300px] mx-auto md:pl-0 pl-4 md:pt-[5vh] relative'>
                 <div className='flex justify-between items-center py-4'>
                     <Image src={'/logo-white.svg'} alt='Logo in white' width={180} height={90} />

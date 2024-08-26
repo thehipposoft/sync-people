@@ -28,7 +28,7 @@ const FORM_SLIDES = [
                             />
                         </div>
                     </section>
-                    
+
                     <section className='flex flex-col md:flex-row gap-4'>
                         <div className='md:w-1/2'>
                             <label htmlFor="phone" className="block pb-2">Phone:</label>
@@ -83,7 +83,7 @@ const FORM_SLIDES = [
                                     <label className='pl-1'>Female</label>
                                 </div>
                                 <div className='flex items-center'>
-                                    
+
                                     <input
                                         type="radio"
                                         name="gender"
@@ -105,7 +105,7 @@ const FORM_SLIDES = [
                     <section className="flex flex-col gap-6 md:w-1/2">
                         <div className="flex flex-col gap-2">
                             <label htmlFor="available-from" >Available from</label>
-                            <input type="date" name="available-from" id="available-from" /> 
+                            <input type="date" name="available-from" id="available-from" />
                         </div>
                         <div>
                             <p className="pb-4">Preffered working hours</p>
@@ -274,6 +274,30 @@ const FORM_SLIDES = [
                         <label htmlFor="text">Lorem Ipsum</label>
                         <input type="text" name="" id=""/>
                     </section>
+                    <h4 className="text-lg h-bold mb-2">
+                        Presentation video
+                    </h4>
+                    <section className='flex flex-col'>
+                        <label htmlFor="text">Video URL</label>
+                        <input type="text" name="" id=""/>
+                    </section>
+                    <iframe
+                        width="560"
+                        height="315"
+                        src="https://www.youtube.com/embed/0_6AK52kSVQ?si=wAkKFQ5EE9TOXuJb" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                    />
+                    <p className="text-sm my-3 h-bold">
+                        Why Create a "presentation" Video?
+                    </p>
+                    <p className="text-sm">
+                        Elevate your profile by adding a personal touch! Recording and sharing a video on your preferred platform can increase your visibility by up to 40%.
+                        In today’s competitive market, 75% of hiring managers value candidates who effectively showcase their communication skills and personality.
+                        A simple video can set you apart and boost your chances of landing the perfect opportunity.
+                    </p>
                 </div>,
     },
 ]
@@ -314,7 +338,7 @@ export { FORM_SLIDES }
         <label className='text-black' htmlFor="warehousing">Warehousing</label>
     </div>
     <div className='flex items-center gap-2 '>
-        
+
         <input
             type="checkbox"
             name="industrie"
@@ -322,11 +346,11 @@ export { FORM_SLIDES }
             value="logistics"
         />
         <label className='text-black' htmlFor="logistics">Logistics </label>
-       
+
     </div>
 
     <div className='flex items-center gap-2'>
-       
+
         <input
             type="checkbox"
             name="industrie"
@@ -336,7 +360,7 @@ export { FORM_SLIDES }
          <label className='text-black' htmlFor="farming">Farming / Solar farming</label>
     </div>
     <div className='flex items-center gap-2 '>
-       
+
         <input
             type="checkbox"
             name="industrie"
@@ -346,7 +370,7 @@ export { FORM_SLIDES }
          <label className='text-black' htmlFor="hospitality">Hospitality</label>
     </div>
     <div className='flex items-center gap-2 '>
-        
+
         <input
             type="checkbox"
             name="industrie"
@@ -356,7 +380,7 @@ export { FORM_SLIDES }
         <label className='text-black' htmlFor="retail">retail</label>
     </div>
     <div className='flex items-center gap-2 '>
-        
+
         <input
             type="checkbox"
             name="industrie"
@@ -366,7 +390,7 @@ export { FORM_SLIDES }
         <label className='text-black' htmlFor="age-care">Age Care</label>
     </div>
     <div className='flex items-center gap-2'>
-        
+
         <input
             type="checkbox"
             name="industrie"

@@ -17,7 +17,9 @@ const MyProfile = ({ user }:any) => {
                                 <Link href={'/business-profile'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>My Profile</button></Link>
                                 <Link href={'/staff-market'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Staff</button></Link>
                             </div>
-                            <img src={"/assets/images/business/mylk-logo.png"} alt="Profile picture" className='rounded-full md:w-10 w-16' />
+                            <Link href={'/profile-form'}>
+                                <img src={"/assets/images/business/mylk-logo.png"} alt="Profile picture" className='rounded-full md:w-10 w-16' />
+                            </Link>
                         </div>
                     </div>
                     :
@@ -28,7 +30,9 @@ const MyProfile = ({ user }:any) => {
                         <div className='flex justify-end gap-6 py-1'>
                             <Link href={'/training-and-licences'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licences</button></Link>
                             <Link href={'/business-market'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Jobs</button></Link>
-                            <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full w-10' />
+                            <Link href={'/profile-form'}>
+                                <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full w-10' />
+                            </Link>
                         </div>
                     </div>
                 }
@@ -126,7 +130,7 @@ const MyProfile = ({ user }:any) => {
                                 <p className='opacity-70'>Mon, Tue, Thu, Fri, Sat - 40 hours p/w ($28 p/h)</p>
                                 <p className='opacity-70'>From 16th March 2024</p>
                                 <p className='opacity-70'>Brighton, VIC 3186</p>
-                                <p>Recently moved to Melbourne from Gold Coast were I worked as a Barista for the last 3 months. 
+                                <p>Recently moved to Melbourne from Gold Coast were I worked as a Barista for the last 3 months.
                                     I also did a workshop where I learnt my barista skills. I hold an RSA Licence.</p>
                             </div>
                             <div className={`${user === 'business' ? 'hidden' : ''} pt-6`}>
@@ -169,4 +173,4 @@ const MyProfile = ({ user }:any) => {
     );
 };
 
-export default MyProfile;       
+export default MyProfile;

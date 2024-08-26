@@ -3,7 +3,7 @@ import React from 'react'
 
 const WhyUs = () => {
   return (
-    <div className='h-screen flex justify-between md:pl-20 max-w-[1300px] p-6 md:p-0 flex-wrap mt-6 md:mt-0'>
+    <div className='h-screen flex justify-between mx-auto max-w-[1300px] p-6 md:p-0 flex-wrap mt-6 md:mt-0'>
       <div className='md:w-2/5 flex flex-col justify-center'>
         <h1 className='font-bold mb-12 md:mb-0'>Why Us?</h1>
         <p className='text-[#798196] md:pt-4 mb-6 md:mb-0'>
