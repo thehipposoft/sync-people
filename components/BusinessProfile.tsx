@@ -132,15 +132,18 @@ const BusinessProfile = ({ user }:any) => {
                             </div>
                         </div>
                         <div className={`${user === 'business' ? 'hidden' : ''} flex flex-col rounded-2xl my-4 mx-auto md:w-[900px] bg-white px-8 py-6 border`}>
-                            <h2 className='text-2xl h-bold'>Matching Criteria</h2>
+                            <h3 className='text-2xl h-bold'>Matching Criteria</h3>
+                                <h5 className='text-lg mt-3'>
+                                    Why is this a good match?
+                                </h5>
                                 <div className='flex flex-col gap-4'>
-                                    <ul className='flex flex-col pt-4'>
+                                    <ul className='flex flex-col'>
                                         <li className='text-[#3ec16c]'>&#8226; Location</li>
                                         <li className='text-[#3ec16c]'>&#8226; Expected Salary $25 - $30</li>
                                         <li className='text-[#3ec16c]'>&#8226; Weekly Hours: 40</li>
                                     </ul>
                                     <div>
-                                        <h2 className='text-lg'>Not matching</h2>
+                                        <h5 className='text-lg'>Not matching</h5>
                                         <p className='text-[#ff5e49] pt-2'>&#8226; Transportation</p>
                                     </div>
                                 </div>
