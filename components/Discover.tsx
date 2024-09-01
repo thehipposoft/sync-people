@@ -52,7 +52,7 @@ const Discover = () => {
                 </div>
                 <div className='flex flex-col items-center md:py-4 bg-white rounded-xl w-[200px] h-[110px] opacity-0 group-hover:opacity-100 group-hover:-translate-y-[108px] duration-700 ease-in-out'>
                     <Image className='money-blue' src={'/assets/images/vectors/money.svg'} alt={''} width={40} height={50} />
-                    <p className='font-semibold text-[#1A335D] text-xl pt-2'>Australian Dollar</p>
+                    <p className='font-semibold text-[#1A335D] text-md pt-2'>Australian Dollar (AUD)</p>
                 </div>
               </div>
               <div className='flex flex-col w-[200px] h-[110px] overflow-hidden group '>

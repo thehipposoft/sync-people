@@ -262,3 +262,33 @@ select {
         fill: #326B88;
     }
 }
+
+/* Dialog */
+dialog {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+dialog[open] {
+    opacity: 1;
+    pointer-events: inherit;
+}
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+@layer components {
+    .container {
+        @apply md:w-[1250px] mx-auto;
+    }
+    .primary-btn {
+        @apply border text-white bg-purple transition-all hover:border-purple hover:bg-white hover:text-purple md:mx-4 px-6 py-2 rounded-3xl text-xl md:text-base md:w-fit w-full text-center;
+    }
+    .secondary-btn {
+        @apply py-2 px-4 rounded-3xl border border-purple text-purple transition-all duration-300 ease-in-out hover:bg-purple hover:text-white text-xl md:text-base md:w-fit w-full text-center;
+    }
+}

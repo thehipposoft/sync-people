@@ -1,42 +1,82 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
-
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ROUTES } from '@/app/constants';
 
 const Footer = () => {
-  return (
-    <div className='flex md:pl-20 md:py-12 py-6 bg-[#FAFAFB] px-6 md:px-0 flex-wrap'>
-      <div className='md:w-1/2 w-full flex'>
-        <div>
-            <Image src={'/assets/logo.svg'} alt='Sync-people logo' width={150} height={150} />
-            <p className='pt-2'>
-                Contact us for more information
-            </p>
-        </div>
-      </div>
-      <div className='md:w-1/2 w-full flex md:justify-around flex-wrap mt-4 md:mt-0'>
-        <div className='hidden md:block'>
-            <h4 className='font-bold text-xl'>Pages</h4>
-            <ul>
-                <li className='py-1'><a href="">Home</a></li>
-                <li className='py-1'><a href="">Employers</a></li>
-                <li className='py-1'><a href="">Employees</a></li>
-                <li className='py-1'><a href="">Location</a></li>
-                <li className='py-1'><a href="">Contact</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4 className='font-bold text-xl'>Join our community</h4>
-            <div className='flex pt-4 md:flex-row gap-4 md:gap-0 items-center'>
-                <Link href={''} className='md:mr-2'><Image src={'/assets/images/vectors/google.svg'} alt='icon' width={35} height={35}  /></Link>
-                <Link href={'https://www.facebook.com/profile.php?id=61561044445028'} className='md:mx-2'><Image src={'/assets/images/vectors/facebook.svg'} alt='icon' width={35} height={35}  /></Link>
-                <Link href={''} className='md:mx-2'><Image src={'/assets/images/vectors/twitter.svg'} alt='icon' width={35} height={40}  /></Link>
-                <Link href={'https://www.linkedin.com/company/insyncx/about/'} className='md:mx-2'><Image src={'/assets/images/vectors/linkedin.svg'} alt='icon' width={35} height={35} /></Link>
+    return (
+        <div className='flex md:py-12 py-6 bg-bg-primary px-6 md:px-0 flex-wrap'>
+            <div className='container grid grid-cols-1 md:grid-cols-4 gap-2'>
+                <div className='w-full flex'>
+                    <div>
+                        <Image src={'/assets/logo.svg'} alt='Sync-people logo' width={150} height={150} />
+                        <p className='pt-2'>
+                            <Link className='underline' href={ROUTES.CONTACT}>Contact us</Link> for more information
+                        </p>
+                    </div>
+                </div>
+                <div className='hidden md:block'>
+                    <h4 className='font-bold text-xl'>Job Categories</h4>
+                    <ul>
+                        <li className='py-1'>
+                            <Link href={ROUTES.CATEGORIES_TOURISM}>
+                                Tourism
+                            </Link>
+                        </li>
+                        <li className='py-1'>
+                            <Link href={ROUTES.CATEGORIES_WAREHOUSING}>
+                                Warehousing
+                            </Link>
+                        </li>
+                        <li className='py-1'>
+                            <Link href={ROUTES.CATEGORIES_CONSTRUCTION}>
+                                Construction
+                            </Link>
+                        </li>
+                        <li className='py-1'>
+                            <Link href={ROUTES.CATEGORIES_CLEANING}>
+                                Cleaning
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+                <ul>
+                    <li className='py-1'>
+                        <Link href={ROUTES.ABOUT}>About</Link>
+                    </li>
+                    <li className='py-1'>
+                        <Link href={ROUTES.CONTACT}>Contact</Link>
+                    </li>
+                </ul>
+                <div>
+                    <h4 className='font-bold text-xl'>Join our community</h4>
+                    <div className='flex pt-4 md:flex-row gap-4 md:gap-0 items-center'>
+                        <Link
+                            href={'https://www.instagram.com/insyncx.au/'}
+                            target='_blank'
+                            className='md:mr-2'
+                        >
+                            <svg width={35} height={35} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g id="SVGRepo_iconCarrier">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" fill="#1A335D">
+                                    </path>
+                                    <path d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z" fill="#1A335D"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.65396 4.27606C1 5.55953 1 7.23969 1 10.6V13.4C1 16.7603 1 18.4405 1.65396 19.7239C2.2292 20.8529 3.14708 21.7708 4.27606 22.346C5.55953 23 7.23969 23 10.6 23H13.4C16.7603 23 18.4405 23 19.7239 22.346C20.8529 21.7708 21.7708 20.8529 22.346 19.7239C23 18.4405 23 16.7603 23 13.4V10.6C23 7.23969 23 5.55953 22.346 4.27606C21.7708 3.14708 20.8529 2.2292 19.7239 1.65396C18.4405 1 16.7603 1 13.4 1H10.6C7.23969 1 5.55953 1 4.27606 1.65396C3.14708 2.2292 2.2292 3.14708 1.65396 4.27606ZM13.4 3H10.6C8.88684 3 7.72225 3.00156 6.82208 3.0751C5.94524 3.14674 5.49684 3.27659 5.18404 3.43597C4.43139 3.81947 3.81947 4.43139 3.43597 5.18404C3.27659 5.49684 3.14674 5.94524 3.0751 6.82208C3.00156 7.72225 3 8.88684 3 10.6V13.4C3 15.1132 3.00156 16.2777 3.0751 17.1779C3.14674 18.0548 3.27659 18.5032 3.43597 18.816C3.81947 19.5686 4.43139 20.1805 5.18404 20.564C5.49684 20.7234 5.94524 20.8533 6.82208 20.9249C7.72225 20.9984 8.88684 21 10.6 21H13.4C15.1132 21 16.2777 20.9984 17.1779 20.9249C18.0548 20.8533 18.5032 20.7234 18.816 20.564C19.5686 20.1805 20.1805 19.5686 20.564 18.816C20.7234 18.5032 20.8533 18.0548 20.9249 17.1779C20.9984 16.2777 21 15.1132 21 13.4V10.6C21 8.88684 20.9984 7.72225 20.9249 6.82208C20.8533 5.94524 20.7234 5.49684 20.564 5.18404C20.1805 4.43139 19.5686 3.81947 18.816 3.43597C18.5032 3.27659 18.0548 3.14674 17.1779 3.0751C16.2777 3.00156 15.1132 3 13.4 3Z" fill="#1A335D">
+                                    </path>
+                                </g>
+                            </svg>
+                        </Link>
+                        <Link target='_blank' href={'https://www.facebook.com/profile.php?id=61561044445028'} className='md:mx-2'>
+                            <Image src={'/assets/images/vectors/facebook.svg'} alt='icon' width={35} height={35}  />
+                        </Link>
+                        <Link target='_blank' href={'https://www.linkedin.com/company/insyncx/about/'} className='md:mx-2'>
+                            <Image src={'/assets/images/vectors/linkedin.svg'} alt='icon' width={35} height={35} />
+                        </Link>
+                    </div>
+                </div>
             </div>
         </div>
-      </div>
-    </div>
-  )
+    )
 }
 
 export default Footer
