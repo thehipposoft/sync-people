@@ -5,8 +5,8 @@ import Link from 'next/link'
 const LoginMenu = () => {
   return (
     <div className='flex'>
-        <div className='flex items-center justify-center h-screen w-screen bg-[#EBEFFF]'>
-            <div className='bg-white rounded-2xl border p-8 shadow-xl'>
+        <div className='flex items-center justify-center h-screen md:w-screen bg-[#EBEFFF]'>
+            <div className='bg-white mx-4 rounded-2xl border p-8 shadow-xl'>
                 <h1 className='text-5xl text-center'>Welcome back!</h1>
                 <form className='md:pt-6'>
                     <section className='flex flex-col'>
@@ -45,7 +45,7 @@ const LoginMenu = () => {
                     </div>
                 </form>
                 <p className='text-center pt-6'>Don't have an account? <Link href="/sign-up" className='font-semibold text-[#7052E5] hover:underline'>Register</Link></p>
-                <div className='flex justify-around items-center w-[450px] pt-10'>
+                <div className='flex justify-around items-center md:w-[450px] pt-10'>
                     <Image src={'/assets/logo.svg'} width={150} height={100} alt='Sync logo' />
                     <div className='flex justify-end items-end'>
                         <Image src={'/assets/images/vectors/facebook.svg'} width={30} height={30} alt='icon' className='mr-2' />

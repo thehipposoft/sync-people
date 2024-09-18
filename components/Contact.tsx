@@ -3,10 +3,10 @@ import React from 'react'
 
 const Contact = () => {
   return (
-    <div className='flex justify-between md:px-20 max-w-[1350px] mx-auto py-20' id='contact'>
+    <div className='flex justify-between md:px-20 md:max-w-[1350px] max-w-[85vw] mx-auto py-20' id='contact'>
       <div className='md:w-2/5 w-full p-4 md:p-0'>
-          <h1 >Contact us</h1>
-          <form className='md:pt-6 md:w-[500px]'>
+          <h2 className='text-6xl'>Contact us</h2>
+          <form className='pt-6 md:w-[500px]'>
               <section className='flex flex-col'>
                   <label htmlFor="text" className='pb-2'>First name</label>
                   <input type="text" name="First name" id="" />

@@ -1,6 +1,6 @@
 export const ROUTES = {
     HOME: '/',
-    ABOUT: '/#how',
+    ABOUT: '/#about',
     CATEGORIES_TOURISM: '/categories/tourism',
     CATEGORIES_WAREHOUSING: '/categories/warehousing',
     CATEGORIES_CONSTRUCTION: '/categories/construction',

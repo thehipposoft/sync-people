@@ -66,7 +66,7 @@ h4 {
     border-color: #5B24F2;
     border: solid 1px;
     color: #8D78E0;
-    transition: all 350ms ease;
+    transition: all 500ms ease;
 
 
     &:hover {
@@ -79,7 +79,7 @@ h4 {
     border: 1px solid;
     color: #FFF;
     background-color: #7052E5;
-    transition: all 350ms ease;
+    transition: all 500ms ease;
 
     &:hover {
         border: solid 1px #7052E5;
@@ -286,9 +286,9 @@ dialog::backdrop {
         @apply md:w-[1250px] mx-auto;
     }
     .primary-btn {
-        @apply border text-white bg-purple transition-all hover:border-purple hover:bg-white hover:text-purple md:mx-4 px-6 py-2 rounded-3xl text-xl md:text-base md:w-fit w-full text-center;
+        @apply border text-white bg-purple transition-all duration-500 ease-in-out hover:border-purple hover:bg-white hover:text-purple md:mx-4 px-6 py-2 rounded-3xl text-xl md:text-base md:w-fit w-full text-center;
     }
     .secondary-btn {
-        @apply py-2 px-4 rounded-3xl border border-purple text-purple transition-all duration-300 ease-in-out hover:bg-purple hover:text-white text-xl md:text-base md:w-fit w-full text-center;
+        @apply py-2 px-4 rounded-3xl border border-purple text-purple transition-all duration-500 ease-in-out hover:bg-purple hover:text-white text-xl md:text-base md:w-fit w-full text-center;
     }
 }

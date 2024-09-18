@@ -40,22 +40,22 @@ const ComingSoonModal = ({
                 </p>
                 <input
                     type="email"
-                    className="border rounded p-2 mt-5 w-full"
+                    className="border rounded-3xl py-2 px-5 mt-5 w-full"
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     typeof="email"
                 />
-                <div className="flex gap-3 flex-wrap mt-5">
+                <div className="flex md:gap-3 gap-5 justify-center flex-wrap md:mt-5 mt-8">
                     <button
-                        className="primary-btn"
+                        className="primary-btn w-fit md:w-auto"
                         type="submit"
                     >
                         Notify Me!
                     </button>
                     <button
-                        className="secondary-btn"
+                        className="secondary-btn w-fit md:w-aut"
                         onClick={(e) => {
                             e.preventDefault();
                             onClose();
@@ -64,7 +64,6 @@ const ComingSoonModal = ({
                         No thanks, I'll wait
                     </button>
                 </div>
-
             </form>
         </Modal>
     );

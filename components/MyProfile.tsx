@@ -30,41 +30,49 @@ const MyProfile = ({ user }:any) => {
                         <div className='flex justify-end gap-6 py-1'>
                             <Link href={'/training-and-licences'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licences</button></Link>
                             <Link href={'/business-market'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Jobs</button></Link>
-                            <Link href={'/profile-form'}>
-                                <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full w-10' />
-                            </Link>
+                            <div className='relative w-[40px] h-[40px]'>
+                                <Image src={"/assets/images/cv.png"} alt='Profile picture' className='rounded-full' fill/>
+                            </div>
                         </div>
                     </div>
                 }
-                <div className='bg-[#FAFAFB] md:w-full md:flex justify-center gap-12'>
-                    <div>
-                        <div className='flex flex-col rounded-2xl my-4 mx-auto md:w-[900px] bg-white border'>
-                            <div className={`bg-[url('/assets/images/profileBg.png')] bg-cover bg-center h-[250px] md:h-[300px] rounded-t-2xl relative`}>
-                                <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full border-neutral-300 border w-24 md:w-[120px] md:h-[120px] absolute left-4 bottom-4' />
+                <div className='bg-white md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
+                    <div className='border rounded-2xl'>
+                        <div className='relative flex flex-col mx-auto md:w-[900px]  bg-white'>
+                            <div className='relative md:h-[300px] h-[200px] md:w-[900px] w-[80vw]'>
+                                <Image src={'/assets/images/profile/profile-banner.webp'} alt='' fill className='object-cover rounded-t-2xl ' />
                             </div>
-                            <div className='flex flex-col md:flex-row justify-between px-8 py-6'>
-                                <div className='flex flex-col gap-3'>
+                            <div className='relative flex flex-col justify-between md:px-12 px-6 py-6'>
+                                <div className='absolute w-[141px] h-[141px] -top-20'>
+                                    <Image
+                                        src={"/assets/images/cv.png"}
+                                        alt=''
+                                        fill
+                                        className='rounded-full border-[6px] border-white'
+                                     />
+                                </div>
+                                <div className='flex flex-col gap-2 mt-20'>
                                     {
                                         user === 'business' ?
                                         <h2 className='text-xl'>Diana, 27 - Barista</h2>
                                         :
-                                        <h2 className='text-xl'>Diana Ross, 27 - Barista</h2>
+                                        <h2 className='text-2xl'>Diana <span className='h-bold'>Ross, 27 - Barista</span></h2>
                                     }
-                                    <p>International Student</p>
-                                    <p>Brighton, VIC, 2306</p>
-                                    <p>DOB: 20/08/1997</p>
+                                    <p className='text-[#1A335D]'>International Student</p>
+                                    <p className='text-[#1A335D]'>Brighton, VIC, 2306</p>
+                                    <p className='text-[#1A335D]'>DOB: 20/08/1997</p>
                                     <div className={`${user === 'business' ? 'hidden' : ''} flex gap-2`}>
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M12.8359 11.8754L11.0008 13.6857C10.0438 13.1086 9.15474 12.4258 8.35047 11.6499C7.57582 10.8443 6.89306 9.95516 6.31475 8.99879L8.12332 7.16365C8.23286 7.05242 8.30683 6.91112 8.33583 6.75772C8.36484 6.60432 8.34755 6.44577 8.28618 6.30222L6.40047 1.9068C6.32597 1.73348 6.19169 1.5927 6.02208 1.5101C5.85248 1.4275 5.65885 1.40858 5.47647 1.4568L2.01875 2.37137C1.84608 2.41613 1.69371 2.51818 1.58658 2.66081C1.47946 2.80344 1.42391 2.9782 1.42904 3.15651C1.64904 7.17803 3.32114 10.983 6.13475 13.8648C9.01705 16.6793 12.8231 18.3517 16.8456 18.5714C17.0241 18.5774 17.1993 18.5223 17.3422 18.4152C17.4851 18.3081 17.5872 18.1555 17.6316 17.9825L18.5453 14.5231C18.5938 14.3408 18.5751 14.1472 18.4926 13.9775C18.4102 13.8079 18.2695 13.6736 18.0962 13.5991L13.6999 11.7142C13.5562 11.652 13.3972 11.634 13.2433 11.6627C13.0893 11.6915 12.9475 11.7655 12.8359 11.8754Z" stroke="#326B88" stroke-width="2.05714" stroke-miterlimit="10" stroke-linecap="square"/>
                                         </svg>
-                                        <p>0423 333 563</p>
+                                        <p className='text-[#1A335D]'>0423 333 563</p>
                                     </div>
                                     <div className={`${user === 'business' ? 'hidden' : ''} flex gap-2`}>
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M11.9999 15.4284C13.8934 15.4284 15.4284 13.8934 15.4284 11.9999C15.4284 10.1063 13.8934 8.57129 11.9999 8.57129C10.1063 8.57129 8.57129 10.1063 8.57129 11.9999C8.57129 13.8934 10.1063 15.4284 11.9999 15.4284Z" stroke="#326B88" stroke-width="2.05714" stroke-miterlimit="10" stroke-linecap="square"/>
                                             <path d="M15.4287 19.8579C13.7371 20.5962 11.8524 20.7687 10.0549 20.3499C8.25743 19.931 6.64313 18.9432 5.45214 17.5332C4.26114 16.1232 3.55707 14.3665 3.44464 12.5242C3.3322 10.682 3.81741 8.85269 4.82811 7.30835C5.8388 5.76401 7.32098 4.58716 9.05421 3.95282C10.7874 3.31848 12.6791 3.26053 14.4479 3.78761C16.2167 4.31469 17.7682 5.39862 18.8715 6.87821C19.9748 8.35779 20.571 10.154 20.5716 11.9997V12.8568C20.5716 13.5388 20.3007 14.1928 19.8184 14.6751C19.3362 15.1573 18.6821 15.4282 18.0001 15.4282C17.3182 15.4282 16.6641 15.1573 16.1819 14.6751C15.6996 14.1928 15.4287 13.5388 15.4287 12.8568V8.57108" stroke="#326B88" stroke-width="2.05714" stroke-miterlimit="10" stroke-linecap="square"/>
                                         </svg>
-                                        <p>diana.ross@gmail.com</p>
+                                        <p className='text-[#1A335D]'>diana.ross@gmail.com</p>
                                     </div>
                                     <div className={`${user === 'business' ? '' : 'hidden'} flex flex-col md:flex-row gap-2 pt-4`}>
                                         <button className='h-full w-fit md:w-auto flex items-center border-[#326B88] border rounded-md px-4 py-2 bg-[#326B88] text-white duration-500 cursor-pointer sync-button'>
@@ -80,37 +88,35 @@ const MyProfile = ({ user }:any) => {
                                             Add to Saved List
                                         </button>
                                     </div>
+                                    <div className='flex flex-col gap-4 pt-4 '>
+                                        <div>
+                                            <h2 className='text-lg'>Industries of Preference</h2>
+                                            <p>Hospitality, Cleaning</p>
+                                        </div>
+                                        <div>
+                                            <h2 className='text-lg'>Languages</h2>
+                                            <p>English, French, Spanish</p>
+                                        </div>
+                                        <div>
+                                            <h2 className='text-lg'>Licences</h2>
+                                            <p>RSA, Drivers's Licence</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className={` ${user === 'business' ? 'hidden' : ''} flex flex-col gap-2 text-cente items-center`}>
+                                <div className={`hidden ${user === 'business' ? 'hidden' : ''} flex flex-col gap-2 text-cente items-center`}>
                                     <Image src={'/assets/images/profileStrength.png'} alt='percentage of strength' width={120} height={120} />
                                     <p className='h-bold'>Profile Strength</p>
                                     <p>Want to stand out?</p>
                                     <button className='text-[#326B88] border rounded-3xl border-[#326B88] px-6 py-1'>Go Premium!</button>
                                 </div>
-                                <div className='flex flex-col md:text-right gap-4 pt-4 md:pt-0'>
-                                    <div>
-                                        <h2 className='text-xl'>Industries of Preference</h2>
-                                        <p>Hospitality, Cleaning</p>
-                                    </div>
-                                    <div>
-                                        <h2 className='text-xl'>Languages</h2>
-                                        <p>English, French, Spanish</p>
-                                    </div>
-                                    <div>
-                                        <h2 className='text-xl'>Licences</h2>
-                                        <p>RSA, Drivers's Licence</p>
-                                    </div>
-                                </div>
+
                             </div>
-                            <div className='flex flex-col px-8 pb-6'>
-                                <h3 className='text-lg'>About Diana</h3>
+                            <div className='flex flex-col md:px-12 px-6 pb-6'>
+                                <h3 className='text-lg h-bold'>About Diana</h3>
                                 <p>Ex consectetur veniam eiusmod in laboris aliquip exercitation eu culpa elit laborum laboris consectetur incididunt dolor. Sit nostrud reprehenderit adipisicing officia anim dolor cupidatat veniam eiusmod. Veniam aute mollit irure dolor id eu quis irure sint. Aliqua ullamco elit laboris eu aliquip.</p>
                             </div>
-                            <div className='flex justify-end px-8 pb-6'>
-                                <Link href={'profile-form'} className='bg-[#306987] hover:text-[#326B88] duration-500 border-[#326B88] border hover:bg-white py-2 px-4 text-white rounded-lg'>Edit Profile</Link>
-                            </div>
                         </div>
-                        <div className='flex flex-col rounded-2xl my-4 mx-auto md:w-[900px] bg-white px-8 py-6 border'>
+                        <div className='flex flex-col  my-4 mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>
                             <div className='flex justify-between'>
                                 <h2 className='text-xl'>Work Experience</h2>
                                 <button className='rounded-lg p-2 bg-[#f3f4f6]'>Sort by: Newest</button>
@@ -123,7 +129,7 @@ const MyProfile = ({ user }:any) => {
                                 <p>Aliqua id aliquip pariatur veniam veniam voluptate id adipisicing Lorem labore pariatur aute anim proident non. Pariatur mollit enim do nostrud aliqua id do ex aliquip est occaecat laboris velit exercitation culpa exercitation pariatur id voluptate.</p>
                             </div>
                         </div>
-                        <div className='flex flex-col rounded-2xl my-4 mx-auto md:w-[900px] bg-white px-8 py-6 border'>
+                        <div className='flex flex-col border-t my-4 mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 '>
                             <div className='flex justify-between'>
                                 <h2 className='text-xl'>Job Searches</h2>
                                 <button className='rounded-lg p-2 bg-[#f3f4f6]'>Sort by: Newest</button>
@@ -142,7 +148,7 @@ const MyProfile = ({ user }:any) => {
                                 </Link>
                             </div>
                         </div>
-                        <div className={` ${user === 'business' ? 'hidden' : ''} flex flex-col rounded-2xl my-4 mx-auto md:w-[900px] bg-white px-8 py-6 border`}>
+                        <div className={` ${user === 'business' ? 'hidden' : ''} flex flex-col border-t my-4 mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 `}>
                             <div className='flex justify-between'>
                                 <h2 className='text-xl'>Recommended Course/Training</h2>
                             </div>
@@ -161,8 +167,8 @@ const MyProfile = ({ user }:any) => {
                                 </Link>
                             </div>
                         </div>
-
                     </div>
+
                     <div className='hidden flex-col my-4 gap-4'>
                         <Image src={'/assets/images/publicity/ads-1.png'} alt='' width={200} height={150} />
                         <Image src={'/assets/images/publicity/ads-2.png'} alt='' width={200} height={150} />
@@ -172,6 +178,18 @@ const MyProfile = ({ user }:any) => {
                         <Image src={'/assets/images/publicity/ads-6.png'} alt='' width={200} height={150} />
                     </div>
                 </div>
+                <div className='flex mb-8 pb-8 justify-end flex-wrap gap-4 md:gap-6 md:mb-0 w-[80vw] md:w-[900px] mx-auto'>
+                        <button
+                            className='secondary-btn w-fit md:w-auto px-8'
+                        >
+                            Download Profile
+                        </button>
+                        <button
+                            className='primary-btn w-fit md:w-auto px-12'
+                        >
+                            Edit Proflie
+                        </button>
+                    </div>
             </div>
         </div>
     );

@@ -6,10 +6,12 @@ import { ROUTES } from '@/app/constants';
 const Footer = () => {
     return (
         <div className='flex md:py-12 py-6 bg-bg-primary px-6 md:px-0 flex-wrap'>
-            <div className='container grid grid-cols-1 md:grid-cols-4 gap-2'>
-                <div className='w-full flex'>
+            <div className='container grid grid-cols-1 md:grid-cols-4 gap-2 '>
+                <div className='w-full flex justify-center md:justify-start'>
                     <div>
-                        <Image src={'/assets/logo.svg'} alt='Sync-people logo' width={150} height={150} />
+                        <div className='relative md:w-[170px] w-[240px] md:h-[75px] h-[120px]'>
+                            <Image src={'/assets/logo.svg'} alt='Sync-people logo' fill />
+                        </div>
                         <p className='pt-2'>
                             <Link className='underline' href={ROUTES.CONTACT}>Contact us</Link> for more information
                         </p>
@@ -40,17 +42,17 @@ const Footer = () => {
                         </li>
                     </ul>
                 </div>
-                <ul>
+                <ul className='flex flex-col md:items-start gap-4 items-center mt-4 md:mt-0'>
                     <li className='py-1'>
-                        <Link href={ROUTES.ABOUT}>About</Link>
+                        <Link href={ROUTES.ABOUT} className='text-xl md:text-base'>About</Link>
                     </li>
                     <li className='py-1'>
-                        <Link href={ROUTES.CONTACT}>Contact</Link>
+                        <Link href={ROUTES.CONTACT} className='text-xl md:text-base'>Contact</Link>
                     </li>
                 </ul>
-                <div>
-                    <h4 className='font-bold text-xl'>Join our community</h4>
-                    <div className='flex pt-4 md:flex-row gap-4 md:gap-0 items-center'>
+                <div className='flex flex-col items-center my-4 md:my-0'>
+                    <h4 className='font-bold md:text-xl text-2xl'>Join our community</h4>
+                    <div className='flex pt-4 md:flex-row gap-6 md:gap-0 items-center'>
                         <Link
                             href={'https://www.instagram.com/insyncx.au/'}
                             target='_blank'

@@ -45,9 +45,9 @@ const SignUpMenu = ({ user }:any) => {
                             <Link href={`${user === 'business' ? '/business-form' : 'profile-form'}`}>
                                 <input type="submit" value="Sign up" className='purple-b py-2 px-8 cursor-pointer md:w-1/4' />
                             </Link>
-                        </section> 
+                        </section>
                     </form>
-                    <p className='text-center pt-6'>Already havef an account? <Link href="/login" className='font-semibold text-[#7052E5] hover:underline'>Login</Link></p>
+                    <p className='text-center pt-6'>Already have an account? <Link href="/login" className='font-semibold text-[#7052E5] hover:underline'>Login</Link></p>
                     <div className='flex justify-around items-center pt-10'>
                         <Image src={'/assets/logo.svg'} width={150} height={100} alt='Sync logo' />
                         <div className='flex justify-end items-end'>

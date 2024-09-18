@@ -16,7 +16,7 @@ const Header = () => {
     };
 
     return (
-        <div className='sticky top-0 bg-white w-full md:py-2 py-2 px-8 md:px-0 flex-wrap z-30'>
+        <div className='sticky top-0 bg-white w-full md:py-0 py-2 px-8 md:px-0 flex-wrap z-30'>
             <div className='md:w-[1250px] flex justify-between items-center  mx-auto'>
                 <Link href={ROUTES.HOME}>
                     <Image src={'/assets/logo.svg'} alt='Sync-people logo' width={220} height={150} className='' />
@@ -36,8 +36,8 @@ const Header = () => {
                     <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.CONTACT}>
                         Contact
                     </Link>
-                    <div className='flex mx-2 hidden'>
-                    <Link
+                    <div className='mx-2 hidden'>
+                        <Link
                         href={'/courses'}>
                             <button className='white-b py-2 px-4 rounded-xl cursor-pointer'>Training and Licenses</button>
                         </Link>
