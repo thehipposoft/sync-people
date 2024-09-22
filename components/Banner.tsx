@@ -1,9 +1,10 @@
 'use client'
-import Image from 'next/image'
-import React, {useState} from 'react'
-import Link from 'next/link'
-import VideoModal from './VideoModal'
-import ComingSoonModal from './ComingSoonModal'
+import Image from 'next/image';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import VideoModal from './VideoModal';
+import ComingSoonModal from './ComingSoonModal';
+import { ROUTES } from '@/app/constants';
 
 const Banner = () => {
     const [openComingSoonModal, setOpenComingSoonModal] = useState<boolean>(false);
@@ -21,13 +22,13 @@ const Banner = () => {
                 <h1 className='pt-4 light text-4xl'>Connecting Companies to <strong>Talent,</strong><br/> and Job Seekers to <strong>Opportunities.</strong></h1>
                 <div className='flex mt-8 flex-wrap gap-4 md:gap-0 mb-3 md:mb-0'>
                     <Link
-                        href={'/business-sign-up'}
+                        href={ROUTES.COMING_SOON}
                         className='secondary-btn w-fit md:w-auto'
                     >
                         Looking for Talent
                     </Link>
                     <Link
-                        href={'/worker-sign-up'}
+                        href={ROUTES.COMING_SOON}
                         className='primary-btn w-fit md:w-auto'
                     >
                         Looking for Work
@@ -35,7 +36,11 @@ const Banner = () => {
                 </div>
             </div>
             <div className='group cursor-pointer relative flex justify-center items-center w-full h-72 md:w-[540px] md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-24 mt-20 md:mt-0' onClick={toggleModal}>
-                <Image src={'/assets/images/banner-overlay.png'} alt='Video image' fill priority objectFit='contain'/>
+                <Image
+                    src={'/assets/images/banner-overlay.png'}
+                    alt='Video image'
+                    fill priority objectFit='contain'
+                />
                 <div className='w-full h-full bg-gradient-to-bl from-[#3EC1AA] via-[#7087E5] to-[#7052E5] md:opacity-70 opacity-70 duration-700 group-hover:opacity-90 rounded-3xl rounded-br-[8rem] absolute z-10' />
                 <div className='relative bottom-[2%] z-20 flex flex-col items-center gap-6'>
                 <svg width="54" height="71" viewBox="0 0 54 71" fill="none" xmlns="http://www.w3.org/2000/svg" className='group-hover:scale-110 duration-500'>

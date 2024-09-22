@@ -1,11 +1,12 @@
-import Image from 'next/image'
-import React from 'react'
-import Link from 'next/link'
+import Image from 'next/image';
+import React from 'react';
+import Link from 'next/link';
+import { ROUTES } from '@/app/constants';
 
 const How = () => {
   return (
     <div className='h-screen how flex md:pl-20 p-6 md:p-0' id='about'>
-      <div className='flex items-center 2xl:justify-between max-w-[1350px] mx-auto flex-wrap md:gap-14'>
+      <div className='flex items-center 2xl:justify-between mx-auto flex-wrap md:gap-14 max-w-[1300px]'>
         <div className='md:w-[35%] flex flex-col justify-center'>
           <h1 className='font-bold text-white md:pb-8 pb-8'>How it works</h1>
           <div className='words overflow-hidden h-[40px] md:my-4'>
@@ -19,17 +20,19 @@ const How = () => {
                 <br/> Let us do the hard work for you. Leave it to Insyncx.
           </p>
           <Link
-            href={'/worker-sign-up'}
+            href={ROUTES.COMING_SOON}
             className='flex mt-4 w-fit font-bold md:mx-2 md:mt-8 text-white border-white border px-6 py-2 rounded-3xl hover:text-[#8D78E0] hover:bg-white duration-300'
           >
             Let's get started
           </Link>
         </div>
-        <div className='md:pl-12'>
-            <div className='relative md:w-[675px] w-[375px] md:h-[475px] h-[275px]'>
-                <Image src={'/assets/images/how-1.png'} alt='' fill  className='object-cover'/>
-            </div>
-        </div>
+        <Image
+            src={'/assets/images/how-1.png'}
+            alt={'How it works'}
+            className='object-cover ml-auto md:pr-5'
+            width={500}
+            height={500}
+        />
       </div>
     </div>
   )

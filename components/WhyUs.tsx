@@ -1,6 +1,7 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ROUTES } from '@/app/constants';
 
 const WhyUs = () => {
   return (
@@ -12,15 +13,12 @@ const WhyUs = () => {
             <br/><strong>Contact us today and let's achieve success together.</strong>
         </p>
         <Link
-            href="/worker-sign-up"
+            href={ROUTES.COMING_SOON}
             className='w-fit md:mx-2 md:mt-8 text-[#8D78E0] border-[#5B24F2] hover:bg-[#8D78E0] hover:border-[#8D78E0] hover:text-white duration-300 border px-6 py-2 rounded-3xl mb-6 md:mb-0'
         >
             Create a Profile
         </Link>
       </div>
-{/*       <div className='flex justify-center items-center mx-auto md:mx-0'>
-        <Image src={'/assets/images/whyus.png'} width={420} height={400} alt='' className='' />
-      </div> */}
       <div className='relative w-[425px] h-[500px]'>
         <Image src={'/assets/images/whyus.png'} alt='' fill />
       </div>

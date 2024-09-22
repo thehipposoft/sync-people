@@ -482,18 +482,18 @@ const SearchComponent = ({ data, user }:any) => {
                                                 backgroundImage: `url(${value.profileImage})`
                                             }}
                                         >
-                                            <svg 
-                                                width="28" 
+                                            <svg
+                                                width="28"
                                                 height="32"
-                                                viewBox="0 0 33 32" 
-                                                fill="none" 
-                                                xmlns="http://www.w3.org/2000/svg" 
+                                                viewBox="0 0 33 32"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
                                                 className={`${favourite ? 'fill-red-600' : '' } absolute top-2 right-2 heart`}
                                             >
-                                                <path d="M26.5834 7.51661C24.0274 4.96061 19.8826 4.96061 17.3266 7.51661C17.0114 7.83181 16.7378 8.17181 16.5002 8.52861C16.2626 8.17181 15.989 7.83181 15.6738 7.51741C13.1178 4.96141 8.973 4.96141 6.417 7.51741C3.861 10.0734 3.861 14.2182 6.417 16.7742L16.5002 26.8566L26.5834 16.7734C29.1394 14.2174 29.1394 10.0734 26.5834 7.51661Z" stroke="#DEE1E6" stroke-width="1.92" stroke-miterlimit="10" stroke-linecap="square"/>
+                                                <path d="M26.5834 7.51661C24.0274 4.96061 19.8826 4.96061 17.3266 7.51661C17.0114 7.83181 16.7378 8.17181 16.5002 8.52861C16.2626 8.17181 15.989 7.83181 15.6738 7.51741C13.1178 4.96141 8.973 4.96141 6.417 7.51741C3.861 10.0734 3.861 14.2182 6.417 16.7742L16.5002 26.8566L26.5834 16.7734C29.1394 14.2174 29.1394 10.0734 26.5834 7.51661Z" stroke="#DEE1E6" strokeWidth="1.92" stroke-miterlimit="10" stroke-linecap="square"/>
                                             </svg>
                                             {
-                                                value.price ? 
+                                                value.price ?
                                                 <p className='p-2 bg-[#7052E5]/70 rounded-3xl text-white mb-4'>
                                                     {value.price}
                                                 </p>
@@ -512,7 +512,7 @@ const SearchComponent = ({ data, user }:any) => {
                                         <p className='md:text-lg text-black h-bold search-name'>{value.name}</p>
                                     }
                                     {
-                                        value.institution ? 
+                                        value.institution ?
                                         <p className='opacity-90'>{value.institution}</p>
                                         :
                                         <></>
