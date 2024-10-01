@@ -63,7 +63,7 @@ export const sendComingSoonEmail = async (data: ComingSoonEmailType) => {
 };
 
 export const getJWTToken = async () => {
-    const response = await fetch('https://sync-staging.thehipposoft.com/wp-json/jwt-auth/v1/token', {
+    const response = await fetch('https://admin.insyncx.co/wp-json/jwt-auth/v1/token', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ export const getJWTToken = async () => {
 export const createTalent = async (data: ComingSoonEmailType) => {
     const token = await getJWTToken();
 
-    const response = await fetch('https://sync-staging.thehipposoft.com/wp-json/wp/v2/talents', {
+    const response = await fetch('https://admin.insyncx.co/wp-json/wp/v2/talents', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,

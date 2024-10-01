@@ -27,7 +27,7 @@ function ContactForm() {
     e.preventDefault();
 
     apiFetch({
-      path: 'http://sync-staging.thehipposoft.com/wp-json/wp/v2/talent/',
+      path: 'https://admin.insyncx.co/wp-json/wp/v2/talent/',
       method: 'POST',
       data: JSON.stringify(formData),
   },)
@@ -151,7 +151,7 @@ function ContactForm() {
                 </div>
             </div>
         </div>
-          
+
 
         <div>
           <label htmlFor="address" className="block">Address:</label>
