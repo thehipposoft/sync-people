@@ -40,7 +40,12 @@ const FormSlider = ({ slides, closeMenu, currentIndexProp }:FormSliderTypes) => 
                         X
                 </p>
             <div className='flex flex-col'>
-                <Image src={'/assets/logo.svg'} alt='Sync people logo' width={90} height={100} />
+                <Image
+                    src={'/assets/logo.svg'}
+                    alt='Insyncx logo'
+                    priority
+                    width={90}
+                />
                 <p className='blue'>Connecting <strong>Talents</strong></p>
                 <p className='blue'>to <strong>Opportunities</strong></p>
             </div>
@@ -71,7 +76,7 @@ const FormSlider = ({ slides, closeMenu, currentIndexProp }:FormSliderTypes) => 
             <div className='flex gap-6 justify-center py-6'>
                 {
                     currentIndex != 0 ?
-                    <button 
+                    <button
                         className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
                         onClick={showPrev}
                     >
@@ -79,7 +84,7 @@ const FormSlider = ({ slides, closeMenu, currentIndexProp }:FormSliderTypes) => 
                     </button>
                      : ''
                  }
-                <button 
+                <button
                     className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
                     onClick={showNext}
                 >

@@ -35,7 +35,9 @@ export const api = async ({
 
 type ComingSoonEmailType = {
     email: string;
-    name: string;
+    first_name: string;
+    last_name: string;
+    phone_number?: string;
     industry: string;
     lookingFor: string;
 };
@@ -56,6 +58,61 @@ export const sendComingSoonEmail = async (data: ComingSoonEmailType) => {
         return {
             status: 200,
             message: 'Ok',
+        };
+    }
+};
+
+export const getJWTToken = async () => {
+    const response = await fetch('https://sync-staging.thehipposoft.com/wp-json/jwt-auth/v1/token', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            username: 'apiUser',
+            password: '$VqcO0k*)MtmI@&F&@FaoagA',
+        })
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        return data.token;
+    } else {
+        console.error('Failed to retrieve token');
+    }
+};
+
+export const createTalent = async (data: ComingSoonEmailType) => {
+    const token = await getJWTToken();
+
+    const response = await fetch('https://sync-staging.thehipposoft.com/wp-json/wp/v2/talents', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            acf: {
+                personal_information: {
+                    name: data.first_name,
+                    last_name: data.last_name,
+                    email: data.email,
+                    phone_number: data.phone_number,
+                },
+                professional_information: {
+                    industry: data.industry,
+                },
+            },
+            status: 'publish',
+        })
+    });
+
+    if (response.ok) {
+        const result = await response.json();
+        return result;
+    } else {
+        return {
+            message: 'Failed to create talent',
         };
     }
 };

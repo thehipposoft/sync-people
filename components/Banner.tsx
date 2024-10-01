@@ -15,8 +15,8 @@ const Banner = () => {
     }
 
     return (
-        <div className='md:h-screen flex flex-col md:flex-row justify-between max-w-[1250px] mx-auto flex-wrap p-6 md:p-0 md:pt-32 '>
-            <div className='flex flex-col'>
+        <div className='md:h-screen flex flex-col md:flex-row justify-between max-w-[1250px] mx-auto flex-wrap p-6 md:p-0 md:pt-0 '>
+            <div className='flex flex-col m-auto'>
                 <h2 className=''>Welcome to the</h2>
                 <h2 className='text-[#8D78E0] mb-4 md:mb-0'>new age of work</h2>
                 <h1 className='pt-4 light text-4xl'>Connecting Companies to <strong>Talent,</strong><br/> and Job Seekers to <strong>Opportunities.</strong></h1>
@@ -35,7 +35,7 @@ const Banner = () => {
                     </Link>
                 </div>
             </div>
-            <div className='group cursor-pointer relative flex justify-center items-center w-full h-72 md:w-[540px] md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-24 mt-20 md:mt-0' onClick={toggleModal}>
+            <div className='m-auto group cursor-pointer relative flex justify-center items-center w-full h-72 md:w-[540px] md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-24 mt-20 md:mt-auto md:mb-auto' onClick={toggleModal}>
                 <Image
                     src={'/assets/images/banner-overlay.png'}
                     alt='Video image'

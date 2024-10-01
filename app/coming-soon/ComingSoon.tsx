@@ -1,14 +1,16 @@
 'use client';
 import { useState } from "react";
 import Image from "next/image";
-import { sendComingSoonEmail } from "@/lib/api";
+import { sendComingSoonEmail, createTalent } from "@/lib/api";
 import Link from "next/link";
 import { ROUTES } from "../constants";
 import Modal from "@/components/Modal";
 
 type FormValues = {
     email: string;
-    name: string;
+    first_name: string;
+    last_name: string;
+    phone_number?: string;
     industry: string;
     lookingFor: string;
 };
@@ -16,8 +18,10 @@ type FormValues = {
 export default function ComingSoon () {
     const [formValues, setFormValues] = useState<FormValues>({
         email: '',
-        name: '',
-        industry: 'Cleaning',
+        first_name: '',
+        last_name: '',
+        phone_number: '',
+        industry: 'cleaning',
         lookingFor: 'job'
     });
     const [errorMessage, setErrorMessage] = useState<string>('');
@@ -29,20 +33,23 @@ export default function ComingSoon () {
         setErrorMessage('');
         setIsApiLoading(true);
 
-        const response = await sendComingSoonEmail(formValues);
+        const talentResponse = await createTalent(formValues);
 
-        if (response.status === 500) {
-            setIsApiLoading(false);
-            setErrorMessage(response.message)
-        } else {
+        if (talentResponse.id) {
             setIsApiLoading(false);
             setOpenSuccessModal(true);
             setFormValues({
                 email: '',
-                name: '',
-                industry: 'Cleaning',
+                first_name: '',
+                last_name: '',
+                phone_number: '',
+                industry: 'cleaning',
                 lookingFor: 'job'
             });
+            const response = await sendComingSoonEmail(formValues);
+        } else {
+            setIsApiLoading(false);
+            setErrorMessage(talentResponse.message);
         }
     };
 
@@ -68,7 +75,7 @@ export default function ComingSoon () {
                                     type="radio"
                                     id="job"
                                     name="lookingFor"
-                                    value="job"
+                                    value={formValues.lookingFor}
                                     className="hidden"
                                     onChange={() => setFormValues({...formValues, lookingFor: 'job'})}
                                 />
@@ -84,7 +91,7 @@ export default function ComingSoon () {
                                     type="radio"
                                     id="talents"
                                     name="lookingFor"
-                                    value="talents"
+                                    value={formValues.lookingFor}
                                     className="hidden"
                                     onChange={() => setFormValues({...formValues, lookingFor: 'talents'})}
                                 />
@@ -102,7 +109,7 @@ export default function ComingSoon () {
                         <label
                             htmlFor="email"
                         >
-                            Email Address
+                            Email Address*
                         </label>
                         <input
                             type="email"
@@ -111,6 +118,7 @@ export default function ComingSoon () {
                             typeof="email"
                             name="email"
                             required
+                            value={formValues.email}
                             onChange={(e) => setFormValues({...formValues, email: e.target.value})}
                         />
                     </div>
@@ -118,35 +126,67 @@ export default function ComingSoon () {
                         <label
                             htmlFor="name"
                         >
-                            Your name
+                            First name*
                         </label>
                         <input
-                            type="Name"
-                            name="name"
+                            name="first_name"
                             className="border rounded-3xl py-1 px-5 mt-1 w-full"
                             placeholder="Enter your name"
                             required
-                            onChange={(e) => setFormValues({...formValues, name: e.target.value})}
+                            value={formValues.first_name}
+                            onChange={(e) => setFormValues({...formValues, first_name: e.target.value})}
+                        />
+                    </div>
+                    <div className="mt-3">
+                        <label
+                            htmlFor="last_name"
+                        >
+                            Last name*
+                        </label>
+                        <input
+                            type="text"
+                            name="last_name"
+                            className="border rounded-3xl py-1 px-5 mt-1 w-full"
+                            placeholder="Enter your last name"
+                            required
+                            value={formValues.last_name}
+                            onChange={(e) => setFormValues({...formValues, last_name: e.target.value})}
+                        />
+                    </div>
+                    <div className="mt-3">
+                        <label
+                            htmlFor="phone_number"
+                        >
+                            Phone number (optional)
+                        </label>
+                        <input
+                            type="text"
+                            name="phone_number"
+                            className="border rounded-3xl py-1 px-5 mt-1 w-full"
+                            placeholder="Enter your phone number"
+                            value={formValues.phone_number}
+                            onChange={(e) => setFormValues({...formValues, phone_number: e.target.value})}
                         />
                     </div>
                     <div className="mt-3">
                         <label
                             htmlFor="industry"
                         >
-                            Industry of interest
+                            Industry of interest*
                         </label>
                         <select
                             id="industry"
                             name="industry"
                             className="mt-1"
                             required
+                            value={formValues.industry}
                             onChange={(e) => setFormValues({...formValues, industry: e.target.value})}
                         >
-                            <option value="Cleaning">Cleaning</option>
-                            <option value="Construction">Construction</option>
-                            <option value="Hospitality">Hospitality</option>
-                            <option value="Warehousing">Warehousing</option>
-                            <option value="Other">Other</option>
+                            <option value="cleaning">Cleaning</option>
+                            <option value="construction">Construction</option>
+                            <option value="hospitality">Hospitality</option>
+                            <option value="warehousing">Warehousing</option>
+                            <option value="other">Other</option>
                         </select>
                     </div>
 

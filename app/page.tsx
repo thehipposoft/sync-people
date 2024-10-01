@@ -1,4 +1,3 @@
-'use client';
 import Header from '@/components/Header';
 import Banner from '@/components/Banner';
 import How from '@/components/How';
