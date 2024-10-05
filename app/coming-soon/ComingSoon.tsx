@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 import Image from "next/image";
-import { sendComingSoonEmail, createTalent } from "@/lib/api";
+import { createTalent } from "@/lib/api";
 import Link from "next/link";
 import { ROUTES } from "../constants";
 import Modal from "@/components/Modal";
@@ -35,7 +35,7 @@ export default function ComingSoon () {
 
         const talentResponse = await createTalent(formValues);
 
-        if (talentResponse.id) {
+        if (talentResponse.status === 200) {
             setIsApiLoading(false);
             setOpenSuccessModal(true);
             setFormValues({
@@ -46,7 +46,6 @@ export default function ComingSoon () {
                 industry: 'cleaning',
                 lookingFor: 'job'
             });
-            const response = await sendComingSoonEmail(formValues);
         } else {
             setIsApiLoading(false);
             setErrorMessage(talentResponse.message);

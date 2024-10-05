@@ -83,33 +83,19 @@ export const getJWTToken = async () => {
 };
 
 export const createTalent = async (data: ComingSoonEmailType) => {
-    const token = await getJWTToken();
-
-    const response = await fetch('https://admin.insyncx.co/wp-json/wp/v2/talents', {
+    const response = await fetch('/api/talent', {
         method: 'POST',
         headers: {
-            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            acf: {
-                personal_information: {
-                    name: data.first_name,
-                    last_name: data.last_name,
-                    email: data.email,
-                    phone_number: data.phone_number,
-                },
-                professional_information: {
-                    industry: data.industry,
-                },
-            },
-            status: 'publish',
-        })
+        body: JSON.stringify(data)
     });
 
-    if (response.ok) {
-        const result = await response.json();
-        return result;
+    if (response.status >= 200 && response.status < 300) {
+        return {
+            status: 200,
+            message: 'Talent Created',
+        };
     } else {
         return {
             message: 'Failed to create talent',
