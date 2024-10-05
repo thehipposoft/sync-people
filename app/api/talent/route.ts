@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
                     phone_number: data.phone_number,
                 },
                 professional_information: {
-                    industry: data.industry,
+                    industries: [data.industry],
                 },
             },
             status: 'publish',
