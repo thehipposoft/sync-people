@@ -8,4 +8,7 @@ export const ROUTES = {
     CONTACT: '/#contact',
     LOGIN: '/login',
     COMING_SOON: '/coming-soon',
+    BLOG: '/blog',
+    FAQS: '/faqs',
+    ENTRY: '/blog/entry',
 }

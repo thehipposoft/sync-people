@@ -5,12 +5,14 @@ import { ROUTES } from '@/app/constants';
 
 const WhyUs = () => {
   return (
-    <div className='md:h-screen flex justify-between items-center mx-auto max-w-[1300px] p-6 md:p-0 flex-wrap mt-6 md:mt-0'>
-      <div className='md:w-[47%] flex flex-col justify-center'>
+    <div className='md:h-screen flex justify-between items-center mx-auto max-w-[1250px] p-6 md:p-0 flex-wrap mt-6 md:mt-0'>
+      <div className='md:w-1/2 flex flex-col justify-center gap-8'>
         <h1 className='font-bold mb-12 md:mb-0'>Why Us?</h1>
-        <p className='text-[#798196] leading-6 md:pt-4 mb-6 md:mb-0'>
-            Insyncx bridges the gap between dynamic companies and exceptional talent across Australia. Our insight into business needs and candidate potential makes us the go-to partner for those aiming to elevate their careers and organizations seeking to enrich their teams. Bypass the endless search for the right job or the right candidate - Insyncx streamlines your path to the perfect match.
-            <br/><strong>Contact us today and let's achieve success together.</strong>
+        <p className='text-[#798196] leading-7 md:pt-4 mb-6 md:mb-0'>
+            Do you have a work visa? Are you an overseas student or just looking for a job?
+            We know it's hard when you're just starting out, that's why we're here to help.
+            Insyncx bridges the gap between dynamic companies and exceptional talent across Australia. Our knowledge of business needs and candidate potential makes us the perfect choice when searching for the right position or candidate.
+            <br/><strong>Sign up for free and find your next job. </strong>
         </p>
         <Link
             href={ROUTES.COMING_SOON}
