@@ -13,7 +13,7 @@ const Discover = () => {
   }
 
   return (
-    <div className='discover hidden md:block rounded-bl-[200px] relative'>
+    <div className='bg-[#54D8C0] hidden md:block rounded-bl-[200px] relative'>
       <div className='max-w-[1350px] mx-auto px-4 md:pl-20 pb-20 pt-10 md:pt-32 flex flex-wrap '>
         <div className='w-full md:w-1/2'>
           <h1>Discover Australia</h1>
@@ -21,7 +21,7 @@ const Discover = () => {
               <h1 className='mr-3 md:mr-0'>with</h1>
               <Image src='/assets/logo.svg' alt='Sync-people logo' width={220} height={180} className='md:-mt-2' />
           </div>
-          <p className='text-white md:pt-4 md:w-3/4 mt-4 md:mt-0'>Discover a world of career opportunities in the most exciting country on the planet . Get ready for a life-changing adventure!</p>
+          <p className='blue md:pt-4 md:w-3/4 mt-4 md:mt-0'>Discover a world of career opportunities in the most exciting country on the planet . Get ready for a life-changing adventure!</p>
           <div className='grid grid-cols-2 md:pt-12 md:w-[450px] mt-8 md:mt-0 mb-10 md:mb-0 gap-4'>
               <div className='flex flex-col w-[200px] h-[110px] overflow-hidden group '>
                 <div className='flex flex-col items-center md:py-4 w-[200px] h-[110px]'>
@@ -72,7 +72,7 @@ const Discover = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 md:w-[600px] gap-5'>
               <div className='flex flex-col md:w-[280px] md:h-[600px] col-span-1'>
                 <div className={'h-[300px] w-[280px] relative'}>
-                  <Image className='object-cover rounded-t-[200px]' src={'/assets/images/discover/sydney.webp'} alt='Opera house photo' fill />
+                  <Image className='object-cover rounded-t-[200px]' src={'/assets/images/discover/discover.jpg'} alt='Opera house photo' fill />
                 </div>
                 <div className='bg-[#7052E5] rounded-bl-[100px] h-[320px] flex flex-col justify-end items-end'>
                   <div className='pr-10 pb-10'>
@@ -86,8 +86,8 @@ const Discover = () => {
                 </div>
               </div>
               <div className='flex flex-col w-[280px] h-[600px] col-span-1'>
-                <div className={`bg-[#FF8149] relative bg-cover bg-center rounded-full rounded-bl-none h-[300px] overflow-hidden`}>
-                  <Image className='relative top-[10%]' src={'/assets/images/discover/discover-3.png'} width={260} height={260} alt='Guy smilling picture' />
+                <div className={`relative bg-cover bg-center rounded-full rounded-bl-none h-[300px] w-[280px] overflow-hidden`}>
+                  <Image className='' src={'/assets/images/discover/discover2.png'} alt='Guy smilling picture' fill />
                 </div>
                 <div className={`bg-[url('/assets/images/discover/discover-2.png')] flex flex-col justify-end items-end relative overflow-hidden rounded-[200px] rounded-tr-none h-[300px] md:mt-6`}>
                 </div>

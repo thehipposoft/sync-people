@@ -7,7 +7,12 @@ import BackDrop from './sideMenu/backDrop';
 import { ROUTES } from '@/app/constants';
 import ComingSoonModal from './ComingSoonModal';
 
-const Header = () => {
+type HeaderProps = {
+    isFixed?: boolean;
+};
+
+const Header = ({ isFixed }:HeaderProps) => {
+
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState<boolean>(false);
 
@@ -16,7 +21,7 @@ const Header = () => {
     };
 
     return (
-        <div className='sticky top-0 bg-white w-full md:py-0 py-2 px-8 md:px-0 flex-wrap z-30'>
+        <div className={`${isFixed ? 'fixed' : 'sticky'} top-0 bg-white md:w-full mx-auto md:py-0 py-2 px-8 md:px-0 flex-wrap z-30`}>
             <div className='md:w-[1250px] flex justify-between items-center  mx-auto'>
                 <Link href={ROUTES.HOME}>
                     <Image

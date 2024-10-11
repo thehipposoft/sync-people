@@ -15,11 +15,11 @@ const Banner = () => {
     }
 
     return (
-        <div className='md:h-screen flex flex-col md:flex-row justify-between max-w-[1250px] mx-auto flex-wrap p-6 md:p-0 md:pt-0 '>
-            <div className='flex flex-col m-auto'>
-                <h2 className=''>Welcome to the</h2>
-                <h2 className='text-[#8D78E0] mb-4 md:mb-0'>new age of work</h2>
-                <h1 className='pt-4 light text-4xl'>Connecting Companies to <strong>Talent,</strong><br/> and Job Seekers to <strong>Opportunities.</strong></h1>
+        <div className='flex flex-col md:flex-row justify-between items-center max-w-[1250px] mx-auto flex-wrap p-6 md:px-0 md:py-0 md:pt-0 h-screen'>
+            <div className='flex flex-col '>
+                <h2 className='tracking-wide'>Connect with your</h2>
+                <h2 className='text-[#8D78E0] tracking-wide mb-4 md:mb-0'>next job now!</h2>
+                <h1 className='pt-4 light text-[22px] tracking-wide w-[500px]'>Looking to work while you explore Australia? <strong>We connect you with the best companies seeking talent like yours.</strong></h1>
                 <div className='flex mt-8 flex-wrap gap-4 md:gap-0 mb-3 md:mb-0'>
                     <Link
                         href={ROUTES.COMING_SOON}
@@ -35,18 +35,19 @@ const Banner = () => {
                     </Link>
                 </div>
             </div>
-            <div className='m-auto group cursor-pointer relative flex justify-center items-center w-full h-72 md:w-[540px] md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-24 mt-20 md:mt-auto md:mb-auto' onClick={toggleModal}>
+            <div className=' group cursor-pointer relative flex justify-center items-center w-full h-72 md:w-[540px] md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-24 mt-20 md:mt-auto md:mb-auto' onClick={toggleModal}>
                 <Image
                     src={'/assets/images/banner-overlay.png'}
+                    className='object-contain'
                     alt='Video image'
-                    fill priority objectFit='contain'
+                    fill priority
                 />
-                <div className='w-full h-full bg-gradient-to-bl from-[#3EC1AA] via-[#7087E5] to-[#7052E5] md:opacity-70 opacity-70 duration-700 group-hover:opacity-90 rounded-3xl rounded-br-[8rem] absolute z-10' />
+                <div className='w-full h-full bg-gradient-to-bl from-[#3EC1AA] via-[#7087E5] to-[#7052E5] opacity-80 duration-700 group-hover:opacity-100 rounded-3xl rounded-br-[8rem] absolute z-10' />
                 <div className='relative bottom-[2%] z-20 flex flex-col items-center gap-6'>
                 <svg width="54" height="71" viewBox="0 0 54 71" fill="none" xmlns="http://www.w3.org/2000/svg" className='group-hover:scale-110 duration-500'>
                     <path d="M52.1011 39.1063L6.92064 70.2206C6.25859 70.6762 5.48379 70.9429 4.68021 70.9918C3.87662 71.0407 3.07491 70.8699 2.36196 70.4979C1.649 70.126 1.052 69.567 0.635642 68.8816C0.219288 68.1963 -0.000532504 67.4106 9.68686e-07 66.6099V4.39014C-0.000532504 3.58937 0.219288 2.80372 0.635642 2.11835C1.052 1.43298 1.649 0.874017 2.36196 0.502048C3.07491 0.130079 3.87662 -0.04071 4.68021 0.00818868C5.48379 0.0570873 6.25859 0.32381 6.92064 0.779449L52.1011 31.8937C52.687 32.2975 53.1658 32.8364 53.4965 33.4645C53.8272 34.0926 54 34.791 54 35.5C54 36.209 53.8272 36.9074 53.4965 37.5355C53.1658 38.1636 52.687 38.7025 52.1011 39.1063Z" fill="#F7FAFC"/>
                 </svg>
-                <p className='text-white text-2xl md:rotate-12 group-hover:rotate-0 z-20 md:opacity-0 md:translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 duration-500 delay-100'>Watch Video!</p>
+                <p className='text-white text-2xl md:rotate-12 group-hover:rotate-0 z-20 md:opacity-0 md:translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 duration-500 delay-100 poppins font-semibold'>Watch Video!</p>
                 </div>
             </div>
             <VideoModal isModalOpen={openModal} closeModalFunc={toggleModal}/>
