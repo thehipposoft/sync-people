@@ -4,13 +4,13 @@ import ComingSoon from "./ComingSoon";
 
 export const metadata: Metadata = {
   title: "Insyncx | Coming Soon",
-  description: "Connecting talents with opportunities in the cleaning industry",
+  description: "Coming Soon! Be Part of Insyncx Now",
 };
 
 export default function ComingsoonPage () {
     return (
-        <div>
+        <PublicLayout>
             <ComingSoon />
-        </div>
+        </PublicLayout>
     );
 }

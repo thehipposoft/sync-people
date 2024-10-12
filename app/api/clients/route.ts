@@ -8,6 +8,7 @@ type ComingSoonEmailType = {
     phone_number: string;
     industry: string;
     lookingFor: string;
+    company_name: string;
 };
 
 // To handle a POST request to /api
@@ -22,26 +23,31 @@ export async function POST(request: NextRequest) {
         { status: 500 });
     }
 
-    const response = await fetch('https://admin.insyncx.co/wp-json/wp/v2/talents', {
+    const apiBody = JSON.stringify({
+        acf: {
+            business_information: {
+                company_name: data.company_name,
+                industries: [
+                    {industry: data.industry},
+                ],
+            },
+            contacts: [{
+                first_name: data.first_name,
+                last_name: data.last_name,
+                email: data.email,
+                mobile: data.phone_number,
+            }],
+        },
+        status: 'publish',
+    });
+
+    const response = await fetch('https://admin.insyncx.co/wp-json/wp/v2/clients', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            acf: {
-                personal_information: {
-                    name: data.first_name,
-                    last_name: data.last_name,
-                    email: data.email,
-                    phone_number: data.phone_number,
-                },
-                professional_information: {
-                    industries: [data.industry],
-                },
-            },
-            status: 'publish',
-        })
+        body: apiBody,
     });
 
     if (response.status === 500) {
@@ -52,8 +58,10 @@ export async function POST(request: NextRequest) {
     };
 
     if (response.status >= 400 && response.status < 500) {
+        const data = await response.json();
+
         return NextResponse.json({
-            message: 'Failed to create talent'
+            message: data.data.params.acf ? data.data.params.acf : data.message,
         },
         { status: response.status });
     }

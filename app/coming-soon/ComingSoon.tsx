@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 import Image from "next/image";
-import { createTalent } from "@/lib/api";
+import { createTalent, createClient } from "@/lib/api";
 import Link from "next/link";
 import { ROUTES } from "../constants";
 import Modal from "@/components/Modal";
@@ -12,7 +12,8 @@ type FormValues = {
     last_name: string;
     phone_number?: string;
     industry: string;
-    lookingFor: string;
+    lookingFor: 'talents' | 'job';
+    company_name?: string;
 };
 
 export default function ComingSoon () {
@@ -22,7 +23,8 @@ export default function ComingSoon () {
         last_name: '',
         phone_number: '',
         industry: 'cleaning',
-        lookingFor: 'job'
+        lookingFor: 'job',
+        company_name: '',
     });
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [openSuccessModal, setOpenSuccessModal] = useState<boolean>(false);
@@ -33,9 +35,9 @@ export default function ComingSoon () {
         setErrorMessage('');
         setIsApiLoading(true);
 
-        const talentResponse = await createTalent(formValues);
+        const apiResponse = formValues.lookingFor === 'job' ? await createTalent(formValues) : await createClient(formValues);
 
-        if (talentResponse.status === 200) {
+        if (apiResponse.status === 200) {
             setIsApiLoading(false);
             setOpenSuccessModal(true);
             setFormValues({
@@ -48,16 +50,13 @@ export default function ComingSoon () {
             });
         } else {
             setIsApiLoading(false);
-            setErrorMessage(talentResponse.message);
+            setErrorMessage(apiResponse.message);
         }
     };
 
     return (
-        <div className="my-12 lg:my-0 flex flex-col lg:flex-row lg:min-h-screen lg:justify-center lg:gap-6 lg:px-0">
-            <div className="md:w-2/3 w-full flex justify-center pt-8 px-12 relative">
-                <Link href={ROUTES.HOME}>
-                    <svg className="absolute right-10 top-10 w-4" fill="#1A335D" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M0 14.545 1.455 16 8 9.455 14.545 16 16 14.545 9.455 8 16 1.455 14.545 0 8 6.545 1.455 0 0 1.455 6.545 8z" fill-rule="evenodd"/></svg>
-                </Link>
+        <div className="my-12 lg:my-4 flex flex-col lg:flex-row lg:min-h-screen lg:justify-center lg:gap-6 lg:px-0 w-full">
+            <div className="md:w-1/2 w-full flex pt-8 relative">
                 <div className="md:w-[650px]">
                     <h2 className="text-[40px] h-bold">
                         Coming Soon!
@@ -108,6 +107,26 @@ export default function ComingSoon () {
                                 </div>
                             </div>
                         </div>
+                        {
+                            formValues.lookingFor === 'talents' && (
+                                <div className="mt-3 flex flex-col">
+                                    <label
+                                        htmlFor="company_name"
+                                    >
+                                        Company Name*
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="company_name"
+                                        className="border rounded-3xl py-1 px-5 w-3/4 mt-1"
+                                        placeholder="Enter your company name"
+                                        required
+                                        value={formValues.company_name}
+                                        onChange={(e) => setFormValues({...formValues, company_name: e.target.value})}
+                                    />
+                                </div>
+                            )
+                        }
                         <div className="mt-3 flex flex-col">
                             <label
                                 htmlFor="email"
@@ -217,23 +236,23 @@ export default function ComingSoon () {
                     </form>
                 </div>
             </div>
-            <div className="hidden lg:grid grid-cols-2 p-4 bg-[#AFB3FF] lg:w-1/3 h-fit w-full mt-8 lg:mt-0">
-                <div className="relative w-[200px] h-[33vh]">
+            <div className="hidden lg:grid grid-cols-2 p-4 bg-[#AFB3FF] lg:w-1/2 h-fit w-full mt-8 lg:mt-0">
+                <div className="relative w-[200px] h-[33vh] m-auto">
                     <Image src={'/assets/images/coming-soon/hero-pic.png'} alt='Coming soon' fill className="object-contain" />
                 </div>
-                <div className="relative w-[200px] h-[33vh]">
+                <div className="relative w-[200px] h-[33vh] m-auto">
                     <Image src={'/assets/images/coming-soon/hero-pic-1.png'} alt='Coming soon' fill className="object-contain" />
                 </div>
-                <div className="relative w-[200px] h-[33vh]">
+                <div className="relative w-[200px] h-[33vh] m-auto">
                     <Image src={'/assets/images/coming-soon/hero-pic-2.png'} alt='Coming soon' fill className="object-contain" />
                 </div>
-                <div className="relative w-[200px] h-[33vh]">
+                <div className="relative w-[200px] h-[33vh] m-auto">
                     <Image src={'/assets/images/coming-soon/hero-pic-3.png'} alt='Coming soon' fill className="object-contain" />
                 </div>
-                <div className="relative w-[200px] h-[33vh]">
+                <div className="relative w-[200px] h-[33vh] m-auto">
                     <Image src={'/assets/images/coming-soon/hero-pic-4.png'} alt='Coming soon' fill className="object-contain" />
                 </div>
-                <div className="relative w-[200px] h-[33vh]">
+                <div className="relative w-[200px] h-[33vh] m-auto">
                     <Image src={'/assets/images/coming-soon/hero-pic-5.png'} alt='Coming soon' fill className="object-contain" />
                 </div>
             </div>

@@ -40,6 +40,7 @@ type ComingSoonEmailType = {
     phone_number?: string;
     industry: string;
     lookingFor: string;
+    company_name?: string;
 };
 
 export const sendComingSoonEmail = async (data: ComingSoonEmailType) => {
@@ -83,7 +84,7 @@ export const getJWTToken = async () => {
 };
 
 export const createTalent = async (data: ComingSoonEmailType) => {
-    const response = await fetch('/api/talent', {
+    const response = await fetch('/api/talents', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -97,8 +98,33 @@ export const createTalent = async (data: ComingSoonEmailType) => {
             message: 'Talent Created',
         };
     } else {
+        const data = await response.json();
+
         return {
-            message: 'Failed to create talent',
+            message: data.message,
+        };
+    }
+};
+
+export const createClient = async (data: ComingSoonEmailType) => {
+    const response = await fetch('/api/clients', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    if (response.status >= 200 && response.status < 300) {
+        return {
+            status: 200,
+            message: 'Client Created',
+        };
+    } else {
+        const data = await response.json();
+
+        return {
+            message: data.message,
         };
     }
 };
