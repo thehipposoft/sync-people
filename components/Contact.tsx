@@ -28,8 +28,9 @@ const Contact = () => {
               </section>
           </form>
       </div>
-      <div className='md:flex items-center justify-center hidden'>
-        <Image src={'/assets/images/contact.png'} alt='' width={450} height={400}/>
+      <div className='relative w-[450px] h-[525px]'>
+        <div className='absolute left-0 z-10 h-full w-full rounded-tl-[250px] bg-gradient-to-l opacity-30 rounded-br-[250px] from-[#8D78E0] to-[#15DFBB] ' />
+        <Image src={'/assets/images/contact-new.webp'} alt='' fill className='object-cover rounded-br-[250px] rounded-tl-[250px]'/>
       </div>
     </div>
   )

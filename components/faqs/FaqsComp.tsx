@@ -22,8 +22,9 @@ const FaqsComp = () => {
                     <Accordion items={items} />
                 </div>
             </div>
-            <div className='relative md:w-[450px] w-[85vw] h-[550px]'>
-                <Image src={'/assets/images/contact.png'} alt='' fill/>
+            <div className='relative md:w-[450px] w-[85vw] h-[525px] '>
+                <div className='absolute left-0 z-10 h-full w-full rounded-tl-[250px] bg-gradient-to-l opacity-30 rounded-br-[250px] from-[#8D78E0] to-[#15DFBB] ' />
+                <Image src={'/assets/images/faqs.webp'} alt='' fill className='object-cover rounded-tl-[250px] rounded-br-[250px]'/>
             </div>
         </div>
     );

@@ -8,7 +8,7 @@ const BlogsLayout = () => {
         <div className='flex flex-col my-12 gap-32'>
             <div className='flex md:flex-row flex-col justify-between mx-auto gap-20'>
                 <div className='relative md:w-[520px] w-[90vw] md:h-[340px] h-[30vh]'>
-                    <Image src={'/assets/images/profileBg.png'} alt='' fill className='rounded-3xl rounded-br-[120px]' />
+                    <Image src={'/assets/images/blog.webp'} alt='' fill className='rounded-3xl rounded-br-[120px]' />
                 </div>
                 <div className='flex flex-col gap-4 md:w-[450px]'>
                     <div className='flex justify-between'>
@@ -27,7 +27,7 @@ const BlogsLayout = () => {
             </div>
             <div className='flex md:flex-row-reverse flex-col justify-between mx-auto gap-20'>
                 <div className='relative md:w-[520px] w-[90vw] md:h-[340px] h-[30vh] '>
-                    <Image src={'/assets/images/profileBg.png'} alt='' fill className='rounded-3xl rounded-bl-[120px]' />
+                    <Image src={'/assets/images/blog3.webp'} alt='' fill className='rounded-3xl rounded-bl-[120px]' />
                 </div>
                 <div className='flex flex-col gap-4 md:w-[450px]'>
                     <div className='flex justify-between'>

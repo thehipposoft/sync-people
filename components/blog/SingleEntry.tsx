@@ -11,7 +11,7 @@ const SingleEntry = () => {
             </div>
             <p className='poppins italic text-[#798196]'>If you’re ready to explore the world while earning an income, a Working Holiday Visa (WHV) is a fantastic way to combine travel with temporary work. Here’s a step-by-step guide to help you successfully apply for a job while on your working holiday.</p>
             <div className='relative md:w-[900px] md:h-[300px] h-[200px] my-6'>
-                <Image src={'/assets/images/blog.png'} alt='' fill />
+                <Image src={'/assets/images/blog.webp'} alt='' fill className='object-cover rounded-tr-[125px] rounded-bl-[125px]' />
             </div>
             <div className='flex flex-col gap-8'>
                 <div className='flex flex-col gap-4'>
@@ -42,7 +42,7 @@ const SingleEntry = () => {
                 </div>
             </div>
             <div className='relative md:w-[900px] md:h-[300px] h-[200px] my-6'>
-                <Image src={'/assets/images/blog2.png'} alt='' fill />
+                <Image src={'/assets/images/blog2.webp'} alt='' fill className='object-cover rounded-tr-[125px] rounded-bl-[125px]'/>
             </div>
             <div className='flex flex-col gap-4'>
                 <h5 className='font-semibold blue text-xl'>Final Thoughts</h5>
