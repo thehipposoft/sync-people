@@ -64,14 +64,17 @@ export const sendComingSoonEmail = async (data: ComingSoonEmailType) => {
 };
 
 export const getJWTToken = async () => {
+    console.log('process.env.NEXT_PUBLIC_USERNAME', process.env.NEXT_PUBLIC_USERNAME);
+    console.log('process.env.NEXT_PUBLIC_PASS', process.env.NEXT_PUBLIC_PASS);
+    
     const response = await fetch('https://admin.insyncx.co/wp-json/jwt-auth/v1/token', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            username: 'apiUser',
-            password: '$VqcO0k*)MtmI@&F&@FaoagA',
+            username: process.env.NEXT_PUBLIC_USERNAME,
+            password: process.env.NEXT_PUBLIC_PASS,
         })
     });
 

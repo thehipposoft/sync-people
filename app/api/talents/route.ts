@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
         },
         body: JSON.stringify({
             acf: {
-                business_information: {
+                personal_information: {
                     first_name: data.first_name,
                     last_name: data.last_name,
                     email: data.email,
