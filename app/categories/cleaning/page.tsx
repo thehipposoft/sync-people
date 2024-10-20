@@ -3,8 +3,8 @@ import PublicLayout from "@/components/PublicLayout";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Insyncx | Cleaning",
-  description: "Connecting talents with opportunities in the cleaning industry",
+    title: "Insyncx | Cleaning",
+    description: "Connecting talents with opportunities in the cleaning industry",
 };
 
 export default function CleaningPage() {
@@ -20,20 +20,20 @@ export default function CleaningPage() {
                         Essential Industry in Australia
                     </h2>
                     <p className="mt-2 mb-8 text-[#798196]">
-                    The cleaning industry in Australia is essential to maintaining hygiene
-                                    and safety across various sectors, including healthcare, hospitality,
-                                    and commercial spaces. This industry offers stable employment and
-                                    a wide range of job opportunities.
+                        The cleaning industry in Australia is essential to maintaining hygiene
+                        and safety across various sectors, including healthcare, hospitality,
+                        and commercial spaces. This industry offers stable employment and
+                        a wide range of job opportunities.
                     </p>
 
                     <h2 className="text-lg h-bold">
                         High-Demand Areas
                     </h2>
                     <p className="mt-2 mb-8 text-[#798196]">
-                    Major cities such as Sydney, Melbourne, and Perth have a high demand
-                                    for cleaning professionals in commercial, residential, and industrial settings.
-                                    With the increasing focus on hygiene standards, the need for skilled
-                                    cleaners continues to rise.
+                        Major cities such as Sydney, Melbourne, and Perth have a high demand
+                        for cleaning professionals in commercial, residential, and industrial settings.
+                        With the increasing focus on hygiene standards, the need for skilled
+                        cleaners continues to rise.
                     </p>
 
                     <h2 className="text-lg h-bold">

@@ -12,7 +12,6 @@ type HeaderProps = {
 };
 
 const Header = ({ isFixed }:HeaderProps) => {
-
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState<boolean>(false);
 

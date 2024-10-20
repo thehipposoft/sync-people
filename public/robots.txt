@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://insyncx.co/
+
+# Sitemaps
+Sitemap: https://insyncx.co/sitemap.xml
