@@ -15,11 +15,11 @@ const Banner = () => {
     }
 
     return (
-        <div className='flex flex-col md:flex-row justify-between items-center max-w-[1250px] mx-auto flex-wrap p-6 md:px-0 md:py-0 md:pt-0 h-screen'>
-            <div className='flex flex-col '>
-                <h2 className='tracking-wide'>Connect with your</h2>
-                <h2 className='text-[#8D78E0] tracking-wide mb-4 md:mb-0'>next job now!</h2>
-                <h1 className='pt-4 light text-[22px] tracking-wide w-[500px]'>Looking to work while you explore Australia? <strong>We connect you with the best companies seeking talent like yours.</strong></h1>
+        <div className='flex justify-center md:justify-between items-center max-w-[1250px] mx-auto flex-wrap p-6 md:px-0 md:py-0 md:pt-0 md:h-screen'>
+            <div className='flex flex-col mt-32 md:mt-0'>
+                <h2 className='tracking-wide text-3xl md:text-6xl'>Connect with your</h2>
+                <h2 className='text-[#8D78E0] tracking-wide mb-4 md:mb-0 text-3xl md:text-6xl'>next job now!</h2>
+                <h1 className='pt-4 light text-[22px] tracking-wide md:w-[500px]'>Looking to work while you explore Australia? <strong>We connect you with the best companies seeking talent like yours.</strong></h1>
                 <div className='flex mt-8 flex-wrap gap-4 md:gap-0 mb-3 md:mb-0'>
                     <Link
                         href={ROUTES.COMING_SOON}
@@ -35,7 +35,10 @@ const Banner = () => {
                     </Link>
                 </div>
             </div>
-            <div className=' group cursor-pointer relative flex justify-center items-center w-full h-72 md:w-[540px] md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-24 mt-20 md:mt-auto md:mb-auto' onClick={toggleModal}>
+            <div
+                className='group cursor-pointer relative flex justify-center items-center w-full h-72 md:w-[540px] md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-4 mt-6 md:mt-auto md:mb-auto'
+                onClick={toggleModal}
+            >
                 <Image
                     src={'/assets/images/banner-overlay.png'}
                     className='object-contain'

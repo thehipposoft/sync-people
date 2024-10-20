@@ -9,8 +9,12 @@ const Footer = () => {
             <div className='container grid grid-cols-1 md:grid-cols-4 gap-2 '>
                 <div className='w-full flex justify-center md:justify-start'>
                     <div>
-                        <div className='relative md:w-[170px] w-[240px] md:h-[75px] h-[120px]'>
-                            <Image src={'/assets/logo.svg'} alt='Sync-people logo' fill />
+                        <div className='relative md:w-[170px] w-[200px] md:h-[75px] h-[120px] mx-auto'>
+                            <Image
+                                src={'/assets/logo.svg'}
+                                alt='Sync-people logo'
+                                fill
+                            />
                         </div>
                         <p className='pt-2'>
                             <Link className='underline' href={ROUTES.CONTACT}>Contact us</Link> for more information

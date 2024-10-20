@@ -26,7 +26,7 @@ const How = () => {
                 Let's get started
             </Link>
         </div>
-        <div className='w-[650px] h-[500px] relative'>
+        <div className='w-full h-40 md:w-[650px] md:h-[500px] relative'>
             <Image
                 src={'/assets/images/how-1.png'}
                 alt={'How it works'}

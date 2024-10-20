@@ -21,9 +21,13 @@ const WhyUs = () => {
             Create a Profile
         </Link>
       </div>
-      <div className='relative w-[425px] h-[500px]'>
-        <Image src={'/assets/images/whyus.png'} alt='' fill />
-      </div>
+        <Image
+            src={'/assets/images/whyus.png'}
+            alt={'Why Us'}
+            className='object-contain max-w-[10rem] mx-auto md:max-w-lg'
+            width={425}
+            height={500}
+        />
     </div>
   )
 }
