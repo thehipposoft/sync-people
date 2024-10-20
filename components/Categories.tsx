@@ -10,11 +10,11 @@ const Categories = () => {
         <div className=''>
           <div className='grid grid-cols-1 md:grid-cols-2 md:w-[600px] gap-5'>
             <div className='flex flex-col md:w-[280px] md:h-[600px] col-span-1 rounded-t-full'>
-                <Link href={ROUTES.CATEGORIES_TOURISM} className='group'>
+                <Link href={ROUTES.CATEGORIES_HOSPITALITY} className='group'>
                     <div className='bg-[#7052E5] rounded-tl-[150px] h-[280px] duration-500 group-hover:rounded-tl-none'>
                         <div className='pt-16 pl-14'>
                             <Image src={'/assets/images/vectors/tourism.svg'} alt='' height={50} width={50} className='' />
-                            <p className='text-white font-semibold text-xl pt-2'>Tourism</p>
+                            <p className='text-white font-semibold text-xl pt-2'>Hospitality</p>
                             <p className='text-white text-lg group-hover:underline'>+ Discover</p>
                         </div>
                     </div>

@@ -5,6 +5,7 @@ export const ROUTES = {
     CATEGORIES_WAREHOUSING: '/categories/warehousing',
     CATEGORIES_CONSTRUCTION: '/categories/construction',
     CATEGORIES_CLEANING: '/categories/cleaning',
+    CATEGORIES_HOSPITALITY: '/categories/hospitality',
     CONTACT: '/#contact',
     LOGIN: '/login',
     COMING_SOON: '/coming-soon',

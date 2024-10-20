@@ -21,8 +21,8 @@ const Footer = () => {
                     <h4 className='font-bold text-xl'>Job Categories</h4>
                     <ul>
                         <li className='py-1'>
-                            <Link href={ROUTES.CATEGORIES_TOURISM}>
-                                Tourism
+                            <Link href={ROUTES.CATEGORIES_HOSPITALITY}>
+                            Hospitality
                             </Link>
                         </li>
                         <li className='py-1'>

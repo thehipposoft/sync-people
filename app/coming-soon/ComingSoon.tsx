@@ -11,7 +11,7 @@ type FormValues = {
     first_name: string;
     last_name: string;
     phone_number?: string;
-    industry: string;
+    industry: 'cleaning' | 'construction' | 'hospitality' | 'warehousing' | 'other';
     lookingFor: 'talents' | 'job';
     company_name?: string;
 };
@@ -29,6 +29,41 @@ export default function ComingSoon () {
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [openSuccessModal, setOpenSuccessModal] = useState<boolean>(false);
     const [isApiLoading, setIsApiLoading] = useState<boolean>(false);
+
+    const renderMessageByCategory = (category: string) => {
+        switch (category) {
+            case 'cleaning':
+                return (
+                    <p className="text-center">
+                        In the meantime, check our <Link className="underline" href={ROUTES.CATEGORIES_CLEANING}>Cleaning category page</Link> to get more insights about the industry.
+                    </p>
+                );
+            case 'construction':
+                return (
+                    <p className="text-center">
+                        In the meantime, check our <Link className="underline" href={ROUTES.CATEGORIES_CONSTRUCTION}>Construction category page</Link> to get more insights about the industry.
+                    </p>
+                );
+            case 'hospitality':
+                return (
+                    <p className="text-center">
+                        In the meantime, check our <Link className="underline" href={ROUTES.CATEGORIES_HOSPITALITY}>Hospitality category page</Link> to get more insights about the industry.
+                    </p>
+                );
+            case 'warehousing':
+                return (
+                    <p className="text-center">
+                        In the meantime, check our <Link className="underline" href={ROUTES.CATEGORIES_WAREHOUSING}>Warehousing category page</Link> to get more insights about the industry.
+                    </p>
+                );
+            default:
+                return (
+                    <p className="text-center">
+                        In the meantime, check our <Link className="underline" href={ROUTES.BLOG}>Blog</Link> to get more insights about the industry.
+                    </p>
+                );
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -202,7 +237,7 @@ export default function ComingSoon () {
                                 className="mt-1 w-3/4"
                                 required
                                 value={formValues.industry}
-                                onChange={(e) => setFormValues({...formValues, industry: e.target.value})}
+                                onChange={(e) => setFormValues({...formValues, industry: e.target.value as FormValues['industry']})}
                             >
                                 <option value="cleaning">Cleaning</option>
                                 <option value="construction">Construction</option>
@@ -287,6 +322,7 @@ export default function ComingSoon () {
                     <p className="text-center">
                         We have received your request and will keep you updated on our progress.
                     </p>
+                    {renderMessageByCategory(formValues.industry)}
                     <button
                         className="primary-btn"
                         onClick={() => setOpenSuccessModal(false)}
