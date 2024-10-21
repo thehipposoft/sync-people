@@ -1,3 +1,14 @@
+export type IndustryType = {
+    industry: string;
+    other_industry: string;
+    preferred_salary: string;
+    rol: string;
+    certificates: {
+        certificate: string;
+        name: string;
+    }[];
+};
+
 export type TalentType = {
     id: number;
     date: string;
@@ -15,14 +26,16 @@ export type TalentType = {
             gender: string;
         };
         professional_information: {
-            industries: {
-                industry: string;
-            }[];
+            industries: IndustryType[];
             current_status: string;
         };
         working_rights: {
             visa_number: string;
             visa_doc: string;
+            current_visa: {
+                label: string;
+                value: string;
+            };
         };
         extras: {
             level_of_english: string;
