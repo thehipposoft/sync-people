@@ -1,11 +1,12 @@
-import React from 'react'
-import LoginMenu from '@/components/LoginMenu'
+import React from 'react';
+import LoginMenu from '@/app/login/Login';
+import PublicLayout from '@/components/PublicLayout';
 
 export default async function LoginPage() {
     return(
-        <div className="">
+        <PublicLayout>
             <LoginMenu />
-        </div>
+        </PublicLayout>
     )
 }
 

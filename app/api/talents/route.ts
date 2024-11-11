@@ -8,6 +8,7 @@ type ComingSoonEmailType = {
     phone_number: string;
     industry: string;
     lookingFor: string;
+    password: string;
 };
 
 // To handle a POST request to /api
@@ -20,6 +21,34 @@ export async function POST(request: NextRequest) {
             message: 'Failed to retrieve token'
         },
         { status: 500 });
+    }
+
+    // Step 1: Create User
+    const userResponse = await fetch('https://admin.insyncx.co/wp-json/wp/v2/users', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: data.email, // Assuming email as username for simplicity
+            email: data.email,
+            password: data.password, // Ensure this is securely generated or captured
+            roles: ['subscriber'], // Set appropriate role if needed
+            first_name: data.first_name,
+            last_name: data.last_name
+        })
+    });
+
+    if (!userResponse.ok) {
+        const userError = await userResponse.json();
+        return NextResponse.json({ message: userError.message }, { status: userResponse.status });
+    }
+
+    const createdUser = await userResponse.json();
+
+    if (!createdUser.id) {
+        return NextResponse.json({ message: 'User not created' }, { status: 500 });
     }
 
     const response = await fetch('https://admin.insyncx.co/wp-json/wp/v2/talents', {
@@ -41,6 +70,7 @@ export async function POST(request: NextRequest) {
                         {industry: data.industry},
                     ],
                 },
+                user_id: createdUser.id.toString(),
             },
             status: 'publish',
         })
@@ -62,7 +92,7 @@ export async function POST(request: NextRequest) {
         { status: response.status });
     }
 
-    const emailSentResponse = sendComingSoonEmail(data);
+    //const emailSentResponse = sendComingSoonEmail(data);
 
     return NextResponse.json({ message: "Talent Created" }, { status: 200 });
 }

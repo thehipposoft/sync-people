@@ -12,4 +12,7 @@ export const ROUTES = {
     BLOG: '/blog',
     FAQS: '/faqs',
     ENTRY: '/blog/entry',
+    SIGN_UP: '/sign-up',
+    TERMS: '/terms',
+    PRIVACY_POLICY: '/privacy-policy',
 }

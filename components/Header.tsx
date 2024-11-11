@@ -52,10 +52,18 @@ const Header = ({ isFixed }:HeaderProps) => {
                             <button className='white-b py-2 px-4 rounded-xl cursor-pointer'>Training and Licenses</button>
                         </Link>
                     </div>
-                    <div className='flex gap-3 mx-4 '>
+                    <div className=''>
+                        <Link
+                            className='primary-btn'
+                            href={ROUTES.SIGN_UP}
+                        >
+                            Sign Up
+                        </Link>
+                    </div>
+                    <div className='mx-2'>
                         <Link
                             className='secondary-btn'
-                            href={ROUTES.COMING_SOON}
+                            href={ROUTES.LOGIN}
                         >
                             Log In
                         </Link>

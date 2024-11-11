@@ -12,8 +12,6 @@ const TalentProfile = ({
     talentData,
 }:TalentProfileProps) => {
     const [selectedIndustry, setSelectedIndustry] = useState<IndustryType>(talentData.acf.professional_information.industries[0]);
-    console.log(">>talentData", talentData);
-    console.log(">>selectedIndustry", selectedIndustry);
 
     return (
         <div className='flex flex-col md:w-full'>

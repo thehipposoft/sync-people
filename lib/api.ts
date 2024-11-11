@@ -10,7 +10,7 @@ export const api = async ({
     endpoint = "/login",
     method = "GET",
     body,
-  }: ApiType) => {
+}: ApiType) => {
     const apiURL = process.env.ENV_HOST || process.env.NEXT_PUBLIC_API;
     const baseURL = apiURL + "/api";
     //const baseURL = "http://localhost:9000/.netlify/functions/api";
@@ -63,26 +63,57 @@ export const sendComingSoonEmail = async (data: ComingSoonEmailType) => {
     }
 };
 
-export const getJWTToken = async () => {
-    console.log('process.env.NEXT_PUBLIC_USERNAME', process.env.NEXT_PUBLIC_USERNAME);
-    console.log('process.env.NEXT_PUBLIC_PASS', process.env.NEXT_PUBLIC_PASS);
-    
+export const getJWTToken = async (email?: string, password?: string) => {
     const response = await fetch('https://admin.insyncx.co/wp-json/jwt-auth/v1/token', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            username: process.env.NEXT_PUBLIC_USERNAME,
-            password: process.env.NEXT_PUBLIC_PASS,
+            username: email ? email : process.env.NEXT_PUBLIC_USERNAME,
+            password: password ? password : process.env.NEXT_PUBLIC_PASS,
         })
     });
 
     if (response.ok) {
         const data = await response.json();
+
+        console.log(">>data", data);
+
         return data.token;
     } else {
         console.error('Failed to retrieve token');
+    }
+};
+
+type LoginType = {
+    email: string;
+    password: string;
+};
+
+export const login = async (data: LoginType) => {
+    const response = await fetch('/api/auth', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    if (response.status >= 200 && response.status < 300) {
+        const data = await response.json();
+
+        return {
+            status: 200,
+            message: 'Login success',
+            userData: data.userData,
+        };
+    } else {
+        const data = await response.json();
+
+        return {
+            message: data.message,
+        };
     }
 };
 
