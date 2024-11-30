@@ -1,4 +1,4 @@
-import { getJWTToken, sendComingSoonEmail } from '@/lib/api'; // Adjust the import path as needed
+import { getJWTToken } from '@/lib/api'; // Adjust the import path as needed
 import { NextResponse, NextRequest } from "next/server";
 
 type ComingSoonEmailType = {
@@ -23,34 +23,6 @@ export async function POST(request: NextRequest) {
         { status: 500 });
     }
 
-    // Step 1: Create User
-    const userResponse = await fetch('https://admin.insyncx.co/wp-json/wp/v2/users', {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            username: data.email, // Assuming email as username for simplicity
-            email: data.email,
-            password: data.password, // Ensure this is securely generated or captured
-            roles: ['subscriber'], // Set appropriate role if needed
-            first_name: data.first_name,
-            last_name: data.last_name
-        })
-    });
-
-    if (!userResponse.ok) {
-        const userError = await userResponse.json();
-        return NextResponse.json({ message: userError.message }, { status: userResponse.status });
-    }
-
-    const createdUser = await userResponse.json();
-
-    if (!createdUser.id) {
-        return NextResponse.json({ message: 'User not created' }, { status: 500 });
-    }
-
     const response = await fetch('https://admin.insyncx.co/wp-json/wp/v2/talents', {
         method: 'POST',
         headers: {
@@ -70,7 +42,6 @@ export async function POST(request: NextRequest) {
                         {industry: data.industry},
                     ],
                 },
-                user_id: createdUser.id.toString(),
             },
             status: 'publish',
         })
@@ -83,16 +54,44 @@ export async function POST(request: NextRequest) {
         { status: 500 });
     };
 
-    if (response.status >= 400 && response.status < 500) {
-        const data = await response.json();
+    const talentCreatedData = await response.json();
 
+    if (response.status >= 400 && response.status < 500) {
         return NextResponse.json({
-            message: data.data.params.acf ? data.data.params.acf : data.message,
+            message: talentCreatedData.data.params.acf ? talentCreatedData.data.params.acf : talentCreatedData.message,
         },
         { status: response.status });
     }
 
-    //const emailSentResponse = sendComingSoonEmail(data);
+    const userResponse = await fetch('https://admin.insyncx.co/wp-json/wp/v2/users', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: 'data.email5555', //TODO: Refactor this to use the email
+            email: data.email,
+            password: data.password, // Ensure this is securely generated or captured
+            roles: ['subscriber'], // Set appropriate role if needed
+            first_name: data.first_name,
+            last_name: data.last_name,
+            meta: {
+                talent_id: talentCreatedData.id.toString(),
+            }
+        })
+    });
+
+    if (!userResponse.ok) {
+        const userError = await userResponse.json();
+        return NextResponse.json({ message: userError.message }, { status: userResponse.status });
+    }
+
+    const createdUser = await userResponse.json();
+
+    if (!createdUser.id) {
+        return NextResponse.json({ message: 'User not created' }, { status: 500 });
+    }
 
     return NextResponse.json({ message: "Talent Created" }, { status: 200 });
 }

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { login } from '@/lib/api';
+import { getUserProfile } from '@/lib/protected-api';
 import { ROUTES } from '../constants';
 
 const LoginMenu = () => {
@@ -27,9 +28,12 @@ const LoginMenu = () => {
         const apiResponse = await login(data);
 
         if (apiResponse.status === 200) {
-            console.log(">>apiResponse", apiResponse);
             setIsApiLoading(false);
             setErrorMessage('');
+
+            //const profileResponse = await getUserProfile();
+
+            //console.log(">>profileResponse", profileResponse);
             // Clean fields
             //e.currentTarget.reset();
             // Will open a modal
@@ -40,7 +44,7 @@ const LoginMenu = () => {
     };
 
     return (
-        <div className='flex items-center justify-center h-screen w-full'>
+        <div className='flex items-center justify-center w-full'>
             <div className='bg-white mx-4 rounded-2xl border p-8 shadow-xl'>
                 <h1 className='text-5xl text-center'>Welcome back!</h1>
                 <form className='md:pt-6' onSubmit={handleSubmit}>

@@ -1,3 +1,6 @@
+import { storeToken } from "./actions";
+import { getUserProfile } from "./protected-api";
+
 type ApiType = {
     endpoint: string;
     method: "GET" | "POST" | "PUT" | "DELETE";
@@ -102,11 +105,17 @@ export const login = async (data: LoginType) => {
 
     if (response.status >= 200 && response.status < 300) {
         const data = await response.json();
+        console.log(">>data", data);
+        const savedToken = await storeToken({token: data.token});
+
+        const getUserProfileResponse = getUserProfile(data.token);
+
+
+
 
         return {
             status: 200,
             message: 'Login success',
-            userData: data.userData,
         };
     } else {
         const data = await response.json();

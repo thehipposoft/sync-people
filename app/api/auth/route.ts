@@ -16,29 +16,8 @@ export async function POST(request: NextRequest) {
         },
         { status: 500 });
     }
-
-
-    // Fetch user data with the obtained token
-    const userResponse = await fetch('https://admin.insyncx.co/wp-json/wp/v2/users/me', {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        }
-    });
-
-    if (!userResponse.ok) {
-        const errorData = await userResponse.json();
-        return NextResponse.json({
-            message: errorData.message || 'Failed to retrieve user data'
-        },
-        { status: userResponse.status });
-    }
-
-    const userData = await userResponse.json();
-
     return NextResponse.json({
+        token: token,
         message: "Login success",
-        userData
     }, { status: 200 });
 }
