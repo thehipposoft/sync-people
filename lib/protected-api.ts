@@ -16,12 +16,11 @@ export const api = async ({
     body,
     token,
 }: ApiType) => {
-    console.log(">>API")
     //const apiURL = 'https://admin.insyncx.co/wp-json/wp/v2/';
     const baseURL = 'https://admin.insyncx.co/wp-json/wp/v2';
     const accessToken = token ? token : await getToken();
 
-    console.log(">>accessToken", accessToken);
+    //console.log(">>accessToken", accessToken);
     //const baseURL = "http://localhost:9000/.netlify/functions/api";
 
     const config: any = {
@@ -42,12 +41,13 @@ export const api = async ({
 };
 
 export const getUserProfile = async (token?: string) => {
-    console.log(">>getUserProfile token", token);
     const response = await api({
         endpoint: '/users/me',
         method: 'GET',
         token: token,
     });
 
-    return response;
+    const data = await response.json();
+
+    return data;
 }

@@ -81,8 +81,6 @@ export const getJWTToken = async (email?: string, password?: string) => {
     if (response.ok) {
         const data = await response.json();
 
-        console.log(">>data", data);
-
         return data.token;
     } else {
         console.error('Failed to retrieve token');
@@ -105,17 +103,13 @@ export const login = async (data: LoginType) => {
 
     if (response.status >= 200 && response.status < 300) {
         const data = await response.json();
-        console.log(">>data", data);
         const savedToken = await storeToken({token: data.token});
-
-        const getUserProfileResponse = getUserProfile(data.token);
-
-
-
+        const getUserProfileResponse = await getUserProfile(data.token);
 
         return {
             status: 200,
             message: 'Login success',
+            talent_id: getUserProfileResponse.meta.talent_id,
         };
     } else {
         const data = await response.json();

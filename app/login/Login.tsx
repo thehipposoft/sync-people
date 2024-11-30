@@ -3,16 +3,16 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { login } from '@/lib/api';
-import { getUserProfile } from '@/lib/protected-api';
 import { ROUTES } from '../constants';
+import { useRouter } from 'next/navigation';
 
 const LoginMenu = () => {
+    const router = useRouter();
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [isApiLoading, setIsApiLoading] = useState<boolean>(false);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('Form submitted');
 
         const formData = new FormData(e.currentTarget);
         const email = formData.get('email') as string;
@@ -31,12 +31,7 @@ const LoginMenu = () => {
             setIsApiLoading(false);
             setErrorMessage('');
 
-            //const profileResponse = await getUserProfile();
-
-            //console.log(">>profileResponse", profileResponse);
-            // Clean fields
-            //e.currentTarget.reset();
-            // Will open a modal
+            router.push(`${ROUTES.MY_PROFILE}/${apiResponse.talent_id}`);
         } else {
             setIsApiLoading(false);
             setErrorMessage(apiResponse.message);
