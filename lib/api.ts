@@ -143,6 +143,23 @@ export const createTalent = async (data: ComingSoonEmailType) => {
     }
 };
 
+export const getTalent = async (id: string) => {
+    const response = await fetch(`https://admin.insyncx.co/wp-json/wp/v2/talents/${id}?acf_format=standard`)
+
+    if (!response.ok) {
+        throw new Error('failed to fetch talent')
+    }
+
+    const talent = await response.json();
+    const cleanTalents = {
+        ...talent.acf,
+        id: talent.id,
+        status: talent.status
+    };
+
+    return cleanTalents;
+};
+
 export const createClient = async (data: ComingSoonEmailType) => {
     const response = await fetch('/api/clients', {
         method: 'POST',
