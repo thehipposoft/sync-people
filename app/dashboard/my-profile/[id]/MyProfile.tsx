@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { TalentTypeAcf } from '@/types';
 import { getAge } from '@/lib/utils';
 import { renderSocialMediaIcon } from '@/lib/utils';
+import { ROUTES } from '@/app/constants';
 
 type MyProfileProps = {
     user: TalentTypeAcf;
@@ -15,7 +16,7 @@ const MyProfile = ({
 }:MyProfileProps) => {
     return (
         <div className='flex flex-col md:w-full'>
-            <div className='bg-white md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
+            <div className=''>
                 <div className='border rounded-2xl md:w-[900px] mx-auto bg-white'>
                     <div className='relative flex flex-col'>
                         <Image
@@ -231,10 +232,13 @@ const MyProfile = ({
                     </div>
                 </div>
             </div>
-            <div className='flex mb-8 pb-8 justify-end flex-wrap gap-4 md:gap-6 md:mb-0 w-[80vw] md:w-[900px] mx-auto'>
-                <button className='primary-btn w-fit md:w-auto px-12'>
+            <div className='mb-8 pb-8 md:mb-0 ml-auto mt-6'>
+                <Link
+                    href={`/${ROUTES.MY_PROFILE}/${user.id}/update-profile`}
+                    className='primary-btn '
+                >
                     Edit Profile
-                </button>
+                </Link>
             </div>
         </div>
     );

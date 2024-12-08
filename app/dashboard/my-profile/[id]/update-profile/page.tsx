@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import MyProfile from "./MyProfile";
 import { getTalent } from "@/lib/api";
 import { TalentTypeAcf } from "@/types";
 import PrivateLayout from "@/components/PrivateLayout";
+import ProfileForm from "./ProfileForm";
 
 type MetadataPropsType = {
     params: {
@@ -15,12 +15,12 @@ export async function generateMetadata({ params }: MetadataPropsType): Promise<M
 
     if(userData) {
         return {
-            title: `${userData.personal_information.first_name} | Talent Portal`,
+            title: `${userData.personal_information.first_name} | Update Profile`,
         }
     };
 
     return {
-        title: 'Insyncx - Talent Portal',
+        title: 'Insyncx - Update Profile',
     }
 };
 
@@ -38,11 +38,7 @@ const MyProfilePage = async ({ params }: Props) => {
         <PrivateLayout
             user={userData}
         >
-            <div className="flex">
-                <div className="flex flex-col w-full">
-                    <MyProfile user={userData} />
-                </div>
-            </div>
+            <ProfileForm userData={userData} />
         </PrivateLayout>
     )
 };

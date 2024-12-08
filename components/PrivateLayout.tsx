@@ -3,6 +3,7 @@ import SideNav from "./SideNav";
 import Link from "next/link";
 import { ROUTES } from "@/app/constants";
 import { TalentTypeAcf } from '@/types';
+import Footer from "@/components/Footer";
 
 type Props = {
     children: React.ReactNode;
@@ -40,7 +41,10 @@ const PrivateLayout = ({
 
                     </div>
                 </div>
-                {children}
+                <div className='bg-white md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
+                    {children}
+                </div>
+                <Footer />
             </div>
         </div>
     )
