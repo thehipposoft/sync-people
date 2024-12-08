@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import MyProfile from "./MyProfile";
-import SideNav from "@/components/SideNav";
 import { getTalent } from "@/lib/api";
 import { TalentTypeAcf } from "@/types";
+import PrivateLayout from "@/components/PrivateLayout";
 
 type MetadataPropsType = {
     params: {
@@ -13,7 +13,6 @@ type MetadataPropsType = {
 
 export async function generateMetadata({ params }: MetadataPropsType): Promise<Metadata> {
     const userData:TalentTypeAcf = await getTalent(params.id);
-    console.log(">>userData", userData);
 
     if(userData) {
         return {
@@ -36,16 +35,17 @@ const MyProfilePage = async ({ params }: Props) => {
     const { id } = params;
     const userData:TalentTypeAcf = await getTalent(id);
 
-    return(
-        <div className="flex">
-            <SideNav />
-            <div className="flex flex-col w-full">
-                <MyProfile
-                    user={userData}
-                />
-                <Footer />
+    return (
+        <PrivateLayout
+            user={userData}
+        >
+            <div className="flex">
+                <div className="flex flex-col w-full">
+                    <MyProfile user={userData} />
+                    <Footer />
+                </div>
             </div>
-        </div>
+        </PrivateLayout>
     )
 };
 

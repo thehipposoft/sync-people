@@ -3,7 +3,6 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { TalentTypeAcf } from '@/types';
-import { ROUTES } from '@/app/constants';
 import { getAge } from '@/lib/utils';
 import { renderSocialMediaIcon } from '@/lib/utils';
 
@@ -16,26 +15,6 @@ const MyProfile = ({
 }:MyProfileProps) => {
     return (
         <div className='flex flex-col md:w-full'>
-            <div className='flex justify-between items-center px-8 py-2 w-full bg-white'>
-                <Link href={ROUTES.HOME} className='hidden md:block'>
-                    <Image src={'/assets/logo.svg'} alt='Insyncx logo' width={180} height={140} />
-                </Link>
-                <div className='flex justify-end gap-6 py-1'>
-                    <Link href={'/training-and-licenses'} className='green-btn'>
-                        Training and Licenses
-                    </Link>
-                    <Link href={'/business-market'} className='green-btn'>
-                        Search Jobs
-                    </Link>
-                    <Image
-                        src={"/assets/images/cv.png"}
-                        alt='Profile picture'
-                        className='rounded-full'
-                        width={40}
-                        height={40}
-                    />
-                </div>
-            </div>
             <div className='bg-white md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
                 <div className='border rounded-2xl md:w-[900px] mx-auto bg-white'>
                     <div className='relative flex flex-col'>

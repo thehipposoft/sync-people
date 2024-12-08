@@ -10,6 +10,7 @@ export type IndustryType = {
 };
 
 export type TalentTypeAcf = {
+    id: number;
     personal_information: {
         first_name: string;
         last_name: string;
