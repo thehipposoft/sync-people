@@ -15,5 +15,6 @@ export const ROUTES = {
     SIGN_UP: '/sign-up',
     TERMS: '/terms',
     PRIVACY_POLICY: '/privacy-policy',
-    MY_PROFILE: '/my-profile',
+    //Private routes
+    MY_PROFILE: 'dashboard/my-profile',
 }

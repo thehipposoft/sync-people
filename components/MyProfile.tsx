@@ -1,8 +1,15 @@
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import { TalentTypeAcf } from '@/types';
 
-const MyProfile = ({ user }:any) => {
+type MyProfileProps = {
+    user: any;
+}
+
+const MyProfile = ({
+    user
+}:MyProfileProps) => {
     return (
         <div className='flex'>
             <div className='flex flex-col md:w-full'>
