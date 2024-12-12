@@ -11,6 +11,237 @@ type Props = {
 const ProfileForm = ({
     userData,
 }:Props) => {
+    const [selectedTab, setSelectedTab] = useState<'personal' | 'professional' | 'experience' | 'extras'>('personal');
+    const [formValues, setFormValues] = useState<TalentTypeAcf>({
+        ...userData,
+    });
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+
+        setFormValues((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleTabChange = (tab: 'personal' | 'professional' | 'experience' | 'extras') => {
+        setSelectedTab(tab);
+    };
+
+    console.log(">>formValues", formValues);
+
+    const renderTabContent = () => {
+        switch(selectedTab) {
+            case 'personal':
+                return (
+                    <form className='grid grid-cols-2 gap-4'>
+                       <div className=''>
+                            <label htmlFor="name" className="block pb-2">First Name:</label>
+                            <input
+                                type="text"
+                                id="personal_information.first_name"
+                                name="personal_information.first_name"
+                                required
+                                value={formValues.personal_information.first_name}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className=''>
+                            <label htmlFor="name" className="block pb-2">Last Name:</label>
+                            <input
+                                type="text"
+                                id="personal_information.last_name"
+                                name="personal_information.last_name"
+                                required
+                                value={formValues.personal_information.last_name}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className=''>
+                            <label htmlFor="email" className="block pb-2">Email:</label>
+                            <input
+                                type="email"
+                                id="personal_information.email"
+                                name="personal_information.email"
+                                required
+                                value={formValues.personal_information.email}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className=''>
+                            <label htmlFor="mobile" className="block pb-2">Mobile:</label>
+                            <input
+                                type="tel"
+                                id="personal_information.mobile"
+                                name="personal_information.mobile"
+                                required
+                                value={formValues.personal_information.mobile}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className=''>
+                            <label htmlFor="date_of_birth" className="block pb-2">Date of Birth:</label>
+                            <input
+                                type="date"
+                                id="personal_information.date_of_birth"
+                                name="personal_information.date_of_birth"
+                                required
+                                value={formValues.personal_information.date_of_birth}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className=''>
+                            <label htmlFor="country" className="block pb-2">Country:</label>
+                            <input
+                                type="text"
+                                id="personal_information.country"
+                                name="personal_information.country"
+                                required
+                                value={formValues.personal_information.country}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                    </form>
+                );
+            case 'professional':
+                return (
+                    <form className='grid grid-cols-2 gap-4'>
+                        <div className=''>
+                            <label htmlFor="current_status" className="block pb-2">Current Status:</label>
+                            <input
+                                type="text"
+                                id="professional_information.current_status"
+                                name="professional_information.current_status"
+                                required
+                                value={formValues.professional_information.current_status}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className=''>
+                            <label htmlFor="work_preference" className="block pb-2">Work Preference:</label>
+                            <input
+                                type="text"
+                                id="professional_information.work_preference"
+                                name="professional_information.work_preference"
+                                required
+                                value={formValues.professional_information.work_preference}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        Industries
+                    </form>
+                );
+            case 'experience':
+                return (
+                    <form className='grid grid-cols-2 gap-4'>
+                        Experience
+                    </form>
+                );
+            case 'extras':
+                return (
+                    <form className='grid grid-cols-2 gap-4'>
+                        <div className=''>
+                            <label htmlFor="level_of_english" className="block pb-2">Level of English:</label>
+                            <input
+                                type="text"
+                                id="extras.level_of_english"
+                                name="extras.level_of_english"
+                                required
+                                value={formValues.extras.level_of_english}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className=''>
+                            <label htmlFor="prefered_language" className="block pb-2">Prefered Language:</label>
+                            <input
+                                type="text"
+                                id="extras.prefered_language"
+                                name="extras.prefered_language"
+                                required
+                                value={formValues.extras.prefered_language}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className=''>
+                            <label htmlFor="other_languages" className="block pb-2">Other Languages:</label>
+                            <input
+                                type="text"
+                                id="extras.other_languages"
+                                name="extras.other_languages"
+                                required
+                                value={formValues.extras.other_languages}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className=''>
+                            <label htmlFor="more_about_myself" className="block pb-2">More About Myself:</label>
+                            <input
+                                type="text"
+                                id="extras.more_about_myself"
+                                name="extras.more_about_myself"
+                                required
+                                value={formValues.extras.more_about_myself}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className=''>
+                            <label htmlFor="education_level" className="block pb-2">Education Level:</label>
+                            <input
+                                type="text"
+                                id="extras.education_level"
+                                name="extras.education_level"
+                                required
+                                value={formValues.extras.education_level}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className=''>
+                            <label htmlFor="transport" className="block pb-2">Transport:</label>
+                            <input
+                                type="text"
+                                id="extras.transport"
+                                name="extras.transport"
+                                required
+                                value={formValues.extras.transport}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className=''>
+                            <label htmlFor="presentation_video" className="block pb-2">Presentation Video:</label>
+                            <input
+                                type="text"
+                                id="extras.presentation_video"
+                                name="extras.presentation_video"
+                                required
+                                value={formValues.extras.presentation_video}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                    </form>
+                );
+            default:
+                return (
+                    <form>
+
+                    </form>
+                );
+            };
+    };
+
     return (
         <div>
             <div className='flex flex-col md:w-full'>
@@ -21,21 +252,56 @@ const ProfileForm = ({
                                 Update Profile
                             </h1>
                         </div>
-                        <div className='flex md:gap-80 md:w-[850px] mx-auto'>
+                        <div className='flex gap-10 md:w-[850px] mx-auto items-center'>
                             <div className='pt-4 md:pl-2'>
-                                <Image src={'/assets/images/cv.png'} alt='Profile picture' width={160} height={160} className='ml-6 mt-4 md:w-[150px] w-36'/>
+                                <Image
+                                    src={userData.personal_information.profile_pic}
+                                    alt={`${userData.personal_information.first_name} ${userData.personal_information.last_name}`}
+                                    width={160} height={160}
+                                    className='ml-6 mt-4 md:w-[150px] w-36 rounded-full'
+                                />
                             </div>
-                            <div className='hidden flex-col gap-1 text-center items-center pt-8 pr-8'>
-                                <Image src={'/assets/images/profileStrength.png'} alt='percentage of strength' width={140} height={120} />
-                                <p className='h-bold'>Profile Strength</p>
-                                <p>Want to stand out?</p>
-                                <button className='text-[#326B88] border rounded-3xl border-[#326B88] md:px-6 px-2 py-1 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Go Premium!</button>
-                            </div>
+                            <textarea
+                                rows={4}
+                                className='flex w-full border p-2'
+                            >
+                                {formValues.extras.more_about_myself}
+                            </textarea>
                         </div>
 
-                        <form className='md:flex overflow-hidden'>
+                        <div>
+                            <ul className='flex justify-between my-6'>
+                                <li
+                                    className={`px-4 pb-3 cursor-pointer transition-all ${selectedTab === 'personal' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
+                                    onClick={() => handleTabChange('personal')}
+                                >
+                                    Personal Information
+                                </li>
+                                <li
+                                    className={`px-4 cursor-pointer transition-all ${selectedTab === 'professional' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
+                                    onClick={() => handleTabChange('professional')}
+                                >
+                                    Professional Information
+                                </li>
+                                <li
+                                    className={`px-4 cursor-pointer transition-all ${selectedTab === 'experience' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
+                                    onClick={() => handleTabChange('experience')}
+                                >
+                                    Work Experience
+                                </li>
+                                <li
+                                    className={`px-4 cursor-pointer transition-all ${selectedTab === 'extras' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
+                                    onClick={() => handleTabChange('extras')}
+                                >
+                                    Extras
+                                </li>
+                            </ul>
+                        </div>
 
-                        </form>
+                        <div>
+                            {renderTabContent()}
+                        </div>
+
                         <div className='md:flex hidden gap-6 justify-center py-6'></div>
                         <div className='flex md:hidden justify-center my-8'>
                             <Link

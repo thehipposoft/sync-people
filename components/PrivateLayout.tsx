@@ -41,7 +41,7 @@ const PrivateLayout = ({
 
                     </div>
                 </div>
-                <div className='bg-white md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
+                <div className='bg-white md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8 flex-grow'>
                     {children}
                 </div>
                 <Footer />
