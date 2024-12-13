@@ -29,8 +29,6 @@ const ProfileForm = ({
         setSelectedTab(tab);
     };
 
-    console.log(">>formValues", formValues);
-
     const renderTabContent = () => {
         switch(selectedTab) {
             case 'personal':

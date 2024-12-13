@@ -1,5 +1,5 @@
 export type IndustryType = {
-    industry: string;
+    industry: IndustriesAvailable;
     other_industry: string;
     preferred_salary: string;
     rol: string;
@@ -8,6 +8,8 @@ export type IndustryType = {
         name: string;
     }[];
 };
+
+type IndustriesAvailable = 'construction' | 'cleaning' | 'warehousing' | 'logistics' | 'farming' | 'hospitality' | 'retail' | 'age_care';
 
 export type TalentTypeAcf = {
     id: number;
