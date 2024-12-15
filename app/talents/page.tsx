@@ -1,19 +1,23 @@
 import type { Metadata } from 'next';
 import PublicLayout from "@/components/PublicLayout";
+import TalentsList from './TalentsList';
+import getTalents from '@/api/getTalents';
 
 export const metadata: Metadata = {
-    title: "Insyncx | Talents",
-    description: "Connecting talents with opportunities",
+    title: "Insyncx | Talents list",
+    description: "Check out our list of talents",
 };
 
-const TradieProfilePage = () => {
+const TalentsListPage = async () => {
+    const talents = await getTalents();
+
 	return (
 		<PublicLayout>
-            <div>
-                Talent Page
-            </div>
+            <TalentsList
+                talentsList={talents}
+            />
 		</PublicLayout>
 	);
 };
 
-export default TradieProfilePage;
+export default TalentsListPage;

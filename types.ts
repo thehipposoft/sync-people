@@ -48,7 +48,7 @@ export type TalentTypeAcf = {
         other_languages: string;
         more_about_myself: string;
         education_level: string;
-        other_credentials: {
+        other_credentials?: {
             certificate: string;
             name: string;
         }[];

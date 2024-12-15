@@ -200,7 +200,7 @@ const MyProfile = ({
                             Other Credentials
                         </h2>
                         {
-                            user.extras.other_credentials.map((credential, index) => (
+                            user.extras.other_credentials && user.extras.other_credentials.map((credential, index) => (
                                 <div key={index}>
                                     <p className='capitalize'>
                                         {credential.certificate}
@@ -220,15 +220,13 @@ const MyProfile = ({
                             {
                                 user.extras.social_media_links.map((link, index) => (
                                     <div key={index}>
-                                            <Link href={link.url} target='_blank' className='underline'>
-                                                {renderSocialMediaIcon(link.platform)}
-                                            </Link>
-
+                                        <Link href={link.url} target='_blank' className='underline'>
+                                            {renderSocialMediaIcon(link.platform)}
+                                        </Link>
                                     </div>
                                 ))
                             }
                         </div>
-
                     </div>
                 </div>
             </div>

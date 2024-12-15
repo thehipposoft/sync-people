@@ -17,6 +17,7 @@ const config: Config = {
             'bg-primary': '#FAFAFB',
             'primary-text': '#1A335D',
             'purple': '#7052E5',
+            'green' : '#0095A9',
         },
         fontFamily: {
             "regular": ['var(--font-poppins-regular)'],

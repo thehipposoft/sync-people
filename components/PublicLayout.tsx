@@ -7,7 +7,7 @@ type PublicLayoutProps = {
 
 const PublicLayout = ({ children }:PublicLayoutProps) => {
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen bg-bg-primary">
             <Header isFixed={false} />
                 <div className="md:w-[1250px] flex justify-between items-center mx-auto flex-grow">
                     {children}

@@ -3,7 +3,6 @@ import SearchComponent from "@/components/Search";
 import SideNav from "@/components/SideNav";
 import { STAFF_RESULTS } from "@/components//Search/constants"
 
-
 export default function StaffMarketPage() {
     return(
         <div className="flex">

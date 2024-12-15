@@ -26,10 +26,10 @@ const TalentProfile = ({
 
     return (
         <div className='flex flex-col md:w-full'>
-            <div className='bg-white md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
+            <div className='md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
                 <div
                     ref={pdfRef}
-                    className='border rounded-2xl'
+                    className='border rounded-2xl bg-white'
                 >
                     <div className='relative flex flex-col mx-auto md:w-[900px] bg-white'>
                         <div className='relative h-[10rem] md:w-[900px] w-[80vw]'>
@@ -41,13 +41,13 @@ const TalentProfile = ({
                             />
                         </div>
                         <div className='relative flex flex-col justify-between md:px-12 px-6 py-6'>
-                            <div className='flex md:gap-4 flex-col md:flex-row'>
+                            <div className='flex md:gap-4 flex-col md:flex-row mb-2'>
                                 <Image
-                                    src={talentData.personal_information.profile_pic}
+                                    src={talentData.personal_information.profile_pic ? talentData.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
                                     alt={`Profile picture for ${talentData.personal_information.first_name}`}
                                     width={140}
                                     height={140}
-                                    className='rounded-full border-[6px] border-white relative -top-14'
+                                    className='rounded-full border-[6px] border-white relative -top-14 w-36 h-36'
                                 />
                                 <p className='relative -top-10 md:top-0'>
                                     {talentData.extras.more_about_myself}
@@ -174,7 +174,7 @@ const TalentProfile = ({
                             Other Credentials
                         </h2>
                         {
-                            talentData.extras.other_credentials.map((credential, index) => (
+                            talentData.extras.other_credentials && talentData.extras.other_credentials.map((credential, index) => (
                                 <div key={index}>
                                     <p className='capitalize'>
                                         {credential.certificate}
@@ -186,15 +186,6 @@ const TalentProfile = ({
                             ))
                         }
                     </div>
-                </div>
-
-                <div className='hidden flex-col my-4 gap-4'>
-                    <Image src={'/assets/images/publicity/ads-1.png'} alt='' width={200} height={150} />
-                    <Image src={'/assets/images/publicity/ads-2.png'} alt='' width={200} height={150} />
-                    <Image src={'/assets/images/publicity/ads-3.png'} alt='' width={200} height={150} />
-                    <Image src={'/assets/images/publicity/ads-4.png'} alt='' width={200} height={150} />
-                    <Image src={'/assets/images/publicity/ads-5.png'} alt='' width={200} height={150} />
-                    <Image src={'/assets/images/publicity/ads-6.png'} alt='' width={200} height={150} />
                 </div>
             </div>
             <div className='flex pb-8 justify-end flex-wrap gap-4 md:gap-6 md:mb-0 w-[80vw] md:w-[900px] mx-auto'>
