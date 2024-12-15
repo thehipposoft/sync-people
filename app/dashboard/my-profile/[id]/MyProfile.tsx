@@ -124,29 +124,61 @@ const MyProfile = ({
                         <h2 className='text-xl pb-4 font-bold'>
                             My Industries
                         </h2>
-                        {
-                            user.professional_information.industries.map((industry, index) => (
-                                <div key={index} className=''>
-                                    <h2 className='capitalize mb-1 text-xl'>
-                                        {industry.industry}
-                                    </h2>
-                                    <p className='mb-2'>
-                                        Certificates / Licenses
-                                    </p>
-                                    <ul>
+                        <div className='flex flex-col gap-4'>
+                            {
+                                user.professional_information.industries.map((industry, index) => (
+                                    <div key={index}>
+                                        <h2 className='capitalize mb-1 text-xl underline'>
+                                            {industry.industry}
+                                        </h2>
                                         {
-                                            industry.certificates.map((certificate, index) => (
-                                                <li key={index}>
-                                                    <Link href={certificate.certificate} target='_blank' className='underline'>
-                                                        {certificate.name}
-                                                    </Link>
-                                                </li>
-                                            ))
+                                            industry.certificates
+                                            ? (
+                                                <div>
+                                                    <p className=''>
+                                                        Certificates / Licenses
+                                                    </p>
+                                                    <ul>
+                                                        {
+                                                            industry.certificates.map((certificate, index) => (
+                                                                <li key={index}>
+                                                                    <Link
+                                                                        href={certificate.certificate} target='_blank'
+                                                                        className='underline flex gap-1 items-center'
+                                                                    >
+                                                                        {certificate.name}
+                                                                        <svg
+                                                                            fill="#000000"
+                                                                            viewBox="0 0 52 52"
+                                                                            enable-background="new 0 0 52 52"
+                                                                            width={12}
+                                                                            height={12}
+                                                                        >
+                                                                            <g>
+                                                                                <path d="M48.7,2H29.6C28.8,2,28,2.5,28,3.3v3C28,7.1,28.7,8,29.6,8h7.9c0.9,0,1.4,1,0.7,1.6l-17,17 c-0.6,0.6-0.6,1.5,0,2.1l2.1,2.1c0.6,0.6,1.5,0.6,2.1,0l17-17c0.6-0.6,1.6-0.2,1.6,0.7v7.9c0,0.8,0.8,1.7,1.6,1.7h2.9 c0.8,0,1.5-0.9,1.5-1.7v-19C50,2.5,49.5,2,48.7,2z"></path>
+                                                                                <path d="M36.3,25.5L32.9,29c-0.6,0.6-0.9,1.3-0.9,2.1v11.4c0,0.8-0.7,1.5-1.5,1.5h-21C8.7,44,8,43.3,8,42.5v-21 C8,20.7,8.7,20,9.5,20H21c0.8,0,1.6-0.3,2.1-0.9l3.4-3.4c0.6-0.6,0.2-1.7-0.7-1.7H6c-2.2,0-4,1.8-4,4v28c0,2.2,1.8,4,4,4h28 c2.2,0,4-1.8,4-4V26.2C38,25.3,36.9,24.9,36.3,25.5z"></path>
+                                                                            </g>
+                                                                        </svg>
+                                                                    </Link>
+                                                                </li>
+                                                            ))
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            )
+                                            : null
                                         }
-                                    </ul>
-                                </div>
-                            ))
-                        }
+                                        <p className='capitalize mt-2'>
+                                            Position: {industry.rol}
+                                        </p>
+                                        <p className='mt-2'>
+                                            Preferred Salary: ${industry.preferred_salary}
+                                        </p>
+                                    </div>
+                                ))
+                            }
+                        </div>
+
                     </div>
                     <div className='flex flex-col my-4 bg-white md:px-12 px-6 py-6 border-t'>
                         <h2 className='text-2xl pb-4 font-bold'>

@@ -130,7 +130,7 @@ const TalentProfile = ({
                         </h2>
                         {
                             talentData.work_experience.experience.map((experience, index) => (
-                                <div key={index} className='flex flex-col'>
+                                <div key={index} className='flex flex-col mb-3'>
                                     <h2 className='text-xl mb-2'>
                                         {experience.rol}
                                     </h2>
