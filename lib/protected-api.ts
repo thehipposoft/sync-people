@@ -16,8 +16,8 @@ export const api = async ({
     body,
     token,
 }: ApiType) => {
-    //const apiURL = 'https://admin.insyncx.co/wp-json/wp/v2/';
-    const baseURL = 'https://admin.insyncx.co/wp-json/wp/v2';
+    //const apiURL = 'https://admin.insyncx.com/wp-json/wp/v2/';
+    const baseURL = 'https://admin.insyncx.com/wp-json/wp/v2';
     const accessToken = token ? token : await getToken();
 
     //console.log(">>accessToken", accessToken);

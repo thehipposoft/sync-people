@@ -67,7 +67,7 @@ export const sendComingSoonEmail = async (data: ComingSoonEmailType) => {
 };
 
 export const getJWTToken = async (email?: string, password?: string) => {
-    const response = await fetch('https://admin.insyncx.co/wp-json/jwt-auth/v1/token', {
+    const response = await fetch('https://admin.insyncx.com/wp-json/jwt-auth/v1/token', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ export const createTalent = async (data: ComingSoonEmailType) => {
 };
 
 export const getTalent = async (id: string) => {
-    const response = await fetch(`https://admin.insyncx.co/wp-json/wp/v2/talents/${id}?acf_format=standard`)
+    const response = await fetch(`https://admin.insyncx.com/wp-json/wp/v2/talents/${id}?acf_format=standard`)
 
     if (!response.ok) {
         throw new Error('failed to fetch talent')

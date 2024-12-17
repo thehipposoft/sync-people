@@ -27,7 +27,7 @@ function ContactForm() {
     e.preventDefault();
 
     apiFetch({
-      path: 'https://admin.insyncx.co/wp-json/wp/v2/talent/',
+      path: 'https://admin.insyncx.com/wp-json/wp/v2/talent/',
       method: 'POST',
       data: JSON.stringify(formData),
   },)

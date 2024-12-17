@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
         { status: 500 });
     }
 
-    const response = await fetch('https://admin.insyncx.co/wp-json/wp/v2/talents', {
+    const response = await fetch('https://admin.insyncx.com/wp-json/wp/v2/talents', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
         { status: response.status });
     }
 
-    const userResponse = await fetch('https://admin.insyncx.co/wp-json/wp/v2/users', {
+    const userResponse = await fetch('https://admin.insyncx.com/wp-json/wp/v2/users', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,

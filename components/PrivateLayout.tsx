@@ -23,11 +23,11 @@ const PrivateLayout = ({
                         <Image src={'/assets/logo.svg'} alt='Insyncx logo' width={180} height={140} />
                     </Link>
                     <div className='flex justify-end gap-6 py-1'>
-                        <Link href={'/training-and-licenses'} className='green-btn'>
+                        <Link href={'/training-and-licenses'} className='green-btn hidden'>
                             Training and Licenses
                         </Link>
-                        <Link href={'/business-market'} className='green-btn'>
-                            Search Jobs
+                        <Link href={`/talents/${user.id}`} className='green-btn'>
+                            View Public Profile
                         </Link>
                         <Link href={`/${ROUTES.MY_PROFILE}/${user.id}`}>
                             <Image

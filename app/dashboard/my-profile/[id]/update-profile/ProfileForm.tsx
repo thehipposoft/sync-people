@@ -16,13 +16,21 @@ const ProfileForm = ({
         ...userData,
     });
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+    const handleInputChange = (
+        e: React.ChangeEvent<HTMLInputElement>,
+        section: 'personal_information' | 'professional_information' | 'working_rights' | 'current_location' | 'extras',
+        field: string
+    ) => {
+        const { value } = e.target;
 
-        setFormValues((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
+        setFormValues({
+            ...formValues,
+            [section]: {
+                ...formValues[section],
+                [field]: value,
+            },
+        });
+
     };
 
     const handleTabChange = (tab: 'personal' | 'professional' | 'experience' | 'extras') => {
@@ -42,7 +50,7 @@ const ProfileForm = ({
                                 name="personal_information.first_name"
                                 required
                                 value={formValues.personal_information.first_name}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'personal_information', 'first_name')}
                             />
                         </div>
 
@@ -54,7 +62,7 @@ const ProfileForm = ({
                                 name="personal_information.last_name"
                                 required
                                 value={formValues.personal_information.last_name}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'personal_information', 'last_name')}
                             />
                         </div>
 
@@ -66,7 +74,7 @@ const ProfileForm = ({
                                 name="personal_information.email"
                                 required
                                 value={formValues.personal_information.email}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'personal_information', 'email')}
                             />
                         </div>
 
@@ -78,7 +86,7 @@ const ProfileForm = ({
                                 name="personal_information.mobile"
                                 required
                                 value={formValues.personal_information.mobile}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'personal_information', 'mobile')}
                             />
                         </div>
 
@@ -90,7 +98,7 @@ const ProfileForm = ({
                                 name="personal_information.date_of_birth"
                                 required
                                 value={formValues.personal_information.date_of_birth}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'personal_information', 'date_of_birth')}
                             />
                         </div>
 
@@ -102,7 +110,7 @@ const ProfileForm = ({
                                 name="personal_information.country"
                                 required
                                 value={formValues.personal_information.country}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'personal_information', 'country')}
                             />
                         </div>
                     </form>
@@ -118,7 +126,7 @@ const ProfileForm = ({
                                 name="professional_information.current_status"
                                 required
                                 value={formValues.professional_information.current_status}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'professional_information', 'current_status')}
                             />
                         </div>
 
@@ -130,11 +138,30 @@ const ProfileForm = ({
                                 name="professional_information.work_preference"
                                 required
                                 value={formValues.professional_information.work_preference}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'professional_information', 'work_preference')}
                             />
                         </div>
 
-                        Industries
+                        <div>
+                            <p>Industries:</p>
+                            <div className='flex flex-col gap-3'>
+                                {
+                                    formValues.professional_information.industries.map((industry, index) => (
+                                        <div key={index} className=''>
+                                            <input
+                                                type="text"
+                                                id={`professional_information.industries[${index}]`}
+                                                name={`professional_information.industries[${index}]`}
+                                                required
+                                                value={industry.industry}
+                                                onChange={(e) => handleInputChange(e, 'professional_information', 'industries')}
+                                            />
+                                        </div>
+                                    ))
+                                }
+                            </div>
+
+                        </div>
                     </form>
                 );
             case 'experience':
@@ -154,19 +181,19 @@ const ProfileForm = ({
                                 name="extras.level_of_english"
                                 required
                                 value={formValues.extras.level_of_english}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'extras', 'level_of_english')}
                             />
                         </div>
 
                         <div className=''>
-                            <label htmlFor="prefered_language" className="block pb-2">Prefered Language:</label>
+                            <label htmlFor="prefered_language" className="block pb-2">Preferred Language:</label>
                             <input
                                 type="text"
                                 id="extras.prefered_language"
                                 name="extras.prefered_language"
                                 required
                                 value={formValues.extras.prefered_language}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'extras', 'prefered_language')}
                             />
                         </div>
 
@@ -178,7 +205,7 @@ const ProfileForm = ({
                                 name="extras.other_languages"
                                 required
                                 value={formValues.extras.other_languages}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'extras', 'other_languages')}
                             />
                         </div>
 
@@ -190,7 +217,7 @@ const ProfileForm = ({
                                 name="extras.more_about_myself"
                                 required
                                 value={formValues.extras.more_about_myself}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'extras', 'more_about_myself')}
                             />
                         </div>
 
@@ -202,7 +229,7 @@ const ProfileForm = ({
                                 name="extras.education_level"
                                 required
                                 value={formValues.extras.education_level}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'extras', 'education_level')}
                             />
                         </div>
 
@@ -214,7 +241,7 @@ const ProfileForm = ({
                                 name="extras.transport"
                                 required
                                 value={formValues.extras.transport}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'extras', 'transport')}
                             />
                         </div>
 
@@ -226,7 +253,7 @@ const ProfileForm = ({
                                 name="extras.presentation_video"
                                 required
                                 value={formValues.extras.presentation_video}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e, 'extras', 'presentation_video')}
                             />
                         </div>
                     </form>

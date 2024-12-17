@@ -151,6 +151,18 @@ const TalentProfile = ({
                         <p className='capitalize'>
                             {talentData.extras.level_of_english}
                         </p>
+                        {
+                            talentData.extras.transport && (
+                                <div>
+                                    <h2 className='text-lg mt-2'>
+                                        Own Transport
+                                    </h2>
+                                    <p className='capitalize'>
+                                        {talentData.extras.transport}
+                                    </p>
+                                </div>
+                            )
+                        }
                         <h2 className='text-lg mt-2'>
                             Languages
                         </h2>
@@ -166,7 +178,6 @@ const TalentProfile = ({
                         <h2 className='text-lg mt-2 hidden'>
                             Presentation video
                         </h2>
-
                         <Link href={talentData.extras.presentation_video} target='_blank' className='underline hidden'>
                             {talentData.extras.presentation_video}
                         </Link>

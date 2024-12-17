@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
         status: 'publish',
     });
 
-    const response = await fetch('https://admin.insyncx.co/wp-json/wp/v2/clients', {
+    const response = await fetch('https://admin.insyncx.com/wp-json/wp/v2/clients', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,
