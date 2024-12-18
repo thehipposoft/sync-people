@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { TalentTypeAcf, IndustryType } from '@/types';
 import { INDUSTRIES_BANNER } from '@/app/constants';
-import generatePDF from 'react-to-pdf';
+import generatePDF, { Resolution, Margin } from 'react-to-pdf';
 
 type TalentProfileProps = {
     talentData: TalentTypeAcf;
@@ -18,9 +18,12 @@ const TalentProfile = ({
 
     const downloadPDF = () => {
         generatePDF(pdfRef, {
-          method: "save",
-          filename: `invoice-${talentData.personal_information.first_name}-${selectedIndustry.industry}`,
-          page: { margin: 5 },
+            method: "save",
+            filename: `Insyncx-${talentData.personal_information.first_name}-${selectedIndustry.industry}`,
+            page: {
+                margin: Margin.SMALL,
+            },
+            resolution: Resolution.HIGH,
         });
     };
 
@@ -32,24 +35,25 @@ const TalentProfile = ({
                     className='border rounded-2xl bg-white'
                 >
                     <div className='relative flex flex-col mx-auto md:w-[900px] bg-white'>
-                        <div className='relative h-[10rem] md:w-[900px] w-[80vw]'>
+                        <div className='relative h-[7rem] md:h-[10rem] md:w-[900px] w-[80vw]'>
                             <Image
                                 src={INDUSTRIES_BANNER[selectedIndustry.industry]}
                                 alt={`Banner for ${talentData.personal_information.first_name}`}
-                                fill
-                                className='object-cover rounded-t-2xl object-center'
+                                width={900}
+                                height={200}
+                                className='object-cover rounded-t-2xl object-center max-h-[7rem] md:max-h-[10rem] w-full'
                             />
                         </div>
                         <div className='relative flex flex-col justify-between md:px-12 px-6 py-6'>
-                            <div className='flex md:gap-4 flex-col md:flex-row mb-2'>
+                            <div className='flex md:gap-4 flex-col md:flex-row relative mb-4'>
                                 <Image
                                     src={talentData.personal_information.profile_pic ? talentData.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
                                     alt={`Profile picture for ${talentData.personal_information.first_name}`}
                                     width={140}
                                     height={140}
-                                    className='rounded-full border-[6px] border-white relative -top-14 w-36 h-36'
+                                    className='rounded-full border-[6px] border-white -top-[4rem] md:-top-[6rem] w-36 h-36 relative md:absolute'
                                 />
-                                <p className='relative -top-10 md:top-0'>
+                                <p className='relative -top-10 md:top-0 md:pl-[10rem]'>
                                     {talentData.extras.more_about_myself}
                                 </p>
                             </div>
@@ -201,16 +205,16 @@ const TalentProfile = ({
             </div>
             <div className='flex pb-8 justify-end flex-wrap gap-4 md:gap-6 md:mb-0 w-[80vw] md:w-[900px] mx-auto'>
                 <button
-                    className='primary-btn w-full md:w-auto px-8'
-                    onClick={downloadPDF}
-                >
-                    {`Connect with ${talentData.personal_information.first_name}`}
-                </button>
-                <button
                     className='secondary-btn w-full md:w-auto px-8'
                     onClick={downloadPDF}
                 >
                     Download Profile
+                </button>
+                <button
+                    className='primary-btn w-full md:w-auto px-8'
+                    onClick={downloadPDF}
+                >
+                    {`Connect with ${talentData.personal_information.first_name}`}
                 </button>
             </div>
         </div>
