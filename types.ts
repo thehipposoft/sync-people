@@ -25,8 +25,8 @@ export type TalentTypeAcf = {
     };
     professional_information: {
         industries: IndustryType[];
-        current_status: string;
-        work_preference: string;
+        current_status: 'available' | 'working' | 'offline';
+        work_preference: 'parti-time' | 'full-time' | 'casual' | 'contract' | 'internship';
     };
     working_rights: {
         visa_number: string;

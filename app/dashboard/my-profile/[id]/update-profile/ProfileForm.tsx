@@ -17,7 +17,7 @@ const ProfileForm = ({
     });
 
     const handleInputChange = (
-        e: React.ChangeEvent<HTMLInputElement>,
+        e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>,
         section: 'personal_information' | 'professional_information' | 'working_rights' | 'current_location' | 'extras',
         field: string
     ) => {
@@ -120,46 +120,110 @@ const ProfileForm = ({
                     <form className='grid grid-cols-2 gap-4'>
                         <div className=''>
                             <label htmlFor="current_status" className="block pb-2">Current Status:</label>
-                            <input
-                                type="text"
+                            <select
                                 id="professional_information.current_status"
                                 name="professional_information.current_status"
                                 required
                                 value={formValues.professional_information.current_status}
                                 onChange={(e) => handleInputChange(e, 'professional_information', 'current_status')}
-                            />
+                            >
+                                <option value="available">Available</option>
+                                <option value="working">Working</option>
+                                <option value="offline">Offline</option>
+                            </select>
                         </div>
 
                         <div className=''>
                             <label htmlFor="work_preference" className="block pb-2">Work Preference:</label>
-                            <input
-                                type="text"
+                            <select
                                 id="professional_information.work_preference"
                                 name="professional_information.work_preference"
                                 required
                                 value={formValues.professional_information.work_preference}
                                 onChange={(e) => handleInputChange(e, 'professional_information', 'work_preference')}
-                            />
+                            >
+                                <option value="part-time">Part-time</option>
+                                <option value="full-time">Full-time</option>
+                                <option value="casual">Casual</option>
+                                <option value="contract">Contract</option>
+                                <option value="internship">Internship</option>
+                            </select>
                         </div>
 
-                        <div>
+                        <div className='col-span-2 g'>
                             <p>Industries:</p>
-                            <div className='flex flex-col gap-3'>
-                                {
-                                    formValues.professional_information.industries.map((industry, index) => (
-                                        <div key={index} className=''>
+                            {
+                                formValues.professional_information.industries.map((industry, index) => (
+                                    <div key={index} className='border-b py-3 grid grid-cols-2 gap-4'>
+                                        <h3 className='capitalize mb-2 col-span-2 text-2xl'>
+                                            {industry.industry}
+                                        </h3>
+                                        <div className=''>
+                                            <label htmlFor={`professional_information.rol[${index}]`} className="block pb-2">
+                                                Rol:
+                                            </label>
                                             <input
                                                 type="text"
                                                 id={`professional_information.industries[${index}]`}
                                                 name={`professional_information.industries[${index}]`}
                                                 required
-                                                value={industry.industry}
+                                                value={industry.rol}
                                                 onChange={(e) => handleInputChange(e, 'professional_information', 'industries')}
                                             />
                                         </div>
-                                    ))
-                                }
-                            </div>
+                                        <div className=''>
+                                            <label htmlFor={`professional_information.rol[${index}]`} className="block pb-2">
+                                                Preferred salary:
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id={`professional_information.industries[${index}]`}
+                                                name={`professional_information.industries[${index}]`}
+                                                required
+                                                value={industry.preferred_salary}
+                                                onChange={(e) => handleInputChange(e, 'professional_information', 'industries')}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block pb-2">
+                                                Certificates
+                                            </label>
+                                            {
+                                                industry.certificates && industry.certificates.map((certificate, index) => (
+                                                    <div key={index} className='flex gap-3'>
+                                                        <Link
+                                                            href={certificate.certificate}
+                                                            className='underline'
+                                                            target='_blank'
+                                                        >
+                                                            {certificate.name}
+                                                        </Link>
+                                                        <button>
+                                                            <svg
+                                                                viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                width={20}
+                                                                height={20}
+                                                            >
+                                                                <g id="SVGRepo_iconCarrier">
+                                                                    <path d="M5.73708 6.54391V18.9857C5.73708 19.7449 6.35257 20.3604 7.11182 20.3604H16.8893C17.6485 20.3604 18.264 19.7449 18.264 18.9857V6.54391M2.90906 6.54391H21.0909" stroke="#1C1C1C" stroke-width="1.7" stroke-linecap="round">
+                                                                    </path>
+                                                                    <path d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6" stroke="#1C1C1C" stroke-width="1.7" stroke-linecap="round">
+                                                                    </path>
+                                                                </g>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                ))
+                                            }
+                                            <button className='primary-btn mt-3 mx-0 text-sm'>
+                                                + Add Certificate
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))
+                            }
 
                         </div>
                     </form>
