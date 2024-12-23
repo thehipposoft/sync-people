@@ -36,16 +36,14 @@ const poppinsBold = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Insyncx | Home',
-  description: 'Connecting talents with opportunities',
+    title: 'Insyncx | Home',
+    description: 'Connecting talents with opportunities',
 }
 
-export default function RootLayout({
-  children,
-}: {
+const RootLayout = async ({ children }: {
   children: React.ReactNode
-}) {
-  return (
+}) => {
+    return (
         <html lang="en">
             <body className={`${openSans.variable} ${poppinsRegular.variable} ${poppinsBold.variable}`}>
                 <GoogleAnalytics />
@@ -53,5 +51,7 @@ export default function RootLayout({
                 {children}
             </body>
         </html>
-  )
-}
+    )
+};
+
+export default RootLayout;

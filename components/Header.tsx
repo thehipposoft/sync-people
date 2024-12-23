@@ -9,19 +9,23 @@ import ComingSoonModal from './ComingSoonModal';
 
 type HeaderProps = {
     isFixed?: boolean;
+    userId?: string;
 };
 
-const Header = ({ isFixed }:HeaderProps) => {
+const Header = ({
+    isFixed,
+    userId,
+}:HeaderProps) => {
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState<boolean>(false);
 
     const toggleMenu = () => {
-        setOpenMenu(!openMenu)
+        setOpenMenu(!openMenu);
     };
 
     return (
         <div className={`${isFixed ? 'fixed' : 'sticky'} top-0 bg-white md:w-full mx-auto md:py-0 py-2 px-8 md:px-0 flex-wrap z-30 w-full`}>
-            <div className='md:w-[1250px] flex justify-between items-center  mx-auto'>
+            <div className='md:w-[1250px] flex justify-between items-center mx-auto'>
                 <Link href={ROUTES.HOME}>
                     <Image
                         src={'/assets/logo.svg'}
@@ -46,28 +50,33 @@ const Header = ({ isFixed }:HeaderProps) => {
                     <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.CONTACT}>
                         Contact
                     </Link>
-                    <div className='mx-2 hidden'>
-                        <Link
-                        href={'/courses'}>
-                            <button className='white-b py-2 px-4 rounded-xl cursor-pointer'>Training and Licenses</button>
-                        </Link>
-                    </div>
-                    <div className=''>
-                        <Link
+                    {
+                        userId
+                        ? <Link
                             className='primary-btn'
-                            href={ROUTES.SIGN_UP}
+                            href={`${ROUTES.MY_PROFILE}/${userId}`}
                         >
-                            Sign Up
+                            View Profile
                         </Link>
-                    </div>
-                    <div className='mx-2'>
-                        <Link
-                            className='secondary-btn'
-                            href={ROUTES.LOGIN}
-                        >
-                            Log In
-                        </Link>
-                    </div>
+                        : <div className='flex'>
+                            <div>
+                                <Link
+                                    className='primary-btn'
+                                    href={ROUTES.SIGN_UP}
+                                >
+                                    Sign Up
+                                </Link>
+                            </div>
+                            <div className='mx-2'>
+                                <Link
+                                    className='secondary-btn'
+                                    href={ROUTES.LOGIN}
+                                >
+                                    Log In
+                                </Link>
+                            </div>
+                        </div>
+                    }
                 </nav>
                 <SideMenu sideMenu={openMenu} closeSideMenu={toggleMenu}/>
                 <BackDrop sideMenu={openMenu} closeSideMenu={toggleMenu}/>
