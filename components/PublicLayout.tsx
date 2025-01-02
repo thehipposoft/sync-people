@@ -17,7 +17,7 @@ const PublicLayout = async ({
         <div className="flex flex-col min-h-screen bg-bg-primary">
             <Header
                 isFixed={false}
-                userId={userData?.meta.talent_id}
+                userId={userData && userData.meta && userData?.meta.talent_id}
             />
                 <div className={`${fullWith ? 'w-full' : 'md:w-[1250px]'} flex justify-between items-center mx-auto flex-grow`}>
                     {children}

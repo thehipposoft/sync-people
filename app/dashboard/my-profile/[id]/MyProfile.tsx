@@ -70,15 +70,9 @@ const MyProfile = ({
                                 <div className='flex flex-col gap-4 pt-4 '>
                                     <div>
                                         <h2 className='text-lg'>Industries of Preference</h2>
-                                        {
-                                            user.professional_information.industries.map((industry, index) => (
-                                                <div key={index}>
-                                                    <p className='capitalize'>
-                                                        {industry.industry}
-                                                    </p>
-                                                </div>
-                                            ))
-                                        }
+                                        <p className='capitalize'>
+                                            {user.professional_information.industries.map(industry => industry.industry).join(', ')}
+                                        </p>
                                     </div>
                                     {
                                         user.extras.transport && (
@@ -169,7 +163,7 @@ const MyProfile = ({
                                             : null
                                         }
                                         <p className='capitalize mt-2'>
-                                            Position: {industry.rol}
+                                            Position: {industry.position}
                                         </p>
                                         <p className='mt-2'>
                                             Preferred Salary: ${industry.preferred_salary}
@@ -185,9 +179,8 @@ const MyProfile = ({
                             Work Experience
                         </h2>
                         {
-                            user.work_experience.experience.map((experience, index) => (
+                            user.work_experience.map((experience, index) => (
                                 <div key={index} className='flex flex-col'>
-                                    <h2 className='text-xl'>{experience.rol}</h2>
                                     <h2 className='text-xl'>{experience.position}</h2>
                                     <p>{experience.company_name}</p>
                                     <p>{experience.start_date} - {experience.currently_working ? 'Current' : experience.end_date}</p>
@@ -210,9 +203,7 @@ const MyProfile = ({
                             Languages
                         </h2>
                         {
-                            user.extras.languages.map((language, index) => (
-                                <p key={index}>{language}</p>
-                            ))
+                            <p>{user.extras.languages.join(', ')}</p>
                         }
                          <h2 className='text-lg mt-2'>
                             Education Level
@@ -264,7 +255,7 @@ const MyProfile = ({
             </div>
             <div className='mb-8 pb-8 md:mb-0 ml-auto mt-6'>
                 <Link
-                    href={`/${ROUTES.MY_PROFILE}/${user.id}/update-profile`}
+                    href={`${ROUTES.MY_PROFILE}/${user.id}/update-profile`}
                     className='primary-btn '
                 >
                     Edit Profile

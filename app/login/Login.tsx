@@ -39,7 +39,7 @@ const LoginMenu = () => {
     };
 
     return (
-        <div className='flex items-center justify-center w-full'>
+        <div className='flex items-center justify-center w-full my-20'>
             <div className='bg-white mx-4 rounded-2xl border p-8 shadow-xl'>
                 <h1 className='text-5xl text-center'>Welcome back!</h1>
                 <form className='md:pt-6' onSubmit={handleSubmit}>

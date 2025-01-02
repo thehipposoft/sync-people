@@ -11,8 +11,6 @@ interface UserTypeRequest {
 }
 
 export async function storeToken(request: StoreTokenRequest) {
-    console.log(">>request", request);
-
     cookies().set({
         name: "wp_accessToken",
         value: request.token,

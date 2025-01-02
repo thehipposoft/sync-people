@@ -61,13 +61,13 @@ const TalentProfile = ({
                             <div className='flex flex-col gap-2'>
                                 <div className='flex justify-between items-center mb-6 flex-col-reverse md:flex-row gap-4'>
                                     <h2 className='text-2xl'>
-                                        {talentData.personal_information.first_name} <span className='h-bold capitalize'> - {selectedIndustry.rol}</span>
+                                        {talentData.personal_information.first_name} <span className='h-bold capitalize'> - {selectedIndustry.position}</span>
                                     </h2>
 
                                     <select
                                         className='bg-[#f3f4f6] rounded-lg p-2 w-full md:w-[200px] text-[#1A335D] text-center ml-auto flex'
                                         onChange={(e) => {
-                                            const selected = talentData.professional_information.industries.find((industry) => industry.rol === e.target.value);
+                                            const selected = talentData.professional_information.industries.find((industry) => industry.position === e.target.value);
                                             if (selected) {
                                                 setSelectedIndustry(selected);
                                             }
@@ -76,7 +76,7 @@ const TalentProfile = ({
                                         {talentData.professional_information.industries.map((industry, index) => (
                                             <option
                                                 key={index}
-                                                value={industry.rol}
+                                                value={industry.position}
                                                 onClick={() => setSelectedIndustry(industry)}
                                             >
                                             {industry.industry.toUpperCase()}
@@ -133,10 +133,10 @@ const TalentProfile = ({
                             Work Experience
                         </h2>
                         {
-                            talentData.work_experience.experience.map((experience, index) => (
+                            talentData.work_experience.map((experience, index) => (
                                 <div key={index} className='flex flex-col mb-3'>
                                     <h2 className='text-xl mb-2'>
-                                        {experience.rol}
+                                        {experience.position}
                                     </h2>
                                     <p className='opacity-70'>{experience.company_name}</p>
                                     <p className='opacity-70'>{experience.start_date} - {experience.currently_working ? 'Current' : experience.end_date}</p>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { TalentTypeAcf } from '@/types';
+import { INDUSTRIES } from '@/app/constants';
 
 type Props = {
     userData: TalentTypeAcf;
@@ -18,7 +19,7 @@ const ProfileForm = ({
 
     const handleInputChange = (
         e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>,
-        section: 'personal_information' | 'professional_information' | 'working_rights' | 'current_location' | 'extras',
+        section: 'personal_information' | 'professional_information' | 'working_rights' | 'current_location' | 'extras' | 'work_experience',
         field: string
     ) => {
         const { value } = e.target;
@@ -30,12 +31,33 @@ const ProfileForm = ({
                 [field]: value,
             },
         });
-
     };
 
     const handleTabChange = (tab: 'personal' | 'professional' | 'experience' | 'extras') => {
         setSelectedTab(tab);
     };
+
+    const handleWorkExperienceChange = (
+        e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>,
+        index: number,
+        field: string
+    ) => {
+        const { value } = e.target;
+
+        setFormValues({
+            ...formValues,
+            work_experience: formValues.work_experience.map((experience, i) => {
+                if(i === index) {
+                    return {
+                        ...experience,
+                        [field]: value,
+                    };
+                }
+
+                return experience;
+            }),
+        });
+    }
 
     const renderTabContent = () => {
         switch(selectedTab) {
@@ -43,7 +65,7 @@ const ProfileForm = ({
                 return (
                     <form className='grid grid-cols-2 gap-4'>
                        <div className=''>
-                            <label htmlFor="name" className="block pb-2">First Name:</label>
+                            <label htmlFor="name" className="block pb-2">First Name</label>
                             <input
                                 type="text"
                                 id="personal_information.first_name"
@@ -55,7 +77,7 @@ const ProfileForm = ({
                         </div>
 
                         <div className=''>
-                            <label htmlFor="name" className="block pb-2">Last Name:</label>
+                            <label htmlFor="name" className="block pb-2">Last Name</label>
                             <input
                                 type="text"
                                 id="personal_information.last_name"
@@ -67,7 +89,7 @@ const ProfileForm = ({
                         </div>
 
                         <div className=''>
-                            <label htmlFor="email" className="block pb-2">Email:</label>
+                            <label htmlFor="email" className="block pb-2">Email</label>
                             <input
                                 type="email"
                                 id="personal_information.email"
@@ -79,7 +101,7 @@ const ProfileForm = ({
                         </div>
 
                         <div className=''>
-                            <label htmlFor="mobile" className="block pb-2">Mobile:</label>
+                            <label htmlFor="mobile" className="block pb-2">Mobile</label>
                             <input
                                 type="tel"
                                 id="personal_information.mobile"
@@ -91,7 +113,7 @@ const ProfileForm = ({
                         </div>
 
                         <div className=''>
-                            <label htmlFor="date_of_birth" className="block pb-2">Date of Birth:</label>
+                            <label htmlFor="date_of_birth" className="block pb-2">Date of Birth</label>
                             <input
                                 type="date"
                                 id="personal_information.date_of_birth"
@@ -103,7 +125,7 @@ const ProfileForm = ({
                         </div>
 
                         <div className=''>
-                            <label htmlFor="country" className="block pb-2">Country:</label>
+                            <label htmlFor="country" className="block pb-2">Country</label>
                             <input
                                 type="text"
                                 id="personal_information.country"
@@ -119,7 +141,7 @@ const ProfileForm = ({
                 return (
                     <form className='grid grid-cols-2 gap-4'>
                         <div className=''>
-                            <label htmlFor="current_status" className="block pb-2">Current Status:</label>
+                            <label htmlFor="current_status" className="block pb-2">Current Status</label>
                             <select
                                 id="professional_information.current_status"
                                 name="professional_information.current_status"
@@ -134,7 +156,7 @@ const ProfileForm = ({
                         </div>
 
                         <div className=''>
-                            <label htmlFor="work_preference" className="block pb-2">Work Preference:</label>
+                            <label htmlFor="work_preference" className="block pb-2">Work Preference</label>
                             <select
                                 id="professional_information.work_preference"
                                 name="professional_information.work_preference"
@@ -150,30 +172,32 @@ const ProfileForm = ({
                             </select>
                         </div>
 
-                        <div className='col-span-2 g'>
-                            <p>Industries:</p>
+                        <div className='col-span-2'>
+                            <h4 className='font-bold'>
+                                Industries
+                            </h4>
                             {
                                 formValues.professional_information.industries.map((industry, index) => (
                                     <div key={index} className='border-b py-3 grid grid-cols-2 gap-4'>
                                         <h3 className='capitalize mb-2 col-span-2 text-2xl'>
-                                            {industry.industry}
+                                            {`${index + 1}. ${industry.industry}`}
                                         </h3>
                                         <div className=''>
-                                            <label htmlFor={`professional_information.rol[${index}]`} className="block pb-2">
-                                                Rol:
+                                            <label htmlFor={`professional_information.position[${index}]`} className="block pb-2">
+                                                Position
                                             </label>
                                             <input
                                                 type="text"
                                                 id={`professional_information.industries[${index}]`}
                                                 name={`professional_information.industries[${index}]`}
                                                 required
-                                                value={industry.rol}
+                                                value={industry.position}
                                                 onChange={(e) => handleInputChange(e, 'professional_information', 'industries')}
                                             />
                                         </div>
                                         <div className=''>
-                                            <label htmlFor={`professional_information.rol[${index}]`} className="block pb-2">
-                                                Preferred salary:
+                                            <label htmlFor={`professional_information.position[${index}]`} className="block pb-2">
+                                                Preferred salary (AUD)
                                             </label>
                                             <input
                                                 type="text"
@@ -231,14 +255,120 @@ const ProfileForm = ({
             case 'experience':
                 return (
                     <form className='grid grid-cols-2 gap-4'>
-                        Experience
+                        {
+                            formValues.work_experience.map((experience, index) => (
+                                <div key={index} className='border-b py-3 grid grid-cols-2 gap-4 col-span-2'>
+                                    <h3 className='mb-2 col-span-2 text-2xl'>
+                                        {`${index + 1}. ${experience.position} at ${experience.company_name}`}
+                                    </h3>
+                                    <div className=''>
+                                        <label htmlFor={`work_experience.experience[${index}].position`} className="block pb-2">
+                                            Position
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id={`work_experience[${index}].position`}
+                                            name={`work_experience[${index}].position`}
+                                            required
+                                            value={experience.position}
+                                            onChange={(e) => handleWorkExperienceChange(e, index, 'position')}
+                                        />
+                                    </div>
+                                    <div className=''>
+                                        <label htmlFor={`work_experience[${index}].position`} className="block pb-2">
+                                            Company name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id={`work_experience[${index}].company_name`}
+                                            name={`work_experience[${index}].company_name`}
+                                            required
+                                            value={experience.company_name}
+                                            onChange={(e) => handleWorkExperienceChange(e, index, 'company_name')}
+                                        />
+                                    </div>
+                                    <div className=''>
+                                        <label htmlFor={`work_experience[${index}].start_date`} className="block pb-2">
+                                            Start Date
+                                        </label>
+                                        <input
+                                            type="date"
+                                            id={`work_experience[${index}].start_date`}
+                                            name={`work_experience[${index}].start_date`}
+                                            required
+                                            value={experience.start_date}
+                                            onChange={(e) => handleInputChange(e, 'work_experience', 'experience')}
+                                        />
+                                    </div>
+                                    <div className=''>
+                                        <label htmlFor={`work_experience.experience[${index}].end_date`} className="block pb-2">
+                                            End Date
+                                        </label>
+                                        <input
+                                            type="date"
+                                            id={`work_experience.experience[${index}].end_date`}
+                                            name={`work_experience.experience[${index}].end_date`}
+                                            required
+                                            value={experience.end_date}
+                                            onChange={(e) => handleInputChange(e, 'work_experience', 'experience')}
+                                        />
+                                    </div>
+                                    <div className=''>
+                                        <label htmlFor={`work_experience.experience[${index}].end_date`} className="block pb-2">
+                                            Industry
+                                        </label>
+                                        <select
+                                            id={`work_experience.experience[${index}].industry`}
+                                            name={`work_experience.experience[${index}].industry`}
+                                            required
+                                            value={formValues.work_experience[index].industry}
+                                            onChange={(e) => handleInputChange(e, 'work_experience', 'experience')}
+                                        >
+                                            {
+                                                INDUSTRIES.map((industry, index) => (
+                                                    <option key={index} value={industry.value}>
+                                                        {industry.name}
+                                                    </option>
+                                                ))
+                                            }
+                                        </select>
+                                    </div>
+                                    <div className='flex gap-4 items-center'>
+                                        <input
+                                            type="checkbox"
+                                            id={`work_experience.experience[${index}].currently_working`}
+                                            name={`work_experience.experience[${index}].currently_working`}
+                                            checked={experience.currently_working}
+                                            onChange={(e) => handleInputChange(e, 'work_experience', 'experience')}
+                                        />
+                                        <label htmlFor={`work_experience.experience[${index}].end_date`} className="block">
+                                            Currently working here
+                                        </label>
+                                    </div>
+                                    <div className='col-span-2 w-full'>
+                                        <label htmlFor={`work_experience.experience[${index}].description`} className="block pb-2">
+                                            Description
+                                        </label>
+                                        <textarea
+                                            id={`work_experience.experience[${index}].description`}
+                                            name={`work_experience.experience[${index}].description`}
+                                            className='w-full border p-2'
+                                            required
+                                            value={experience.description}
+                                            //onChange={(e) => handleInputChange(e, 'work_experience', 'experience')}
+                                            rows={3}
+                                        />
+                                    </div>
+                                </div>
+                            ))
+                        }
                     </form>
                 );
             case 'extras':
                 return (
                     <form className='grid grid-cols-2 gap-4'>
                         <div className=''>
-                            <label htmlFor="level_of_english" className="block pb-2">Level of English:</label>
+                            <label htmlFor="level_of_english" className="block pb-2">Level of English</label>
                             <input
                                 type="text"
                                 id="extras.level_of_english"
@@ -250,19 +380,19 @@ const ProfileForm = ({
                         </div>
 
                         <div className=''>
-                            <label htmlFor="prefered_language" className="block pb-2">Preferred Language:</label>
+                            <label htmlFor="preferred_language" className="block pb-2">Preferred Language</label>
                             <input
                                 type="text"
-                                id="extras.prefered_language"
-                                name="extras.prefered_language"
+                                id="extras.preferred_language"
+                                name="extras.preferred_language"
                                 required
-                                value={formValues.extras.prefered_language}
-                                onChange={(e) => handleInputChange(e, 'extras', 'prefered_language')}
+                                value={formValues.extras.preferred_language}
+                                onChange={(e) => handleInputChange(e, 'extras', 'preferred_language')}
                             />
                         </div>
 
                         <div className=''>
-                            <label htmlFor="other_languages" className="block pb-2">Other Languages:</label>
+                            <label htmlFor="other_languages" className="block pb-2">Other Languages</label>
                             <input
                                 type="text"
                                 id="extras.other_languages"
@@ -274,7 +404,7 @@ const ProfileForm = ({
                         </div>
 
                         <div className=''>
-                            <label htmlFor="more_about_myself" className="block pb-2">More About Myself:</label>
+                            <label htmlFor="more_about_myself" className="block pb-2">More About Myself</label>
                             <input
                                 type="text"
                                 id="extras.more_about_myself"
@@ -286,7 +416,7 @@ const ProfileForm = ({
                         </div>
 
                         <div className=''>
-                            <label htmlFor="education_level" className="block pb-2">Education Level:</label>
+                            <label htmlFor="education_level" className="block pb-2">Education Level</label>
                             <input
                                 type="text"
                                 id="extras.education_level"
@@ -298,7 +428,7 @@ const ProfileForm = ({
                         </div>
 
                         <div className=''>
-                            <label htmlFor="transport" className="block pb-2">Transport:</label>
+                            <label htmlFor="transport" className="block pb-2">Transport</label>
                             <input
                                 type="text"
                                 id="extras.transport"
@@ -310,7 +440,7 @@ const ProfileForm = ({
                         </div>
 
                         <div className=''>
-                            <label htmlFor="presentation_video" className="block pb-2">Presentation Video:</label>
+                            <label htmlFor="presentation_video" className="block pb-2">Presentation Video</label>
                             <input
                                 type="text"
                                 id="extras.presentation_video"

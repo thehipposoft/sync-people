@@ -2,7 +2,7 @@ export type IndustryType = {
     industry: IndustriesAvailable;
     other_industry: string;
     preferred_salary: string;
-    rol: string;
+    position: string;
     certificates: {
         certificate: string;
         name: string;
@@ -44,7 +44,7 @@ export type TalentTypeAcf = {
     };
     extras: {
         level_of_english: string;
-        prefered_language: string;
+        preferred_language: string;
         other_languages: string;
         more_about_myself: string;
         education_level: string;
@@ -62,16 +62,14 @@ export type TalentTypeAcf = {
         languages: string[];
     };
     work_experience: {
-        experience: {
-            company_name: string;
-            position: string;
-            start_date: string;
-            end_date: string;
-            currently_working: boolean;
-            rol: string;
-            description: string;
-        }[];
-    }
+        company_name: string;
+        position: string;
+        start_date: string;
+        end_date: string;
+        currently_working: boolean;
+        description: string;
+        industry: IndustriesAvailable;
+    }[];
 };
 
 export type TalentType = {

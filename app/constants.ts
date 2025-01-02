@@ -16,7 +16,7 @@ export const ROUTES = {
     TERMS: '/terms',
     PRIVACY_POLICY: '/privacy-policy',
     //Private routes
-    MY_PROFILE: 'dashboard/my-profile',
+    MY_PROFILE: '/dashboard/my-profile',
 }
 
 export const INDUSTRIES_BANNER = {
@@ -29,3 +29,38 @@ export const INDUSTRIES_BANNER = {
     retail: '/assets/images/industries-banners/retail.jpeg',
     age_care: '/assets/images/industries-banners/age-care.webp',
 }
+
+export const INDUSTRIES = [
+    {
+        name: 'Construction',
+        value: 'construction',
+    },
+    {
+        name: 'Cleaning',
+        value: 'cleaning',
+    },
+    {
+        name: 'Warehousing',
+        value: 'warehousing',
+    },
+    {
+        name: 'Logistics',
+        value: 'logistics',
+    },
+    {
+        name: 'Farming',
+        value: 'farming',
+    },
+    {
+        name: 'Hospitality',
+        value: 'hospitality',
+    },
+    {
+        name: 'Retail',
+        value: 'retail',
+    },
+    {
+        name: 'Age Care',
+        value: 'age_care',
+    },
+];
