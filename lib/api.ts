@@ -1,4 +1,4 @@
-import { storeToken } from "./actions";
+import { storeToken, cleanCookies } from "./actions";
 import { getUserProfile } from "./protected-api";
 
 type ApiType = {
@@ -118,6 +118,15 @@ export const login = async (data: LoginType) => {
             message: data.message,
         };
     }
+};
+
+export const logout = async () => {
+    await cleanCookies();
+
+    return {
+        status: 200,
+        message: 'Logout success',
+    };
 };
 
 export const createTalent = async (data: ComingSoonEmailType) => {

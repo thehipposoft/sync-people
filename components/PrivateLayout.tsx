@@ -1,9 +1,12 @@
+'use client';
 import Image from "next/image";
 import SideNav from "./SideNav";
 import Link from "next/link";
 import { ROUTES } from "@/app/constants";
 import { TalentTypeAcf } from '@/types';
 import Footer from "@/components/Footer";
+import { logout } from "@/lib/api";
+import { useRouter } from "next/navigation";
 
 type Props = {
     children: React.ReactNode;
@@ -14,6 +17,15 @@ const PrivateLayout = ({
     children,
     user,
 }: Props) => {
+    const router = useRouter();
+
+    const handleLogout = async () => {
+        const response = await logout();
+        if (response.status === 200) {
+            router.push(ROUTES.HOME);
+        }
+    };
+
     return (
         <div className='flex'>
             <SideNav />
@@ -29,6 +41,12 @@ const PrivateLayout = ({
                         <Link href={`/talents/${user.id}`} className='green-btn'>
                             View Public Profile
                         </Link>
+                        <button
+                            className="primary-btn mx-0 rounded-md"
+                            onClick={handleLogout}
+                        >
+                            Logout
+                        </button>
                         <Link href={`/${ROUTES.MY_PROFILE}/${user.id}`}>
                             <Image
                                 src={user.personal_information.profile_pic}
