@@ -11,13 +11,15 @@ import { useRouter } from "next/navigation";
 type Props = {
     children: React.ReactNode;
     user: TalentTypeAcf;
+    userId: string;
 };
 
 const PrivateLayout = ({
     children,
     user,
+    userId,
 }: Props) => {
-    console.log(">>user", user);
+    console.log(">>userId", userId);
     const router = useRouter();
 
     const handleLogout = async () => {
@@ -39,7 +41,7 @@ const PrivateLayout = ({
                         <Link href={'/training-and-licenses'} className='green-btn hidden'>
                             Training and Licenses
                         </Link>
-                        <Link href={`/talents/${user.id}`} className='green-btn'>
+                        <Link href={`/talents/${userId}`} className='green-btn'>
                             View Public Profile
                         </Link>
                         <button
@@ -48,7 +50,7 @@ const PrivateLayout = ({
                         >
                             Logout
                         </button>
-                        <Link href={`/${ROUTES.MY_PROFILE}/${user.id}`}>
+                        <Link href={`/${ROUTES.MY_PROFILE}/${userId}`}>
                             <Image
                                 src={user.personal_information.profile_pic}
                                 alt={`${user.personal_information.first_name} ${user.personal_information.last_name}`}

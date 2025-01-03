@@ -37,10 +37,14 @@ const MyProfilePage = async ({ params }: Props) => {
     return (
         <PrivateLayout
             user={userData.acf}
+            userId={id}
         >
             <div className="flex">
                 <div className="flex flex-col w-full">
-                    <MyProfile user={userData.acf} />
+                    <MyProfile
+                        user={userData.acf}
+                        userId={id}
+                    />
                 </div>
             </div>
         </PrivateLayout>

@@ -9,10 +9,12 @@ import { ROUTES } from '@/app/constants';
 
 type MyProfileProps = {
     user: TalentTypeAcf;
+    userId: string;
 }
 
 const MyProfile = ({
-    user
+    user,
+    userId,
 }:MyProfileProps) => {
     return (
         <div className='flex flex-col md:w-full'>
@@ -255,7 +257,7 @@ const MyProfile = ({
             </div>
             <div className='mb-8 pb-8 md:mb-0 ml-auto mt-6'>
                 <Link
-                    href={`${ROUTES.MY_PROFILE}/${user.id}/update-profile`}
+                    href={`${ROUTES.MY_PROFILE}/${userId}/update-profile`}
                     className='primary-btn '
                 >
                     Edit Profile
