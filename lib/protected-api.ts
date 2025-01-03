@@ -16,12 +16,8 @@ export const api = async ({
     body,
     token,
 }: ApiType) => {
-    //const apiURL = 'https://admin.insyncx.com/wp-json/wp/v2/';
     const baseURL = 'https://admin.insyncx.com/wp-json/wp/v2';
     const accessToken = token ? token : await getToken();
-
-    //console.log(">>accessToken", accessToken);
-    //const baseURL = "http://localhost:9000/.netlify/functions/api";
 
     const config: any = {
         method,

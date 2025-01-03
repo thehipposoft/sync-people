@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import MyProfile from "./MyProfile";
 import { getTalent } from "@/lib/api";
-import { TalentTypeAcf } from "@/types";
+import { TalentType } from "@/types";
 import PrivateLayout from "@/components/PrivateLayout";
 
 type MetadataPropsType = {
@@ -11,11 +11,11 @@ type MetadataPropsType = {
 }
 
 export async function generateMetadata({ params }: MetadataPropsType): Promise<Metadata> {
-    const userData:TalentTypeAcf = await getTalent(params.id);
+    const userData:TalentType = await getTalent(params.id);
 
     if(userData) {
         return {
-            title: `${userData.personal_information.first_name} | Talent Portal`,
+            title: `${userData.acf.personal_information.first_name} | Talent Portal`,
         }
     };
 
@@ -32,15 +32,15 @@ type Props = {
 
 const MyProfilePage = async ({ params }: Props) => {
     const { id } = params;
-    const userData:TalentTypeAcf = await getTalent(id);
+    const userData:TalentType = await getTalent(id);
 
     return (
         <PrivateLayout
-            user={userData}
+            user={userData.acf}
         >
             <div className="flex">
                 <div className="flex flex-col w-full">
-                    <MyProfile user={userData} />
+                    <MyProfile user={userData.acf} />
                 </div>
             </div>
         </PrivateLayout>

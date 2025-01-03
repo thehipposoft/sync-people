@@ -471,13 +471,13 @@ const ProfileForm = ({
                                 Update Profile
                             </h1>
                         </div>
-                        <div className='flex gap-10 md:w-[850px] mx-auto items-center'>
-                            <div className='pt-4 md:pl-2'>
+                        <div className='flex gap-10 md:w-[850px] mx-auto items-center pt-4'>
+                            <div className='md:pl-2'>
                                 <Image
                                     src={userData.personal_information.profile_pic}
                                     alt={`${userData.personal_information.first_name} ${userData.personal_information.last_name}`}
                                     width={160} height={160}
-                                    className='ml-6 mt-4 md:w-[150px] w-36 rounded-full'
+                                    className='ml-6 mt-4 md:mt-0 md:w-[150px] w-36 rounded-full'
                                 />
                             </div>
                             <textarea

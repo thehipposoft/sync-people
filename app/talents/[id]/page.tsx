@@ -3,7 +3,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from "next/navigation";
 import { ROUTES } from '@/app/constants';
 import PublicLayout from '@/components/PublicLayout';
-import getTalent from '@/api/getTalent';
+import { getTalent } from '@/lib/api';
 import { TalentType } from '@/types';
 import TalentProfile from './TalentProfile';
 

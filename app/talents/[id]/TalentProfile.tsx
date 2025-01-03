@@ -128,23 +128,25 @@ const TalentProfile = ({
                             </div>
                         </div>
                     </div>
-                    <div className='flex flex-col my-4 mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>
-                        <h2 className='text-xl pb-4 font-bold'>
-                            Work Experience
-                        </h2>
-                        {
-                            talentData.work_experience.map((experience, index) => (
-                                <div key={index} className='flex flex-col mb-3'>
-                                    <h2 className='text-xl mb-2'>
-                                        {experience.position}
-                                    </h2>
-                                    <p className='opacity-70'>{experience.company_name}</p>
-                                    <p className='opacity-70'>{experience.start_date} - {experience.currently_working ? 'Current' : experience.end_date}</p>
-                                    <p>{experience.description}</p>
-                                </div>
-                            ))
-                        }
-                    </div>
+                    {
+                        talentData.work_experience && <div className='flex flex-col my-4 mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>
+                            <h2 className='text-xl pb-4 font-bold'>
+                                Work Experience
+                            </h2>
+                            {
+                                talentData.work_experience.map((experience, index) => (
+                                    <div key={index} className='flex flex-col mb-3'>
+                                        <h2 className='text-xl mb-2'>
+                                            {experience.position}
+                                        </h2>
+                                        <p className='opacity-70'>{experience.company_name}</p>
+                                        <p className='opacity-70'>{experience.start_date} - {experience.currently_working ? 'Current' : experience.end_date}</p>
+                                        <p>{experience.description}</p>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    }
                     <div className='flex flex-col  my-4 mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>
                         <h2 className='text-xl pb-4 font-bold'>
                             Extras

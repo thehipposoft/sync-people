@@ -14,9 +14,8 @@ export const api = async ({
     method = "GET",
     body,
 }: ApiType) => {
-    const apiURL = process.env.ENV_HOST || process.env.NEXT_PUBLIC_API;
+    const apiURL = process.env.NEXT_PUBLIC_API;
     const baseURL = apiURL + "/api";
-    //const baseURL = "http://localhost:9000/.netlify/functions/api";
 
     const config: any = {
         method,
@@ -67,7 +66,7 @@ export const sendComingSoonEmail = async (data: ComingSoonEmailType) => {
 };
 
 export const getJWTToken = async (email?: string, password?: string) => {
-    const response = await fetch('https://admin.insyncx.com/wp-json/jwt-auth/v1/token', {
+    const response = await fetch(`https://admin.insyncx.com/wp-json/jwt-auth/v1/token`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -153,20 +152,35 @@ export const createTalent = async (data: ComingSoonEmailType) => {
 };
 
 export const getTalent = async (id: string) => {
-    const response = await fetch(`https://admin.insyncx.com/wp-json/wp/v2/talents/${id}?acf_format=standard`)
+    const apiURL = process.env.NEXT_PUBLIC_WP_URL;
+    const response = await fetch(`${apiURL}/talents/${id}?acf_format=standard`)
 
     if (!response.ok) {
         throw new Error('failed to fetch talent')
     }
 
     const talent = await response.json();
-    const cleanTalents = {
-        ...talent.acf,
-        id: talent.id,
-        status: talent.status
-    };
 
-    return cleanTalents;
+    return talent;
+};
+
+export const getTalents = async () => {
+    const apiURL = process.env.NEXT_PUBLIC_WP_URL;
+    const response = await fetch(`${apiURL}/talents/?acf_format=standard`)
+    if (!response.ok) {
+        throw new Error('failed to fetch talents')
+    }
+
+    const talents = await response.json();
+    const cleanTalents = talents.map((t:any) => {
+        return {
+            ...t.acf,
+            id: t.id,
+            status: t.status
+        }
+    })
+
+    return cleanTalents
 };
 
 export const createClient = async (data: ComingSoonEmailType) => {

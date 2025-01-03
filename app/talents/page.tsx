@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import PublicLayout from "@/components/PublicLayout";
 import TalentsList from './TalentsList';
-import getTalents from '@/api/getTalents';
+import { getTalents } from '@/lib/api';
 
 export const metadata: Metadata = {
     title: "Insyncx | Talents list",
