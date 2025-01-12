@@ -4,21 +4,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { TalentTypeAcf } from '@/types';
 import { INDUSTRIES } from '@/app/constants';
+import { updateProfile } from '@/lib/protected-api';
 
 type Props = {
     userData: TalentTypeAcf;
+    userId: string;
 };
 
 const ProfileForm = ({
     userData,
+    userId,
 }:Props) => {
     const [selectedTab, setSelectedTab] = useState<'personal' | 'professional' | 'experience' | 'extras'>('personal');
     const [formValues, setFormValues] = useState<TalentTypeAcf>({
         ...userData,
     });
+    const [isAPiLoading, setIsAPiLoading] = useState<boolean>(false);
 
     const handleInputChange = (
-        e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>,
+        e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>,
         section: 'personal_information' | 'professional_information' | 'working_rights' | 'current_location' | 'extras' | 'work_experience',
         field: string
     ) => {
@@ -59,11 +63,33 @@ const ProfileForm = ({
         });
     }
 
+    const handleUpdateProfileClick = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+    };
+
+    const handleUpdatePersonalInformationClick = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsAPiLoading(true);
+
+        const response = await updateProfile(formValues, userId);
+
+        if(response.status === 500) {
+            setIsAPiLoading(true);
+            console.log('Internal Server Error');
+        } else {
+            setIsAPiLoading(false);
+            console.log('Profile updated successfully');
+        }
+    };
+
     const renderTabContent = () => {
         switch(selectedTab) {
             case 'personal':
                 return (
-                    <form className='grid grid-cols-2 gap-4'>
+                    <form
+                        className='grid grid-cols-2 gap-4'
+                        onSubmit={handleUpdatePersonalInformationClick}
+                    >
                        <div className=''>
                             <label htmlFor="name" className="block pb-2">First Name</label>
                             <input
@@ -135,6 +161,15 @@ const ProfileForm = ({
                                 onChange={(e) => handleInputChange(e, 'personal_information', 'country')}
                             />
                         </div>
+                        <div className='w-full col-span-2 flex'>
+                            <button
+                                className='primary-btn mt-4 mx-auto'
+                                type='submit'
+                            >
+                                Update Personal Information
+                            </button>
+                        </div>
+
                     </form>
                 );
             case 'professional':
@@ -231,9 +266,9 @@ const ProfileForm = ({
                                                                 height={20}
                                                             >
                                                                 <g id="SVGRepo_iconCarrier">
-                                                                    <path d="M5.73708 6.54391V18.9857C5.73708 19.7449 6.35257 20.3604 7.11182 20.3604H16.8893C17.6485 20.3604 18.264 19.7449 18.264 18.9857V6.54391M2.90906 6.54391H21.0909" stroke="#1C1C1C" stroke-width="1.7" stroke-linecap="round">
+                                                                    <path d="M5.73708 6.54391V18.9857C5.73708 19.7449 6.35257 20.3604 7.11182 20.3604H16.8893C17.6485 20.3604 18.264 19.7449 18.264 18.9857V6.54391M2.90906 6.54391H21.0909" stroke="#1C1C1C" strokeWidth="1.7" strokeLinecap="round">
                                                                     </path>
-                                                                    <path d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6" stroke="#1C1C1C" stroke-width="1.7" stroke-linecap="round">
+                                                                    <path d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6" stroke="#1C1C1C" strokeWidth="1.7" strokeLinecap="round">
                                                                     </path>
                                                                 </g>
                                                             </svg>
@@ -454,92 +489,64 @@ const ProfileForm = ({
                 );
             default:
                 return (
-                    <form>
+                    <div>
 
-                    </form>
+                    </div>
                 );
             };
     };
 
     return (
-        <div>
-            <div className='flex flex-col md:w-full'>
-                <div className='md:w-full flex justify-center gap-12 px-2 md:px-0'>
-                    <div className='flex flex-col rounded-2xl my-4 md:w-[900px] w-full md:px-4 px-6 bg-white border'>
-                        <div className='border-b'>
-                            <h1 className='text-3xl h-bold py-3 pl-4'>
-                                Update Profile
-                            </h1>
-                        </div>
-                        <div className='flex gap-10 md:w-[850px] mx-auto items-center pt-4'>
-                            <div className='md:pl-2'>
-                                <Image
-                                    src={userData.personal_information.profile_pic}
-                                    alt={`${userData.personal_information.first_name} ${userData.personal_information.last_name}`}
-                                    width={160} height={160}
-                                    className='ml-6 mt-4 md:mt-0 md:w-[150px] w-36 rounded-full'
-                                />
-                            </div>
-                            <textarea
-                                rows={4}
-                                className='flex w-full border p-2'
-                            >
-                                {formValues.extras.more_about_myself}
-                            </textarea>
-                        </div>
+        <div className='flex flex-col rounded-2xl my-4 md:w-[900px] w-full md:px-4 p-6 bg-white border '>
+            <h1 className='text-3xl h-bold pb-4 border-b mb-4'>
+                Update Profile
+            </h1>
+            <div className='flex gap-10 w-full mx-auto items-center pt-4 mb-4'>
+                <Image
+                    src={userData.personal_information.profile_pic}
+                    alt={`${userData.personal_information.first_name} ${userData.personal_information.last_name}`}
+                    width={160} height={160}
+                    className='ml-6 mt-4 md:mt-0 md:w-[150px] w-36 rounded-full'
+                />
+                <textarea
+                    rows={4}
+                    className='flex w-full border p-2'
+                    value={formValues.extras.more_about_myself}
+                    onChange={(e) => handleInputChange(e, 'extras', 'more_about_myself')}
+                />
+            </div>
 
-                        <div>
-                            <ul className='flex justify-between my-6'>
-                                <li
-                                    className={`px-4 pb-3 cursor-pointer transition-all ${selectedTab === 'personal' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
-                                    onClick={() => handleTabChange('personal')}
-                                >
-                                    Personal Information
-                                </li>
-                                <li
-                                    className={`px-4 cursor-pointer transition-all ${selectedTab === 'professional' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
-                                    onClick={() => handleTabChange('professional')}
-                                >
-                                    Professional Information
-                                </li>
-                                <li
-                                    className={`px-4 cursor-pointer transition-all ${selectedTab === 'experience' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
-                                    onClick={() => handleTabChange('experience')}
-                                >
-                                    Work Experience
-                                </li>
-                                <li
-                                    className={`px-4 cursor-pointer transition-all ${selectedTab === 'extras' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
-                                    onClick={() => handleTabChange('extras')}
-                                >
-                                    Extras
-                                </li>
-                            </ul>
-                        </div>
+            <div>
+                <ul className='flex justify-between my-6'>
+                    <li
+                        className={`px-4 pb-3 cursor-pointer transition-all ${selectedTab === 'personal' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
+                        onClick={() => handleTabChange('personal')}
+                    >
+                        Personal Information
+                    </li>
+                    <li
+                        className={`px-4 cursor-pointer transition-all ${selectedTab === 'professional' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
+                        onClick={() => handleTabChange('professional')}
+                    >
+                        Professional Information
+                    </li>
+                    <li
+                        className={`px-4 cursor-pointer transition-all ${selectedTab === 'experience' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
+                        onClick={() => handleTabChange('experience')}
+                    >
+                        Work Experience
+                    </li>
+                    <li
+                        className={`px-4 cursor-pointer transition-all ${selectedTab === 'extras' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
+                        onClick={() => handleTabChange('extras')}
+                    >
+                        Extras
+                    </li>
+                </ul>
+            </div>
 
-                        <div>
-                            {renderTabContent()}
-                        </div>
-
-                        <div className='md:flex hidden gap-6 justify-center py-6'></div>
-                        <div className='flex md:hidden justify-center my-8'>
-                            <Link
-                                href={'/my-profile'}
-                                className='text-[#326B88] py-2 px-4 border-[#326B88] border rounded-3xl hover:bg-[#326B88] hover:text-white duration-700 cursor-pointer'
-                            >
-                                Finish
-                            </Link>
-                        </div>
-                    </div>
-                    <div className='hidden flex-col my-4 gap-4'>
-                        <Image src={'/assets/images/publicity/ads-1.png'} alt='' width={200} height={150} />
-                        <Image src={'/assets/images/publicity/ads-2.png'} alt='' width={200} height={150} />
-                        <Image src={'/assets/images/publicity/ads-3.png'} alt='' width={200} height={150} />
-                        <Image src={'/assets/images/publicity/ads-4.png'} alt='' width={200} height={150} />
-                        <Image src={'/assets/images/publicity/ads-5.png'} alt='' width={200} height={150} />
-                        <Image src={'/assets/images/publicity/ads-6.png'} alt='' width={200} height={150} />
-                    </div>
-                </div>
+            <div>
+                {renderTabContent()}
             </div>
         </div>
     );

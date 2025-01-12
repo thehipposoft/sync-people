@@ -19,7 +19,6 @@ const PrivateLayout = ({
     user,
     userId,
 }: Props) => {
-    console.log(">>userId", userId);
     const router = useRouter();
 
     const handleLogout = async () => {

@@ -15,12 +15,12 @@ export async function generateMetadata({ params }: MetadataPropsType): Promise<M
 
     if(userData) {
         return {
-            title: `${userData.acf.personal_information.first_name} | Update Profile`,
+            title: `${userData.acf.personal_information.first_name} | Update Profile | Insyncx`,
         }
     };
 
     return {
-        title: 'Insyncx - Update Profile',
+        title: 'Update Profile | Insyncx',
     }
 };
 
@@ -39,7 +39,10 @@ const MyProfilePage = async ({ params }: Props) => {
             user={userData.acf}
             userId={id}
         >
-            <ProfileForm userData={userData.acf} />
+            <ProfileForm
+                userData={userData.acf}
+                userId={id}
+            />
         </PrivateLayout>
     )
 };

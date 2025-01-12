@@ -47,3 +47,24 @@ export const getUserProfile = async (token?: string) => {
 
     return data;
 }
+
+export const updateProfile = async (body: any, userId: string) => {
+    if (body.personal_information.profile_pic) {
+        if (body.personal_information.profile_pic.includes('http')) {
+            delete body.personal_information.profile_pic;
+        }
+    };
+
+    const response = await api({
+        endpoint: `/talents/${userId}`,
+        method: 'PUT',
+        body: {
+            ...body,
+            talentId: userId,
+        },
+    });
+
+    const data = await response.json();
+
+    return data;
+};
