@@ -70,10 +70,10 @@ export async function POST(request: NextRequest) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            username: 'data.email5555', //TODO: Refactor this to use the email
+            username: data.email,
             email: data.email,
             password: data.password, // Ensure this is securely generated or captured
-            roles: ['subscriber'], // Set appropriate role if needed
+            roles: ['subscriber'],
             first_name: data.first_name,
             last_name: data.last_name,
             meta: {
@@ -82,14 +82,13 @@ export async function POST(request: NextRequest) {
         })
     });
 
+    const apiResponse = await userResponse.json();
+
     if (!userResponse.ok) {
-        const userError = await userResponse.json();
-        return NextResponse.json({ message: userError.message }, { status: userResponse.status });
+        return NextResponse.json({ message: apiResponse.message }, { status: userResponse.status });
     }
 
-    const createdUser = await userResponse.json();
-
-    if (!createdUser.id) {
+    if (!apiResponse.id) {
         return NextResponse.json({ message: 'User not created' }, { status: 500 });
     }
 

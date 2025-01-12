@@ -32,12 +32,9 @@ const SignUpMenu = () => {
         if (apiResponse.status === 200) {
             setIsApiLoading(false);
             setErrorMessage('');
-
-            //TODO: Send to Verify email page.
-            
-            // Clean fields
-            // e.currentTarget.reset();
-            // Will open a modal
+            //TODO: Clean fields
+            //TODO: Redirect to login page or display pop-up message about successful registration
+            //TODO: Implement email verification
         } else {
             setIsApiLoading(false);
             setErrorMessage(apiResponse.message);

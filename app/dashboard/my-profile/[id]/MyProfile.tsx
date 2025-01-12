@@ -181,7 +181,7 @@ const MyProfile = ({
                             Work Experience
                         </h2>
                         {
-                            user.work_experience.map((experience, index) => (
+                            user.work_experience && user.work_experience.map((experience, index) => (
                                 <div key={index} className='flex flex-col'>
                                     <h2 className='text-xl'>{experience.position}</h2>
                                     <p>{experience.company_name}</p>
@@ -243,7 +243,7 @@ const MyProfile = ({
                         </h2>
                         <div className='flex gap-2 flex-wrap'>
                             {
-                                user.extras.social_media_links.map((link, index) => (
+                                user.extras.social_media_links && user.extras.social_media_links.map((link, index) => (
                                     <div key={index}>
                                         <Link href={link.url} target='_blank' className='underline'>
                                             {renderSocialMediaIcon(link.platform)}
