@@ -8,14 +8,17 @@ import { TalentType } from '@/types';
 import TalentProfile from './TalentProfile';
 
 type TalentProfilePageProps = {
-     params: { id: string }
+    params: Promise<{
+        id: string;
+    }>;
 };
 
 export async function generateMetadata(
     { params }: TalentProfilePageProps,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
-    const id = params.id;
+    const resolvedParams = await params;
+    const { id } = resolvedParams;
     const talentData: TalentType = await getTalent(id).then((res) => res);
 
     if(talentData.id) {
@@ -38,8 +41,9 @@ const TalentProfilePage = async ({
     params,
 }:TalentProfilePageProps) => {
     revalidatePath('/talent/[id]', 'page');
-	const talentId = params.id;
-	const talentData:TalentType = await getTalent(talentId);
+    const resolvedParams = await params;
+    const { id } = resolvedParams;
+	const talentData:TalentType = await getTalent(id);
 
     if(!talentData.id) {
         redirect(ROUTES.HOME);

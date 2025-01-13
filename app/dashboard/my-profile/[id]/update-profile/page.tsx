@@ -5,13 +5,14 @@ import PrivateLayout from "@/components/PrivateLayout";
 import ProfileForm from "./ProfileForm";
 
 type MetadataPropsType = {
-    params: {
+    params: Promise<{
         id: string;
-    }
-}
+    }>;
+};
 
 export async function generateMetadata({ params }: MetadataPropsType): Promise<Metadata> {
-    const userData:TalentType = await getTalent(params.id);
+    const resolvedParams = await params;
+    const userData: TalentType = await getTalent(resolvedParams.id);
 
     if(userData) {
         return {
@@ -25,13 +26,14 @@ export async function generateMetadata({ params }: MetadataPropsType): Promise<M
 };
 
 type Props = {
-    params: {
+    params: Promise<{
         id: string;
-    }
+    }>;
 };
 
 const MyProfilePage = async ({ params }: Props) => {
-    const { id } = params;
+    const resolvedParams = await params;
+    const { id } = resolvedParams;
     const userData:TalentType = await getTalent(id);
 
     return (

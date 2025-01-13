@@ -11,7 +11,8 @@ interface UserTypeRequest {
 }
 
 export async function storeToken(request: StoreTokenRequest) {
-    cookies().set({
+    const cookieStore = await cookies();
+    cookieStore.set({
         name: "wp_accessToken",
         value: request.token,
         httpOnly: true,
@@ -23,7 +24,8 @@ export async function storeToken(request: StoreTokenRequest) {
 }
 
 export async function storeUserType(request: UserTypeRequest) {
-    cookies().set({
+    const cookieStore = await cookies();
+    cookieStore.set({
         name: "userType",
         value: request.userType,
         httpOnly: true,
@@ -35,10 +37,12 @@ export async function storeUserType(request: UserTypeRequest) {
 }
 
 export async function getToken() {
-    return cookies().get('wp_accessToken')?.value;
-};
+    const cookieStore = await cookies();
+    return cookieStore.get('wp_accessToken')?.value;
+}
 
 export async function cleanCookies() {
-    cookies().delete('wp_accessToken');
-    cookies().delete('userType');
-};
+    const cookieStore = await cookies();
+    cookieStore.delete('wp_accessToken');
+    cookieStore.delete('userType');
+}

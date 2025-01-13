@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 //Hook
 import useContactForm from './useContactForm';
 //Component
@@ -63,7 +63,7 @@ const MyCustomForm = ({
                 });
         }
         */
-        
+
     });
 
     const renderSentMessage = () => {
@@ -84,7 +84,7 @@ const MyCustomForm = ({
     };
 
     return (
-        <form 
+        <form
             className={'mx-auto mt-10 bg-white p-4 w-[700px] grid grid-cols-2'}
             onSubmit={(event) => handleSubmit(event)}
         >
@@ -173,15 +173,6 @@ const MyCustomForm = ({
     )
 };
 
-MyCustomForm.propTypes = {
-    fields: PropTypes.array,
-    onSuccessMessage: PropTypes.string,
-    onErrorMessage: PropTypes.string,
-    customClass: PropTypes.string,
-    submitButtonLabel: PropTypes.string,
-    emailServiceURL: PropTypes.string,
-    placeholder: PropTypes.string,
-};
 
 MyCustomForm.defaultProps = {
     fields: [{
