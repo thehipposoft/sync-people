@@ -139,7 +139,8 @@ const MyProfile = ({
                                                             industry.certificates.map((certificate, index) => (
                                                                 <li key={index}>
                                                                     <Link
-                                                                        href={certificate.certificate} target='_blank'
+                                                                        href={certificate.certificate ? certificate.certificate : '/'}
+                                                                        target='_blank'
                                                                         className='underline flex gap-1 items-center'
                                                                     >
                                                                         {certificate.name}
