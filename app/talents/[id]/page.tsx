@@ -1,5 +1,4 @@
 import type { Metadata, ResolvingMetadata } from 'next';
-import { revalidatePath } from 'next/cache';
 import { redirect } from "next/navigation";
 import { ROUTES } from '@/app/constants';
 import PublicLayout from '@/components/PublicLayout';
@@ -40,7 +39,6 @@ export async function generateMetadata(
 const TalentProfilePage = async ({
     params,
 }:TalentProfilePageProps) => {
-    revalidatePath('/talent/[id]', 'page');
     const resolvedParams = await params;
     const { id } = resolvedParams;
 	const talentData:TalentType = await getTalent(id);
