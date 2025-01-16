@@ -36,7 +36,7 @@ const PrivateLayout = ({
                     <Link href={ROUTES.HOME} className='hidden md:block'>
                         <Image src={'/assets/logo.svg'} alt='Insyncx logo' width={180} height={140} />
                     </Link>
-                    <div className='flex justify-end gap-6 py-1'>
+                    <div className='flex justify-end items-center gap-6 py-1'>
                         <Link href={'/training-and-licenses'} className='green-btn hidden'>
                             Training and Licenses
                         </Link>

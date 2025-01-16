@@ -1,10 +1,19 @@
 'use client'
 import Image from 'next/image';
 import Link from 'next/link';
+import { TalentTypeAcf } from '@/types';
 import React, { useState } from 'react';
-import { FORM_SLIDES } from './FormSlider/constants';
+import { FORM_SLIDES } from '../../../components/FormSlider/constants';
 
-const ProfileForm = () => {
+type MyProfileProps = {
+    user: TalentTypeAcf;
+    userId: string;
+}
+
+const TalentForm = ({
+    user,
+    userId,
+}:MyProfileProps) => {
 
     const [currentIndex, setCurrentIndex] = useState<number>(0);
 
@@ -25,23 +34,10 @@ const ProfileForm = () => {
     return (
         <div>
             <div className='flex flex-col md:w-full'>
-                <div className='flex justify-between items-center md:px-8 py-2 md:w-full bg-white'>
-                    <Link href={'/'} className='hidden md:block'>
-                        <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} className='md:w-auto w-[120px]'/>
-                    </Link>
-                    <div className='flex justify-end gap-4 py-1 px-2 md:px-0'>
-                        <Link href={'/training-and-licences'}><button className='md:h-full text-[#326B88] border-[#326B88] border rounded-md md:px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licences</button></Link>
-                        <Link href={'/business-market'}><button className='md:h-full text-[#326B88] border-[#326B88] border rounded-md md:px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Search Jobs</button></Link>
-                        <Link href={'/profile-form'}>
-                            <img src="/assets/images/cv.png" alt="Profile picture" className='rounded-full md:w-10 w-16' />
-                        </Link>
-
-                    </div>
-                </div>
                 <div className='bg-[#FAFAFB] md:w-full flex justify-center gap-12 px-2 md:px-0'>
                     <div className='flex flex-col rounded-2xl my-4 md:w-[900px] w-full md:px-4 px-6 bg-white border'>
                         <div className='border-b'>
-                            <h1 className='text-3xl h-bold py-3 pl-4'>Create profile</h1>
+                            <h1 className='text-3xl h-bold py-3 pl-4'>Create Talent Profile</h1>
                         </div>
                         <div className='flex md:gap-80 md:w-[850px] mx-auto'>
                             <div className='pt-4 md:pl-2'>
@@ -165,4 +161,4 @@ const ProfileForm = () => {
     );
 };
 
-export default ProfileForm;
+export default TalentForm;
