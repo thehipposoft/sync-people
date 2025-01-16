@@ -53,7 +53,7 @@ const PrivateLayout = ({
                             <Image
                                 src={user.personal_information.profile_pic}
                                 alt={`${user.personal_information.first_name} ${user.personal_information.last_name}`}
-                                className='rounded-full'
+                                className='rounded-full w-12 h-12 object-cover'
                                 width={40}
                                 height={40}
                             />

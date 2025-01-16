@@ -51,10 +51,10 @@ const TalentProfile = ({
                                     alt={`Profile picture for ${talentData.personal_information.first_name}`}
                                     width={140}
                                     height={140}
-                                    className='rounded-full border-[6px] border-white -top-[4rem] md:-top-[6rem] w-36 h-36 relative md:absolute'
+                                    className='rounded-full border-[6px] border-white -top-[4rem] md:-top-[6rem] w-36 h-36 relative md:absolute object-cover'
                                 />
-                                <p className='relative -top-10 md:top-0 md:pl-[10rem]'>
-                                    {talentData.extras.more_about_myself}
+                                <p className='relative -top-10 md:top-0 md:pl-[10rem] min-h-14'>
+                                    " {talentData.extras.more_about_myself} "
                                 </p>
                             </div>
 

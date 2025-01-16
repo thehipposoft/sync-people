@@ -34,7 +34,7 @@ const MyProfile = ({
                                 alt={`Profile picture of ${user.personal_information.first_name}`}
                                 height={140}
                                 width={140}
-                                className='rounded-full border-[6px] border-white absolute -top-20 object-contain'
+                                className='w-36 h-36 rounded-full border-[6px] border-white absolute -top-20 object-cover'
                                 />
                             <div className='flex flex-col gap-2 mt-20'>
                                 <h2 className='text-2xl pb-3'>
