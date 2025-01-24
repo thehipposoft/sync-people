@@ -30,7 +30,7 @@ const LoginMenu = () => {
             setIsApiLoading(false);
             setErrorMessage('');
 
-            router.push(`${ROUTES.MY_PROFILE}/${apiResponse.talent_id}`);
+            router.push(`${ROUTES.MY_PROFILE}/${apiResponse.talent_id}/create-talent-profile`);
         } else {
             setIsApiLoading(false);
             setErrorMessage(apiResponse.message);

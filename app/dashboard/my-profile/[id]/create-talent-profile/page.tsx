@@ -31,7 +31,7 @@ type Props = {
     }>;
 };
 
-const MyProfilePage = async ({ params }: Props) => {
+const CreateTalentProfile = async ({ params }: Props) => {
     const resolvedParams = await params;
     const { id } = resolvedParams;
     const userData:TalentType = await getTalent(id);
@@ -43,14 +43,14 @@ const MyProfilePage = async ({ params }: Props) => {
         >
             <div className="flex">
                 <div className="flex flex-col w-full">
-{/*                     <TalentForm
+                    <TalentForm
                         user={userData.acf}
                         userId={id}
-                    /> */}
+                    />
                 </div>
             </div>
         </PrivateLayout>
     )
 };
 
-export default MyProfilePage;
+export default CreateTalentProfile;

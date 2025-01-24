@@ -280,21 +280,21 @@ const FORM_SLIDES = [
                     <section className="my-8">
                         <p className="text-[#1A335D]">Academic Credentials:</p>
                         <div className="flex flex-col items-center md:items-start md:flex-row gap-6 mt-12 mx-auto md:mx-0">
-                            <label for="file-upload" className="h-40 w-56 rounded-2xl shadow-xl flex flex-col gap-4 cursor-pointer justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                            <label htmlFor="file-upload" className="h-40 w-56 rounded-2xl shadow-xl flex flex-col gap-4 cursor-pointer justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
                                 </svg>
                                     Upload File
                                 <input id="file-upload" type="file" className="hidden"/>
                             </label>
-                            <label for="file-upload-two" className="h-40 w-56 rounded-2xl shadow-xl flex flex-col gap-4 cursor-pointer justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                            <label htmlFor="file-upload-two" className="h-40 w-56 rounded-2xl shadow-xl flex flex-col gap-4 cursor-pointer justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
                                 </svg>
                                     Upload File
                                 <input id="file-upload-two" type="file" className="hidden"/>
                             </label>
-                            <label for="file-upload-three" className="h-40 w-56 rounded-2xl shadow-xl flex flex-col gap-4 cursor-pointer justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                            <label htmlFor="file-upload-three" className="h-40 w-56 rounded-2xl shadow-xl flex flex-col gap-4 cursor-pointer justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
                                 </svg>
@@ -328,10 +328,10 @@ const FORM_SLIDES = [
                             width="560"
                             height="315"
                             src="https://www.youtube.com/embed/0_6AK52kSVQ?si=wAkKFQ5EE9TOXuJb" title="YouTube video player"
-                            frameborder="0"
+                            frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
                         />
                         <p className="text-xl mt-3 text-[#1A335D]">
                             Why Create a "presentation" Video?
@@ -361,7 +361,7 @@ const FORM_SLIDES = [
                     <section className="my-8 flex flex-col gap-4">
                         <p className="text-lg mt-3 text-[#1A335D]">Profile Header:</p>
                         <p className="mt-1 text-[#1A335D]">size: 2560 x 1440 px</p>
-                        <label for="profile-header" className="h-40 w-56 rounded-2xl shadow-xl flex flex-col gap-4 mx-auto md:mx-0 cursor-pointer justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                        <label htmlFor="profile-header" className="h-40 w-56 rounded-2xl shadow-xl flex flex-col gap-4 mx-auto md:mx-0 cursor-pointer justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
                             <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
                             </svg>
@@ -481,7 +481,7 @@ const BUSINESS_FORMSLIDES = [
                             </div>
                         </section>
                         <p className="text-[#1A335D] mt-12">Upload Branch #1 profile picture</p>
-                        <label for="branch-one-profile-pic" className="h-40 w-56 my-8 rounded-2xl shadow-xl flex flex-col gap-4 cursor-pointer mx-auto md:mx-0 justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                        <label htmlFor="branch-one-profile-pic" className="h-40 w-56 my-8 rounded-2xl shadow-xl flex flex-col gap-4 cursor-pointer mx-auto md:mx-0 justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
                             <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
                             </svg>
@@ -630,219 +630,3 @@ const BUSINESS_FORMSLIDES = [
 ]
 
 export { FORM_SLIDES, BUSINESS_FORMSLIDES }
-
-
-
-
-
-{/*
-
-<section className='flex flex-col md:flex-row gap-2 md:gap-16'>
-                            <div className='md:w-1/2'>
-                                <label htmlFor="branches" className="block pb-2 ">Branches</label>
-                                <input type="text" name="branches" id="branches" placeholder="*Specify numbers of branches"  />
-                            </div>
-                            <div className='md:w-1/2'>
-                            </div>
-                        </section>
-                        <p className="p-bold text-[#1A335D] mt-12">Branch #1</p>
-                        <section className='flex flex-col md:flex-row gap-2 md:gap-16'>
-                            <div className='md:w-1/2'>
-                                <label htmlFor="state" className="block pb-2">Location - State:</label>
-                                <select
-                                    id="state"
-                                    name="state"
-                                >
-                                    <option value="Victoria">Victoria</option>
-                                    <option value="New South Wales">New South Wales</option>
-                                    <option value="Queensland">Queensland</option>
-                                    <option value="South Australia">South Australia</option>
-                                    <option value="Western Australia">Western Australia</option>
-                                    <option value="Northern Territory">Northern Territory</option>
-                                </select>
-                            </div>
-                            <div className='md:w-1/2'>
-                                <label htmlFor="location-city" className="block pb-2">Location - City:</label>
-                                <input
-                                    type="text"
-                                    id="location-city"
-                                    name="location-city"
-                                    required
-                                />
-                            </div>
-                        </section>
-                        <section className='flex flex-col md:flex-row gap-2 md:gap-16'>
-                            <div className='md:w-1/2'>
-                                <label htmlFor="location-adress" className="block pb-2">Location - Adress:</label>
-                                <input
-                                    type="text"
-                                    id="location-adress"
-                                    name="location-adress"
-                                    required
-                                />
-                            </div>
-                            <div className='md:w-1/2'>
-                            </div>
-                        </section>
-                        <section className='flex flex-col md:flex-row gap-2 md:gap-16'>
-                            <div className='md:w-1/2'>
-                                <label htmlFor="website" className="block pb-2">Website:</label>
-                                <input
-                                    type="text"
-                                    id="website"
-                                    name="website"
-                                    required
-                                />
-                            </div>
-                            <div className='md:w-1/2'>
-                            </div>
-                        </section>
-                        <p className="text-[#1A335D] mt-12">Upload Branch #1 profile picture</p>
-                        <label for="branch-one-profile-pic" className="h-40 w-56 my-8 rounded-2xl shadow-xl flex flex-col gap-4 cursor-pointer justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
-                            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
-                            </svg>
-                                Upload File
-                            <input id="branch-one-profile-pic" type="file" className="hidden"/>
-                        </label>
-                        <section className='flex flex-col md:flex-row gap-2 md:gap-4'>
-                            <div className='md:w-1/2'>
-                                <label htmlFor="phone" className="block pb-2 p-bold">Phone Number</label>
-                                <input
-                                    type="tel"
-                                    id="phone"
-                                    name="phone"
-                                    required
-                                />
-                            </div>
-
-                            <div className='md:w-1/2'>
-                                <label htmlFor="email" className="block pb-2 p-bold">Contact Email:</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    required
-                                />
-                            </div>
-                        </section>
-                            <section className='flex flex-col'>
-                                <label htmlFor="about" className='pb-2 p-bold'>Company Description</label>
-                                <textarea name="" id="about" cols={6} rows={5} className='resize-none bg-[#F8F9FA] p-2'></textarea>
-                            </section>
-                            <section className='flex flex-col'>
-                                <label htmlFor="contact" className='pb-2 p-bold'>Website Adress and social media links:</label>
-                                <textarea name="contact" id="contact" cols={6} rows={5} className='resize-none bg-[#F8F9FA] p-2'></textarea>
-                            </section>
-
-<section className="flex flex-col gap-6 md:w-1/2">
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="available-from" >Available from</label>
-                            <input type="date" name="available-from" id="available-from" />
-                        </div>
-                        <div>
-                            <p className="pb-4">Preffered working hours</p>
-                            <div className="flex justify-between gap-2">
-                                <div className="flex flex-col gap-2">
-                                    <label htmlFor="from-hours">From:</label>
-                                    <select name="from" id="from-hours" className="md:pr-20 pr-10 pl-4">
-                                        <option value="7AM">7:00 AM</option>
-                                        <option value="8AM">8:00 AM</option>
-                                        <option value="9AM">9:00 AM</option>
-                                        <option value="10AM">10:00 AM</option>
-                                        <option value="11AM">11:00 AM</option>
-                                        <option value="12AM">12:00 AM</option>
-                                        <option value="13PM">13:00 PM</option>
-                                        <option value="14PM">14:00 PM</option>
-                                        <option value="15PM">15:00 PM</option>
-                                        <option value="16PM">16:00 PM</option>
-                                        <option value="17PM">17:00 PM</option>
-                                        <option value="18PM">18:00 PM</option>
-                                        <option value="19PM">19:00 PM</option>
-                                        <option value="20PM">20:00 PM</option>
-                                        <option value="21PM">21:00 PM</option>
-                                        <option value="22PM">22:00 PM</option>
-                                        <option value="23PM">23:00 PM</option>
-                                        <option value="24PM">24:00 PM</option>
-                                    </select>
-                                </div>
-                                <div className="flex flex-col gap-2">
-                                    <label htmlFor="to-hours">To:</label>
-                                    <select name="to" id="to-hours" className="md:pr-20 pr-10 pl-4">
-                                        <option value="7AM">7:00 AM</option>
-                                        <option value="8AM">8:00 AM</option>
-                                        <option value="9AM">9:00 AM</option>
-                                        <option value="10AM">10:00 AM</option>
-                                        <option value="11AM">11:00 AM</option>
-                                        <option value="12AM">12:00 AM</option>
-                                        <option value="13PM">13:00 PM</option>
-                                        <option value="14PM">14:00 PM</option>
-                                        <option value="15PM">15:00 PM</option>
-                                        <option value="16PM">16:00 PM</option>
-                                        <option value="17PM">17:00 PM</option>
-                                        <option value="18PM">18:00 PM</option>
-                                        <option value="19PM">19:00 PM</option>
-                                        <option value="20PM">20:00 PM</option>
-                                        <option value="21PM">21:00 PM</option>
-                                        <option value="22PM">22:00 PM</option>
-                                        <option value="23PM">23:00 PM</option>
-                                        <option value="24PM">24:00 PM</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="desired-weekly-hours">Desired weekly hours</label>
-                            <input type="number" placeholder="40" />
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="right-to-work">Right to Work</label>
-                            <select name="right-to-work" id="right-to-work" className="pl-4">
-                                <option value="austrailian-resident">Australian Resident</option>
-                                <option value="overseas-student">Overseas Student</option>
-                                <option value="work-and-holiday">Work and Holiday Maker</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                    </section>
-                    <section className="md:w-1/2">
-                        <div className="flex flex-col gap-1">
-                            <label htmlFor="days-available">Days Available</label>
-                                <label className="flex gap-2 text-black">
-                                    <input type="checkbox" name="days" value="monday" />
-                                    Monday
-                                </label>
-
-                                <label className="flex gap-2 text-black">
-                                    <input type="checkbox" name="days" value="tuesday" />
-                                    Tuesday
-                                </label>
-
-                                <label className="flex gap-2 text-black">
-                                    <input type="checkbox" name="days" value="wednesday"/>
-                                    Wednesday
-                                </label>
-
-                                <label className="flex gap-2 text-black">
-                                    <input type="checkbox" name="days" value="thursday"/>
-                                    Thursday
-                                </label>
-
-                                <label className="flex gap-2 text-black">
-                                    <input type="checkbox" name="days" value="friday"/>
-                                    Friday
-                                </label>
-
-                                <label className="flex gap-2 text-black">
-                                    <input type="checkbox" name="days" value="saturday"/>
-                                    Saturday
-                                </label>
-
-                                <label className="flex gap-2 text-black">
-                                    <input type="checkbox" name="days" value="sunday"/>
-                                    Sunday
-                                </label>
-                        </div>
-                    </section>
-*/}
-

@@ -2,8 +2,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { TalentTypeAcf } from '@/types';
-import React, { useState } from 'react';
-import { FORM_SLIDES } from '../../../components/FormSlider/constants';
+import React, { use, useState } from 'react';
+import { FORM_SLIDES } from '../../../../../components/FormSlider/constants';
 
 type MyProfileProps = {
     user: TalentTypeAcf;
@@ -31,6 +31,8 @@ const TalentForm = ({
         })
     }
 
+    console.log('Data:', user)
+
     return (
         <div>
             <div className='flex flex-col md:w-full'>
@@ -41,7 +43,7 @@ const TalentForm = ({
                         </div>
                         <div className='flex md:gap-80 md:w-[850px] mx-auto'>
                             <div className='pt-4 md:pl-2'>
-                                <Image src={'/assets/images/cv.png'} alt='Profile picture' width={160} height={160} className='ml-6 mt-4 md:w-[150px] w-36'/>
+                                <Image src={user.personal_information.profile_pic} alt='Profile picture' width={160} height={160} className='ml-6 mt-4 md:w-40 md:h-40 rounded-full object-cover'/>
                             </div>
                             <div className='mt-20 flex-col gap-2 items-end hidden md:block'>
                                 {
