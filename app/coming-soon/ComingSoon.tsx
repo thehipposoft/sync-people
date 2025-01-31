@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { createTalent, createClient } from "@/lib/api";
-import Link from "next/link";
+import { Link } from 'next-view-transitions';
 import { ROUTES } from "../constants";
 import Modal from "@/components/Modal";
 

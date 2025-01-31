@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import { ROUTES } from '@/app/constants';
 import { createTalent } from "@/lib/api";
 

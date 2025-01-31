@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image';
 import React, { useState } from 'react';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import VideoModal from './VideoModal';
 import ComingSoonModal from './ComingSoonModal';
 import { ROUTES } from '@/app/constants';

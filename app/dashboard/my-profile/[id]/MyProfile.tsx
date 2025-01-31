@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
 import { getAge } from '@/lib/utils';
 import { renderSocialMediaIcon } from '@/lib/utils';
@@ -30,7 +30,7 @@ const MyProfile = ({
                         />
                         <div className='relative flex flex-col justify-between md:px-12 px-6 py-6'>
                             <Image
-                                src={user.personal_information.profile_pic}
+                                src={user.personal_information.profile_pic ? user.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
                                 alt={`Profile picture of ${user.personal_information.first_name}`}
                                 height={140}
                                 width={140}
@@ -46,18 +46,18 @@ const MyProfile = ({
                                 <p>
                                     {user.working_rights.current_visa.label}
                                 </p>
-                                <p>
+                                <p className={`${user.current_location.state ? '' : 'hidden'}`}>
                                     {user.current_location.address_1}, {user.current_location.suburb}, {user.current_location.state} {user.current_location.postcode}
                                 </p>
                                 <p>
-                                    {`DOB: ${user.personal_information.date_of_birth}`}
+                                    {`DOB: ${user.personal_information.date_of_birth ? user.personal_information.date_of_birth : '-'}`}
                                 </p>
                                 <div className={`flex gap-2`}>
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12.8359 11.8754L11.0008 13.6857C10.0438 13.1086 9.15474 12.4258 8.35047 11.6499C7.57582 10.8443 6.89306 9.95516 6.31475 8.99879L8.12332 7.16365C8.23286 7.05242 8.30683 6.91112 8.33583 6.75772C8.36484 6.60432 8.34755 6.44577 8.28618 6.30222L6.40047 1.9068C6.32597 1.73348 6.19169 1.5927 6.02208 1.5101C5.85248 1.4275 5.65885 1.40858 5.47647 1.4568L2.01875 2.37137C1.84608 2.41613 1.69371 2.51818 1.58658 2.66081C1.47946 2.80344 1.42391 2.9782 1.42904 3.15651C1.64904 7.17803 3.32114 10.983 6.13475 13.8648C9.01705 16.6793 12.8231 18.3517 16.8456 18.5714C17.0241 18.5774 17.1993 18.5223 17.3422 18.4152C17.4851 18.3081 17.5872 18.1555 17.6316 17.9825L18.5453 14.5231C18.5938 14.3408 18.5751 14.1472 18.4926 13.9775C18.4102 13.8079 18.2695 13.6736 18.0962 13.5991L13.6999 11.7142C13.5562 11.652 13.3972 11.634 13.2433 11.6627C13.0893 11.6915 12.9475 11.7655 12.8359 11.8754Z" stroke="#326B88" strokeWidth="2.05714" strokeMiterlimit="10" strokeLinecap="square"/>
                                     </svg>
                                     <p className='text-[#1A335D]'>
-                                        {user.personal_information.mobile}
+                                        {user.personal_information.mobile ? user.personal_information.mobile : '-'}
                                     </p>
                                 </div>
                                 <div className={`flex gap-2`}>
@@ -73,7 +73,11 @@ const MyProfile = ({
                                     <div>
                                         <h2 className='text-lg'>Industries of Preference</h2>
                                         <p className='capitalize'>
-                                            {user.professional_information.industries.map(industry => industry.industry).join(', ')}
+                                            {
+                                            user.professional_information.industries[0] ?
+                                            user.professional_information.industries.map(industry => industry.industry).join(', ')
+                                            : '-'
+                                            }
                                         </p>
                                     </div>
                                     {
@@ -97,7 +101,7 @@ const MyProfile = ({
                                 About Me
                             </h3>
                             <p>
-                                {user.extras.more_about_myself}
+                                {user.extras.more_about_myself ? user.extras.more_about_myself : '-'}
                             </p>
                         </div>
                     </div>
@@ -106,19 +110,19 @@ const MyProfile = ({
                             Professional Information
                         </h2>
                         <h2 className='text-lg'>
-                            Current Status
+                            Current Status:
                         </h2>
                         <p className='pb-4 capitalize'>
                             {user.professional_information.current_status}
                         </p>
                         <h2 className='text-lg'>
-                            Working preferences
+                            Working preferences:
                         </h2>
                         <p className='pb-4 capitalize'>
                             {user.professional_information.work_preference}
                         </p>
                         <h2 className='text-xl pb-4 font-bold'>
-                            My Industries
+                            My Industries:
                         </h2>
                         <div className='flex flex-col gap-4'>
                             {
@@ -169,7 +173,7 @@ const MyProfile = ({
                                             Position: {industry.position}
                                         </p>
                                         <p className='mt-2'>
-                                            Preferred Salary: ${industry.preferred_salary}
+                                            Preferred Salary: {industry.preferred_salary ? '$'+industry.preferred_salary : '-'}
                                         </p>
                                     </div>
                                 ))
@@ -194,38 +198,43 @@ const MyProfile = ({
                     </div>
                     <div className='flex flex-col my-4 bg-white md:px-12 px-6 py-6 border-t'>
                         <h2 className='text-2xl pb-4 font-bold'>
-                            Extras
+                            Extras:
                         </h2>
                         <h2 className='text-lg'>
-                            Level of English
+                            Level of English:
                         </h2>
                         <p className='capitalize'>
-                            {user.extras.level_of_english}
+                            {user.extras.level_of_english ? user.extras.level_of_english : '-'}
                         </p>
                         <h2 className='text-lg mt-2'>
-                            Languages
+                            Languages:
                         </h2>
                         {
-                            <p>{user.extras.languages.join(', ')}</p>
+                            <p>{user.extras.languages.length > 0 ? user.extras.languages.join(', ') : '-'}</p>
                         }
                          <h2 className='text-lg mt-2'>
-                            Education Level
+                            Education Level:
                         </h2>
                         <p className='capitalize'>
-                            {user.extras.education_level}
+                            {user.extras.education_level ? user.extras.education_level : '-'}
                         </p>
                         <h2 className='text-lg mt-2'>
-                            Presentation video
+                            Presentation video:
                         </h2>
                         <p>
-                            <Link href={user.extras.presentation_video} target='_blank' className='underline'>
-                                {user.extras.presentation_video}
-                            </Link>
+                            {
+                                user.extras.presentation_video ?
+                                <Link href={user.extras.presentation_video} target='_blank' className='underline'>
+                                    {user.extras.presentation_video}
+                                </Link>
+                                : '-'
+                            }
                         </p>
                         <h2 className='text-lg mt-2'>
-                            Other Credentials
+                            Other Credentials:
                         </h2>
                         {
+                            user.extras.other_credentials ?
                             user.extras.other_credentials && user.extras.other_credentials.map((credential, index) => (
                                 <div key={index}>
                                     <p className='capitalize'>
@@ -238,12 +247,14 @@ const MyProfile = ({
                                     </p>
                                 </div>
                             ))
+                            : '-'
                         }
                         <h2 className='text-lg my-2'>
-                            Social Media Links
+                            Social Media Links:
                         </h2>
                         <div className='flex gap-2 flex-wrap'>
                             {
+                                user.extras.social_media_links ?
                                 user.extras.social_media_links && user.extras.social_media_links.map((link, index) => (
                                     <div key={index}>
                                         <Link href={link.url} target='_blank' className='underline'>
@@ -251,6 +262,7 @@ const MyProfile = ({
                                         </Link>
                                     </div>
                                 ))
+                                : '-'
                             }
                         </div>
                     </div>

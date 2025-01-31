@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
 import { INDUSTRIES } from '@/app/constants';
 import { updateProfile } from '@/lib/protected-api';
@@ -504,7 +504,7 @@ const ProfileForm = ({
             </h1>
             <div className='flex gap-10 w-full mx-auto items-center pt-4 mb-4'>
                 <Image
-                    src={userData.personal_information.profile_pic}
+                    src={userData.personal_information.profile_pic ? userData.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
                     alt={`${userData.personal_information.first_name} ${userData.personal_information.last_name}`}
                     width={160} height={160}
                     className='ml-6 mt-4 md:mt-0 md:w-[150px] w-36 rounded-full'

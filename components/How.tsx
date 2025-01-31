@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import { ROUTES } from '@/app/constants';
 
 const How = () => {

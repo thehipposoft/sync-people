@@ -1,21 +1,19 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 
 const SideNav = () => {
     return (
             <div className='bg-[#19325d] md:w-[5vw] w-[12vw] px-0 h-screen sticky flex left-0 top-0 flex-col gap-6 items-center pt-4'>
-                <Link href={'/'}>
-                    <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-auto w-[35px]'/>
-                </Link>
+                <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-auto w-[35px]'/>
                 <div className='w-full'>
-                    <div className='cursor-pointer duration-500 hover:bg-[#334a71] flex justify-center py-3 w-full'>
+                    <Link href={'/'} className='cursor-pointer duration-500 hover:bg-[#334a71] flex justify-center py-3 w-full'>
                         <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg" className='px-[2px]'>
                             <path d="M4.5 14.3998L16.5 4.7998L28.5 14.3998" stroke="#DEE1E6" strokeWidth="1.92" strokeMiterlimit="10"/>
                             <path d="M14.0996 27.1998L14.0996 20.7998H18.8996V27.1998" stroke="#DEE1E6" strokeWidth="1.92" strokeMiterlimit="10"/>
                             <path d="M7.69922 16L7.69922 24.8C7.69922 26.1256 8.77362 27.2 10.0992 27.2L22.8992 27.2C24.2248 27.2 25.2992 26.1256 25.2992 24.8L25.2992 16" stroke="#DEE1E6" strokeWidth="1.92" strokeMiterlimit="10" strokeLinecap="square"/>
                         </svg>
-                    </div>
+                    </Link>
                     <div className=' cursor-pointer duration-500 hover:bg-[#334a71] hidden justify-center py-3 w-full'>
                         <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg" className='px-[2px]'>
                             <path d="M14.0996 26.9775C14.4102 27.3008 14.7828 27.558 15.1953 27.7337C15.6077 27.9094 16.0513 28 16.4996 28C16.9479 28 17.3916 27.9094 17.804 27.7337C18.2164 27.558 18.5891 27.3008 18.8996 26.9775" stroke="#DEE1E6" strokeWidth="1.92" strokeMiterlimit="10" strokeLinecap="square"/>
