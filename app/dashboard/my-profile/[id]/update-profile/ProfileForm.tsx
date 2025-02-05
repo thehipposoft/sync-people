@@ -511,7 +511,7 @@ const ProfileForm = ({
                 />
                 <textarea
                     rows={4}
-                    className='flex w-full border p-2'
+                    className='flex w-full border p-2 resize-none'
                     value={formValues.extras.more_about_myself}
                     onChange={(e) => handleInputChange(e, 'extras', 'more_about_myself')}
                 />
