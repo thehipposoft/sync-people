@@ -39,6 +39,14 @@ h1, h2 {
     font-weight: 600;
 }
 
+input::placeholder {
+    font-family: $poppins;
+}
+
+textarea::placeholder {
+    font-family: $poppins;
+}
+
 .poppins {
     font-family: $poppins;
 }

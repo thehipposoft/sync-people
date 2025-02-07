@@ -4,27 +4,25 @@ import React from 'react'
 const Contact = () => {
   return (
     <div className='flex justify-between md:px-20 md:max-w-[1350px] max-w-[85vw] mx-auto py-20 flex-wrap' id='contact'>
-        <div className='md:w-2/5 w-full p-4 md:p-0'>
-            <h2 className='text-6xl'>Contact us</h2>
-            <form className='pt-6 md:w-[500px]'>
-                <section className='flex flex-col'>
-                    <label htmlFor="text" className='pb-2'>First name</label>
-                    <input type="text" name="First name" id="" />
+        <div className='md:w-2/5 w-full md:p-4 md:p-0'>
+            <h2 className='md:text-6xl text-5xl'>Contact us</h2>
+            <form className='pt-6 md:w-[450px] flex flex-col'>
+                <section className='flex justify-between gap-4 md:gap-0'>
+                    <div>
+                        <input type="text" name="First name" id="" placeholder='First name' className='py-3 px-4 placeholder-[#8D78E0] w-full' />
+                    </div>
+                    <div>
+                        <input type="text" name="Last name" id="" placeholder='Last name' className='py-3 px-4 placeholder-[#8D78E0] w-full'/>
+                    </div>
                 </section>
                 <section className='flex flex-col'>
-                    <label htmlFor="text" className='pb-2'>Last name</label>
-                    <input type="text" name="Last name" id="" />
+                    <input type="email" name="email" id="" placeholder='Email' className='py-3 px-4 placeholder-[#8D78E0]' />
                 </section>
                 <section className='flex flex-col'>
-                    <label htmlFor="text" className='pb-2'>Email:</label>
-                    <input type="email" name="" id="" />
-                </section>
-                <section className='flex flex-col'>
-                    <label htmlFor="textarea" className='pb-2'>Your message</label>
-                    <textarea name="" id="" className='input' rows={5} />
+                    <textarea name="" id="" className='py-4 px-4 bg-transparent border border-[#656ED3] rounded-[2em] resize-none placeholder-[#8D78E0]' rows={5} placeholder='Enter Text here' />
                 </section>
                 <section>
-                    <input type="submit" value="Send" className='purple-b md:py-2 md:px-8 md:mt-4 cursor-pointer w-32' />
+                    <input type="submit" value="Send" className='purple-b py-2 px-6 md:mt-4 cursor-pointer w-fit' />
                 </section>
             </form>
         </div>

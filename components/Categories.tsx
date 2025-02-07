@@ -5,7 +5,7 @@ import { ROUTES } from '@/app/constants';
 const Categories = () => {
   return (
     <div className='py-12'>
-      <h1 className='font-bold text-[38px] px-6 md:px-0 container'>Popular Job Categories</h1>
+      <h1 className='font-semibold text-[38px] px-6 md:px-0 container'>Popular Job Categories</h1>
       <div className='flex justify-center py-10 px-5 flex-wrap gap-5'>
         <div className=''>
           <div className='grid grid-cols-1 md:grid-cols-2 md:w-[600px] gap-5'>
