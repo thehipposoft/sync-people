@@ -106,6 +106,14 @@ const LoginMenu = () => {
                 <p className='text-center pt-6'>
                     Don't have an account? <Link href={ROUTES.SIGN_UP} className='font-semibold text-purple hover:underline'>Register</Link>
                 </p>
+                <p className='text-center pt-2'>
+                    <Link
+                        target={'_blank'}
+                        href={'https://admin.insyncx.com/wp-login.php?action=lostpassword'}
+                        className='font-semibold text-purple hover:underline'
+                    >Forgot your password?
+                    </Link>
+                </p>
                 <div className='flex justify-around items-center md:w-[450px] pt-10'>
                     <Image src={'/assets/logo.svg'} width={150} height={100} alt='Sync logo' />
                     <div className='flex justify-end items-end'>

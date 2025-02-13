@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { ROUTES } from '@/app/constants';
-import { createTalent } from "@/lib/api";
+import { createTalentNew } from "@/lib/api";
 
 const SignUpMenu = () => {
     const [errorMessage, setErrorMessage] = useState<string>('');
@@ -22,12 +22,11 @@ const SignUpMenu = () => {
             last_name: formData.get('last-name') as string,
             email: formData.get('email') as string,
             password: formData.get('password') as string,
-            industry: 'talent',
             lookingFor: 'job',
             username: username,
         };
 
-        const apiResponse = await createTalent(data);
+        const apiResponse = await createTalentNew(data);
 
         if (apiResponse.status === 200) {
             setIsApiLoading(false);
@@ -37,7 +36,7 @@ const SignUpMenu = () => {
             //TODO: Implement email verification
         } else {
             setIsApiLoading(false);
-            setErrorMessage(apiResponse.message);
+            setErrorMessage(apiResponse.details ? apiResponse.details : apiResponse.message);
         }
     };
 
@@ -116,7 +115,7 @@ const SignUpMenu = () => {
                         type="submit"
                         value="Sign up"
                         className='primary-btn mx-0 w-fit lg:w-auto'
-                        disabled={isApiLoading}
+                        //disabled={isApiLoading}
                     >
                         Sign up
                     </button>

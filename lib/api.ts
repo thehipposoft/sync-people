@@ -128,6 +128,7 @@ export const logout = async () => {
     };
 };
 
+/*
 export const createTalent = async (data: ComingSoonEmailType) => {
     const response = await fetch('/api/talents', {
         method: 'POST',
@@ -147,6 +148,39 @@ export const createTalent = async (data: ComingSoonEmailType) => {
 
         return {
             message: data.message,
+        };
+    }
+};*/
+
+type CreateTalentBodyType = {
+    first_name: string;
+    last_name: string;
+    email: string;
+    password: string;
+    lookingFor: string;
+};
+
+export const createTalentNew = async (data: CreateTalentBodyType) => {
+    const response = await fetch('https://admin.insyncx.com/wp-json/custom/v1/create-talent-user', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+
+        },
+        body: JSON.stringify(data)
+    });
+
+    if (response.status >= 200 && response.status < 300) {
+        return {
+            status: 200,
+            message: 'Talent Created',
+        };
+    } else {
+        const data = await response.json();
+
+        return {
+            message: data.error,
+            details: data.details,
         };
     }
 };

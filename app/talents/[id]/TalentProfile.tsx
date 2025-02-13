@@ -43,9 +43,8 @@ const TalentProfile = ({
                                 alt={`Banner for ${talentData.personal_information.first_name}`}
                                 width={900}
                                 height={200}
-                                className={`${talentData.professional_information.industries ? 'hidden' : ''} object-cover rounded-t-2xl object-center max-h-[7rem] md:max-h-[10rem] w-full`}
+                                className={`object-cover rounded-t-2xl object-center max-h-[7rem] md:max-h-[10rem] w-full`}
                             />
-                            <div className='rounded-t-2xl h-[200px] w-full bg-[#3EC1AA]' />
                         </div>
                         <div className='relative flex flex-col justify-between md:px-12 px-6 py-6'>
                             <div className='flex md:gap-4 flex-col md:flex-row relative mb-4 pb-14'>
@@ -218,7 +217,7 @@ const TalentProfile = ({
                     Download Profile
                 </button>
                 <button
-                    className='primary-btn w-full md:w-auto px-8'
+                    className='primary-btn w-full md:w-auto px-8 hidden'
                     onClick={downloadPDF}
                 >
                     {`Connect with ${talentData.personal_information.first_name}`}

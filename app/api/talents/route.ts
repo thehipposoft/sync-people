@@ -22,7 +22,17 @@ export async function POST(request: NextRequest) {
         },
         { status: 500 });
     }
+    const apiResponse = await fetch('https://admin.insyncx.com/custom-api/v1/create-talent-user', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
 
+        },
+        body: JSON.stringify(data)
+    });
+
+    console.log(">>apiResponse", apiResponse);
+    /*
     const response = await fetch('https://admin.insyncx.com/wp-json/wp/v2/talents', {
         method: 'POST',
         headers: {
@@ -87,8 +97,8 @@ export async function POST(request: NextRequest) {
     if (!userResponse.ok) {
         return NextResponse.json({ message: apiResponse.message }, { status: userResponse.status });
     }
-
-    if (!apiResponse.id) {
+*/
+    if (!apiResponse) {
         return NextResponse.json({ message: 'User not created' }, { status: 500 });
     }
 

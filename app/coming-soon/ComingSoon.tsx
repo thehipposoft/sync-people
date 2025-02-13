@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 import Image from "next/image";
-import { createTalent, createClient } from "@/lib/api";
+import { createClient } from "@/lib/api";
 import { Link } from 'next-view-transitions';
 import { ROUTES } from "../constants";
 import Modal from "@/components/Modal";
@@ -70,6 +70,7 @@ export default function ComingSoon () {
         setErrorMessage('');
         setIsApiLoading(true);
 
+        /*
         const apiResponse = formValues.lookingFor === 'job' ? await createTalent(formValues) : await createClient(formValues);
 
         if (apiResponse.status === 200) {
@@ -86,7 +87,7 @@ export default function ComingSoon () {
         } else {
             setIsApiLoading(false);
             setErrorMessage(apiResponse.message);
-        }
+        }*/
     };
 
     return (
