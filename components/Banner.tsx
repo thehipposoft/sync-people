@@ -16,11 +16,11 @@ const Banner = () => {
 
     return (
         <div className='flex justify-center md:justify-between items-center max-w-[1250px] mx-auto flex-wrap px-8 md:px-0 md:py-0 md:pt-10 md:h-screen'>
-            <div className='flex flex-col md:mt-32 mt-40 md:mt-0'>
+            <div className='flex flex-col  mt-40 md:mt-0'>
                 <h2 className='md:tracking-wide text-6xl md:text-6xl w-3/4'>Welcome to the</h2>
                 <h2 className='text-[#8D78E0] md:tracking-wide mb-4 md:mb-0 text-6xl md:text-6xl'>new age of work</h2>
                 <h1 className='pt-4 light md:text-[20px] text-[18px] tracking-wide leading-[120%] md:w-[600px]'>Looking to work while you explore Australia? <span>We will <br/> design for you a Digital Passport specifically tailored to <br/> the industry you want to apply for so that you get the job you are looking for, without stress or cost.</span></h1>
-                <div className='flex mt-8 flex-wrap gap-4 md:gap-0 mb-3 md:mb-0 hidden'>
+                <div className='mt-8 flex-wrap gap-4 md:gap-0 mb-3 md:mb-0 hidden'>
                     <Link
                         href={ROUTES.COMING_SOON}
                         className='secondary-btn w-fit md:w-auto'

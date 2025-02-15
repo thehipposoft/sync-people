@@ -37,11 +37,11 @@ const Discover = () => {
               </div>
               <div className='flex flex-col w-[200px] h-[120px] overflow-hidden group '>
                 <div className='flex flex-col items-center md:py-4 w-[200px] h-[115px]'>
-                    <svg width="46" height="46" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.4 16h39.2M3.4 30h39.2M2 23a21 21 0 1 0 42 0 21 21 0 0 0-42 0Z" stroke="#2D457B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M21.863 2A40.431 40.431 0 0 0 16 23c0 7.425 2.031 14.7 5.863 21m2.274-42A40.431 40.431 0 0 1 30 23c0 7.425-2.031 14.7-5.863 21" stroke="#2D457B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg width="46" height="46" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.4 16h39.2M3.4 30h39.2M2 23a21 21 0 1 0 42 0 21 21 0 0 0-42 0Z" stroke="#2D457B" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/><path d="M21.863 2A40.431 40.431 0 0 0 16 23c0 7.425 2.031 14.7 5.863 21m2.274-42A40.431 40.431 0 0 1 30 23c0 7.425-2.031 14.7-5.863 21" stroke="#2D457B" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     <p className='font-semibold text-[#1A335D] text-xl pt-2'>Language</p>
                 </div>
                 <div className='flex flex-col items-center md:py-4 bg-white rounded-xl w-[200px] h-[115px] opacity-0 group-hover:opacity-100 group-hover:-translate-y-[108px] duration-700 ease-in-out'>
-                    <svg width="46" height="46" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.4 16h39.2M3.4 30h39.2M2 23a21 21 0 1 0 42 0 21 21 0 0 0-42 0Z" stroke="#2D457B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M21.863 2A40.431 40.431 0 0 0 16 23c0 7.425 2.031 14.7 5.863 21m2.274-42A40.431 40.431 0 0 1 30 23c0 7.425-2.031 14.7-5.863 21" stroke="#2D457B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg width="46" height="46" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.4 16h39.2M3.4 30h39.2M2 23a21 21 0 1 0 42 0 21 21 0 0 0-42 0Z" stroke="#2D457B" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/><path d="M21.863 2A40.431 40.431 0 0 0 16 23c0 7.425 2.031 14.7 5.863 21m2.274-42A40.431 40.431 0 0 1 30 23c0 7.425-2.031 14.7-5.863 21" stroke="#2D457B" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     <p className='font-semibold text-[#1A335D] text-xl pt-2'>Australian English</p>
                 </div>
               </div>

@@ -1,9 +1,13 @@
 'use client'
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
-import React, { use, useState } from 'react';
-import { FORM_SLIDES } from '../../../../../components/FormSlider/constants';
+//Form steps
+import BasicInformation from './BasicInformation';
+import Industries from './Industries';
+import WorkingRights from './WorkingRights';
+import Extras from './Extras';
 
 type MyProfileProps = {
     user: TalentTypeAcf;
@@ -14,27 +18,47 @@ const TalentForm = ({
     user,
     userId,
 }:MyProfileProps) => {
-
+    const [formValues, setFormValues] = useState<TalentTypeAcf>({
+        ...user,
+    });
     const [currentIndex, setCurrentIndex] = useState<number>(0);
 
     function showNext() {
         setCurrentIndex((index) => {
-            if (index === FORM_SLIDES.length - 1) return 0;
+            if (index === 4) return 0;
             return index + 1;
         })
     }
 
     function showPrev() {
         setCurrentIndex((index) => {
-            if (index === 0) return FORM_SLIDES.length - 1;
+            if (index === 0)
+                return 3;
+
             return index - 1;
         })
     }
 
+    const handleInputChange = (
+        e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>,
+        section: 'personal_information' | 'professional_information' | 'working_rights' | 'current_location' | 'extras' | 'work_experience',
+        field: string
+    ) => {
+        const { value } = e.target;
+
+        setFormValues({
+            ...formValues,
+            [section]: {
+                ...formValues[section],
+                [field]: value,
+            },
+        });
+    };
+
     return (
         <div>
             <div className='flex flex-col md:w-full'>
-                <div className='bg-[#FAFAFB] md:w-full flex justify-center gap-12 px-2 md:px-0'>
+                <div className='md:w-full flex justify-center gap-12 px-2 md:px-0'>
                     <div className='flex flex-col rounded-2xl my-4 md:w-[900px] w-full md:px-4 px-6 bg-white border'>
                         <div className='border-b'>
                             <h1 className='text-3xl h-bold py-3 pl-4'>Create Talent Profile</h1>
@@ -89,34 +113,20 @@ const TalentForm = ({
                                 </div>
                             </div>
                             <div className='md:flex overflow-hidden'>
-                                {
-                                    FORM_SLIDES.map((val, index) => {
-                                        return(
-                                            <div
-                                                className={`flex-col duration-1000 md:min-w-[850px] md:px-4 py-6 md:py-0`}
-                                                key={index}
-                                                style={{
-                                                    translate: `${-100 * currentIndex}%`,
-                                                }}
-                                            >
-                                                <div className='flex items-center justify-between pt-8'>
-                                                    <div className='flex gap-4 items-center'>
-                                                        <Image src={val.vector} alt='' width={35} height={30}/>
-                                                        <h4 className='font-bold py-4 text-xl'>{val.title}</h4>
-                                                    </div>
-
-                                                </div>
-                                                <p className='pb-4 text-[#1A335D] text-lg'>{val.description}</p>
-                                                <div className={`${currentIndex === index ? 'md:block' : 'md:hidden'}`}>
-                                                    {val.content}
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                }
+                                <BasicInformation
+                                    currentIndex={currentIndex}
+                                    isVisible={currentIndex === 0}
+                                    formValues={formValues}
+                                    handleInputChange={handleInputChange}
+                                />
+                                <Industries currentIndex={currentIndex} isVisible={currentIndex === 1} />
+                                <WorkingRights currentIndex={currentIndex} isVisible={currentIndex === 2} />
+                                <Extras currentIndex={currentIndex} isVisible={currentIndex === 3} />
                             </div>
                         </form>
-                        <div className='md:flex hidden justify-center mt-6'>{currentIndex + 1} | {FORM_SLIDES.length}</div>
+                        <div className='md:flex hidden justify-center mt-6'>
+                            {currentIndex + 1} | 4
+                        </div>
                         <div className='md:flex hidden gap-6 justify-center py-6'>
                             {
                                 currentIndex != 0 ?
@@ -129,7 +139,7 @@ const TalentForm = ({
                                 : ''
                             }
                             {
-                                currentIndex != FORM_SLIDES.length - 1 ?
+                                currentIndex != 3 ?
                                 <button
                                     className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
                                     onClick={showNext}

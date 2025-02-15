@@ -5,7 +5,6 @@ import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
 import { INDUSTRIES } from '@/app/constants';
 import { updateProfile } from '@/lib/protected-api';
-import TalentForm from '@/app/dashboard/my-profile/[id]/create-talent-profile/TalentForm';
 
 type Props = {
     userData: TalentTypeAcf;
