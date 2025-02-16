@@ -1,11 +1,13 @@
 import {
     getToken,
 } from "./actions";
+import { getJWTToken } from "./api";
 
 type ApiType = {
     endpoint: string;
     method: "GET" | "POST" | "PUT" | "DELETE";
     body?: any;
+    isFormData?: boolean;
     headers?: any;
     token?: string;
 };
@@ -15,6 +17,7 @@ export const api = async ({
     method = "GET",
     body,
     token,
+    isFormData,
 }: ApiType) => {
     const baseURL = 'https://admin.insyncx.com/wp-json/wp/v2';
     const accessToken = token ? token : await getToken();
@@ -24,10 +27,10 @@ export const api = async ({
         headers: {
             'Authorization': `Bearer ${accessToken}`,
         },
+        body: isFormData ? body : JSON.stringify(body),
     };
 
-    if (body) {
-        config.body = JSON.stringify(body);
+    if (body && !isFormData) {
         config.headers["Content-Type"] = "application/json";
     }
 
@@ -48,8 +51,8 @@ export const getUserProfile = async (token?: string) => {
     return data;
 }
 
-export const updateProfile = async (body: any, userId: string) => {
-    if (body.personal_information.profile_pic) {
+export const updateProfile = async (body: any, userId: string, updateProfilePic?: boolean) => {
+    if (body.personal_information.profile_pic && !updateProfilePic) {
         if (body.personal_information.profile_pic.includes('http')) {
             delete body.personal_information.profile_pic;
         }
@@ -67,4 +70,22 @@ export const updateProfile = async (body: any, userId: string) => {
     const data = await response.json();
 
     return data;
+};
+
+export const uploadMedia = async (file: FormData) => {
+    const adminToken = await getJWTToken();
+    const response = await api({
+        endpoint: '/media',
+        method: 'POST',
+        body: file,
+        token: adminToken,
+        isFormData: true,
+    });
+
+    const data = await response.json();
+
+    return {
+        id: data.id,
+        url: data.source_url,
+    };
 };

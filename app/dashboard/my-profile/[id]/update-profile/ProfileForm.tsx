@@ -4,7 +4,8 @@ import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
 import { INDUSTRIES } from '@/app/constants';
-import { updateProfile } from '@/lib/protected-api';
+import { updateProfile, uploadMedia } from '@/lib/protected-api';
+import Modal from '@/components/Modal';
 
 type Props = {
     userData: TalentTypeAcf;
@@ -20,6 +21,7 @@ const ProfileForm = ({
         ...userData,
     });
     const [isAPiLoading, setIsAPiLoading] = useState<boolean>(false);
+    const [openUpdatedModal, setOpenUpdatedModal] = useState<boolean>(false);
 
     const handleInputChange = (
         e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>,
@@ -79,6 +81,60 @@ const ProfileForm = ({
         } else {
             setIsAPiLoading(false);
             console.log('Profile updated successfully');
+        }
+    };
+
+    const handleUpdateDescriptionClick = async () => {
+        setIsAPiLoading(true);
+
+        const apiValues = {
+            ...formValues,
+            extras: {
+                ...formValues.extras,
+                more_about_myself: formValues.extras.more_about_myself,
+            },
+        };
+
+        const response = await updateProfile(apiValues, userId);
+
+        if(response.status === 500) {
+            setIsAPiLoading(true);
+        } else {
+            setIsAPiLoading(false);
+            setOpenUpdatedModal(true);
+        }
+    };
+
+    const handleUploadProfileImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files || e.target.files.length === 0) return;
+
+        const file = e.target.files[0];
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("title", "Profile Picture");
+        formData.append("alt_text", "Profile Image");
+        formData.append("status", "publish");
+
+        const uploadResponse = await uploadMedia(formData);
+
+        if (uploadResponse) {
+            const apiValues = {
+                ...formValues,
+                personal_information: {
+                    ...formValues.personal_information,
+                    profile_pic: uploadResponse.id,
+                },
+            };
+
+            const response = await updateProfile(apiValues, userId, true);
+
+            setFormValues({
+                ...formValues,
+                personal_information: {
+                    ...formValues.personal_information,
+                    profile_pic: uploadResponse.url,
+                },
+            });
         }
     };
 
@@ -291,7 +347,7 @@ const ProfileForm = ({
                 return (
                     <form className='grid grid-cols-2 gap-4'>
                         {
-                            formValues.work_experience.map((experience, index) => (
+                            formValues.work_experience && formValues.work_experience.map((experience, index) => (
                                 <div key={index} className='border-b py-3 grid grid-cols-2 gap-4 col-span-2'>
                                     <h3 className='mb-2 col-span-2 text-2xl'>
                                         {`${index + 1}. ${experience.position} at ${experience.company_name}`}
@@ -502,18 +558,51 @@ const ProfileForm = ({
                 Update Profile
             </h1>
             <div className='flex gap-10 w-full mx-auto items-center pt-4 mb-4'>
-                <Image
-                    src={userData.personal_information.profile_pic ? userData.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
-                    alt={`${userData.personal_information.first_name} ${userData.personal_information.last_name}`}
-                    width={160} height={160}
-                    className='ml-6 mt-4 md:mt-0 md:w-[150px] w-36 rounded-full'
-                />
-                <textarea
-                    rows={4}
-                    className='flex w-full border p-2 resize-none'
-                    value={formValues.extras.more_about_myself}
-                    onChange={(e) => handleInputChange(e, 'extras', 'more_about_myself')}
-                />
+                <div className='relative group'>
+                    <Image
+                        src={formValues.personal_information.profile_pic ? formValues.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
+                        alt={`${formValues.personal_information.first_name} ${formValues.personal_information.last_name}`}
+                        width={140} height={140}
+                        className='mt-4 md:mt-0 md:w-[140px] w-36 rounded-full border-2 border-primary-text'
+                    />
+                    <div className='absolute top-0 left-0 rounded-full opacity-0 w-full h-full bg-[#000000b3] group-hover:opacity-100 duration-500 flex justify-center items-center cursor-pointer p-2'>
+                        <span className='text-sm text-center text-white'>
+                            <input
+                                id='profile_pic'
+                                name='profile_pic'
+                                type='file'
+                                accept='image/*'
+                                className='hidden'
+                                onChange={handleUploadProfileImage}
+                                multiple={false}
+                            />
+                            <label htmlFor='profile_pic'>
+                                <span className='text-white cursor-pointer'>Change profile image</span>
+                            </label>
+                        </span>
+                    </div>
+                </div>
+
+                <div className='flex flex-col w-full'>
+                    <label htmlFor="personal_information.about_me" className="block pb-2">
+                        About me
+                    </label>
+                    <textarea
+                        rows={4}
+                        name='personal_information.about_me'
+                        id='personal_information.about_me'
+                        className='flex w-full border p-2 resize-none'
+                        value={formValues.extras.more_about_myself}
+                        onChange={(e) => handleInputChange(e, 'extras', 'more_about_myself')}
+                    />
+                    <button
+                        onClick={handleUpdateDescriptionClick}
+                        className='w-fil ml-auto text-xs mt-2 primary-btn mr-0'
+                    >
+                        Save description
+                    </button>
+                </div>
+
             </div>
 
             <div>
@@ -547,6 +636,18 @@ const ProfileForm = ({
             <div>
                 {renderTabContent()}
             </div>
+            <Modal
+                isOpen={openUpdatedModal}
+            >
+                <div className='flex justify-center items-center flex-col'>
+                    <h1 className='text-2xl'>
+                        Profile Updated Successfully
+                    </h1>
+                    <button className='primary-btn mt-3' onClick={() => setOpenUpdatedModal(false)}>
+                        Close
+                    </button>
+                </div>
+            </Modal>
         </div>
     );
 };
