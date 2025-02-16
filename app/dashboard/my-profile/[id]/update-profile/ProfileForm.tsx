@@ -20,7 +20,7 @@ const ProfileForm = ({
     const [formValues, setFormValues] = useState<TalentTypeAcf>({
         ...userData,
     });
-    const [isAPiLoading, setIsAPiLoading] = useState<boolean>(false);
+    const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
     const [openUpdatedModal, setOpenUpdatedModal] = useState<boolean>(false);
 
     const handleInputChange = (
@@ -71,21 +71,27 @@ const ProfileForm = ({
 
     const handleUpdatePersonalInformationClick = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsAPiLoading(true);
+        setIsAPILoading(true);
+
+        const body: any = {
+            ...formValues,
+        }
+
+        delete body.personal_information.profile_pic;
 
         const response = await updateProfile(formValues, userId);
 
         if(response.status === 500) {
-            setIsAPiLoading(true);
+            setIsAPILoading(true);
             console.log('Internal Server Error');
         } else {
-            setIsAPiLoading(false);
+            setIsAPILoading(false);
             console.log('Profile updated successfully');
         }
     };
 
     const handleUpdateDescriptionClick = async () => {
-        setIsAPiLoading(true);
+        setIsAPILoading(true);
 
         const apiValues = {
             ...formValues,
@@ -98,15 +104,17 @@ const ProfileForm = ({
         const response = await updateProfile(apiValues, userId);
 
         if(response.status === 500) {
-            setIsAPiLoading(true);
+            setIsAPILoading(true);
         } else {
-            setIsAPiLoading(false);
+            setIsAPILoading(false);
             setOpenUpdatedModal(true);
         }
     };
 
     const handleUploadProfileImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files || e.target.files.length === 0) return;
+
+        setIsAPILoading(true);
 
         const file = e.target.files[0];
         const formData = new FormData();
@@ -126,7 +134,7 @@ const ProfileForm = ({
                 },
             };
 
-            const response = await updateProfile(apiValues, userId, true);
+            const response = await updateProfile(apiValues, userId);
 
             setFormValues({
                 ...formValues,
@@ -135,8 +143,12 @@ const ProfileForm = ({
                     profile_pic: uploadResponse.url,
                 },
             });
+
+            setIsAPILoading(false);
         }
     };
+
+    console.log(">>FormValues", formValues)
 
     const renderTabContent = () => {
         switch(selectedTab) {
@@ -221,6 +233,7 @@ const ProfileForm = ({
                             <button
                                 className='primary-btn mt-4 mx-auto'
                                 type='submit'
+                                disabled={isAPILoading}
                             >
                                 Update Personal Information
                             </button>
@@ -306,13 +319,18 @@ const ProfileForm = ({
                                             {
                                                 industry.certificates && industry.certificates.map((certificate, index) => (
                                                     <div key={index} className='flex gap-3'>
-                                                        <Link
-                                                            href={certificate.certificate}
-                                                            className='underline'
-                                                            target='_blank'
-                                                        >
-                                                            {certificate.name}
-                                                        </Link>
+                                                        {
+                                                            certificate.certificate ?
+                                                                <Link
+                                                                    href={certificate.certificate}
+                                                                    className='underline'
+                                                                    target='_blank'
+                                                                >
+                                                                    {certificate.name}
+                                                                </Link>
+                                                            : <p>{certificate.name}</p>
+                                                        }
+
                                                         <button>
                                                             <svg
                                                                 viewBox="0 0 24 24"
@@ -332,8 +350,19 @@ const ProfileForm = ({
                                                     </div>
                                                 ))
                                             }
-                                            <button className='primary-btn mt-3 mx-0 text-sm'>
-                                                + Add Certificate
+                                            <button
+                                                className='primary-btn mt-3 mx-0 text-lg p-0 w-10 h-10'
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+
+                                                    industry.certificates.push({
+                                                        name: '',
+                                                        certificate: '',
+                                                        isNew: true,
+                                                    });
+                                                }}
+                                            >
+                                                +
                                             </button>
                                         </div>
                                     </div>
@@ -563,7 +592,7 @@ const ProfileForm = ({
                         src={formValues.personal_information.profile_pic ? formValues.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
                         alt={`${formValues.personal_information.first_name} ${formValues.personal_information.last_name}`}
                         width={140} height={140}
-                        className='mt-4 md:mt-0 md:w-[140px] w-36 rounded-full border-2 border-primary-text'
+                        className='mt-4 md:mt-0 h-28 rounded-full border-2 border-primary-text object-cover'
                     />
                     <div className='absolute top-0 left-0 rounded-full opacity-0 w-full h-full bg-[#000000b3] group-hover:opacity-100 duration-500 flex justify-center items-center cursor-pointer p-2'>
                         <span className='text-sm text-center text-white'>
@@ -598,6 +627,7 @@ const ProfileForm = ({
                     <button
                         onClick={handleUpdateDescriptionClick}
                         className='w-fil ml-auto text-xs mt-2 primary-btn mr-0'
+                        disabled={isAPILoading}
                     >
                         Save description
                     </button>

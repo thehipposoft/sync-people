@@ -6,6 +6,7 @@ export type IndustryType = {
     certificates: {
         certificate: string;
         name: string;
+        isNew?: boolean;
     }[];
 };
 

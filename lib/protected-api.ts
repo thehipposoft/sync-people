@@ -51,13 +51,7 @@ export const getUserProfile = async (token?: string) => {
     return data;
 }
 
-export const updateProfile = async (body: any, userId: string, updateProfilePic?: boolean) => {
-    if (body.personal_information.profile_pic && !updateProfilePic) {
-        if (body.personal_information.profile_pic.includes('http')) {
-            delete body.personal_information.profile_pic;
-        }
-    };
-
+export const updateProfile = async (body: any, userId: string) => {
     const response = await api({
         endpoint: `/talents/${userId}`,
         method: 'PUT',
