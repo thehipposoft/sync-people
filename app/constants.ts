@@ -19,7 +19,11 @@ export const ROUTES = {
     MY_PROFILE: '/dashboard/my-profile',
 }
 
-export const INDUSTRIES_BANNER = {
+type IndustriesBannerType = {
+    [key in IndustriesAvailable]: string;
+};
+
+export const INDUSTRIES_BANNER:IndustriesBannerType = {
     construction: '/assets/images/industries-banners/construction.jpg',
     cleaning: '/assets/images/industries-banners/cleaning.webp',
     warehousing: '/assets/images/industries-banners/warehousing.jpg',
@@ -28,9 +32,15 @@ export const INDUSTRIES_BANNER = {
     hospitality: '/assets/images/industries-banners/hospitality.webp',
     retail: '/assets/images/industries-banners/retail.jpeg',
     age_care: '/assets/images/industries-banners/age-care.webp',
+    other: '/assets/images/industries-banners/other.jpg',
 }
 
-export const INDUSTRIES = [
+type IndustriesAvailable = 'construction' | 'cleaning' | 'warehousing' | 'logistics' | 'farming' | 'hospitality' | 'retail' | 'age_care' | 'other';
+
+export const INDUSTRIES: {
+    name: string;
+    value: IndustriesAvailable;
+}[] = [
     {
         name: 'Construction',
         value: 'construction',
@@ -48,7 +58,7 @@ export const INDUSTRIES = [
         value: 'logistics',
     },
     {
-        name: 'Farming',
+        name: 'Farming / Solar farming',
         value: 'farming',
     },
     {

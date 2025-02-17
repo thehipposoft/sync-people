@@ -8,27 +8,32 @@ export type IndustryType = {
         name: string;
         isNew?: boolean;
     }[];
+    isNew?: boolean;
 };
 
-type IndustriesAvailable = 'construction' | 'cleaning' | 'warehousing' | 'logistics' | 'farming' | 'hospitality' | 'retail' | 'age_care';
+type IndustriesAvailable = 'construction' | 'cleaning' | 'warehousing' | 'logistics' | 'farming' | 'hospitality' | 'retail' | 'age_care' | 'other';
+
+export type PersonalInformationType = {
+    first_name: string;
+    last_name: string;
+    email: string;
+    mobile: string;
+    date_of_birth: string;
+    country: string;
+    profile_pic: string;
+    gender: string;
+};
+
+export type professional_information = {
+    industries: IndustryType[];
+    current_status: 'available' | 'working' | 'offline';
+    work_preference: 'parti-time' | 'full-time' | 'casual' | 'contract' | 'internship';
+};
 
 export type TalentTypeAcf = {
     id: number;
-    personal_information: {
-        first_name: string;
-        last_name: string;
-        email: string;
-        mobile: string;
-        date_of_birth: string;
-        country: string;
-        profile_pic: string;
-        gender: string;
-    };
-    professional_information: {
-        industries: IndustryType[];
-        current_status: 'available' | 'working' | 'offline';
-        work_preference: 'parti-time' | 'full-time' | 'casual' | 'contract' | 'internship';
-    };
+    personal_information: PersonalInformationType;
+    professional_information: professional_information;
     working_rights: {
         visa_number: string;
         visa_doc: string;
