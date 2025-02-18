@@ -6,9 +6,7 @@ export type IndustryType = {
     certificates: {
         certificate: string;
         name: string;
-        isNew?: boolean;
     }[];
-    isNew?: boolean;
 };
 
 type IndustriesAvailable = 'construction' | 'cleaning' | 'warehousing' | 'logistics' | 'farming' | 'hospitality' | 'retail' | 'age_care' | 'other';
