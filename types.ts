@@ -4,8 +4,9 @@ export type IndustryType = {
     preferred_salary: string;
     position: string;
     certificates: {
-        certificate: string;
+        certificate?: string;
         name: string;
+        file_url: string;
     }[];
 };
 

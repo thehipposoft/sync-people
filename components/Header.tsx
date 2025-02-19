@@ -56,7 +56,7 @@ const Header = ({
                             className='primary-btn'
                             href={`${ROUTES.MY_PROFILE}/${userId}`}
                         >
-                            View Profile
+                            Dashboard
                         </Link>
                         : <div className='flex'>
                             <div>

@@ -33,7 +33,6 @@ const PersonalInformation = ({
             console.log('Internal Server Error');
         } else {
             setIsAPILoading(false);
-            console.log('Profile updated successfully');
         }
     };
 
