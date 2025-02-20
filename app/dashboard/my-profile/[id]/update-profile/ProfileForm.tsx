@@ -8,6 +8,7 @@ import Modal from '@/components/Modal';
 import PersonalInformation from './PersonalInformation';
 import ProfessionalInformation from './ProfessionalInformation';
 import WorkExperience from './WorkExperience';
+import ExtraInformation from './ExtraInformation';
 
 type Props = {
     userData: TalentTypeAcf;
@@ -117,91 +118,7 @@ const ProfileForm = ({
                 );
             case 'extras':
                 return (
-                    <form className='grid grid-cols-2 gap-4'>
-                        <div className=''>
-                            <label htmlFor="level_of_english" className="block pb-2">Level of English</label>
-                            <input
-                                type="text"
-                                id="extras.level_of_english"
-                                name="extras.level_of_english"
-                                required
-                                value={formValues.extras.level_of_english}
-                                onChange={(e) => handleInputChange(e, 'extras', 'level_of_english')}
-                            />
-                        </div>
-
-                        <div className=''>
-                            <label htmlFor="preferred_language" className="block pb-2">Preferred Language</label>
-                            <input
-                                type="text"
-                                id="extras.preferred_language"
-                                name="extras.preferred_language"
-                                required
-                                value={formValues.extras.preferred_language}
-                                onChange={(e) => handleInputChange(e, 'extras', 'preferred_language')}
-                            />
-                        </div>
-
-                        <div className=''>
-                            <label htmlFor="other_languages" className="block pb-2">Other Languages</label>
-                            <input
-                                type="text"
-                                id="extras.other_languages"
-                                name="extras.other_languages"
-                                required
-                                value={formValues.extras.other_languages}
-                                onChange={(e) => handleInputChange(e, 'extras', 'other_languages')}
-                            />
-                        </div>
-
-                        <div className=''>
-                            <label htmlFor="more_about_myself" className="block pb-2">More About Myself</label>
-                            <input
-                                type="text"
-                                id="extras.more_about_myself"
-                                name="extras.more_about_myself"
-                                required
-                                value={formValues.extras.more_about_myself}
-                                onChange={(e) => handleInputChange(e, 'extras', 'more_about_myself')}
-                            />
-                        </div>
-
-                        <div className=''>
-                            <label htmlFor="education_level" className="block pb-2">Education Level</label>
-                            <input
-                                type="text"
-                                id="extras.education_level"
-                                name="extras.education_level"
-                                required
-                                value={formValues.extras.education_level}
-                                onChange={(e) => handleInputChange(e, 'extras', 'education_level')}
-                            />
-                        </div>
-
-                        <div className=''>
-                            <label htmlFor="transport" className="block pb-2">Transport</label>
-                            <input
-                                type="text"
-                                id="extras.transport"
-                                name="extras.transport"
-                                required
-                                value={formValues.extras.transport}
-                                onChange={(e) => handleInputChange(e, 'extras', 'transport')}
-                            />
-                        </div>
-
-                        <div className=''>
-                            <label htmlFor="presentation_video" className="block pb-2">Presentation Video</label>
-                            <input
-                                type="text"
-                                id="extras.presentation_video"
-                                name="extras.presentation_video"
-                                required
-                                value={formValues.extras.presentation_video}
-                                onChange={(e) => handleInputChange(e, 'extras', 'presentation_video')}
-                            />
-                        </div>
-                    </form>
+                    <ExtraInformation initialValues={userData.extras} userId={userId} />
                 );
             default:
                 return (

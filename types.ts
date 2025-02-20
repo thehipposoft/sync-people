@@ -39,6 +39,34 @@ export type WorkExperienceType = {
     industry: IndustriesAvailable;
 };
 
+export type LevelOfEnglishType =  'beginner' | 'elementary' | 'intermediate' | 'upper_intermediate' | 'advanced' | 'proficient' | 'native';
+
+export type EducationLevelType = 'No Formal Education' | 'Primary Education' | 'Secondary Education' | 'High School Diploma' | 'Associate Degree' | 'Bachelor’s Degree' | 'Master’s Degree' | 'Doctorate (PhD)' | 'Vocational Training' | 'Other';
+
+export type LanguagesType = 'English' | 'Spanish' | 'French' | 'Italian' | 'Japanese' | 'Cantonese' | 'Mandarin' | 'Dutch' | 'German' | 'Hebrew'
+    | 'Portuguese' | 'Other';
+
+export type ExtraInformationType = {
+    level_of_english: LevelOfEnglishType;
+    preferred_language: string;
+    other_languages: string;
+    more_about_myself: string;
+    education_level: EducationLevelType;
+    other_credentials: {
+        file_url: string;
+        certificate: string;
+        name: string;
+    }[];
+    transport: string;
+    presentation_video: string;
+    social_media_links: {
+        platform: 'linkedin' | 'facebook' | 'instagram' | 'twitter' | 'youtube' | 'other';
+        url: string;
+    }[];
+    profile_header_image: string;
+    languages: LanguagesType[];
+};
+
 export type TalentTypeAcf = {
     id: number;
     personal_information: PersonalInformationType;
@@ -57,25 +85,7 @@ export type TalentTypeAcf = {
         state: string,
         postcode: string,
     };
-    extras: {
-        level_of_english: string;
-        preferred_language: string;
-        other_languages: string;
-        more_about_myself: string;
-        education_level: string;
-        other_credentials?: {
-            certificate: string;
-            name: string;
-        }[];
-        transport: string;
-        presentation_video: string;
-        social_media_links: {
-            platform: 'linkedin' | 'facebook' | 'instagram' | 'twitter' | 'youtube' | 'other';
-            url: string;
-        }[];
-        profile_header_image: string;
-        languages: string[];
-    };
+    extras: ExtraInformationType;
     work_experience: WorkExperienceType[];
 };
 

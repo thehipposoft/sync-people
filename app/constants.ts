@@ -1,3 +1,5 @@
+import { LevelOfEnglishType, LanguagesType } from "@/types";
+
 export const ROUTES = {
     HOME: '/',
     ABOUT: '/#about',
@@ -73,4 +75,66 @@ export const INDUSTRIES: {
         name: 'Age Care',
         value: 'age_care',
     },
+];
+
+export const LEVEL_OF_ENGLISH: {
+    name: string;
+    value: LevelOfEnglishType;
+}[] = [
+    {
+        name: 'Beginner',
+        value: 'beginner',
+    },
+    {
+        name: 'Elementary',
+        value: 'elementary',
+    },
+    {
+        name: 'Intermediate',
+        value: 'intermediate',
+    },
+    {
+        name: 'Upper Intermediate',
+        value: 'upper_intermediate',
+    },
+    {
+        name: 'Advanced',
+        value: 'advanced',
+    },
+    {
+        name: 'Proficient',
+        value: 'proficient',
+    },
+    {
+        name: 'Native',
+        value: 'native',
+    }
+];
+
+export const EDUCATION_LEVEL = [
+    'No Formal Education',
+    'Primary Education',
+    'Secondary Education',
+    'High School Diploma',
+    'Associate Degree',
+    'Bachelor’s Degree',
+    'Master’s Degree',
+    'Doctorate (PhD)',
+    'Vocational Training',
+    'Other',
+]
+
+export const LANGUAGES: LanguagesType[] = [
+    'English',
+    'Spanish',
+    'French',
+    'Italian',
+    'Japanese',
+    'Cantonese',
+    'Mandarin',
+    'Dutch',
+    'German',
+    'Hebrew',
+    'Portuguese',
+    'Other',
 ];

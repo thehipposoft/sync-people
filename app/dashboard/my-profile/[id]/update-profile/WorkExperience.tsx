@@ -226,7 +226,7 @@ const WorkExperience = ({
                     </button>
                 </div>
             </form>
-                <Modal
+            <Modal
                 isOpen={openUpdatedDataModal}
             >
                 <h4 className="mb-4">
