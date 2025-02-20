@@ -29,6 +29,16 @@ export type professional_information = {
     work_preference: 'parti-time' | 'full-time' | 'casual' | 'contract' | 'internship';
 };
 
+export type WorkExperienceType = {
+    company_name: string;
+    position: string;
+    start_date: string;
+    end_date: string;
+    currently_working: boolean;
+    description: string;
+    industry: IndustriesAvailable;
+};
+
 export type TalentTypeAcf = {
     id: number;
     personal_information: PersonalInformationType;
@@ -66,15 +76,7 @@ export type TalentTypeAcf = {
         profile_header_image: string;
         languages: string[];
     };
-    work_experience: {
-        company_name: string;
-        position: string;
-        start_date: string;
-        end_date: string;
-        currently_working: boolean;
-        description: string;
-        industry: IndustriesAvailable;
-    }[];
+    work_experience: WorkExperienceType[];
 };
 
 export type TalentType = {
