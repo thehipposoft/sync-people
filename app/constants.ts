@@ -1,4 +1,4 @@
-import { LevelOfEnglishType, LanguagesType } from "@/types";
+import { LevelOfEnglishType, LanguagesType, SocialMediaLinksType } from "@/types";
 
 export const ROUTES = {
     HOME: '/',
@@ -137,4 +137,44 @@ export const LANGUAGES: LanguagesType[] = [
     'Hebrew',
     'Portuguese',
     'Other',
+];
+
+type SocialMediaPlatformsType = {
+    name: string;
+    value: SocialMediaLinksType;
+};
+
+export const SOCIAL_MEDIA_PLATFORMS: SocialMediaPlatformsType[] = [
+    {
+        name: 'LinkedIn',
+        value: 'linkedin',
+    },
+    {
+        name: 'Facebook',
+        value: 'facebook',
+    },
+    {
+        name: 'Twitter',
+        value: 'twitter',
+    },
+    {
+        name: 'Instagram',
+        value: 'instagram',
+    },
+    {
+        name: 'YouTube',
+        value: 'youtube',
+    },
+    {
+        name: 'TikTok',
+        value: 'tiktok',
+    },
+    {
+        name: 'Personal Website',
+        value: 'personal_website',
+    },
+    {
+        name: 'Other',
+        value: 'other',
+    },
 ];

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { SocialMediaLinksType } from "@/types";
 
 export const getAge = (birthDate: string) => {
     const today = new Date();
@@ -12,9 +13,7 @@ export const getAge = (birthDate: string) => {
     return age;
 };
 
-type PlatformsType = 'facebook' | 'instagram' | 'linkedin' | 'twitter' | 'youtube' | 'other';
-
-export const renderSocialMediaIcon = (platform: PlatformsType) => {
+export const renderSocialMediaIcon = (platform: SocialMediaLinksType) => {
     switch (platform) {
         case 'facebook':
             return <Image src={'/assets/images/vectors/facebook.svg'} alt='icon' width={35} height={35} />;

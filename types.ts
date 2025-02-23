@@ -46,6 +46,8 @@ export type EducationLevelType = 'No Formal Education' | 'Primary Education' | '
 export type LanguagesType = 'English' | 'Spanish' | 'French' | 'Italian' | 'Japanese' | 'Cantonese' | 'Mandarin' | 'Dutch' | 'German' | 'Hebrew'
     | 'Portuguese' | 'Other';
 
+export type SocialMediaLinksType = 'linkedin' | 'facebook' | 'instagram' | 'twitter' | 'youtube' | 'tiktok' | 'personal_website' | 'other';
+
 export type ExtraInformationType = {
     level_of_english: LevelOfEnglishType;
     preferred_language: string;
@@ -60,7 +62,7 @@ export type ExtraInformationType = {
     transport: string;
     presentation_video: string;
     social_media_links: {
-        platform: 'linkedin' | 'facebook' | 'instagram' | 'twitter' | 'youtube' | 'other';
+        platform: SocialMediaLinksType;
         url: string;
     }[];
     profile_header_image: string;

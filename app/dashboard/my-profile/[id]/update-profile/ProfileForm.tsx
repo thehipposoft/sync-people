@@ -167,6 +167,7 @@ const ProfileForm = ({
                     <textarea
                         rows={4}
                         name='personal_information.about_me'
+                        spellCheck={true}
                         id='personal_information.about_me'
                         className='flex w-full border p-2 resize-none'
                         value={formValues.extras.more_about_myself}

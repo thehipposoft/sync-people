@@ -18,8 +18,6 @@ const WorkExperience = ({
     const [formValues, setFormValues] = useState<WorkExperienceType[]>(initialValues);
     const [openUpdatedDataModal, setOpenUpdatedDataModal] = useState<boolean>(false);
 
-    console.log('>>formValues', formValues);
-
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsAPILoading(true);

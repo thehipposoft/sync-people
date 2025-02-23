@@ -215,6 +215,15 @@ textarea {
     resize: none;
     width: 100%;
 }
+
+textarea::spelling-error {
+    text-decoration: underline wavy red;
+}
+
+textarea::grammar-error {
+    text-decoration: underline wavy green;
+}
+
 //Number inputs without arrows
 
 input::-webkit-outer-spin-button,
