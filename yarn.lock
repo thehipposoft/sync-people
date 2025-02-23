@@ -959,6 +959,11 @@
   dependencies:
     csstype "^3.0.2"
 
+"@types/typo-js@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@types/typo-js/-/typo-js-1.2.2.tgz#e9bbb21e3c0d986a6b869f9f43897caa48511912"
+  integrity sha512-AgN5IwO3EPXv2d+UE9VdoOcueCBa4ZcHHwUvx2/IXlfRvkW4Yt3g+eRHzJbkySfj9pyILRT6Zk7V6Vr4LD5Kvg==
+
 "@wordpress/api-fetch@^6.41.0":
   version "6.55.0"
   resolved "https://registry.yarnpkg.com/@wordpress/api-fetch/-/api-fetch-6.55.0.tgz#a28883cfa3a31590838cb1f0ae863d7c3d391499"
@@ -2154,6 +2159,11 @@ typescript@^5:
   version "5.7.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.7.3.tgz#919b44a7dbb8583a9b856d162be24a54bf80073e"
   integrity sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==
+
+typo-js@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/typo-js/-/typo-js-1.2.5.tgz#0aa65e0be9b69036463a3827de8185b4144e3086"
+  integrity sha512-F45vFWdGX8xahIk/sOp79z2NJs8ETMYsmMChm9D5Hlx3+9j7VnCyQyvij5MOCrNY3NNe8noSyokRjQRfq+Bc7A==
 
 undici-types@~6.20.0:
   version "6.20.0"

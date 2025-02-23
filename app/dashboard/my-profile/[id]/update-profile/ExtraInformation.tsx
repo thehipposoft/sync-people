@@ -108,6 +108,7 @@ const ExtraInformation = ({
                 <div className='col-span-2'>
                     <label htmlFor="more_about_myself" className="block pb-2">More About Myself</label>
                     <textarea
+                        spellCheck={true}
                         rows={4}
                         id="more_about_myself"
                         name="more_about_myself"

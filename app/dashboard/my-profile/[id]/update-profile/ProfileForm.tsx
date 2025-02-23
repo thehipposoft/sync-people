@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
 import { updateProfile, uploadMedia } from '@/lib/protected-api';
 import Modal from '@/components/Modal';
