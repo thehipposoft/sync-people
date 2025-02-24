@@ -17,6 +17,7 @@ export const ROUTES = {
     SIGN_UP: '/sign-up',
     TERMS: '/terms',
     PRIVACY_POLICY: '/privacy-policy',
+    PRESENTATION_VIDEO: '/blog/why-create-a-presentation-video',
     //Private routes
     MY_PROFILE: '/dashboard/my-profile',
 }
