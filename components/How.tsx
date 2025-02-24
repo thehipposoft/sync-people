@@ -17,7 +17,7 @@ const How = () => {
           <div className='overflow-hidden h-[40px] md:my-2 progress mb-6 md:mb-0'/>
             <p className='text-white md:pt-4 mb-4 md:mb-0 pr-4 md:pr-0'>
             We know that starting from scratch can be a challenge, but you're not alone. Just fill out a form with information about yourself, your experience and your job preferences. <br/>
-            At Insyncx, we'll take care of creating your Digital Passport, the gateway to your next job.
+            At Insyncx, we'll take care of creating your Skills Portfolio, the gateway to your next job.
                     <br/> Let us do the hard work for you. Leave it to Insyncx.
             </p>
             <Link

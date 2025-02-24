@@ -4,10 +4,12 @@ import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { ROUTES } from '@/app/constants';
 import { createTalentNew } from "@/lib/api";
+import Modal from '@/components/Modal';
 
 const SignUpMenu = () => {
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [isApiLoading, setIsApiLoading] = useState<boolean>(false);
+    const [openSuccessModal, setOpenSuccessModal] = useState<boolean>(false);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -34,6 +36,7 @@ const SignUpMenu = () => {
             //TODO: Clean fields
             //TODO: Redirect to login page or display pop-up message about successful registration
             //TODO: Implement email verification
+            setOpenSuccessModal(true);
         } else {
             setIsApiLoading(false);
             setErrorMessage(apiResponse.details ? apiResponse.details : apiResponse.message);
@@ -115,7 +118,7 @@ const SignUpMenu = () => {
                         type="submit"
                         value="Sign up"
                         className='primary-btn mx-0 w-fit lg:w-auto'
-                        //disabled={isApiLoading}
+                        disabled={isApiLoading}
                     >
                         Sign up
                     </button>
@@ -132,6 +135,17 @@ const SignUpMenu = () => {
                     </div>
                 </div>
             </div>
+            <Modal
+                isOpen={openSuccessModal}
+            >
+                <h1 className='text-4xl'>Success</h1>
+                <p className='text-center'>
+                    You have successfully signed up.
+                </p>
+                <Link href={ROUTES.LOGIN} className='primary-btn'>
+                    Login
+                </Link>
+            </Modal>
         </div>
     );
 };
