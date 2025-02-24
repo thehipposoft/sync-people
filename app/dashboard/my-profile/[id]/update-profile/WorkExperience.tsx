@@ -105,7 +105,7 @@ const WorkExperience = ({
                                     </svg>
                                 </button>
                             </div>
-                            <div className=''>
+                            <div className="col-span-2 md:col-span-1">
                                 <label htmlFor={`position`} className="block pb-2">
                                     Position
                                 </label>
@@ -118,7 +118,7 @@ const WorkExperience = ({
                                     onChange={(e) => handleChange(e, index)}
                                 />
                             </div>
-                            <div className=''>
+                            <div className="col-span-2 md:col-span-1">
                                 <label htmlFor={`company_name`} className="block pb-2">
                                     Company name
                                 </label>
@@ -131,7 +131,7 @@ const WorkExperience = ({
                                     onChange={(e) => handleChange(e, index)}
                                 />
                             </div>
-                            <div className=''>
+                            <div className="col-span-2 md:col-span-1">
                                 <label htmlFor={`start_date`} className="block pb-2">
                                     Start Date
                                 </label>
@@ -144,7 +144,7 @@ const WorkExperience = ({
                                     onChange={(e) => handleChange(e, index)}
                                 />
                             </div>
-                            <div className=''>
+                            <div className="col-span-2 md:col-span-1">
                                 <label htmlFor={`end_date`} className="block pb-2">
                                     End Date
                                 </label>
@@ -159,7 +159,7 @@ const WorkExperience = ({
                                     disabled={experience.currently_working}
                                 />
                             </div>
-                            <div className=''>
+                            <div className="col-span-2 md:col-span-1">
                                 <label htmlFor={`industry`} className="block pb-2">
                                     Industry
                                 </label>
@@ -179,7 +179,7 @@ const WorkExperience = ({
                                     }
                                 </select>
                             </div>
-                            <div className='flex gap-4 items-center md:pt-6'>
+                            <div className='flex gap-4 items-center md:pt-6 col-span-2 md:col-span-1'>
                                 <input
                                     type="checkbox"
                                     id={`currently_working`}
@@ -209,14 +209,14 @@ const WorkExperience = ({
                     ))
                 }
                 <button
-                    className='primary-btn mt-2 ml-0'
+                    className='primary-btn mt-2 ml-0 col-span-2 md:col-span-1 text-base'
                     onClick={handleExperience}
                 >
                     + Add Work Experience
                 </button>
                 <div className='w-full col-span-2 flex'>
                     <button
-                        className='primary-btn mt-4 mx-auto'
+                        className='primary-btn mt-4 mx-auto text-base'
                         type='submit'
                         disabled={isAPILoading}
                     >

@@ -40,11 +40,11 @@ const PrivateLayout = ({
                         <Link href={'/training-and-licenses'} className='green-btn hidden'>
                             Training and Licenses
                         </Link>
-                        <Link href={`/talents/${userId}`} className='green-btn'>
+                        <Link href={`/talents/${userId}`} className='green-btn lg:px-4 text-sm px-2'>
                             View Public Profile
                         </Link>
                         <button
-                            className="primary-btn mx-0 rounded-md"
+                            className="primary-btn mx-0 rounded-md text-sm px-2 w-auto lg:px-6"
                             onClick={handleLogout}
                         >
                             Logout

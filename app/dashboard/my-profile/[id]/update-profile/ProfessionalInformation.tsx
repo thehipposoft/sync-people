@@ -227,13 +227,13 @@ const ProfessionalInformation = ({
                                 }
                             </select>
                         </div>
-                        : <div className="w-full flex justify-between col-span-2">
+                        : <div className="w-full flex justify-between col-span-2 flex-wrap">
                             <h3 className='capitalize mb-2 text-2xl'>
                                 {`${index + 1}. ${industry.industry}`}
                             </h3>
                             {
-                                listOfIndustries.length > 1 && <button
-                                    className="secondary-btn text-sm"
+                                listOfIndustries.length > 1 &&
+                                <button
                                     onClick={(e) => {
                                         e.preventDefault();
                                         const newInd = formValues.industries.filter((ind, i) => i !== index);
@@ -243,13 +243,27 @@ const ProfessionalInformation = ({
                                             industries: newInd,
                                         });
                                     }}
+                                    className="bg-red-500 p-1 rounded-md h-fit"
                                 >
-                                    Remove Industry
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width={20}
+                                        height={20}
+                                    >
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path d="M5.73708 6.54391V18.9857C5.73708 19.7449 6.35257 20.3604 7.11182 20.3604H16.8893C17.6485 20.3604 18.264 19.7449 18.264 18.9857V6.54391M2.90906 6.54391H21.0909" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
+                                            </path>
+                                            <path d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
+                                            </path>
+                                        </g>
+                                    </svg>
                                 </button>
                             }
                         </div>
                     }
-                    <div>
+                    <div className="col-span-2 md:col-span-1">
                         <label htmlFor={`position`} className="block pb-2">
                             Position
                         </label>
@@ -262,7 +276,7 @@ const ProfessionalInformation = ({
                             onChange={(e) => handleIndustryDataChange(e, index, isNew)}
                         />
                     </div>
-                    <div>
+                    <div className="col-span-2 md:col-span-1">
                         <label htmlFor={`preferred_salary`} className="flex pb-2 items-center gap-2">
                             Preferred salary (AUD)
                             <Tooltip
@@ -297,7 +311,7 @@ const ProfessionalInformation = ({
                         />
                     </div>
                     {
-                        !isNew && <div>
+                        !isNew && <div className="col-span-2 md:col-span-1">
                             <label className="block pb-2">
                                 Certificates
                             </label>
@@ -362,7 +376,7 @@ const ProfessionalInformation = ({
     return (
         <div>
             <form onSubmit={handleFormSubmit} className='grid grid-cols-2 gap-4'>
-                <div>
+                <div className="col-span-2 md:col-span-1">
                     <label htmlFor="current_status" className="block pb-2">Current Status</label>
                     <select
                         id="current_status"
@@ -377,7 +391,7 @@ const ProfessionalInformation = ({
                     </select>
                 </div>
 
-                <div>
+                <div className="col-span-2 md:col-span-1">
                     <label htmlFor="work_preference" className="block pb-2">Work Preference</label>
                     <select
                         id="work_preference"
@@ -405,7 +419,7 @@ const ProfessionalInformation = ({
                         renderIndustriesFields(industriesToUpdate, true)
                     }
                     <button
-                        className='primary-btn mt-4'
+                        className='primary-btn mt-4 mx-auto text-base'
                         onClick={(e) => {
                             e.preventDefault();
                             const newIndustriesArray = [...industriesToUpdate];
@@ -425,7 +439,7 @@ const ProfessionalInformation = ({
                 </div>
                 <div className='w-full col-span-2 flex'>
                     <button
-                        className='primary-btn mt-4 mx-auto'
+                        className='primary-btn mt-4 mx-auto text-base'
                         type='submit'
                         disabled={isAPILoading}
                     >

@@ -48,7 +48,7 @@ const PersonalInformation = ({
             className='grid grid-cols-2 gap-4'
             onSubmit={handleUpdatePersonalInformationClick}
         >
-            <div className=''>
+            <div className='col-span-2 lg:col-span-1'>
                 <label htmlFor="name" className="block pb-2">First Name</label>
                 <input
                     type="text"
@@ -60,7 +60,7 @@ const PersonalInformation = ({
                 />
             </div>
 
-            <div className=''>
+            <div className='col-span-2 lg:col-span-1'>
                 <label htmlFor="name" className="block pb-2">Last Name</label>
                 <input
                     type="text"
@@ -72,7 +72,7 @@ const PersonalInformation = ({
                 />
             </div>
 
-            <div className=''>
+            <div className='col-span-2 lg:col-span-1'>
                 <label htmlFor="email" className="block pb-2">Email</label>
                 <input
                     type="email"
@@ -84,7 +84,7 @@ const PersonalInformation = ({
                 />
             </div>
 
-            <div className=''>
+            <div className='col-span-2 lg:col-span-1'>
                 <label htmlFor="mobile" className="block pb-2">Mobile</label>
                 <input
                     type="tel"
@@ -96,7 +96,7 @@ const PersonalInformation = ({
                 />
             </div>
 
-            <div className=''>
+            <div className='col-span-2 lg:col-span-1'>
                 <label htmlFor="date_of_birth" className="block pb-2">Date of Birth</label>
                 <input
                     type="date"
@@ -108,7 +108,7 @@ const PersonalInformation = ({
                 />
             </div>
 
-            <div className=''>
+            <div className='col-span-2 lg:col-span-1'>
                 <label htmlFor="country" className="block pb-2">Country</label>
                 <input
                     type="text"
@@ -121,7 +121,7 @@ const PersonalInformation = ({
             </div>
             <div className='w-full col-span-2 flex'>
                 <button
-                    className='primary-btn mt-4 mx-auto'
+                    className='primary-btn mt-4 mx-auto text-base'
                     type='submit'
                     disabled={isAPILoading}
                 >

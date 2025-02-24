@@ -118,7 +118,7 @@ const ExtraInformation = ({
                     />
                 </div>
 
-                <div className=''>
+                <div className="col-span-2 md:col-span-1">
                     <label htmlFor="level_of_english" className="block pb-2">Level of English</label>
                     <select
                         id="level_of_english"
@@ -133,7 +133,7 @@ const ExtraInformation = ({
                     </select>
                 </div>
 
-                <div className=''>
+                <div className="col-span-2 md:col-span-1">
                     <label htmlFor="preferred_language" className="block pb-2">Preferred Language</label>
                     <input
                         type="text"
@@ -145,7 +145,7 @@ const ExtraInformation = ({
                     />
                 </div>
 
-                <div className=''>
+                <div className="col-span-2 md:col-span-1">
                     <label htmlFor="education_level" className="block pb-2">Education Level</label>
                     <select
                         id="education_level"
@@ -160,7 +160,7 @@ const ExtraInformation = ({
                     </select>
                 </div>
 
-                <div className=''>
+                <div className="col-span-2 md:col-span-1">
                     <label htmlFor="transport" className="block pb-2">Transport</label>
                     <select
                         id="transport"
@@ -174,7 +174,7 @@ const ExtraInformation = ({
                     </select>
                 </div>
 
-                <div className=''>
+                <div className="col-span-2 md:col-span-1">
                     <label htmlFor="presentation_video" className="block pb-2">
                         Languages
                     </label>
@@ -204,7 +204,7 @@ const ExtraInformation = ({
                     ))}
                 </div>
 
-                <div className=''>
+                <div className="col-span-2 md:col-span-1">
                     <div className='flex gap-2 items-center mb-2'>
                         <label htmlFor="presentation_video" className="block">
                             Presentation Video URL
@@ -239,12 +239,12 @@ const ExtraInformation = ({
                         value={formValues.presentation_video}
                         onChange={handleInputChange}
                     />
-                    <p>
+                    <p className='text-sm opacity-70'>
                         Include a link to your preferred platform (YouTube, Vimeo, etc.)
                     </p>
                 </div>
 
-                <div className=''>
+                <div className="col-span-2 md:col-span-1">
                     <label htmlFor="other_credentials" className="block pb-2">
                         Other Credentials
                     </label>
@@ -291,7 +291,7 @@ const ExtraInformation = ({
                     </button>
                 </div>
 
-                <div className=''>
+                <div className="col-span-2 md:col-span-1">
                     <label htmlFor="social_media_links" className="block pb-2">
                         Social Media Links
                     </label>
@@ -401,7 +401,7 @@ const ExtraInformation = ({
                 </div>
                 <div className='w-full col-span-2 flex'>
                     <button
-                        className='primary-btn mt-6 mx-auto'
+                        className='primary-btn mt-6 mx-auto text-base'
                         type='submit'
                         disabled={isAPILoading}
                     >

@@ -133,13 +133,13 @@ const ProfileForm = ({
             <h1 className='text-3xl h-bold pb-4 border-b mb-4'>
                 Update Profile
             </h1>
-            <div className='flex gap-10 w-full mx-auto items-center pt-4 mb-4'>
-                <div className='relative group'>
+            <div className='flex gap-10 w-full mx-auto items-center pt-4 mb-4 flex-wrap lg:flex-nowrap'>
+                <div className='relative group mx-auto lg:mx-0'>
                     <Image
                         src={formValues.personal_information.profile_pic ? formValues.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
                         alt={`${formValues.personal_information.first_name} ${formValues.personal_information.last_name}`}
                         width={140} height={140}
-                        className='mt-4 md:mt-0 h-28 rounded-full border-2 border-primary-text object-cover'
+                        className='h-[140px] lg:h-28 rounded-full border-2 border-primary-text object-cover'
                     />
                     <div className='absolute top-0 left-0 rounded-full opacity-0 w-full h-full bg-[#000000b3] group-hover:opacity-100 duration-500 flex justify-center items-center cursor-pointer p-2'>
                         <span className='text-sm text-center text-white'>
@@ -157,6 +157,9 @@ const ProfileForm = ({
                             </label>
                         </span>
                     </div>
+                    <p className='text-center text-sm mt-2 lg:hidden'>
+                        Tap to image to update
+                    </p>
                 </div>
 
                 <div className='flex flex-col w-full'>
@@ -184,7 +187,7 @@ const ProfileForm = ({
             </div>
 
             <div>
-                <ul className='flex justify-between my-6'>
+                <ul className='flex justify-between my-6 overflow-x-auto'>
                     <li
                         className={`px-4 pb-3 cursor-pointer transition-all ${selectedTab === 'personal' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
                         onClick={() => handleTabChange('personal')}
