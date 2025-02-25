@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'next-view-transitions';
 import { updateProfile } from '@/lib/protected-api';
 import { WorkExperienceType } from '@/types';
@@ -15,7 +15,7 @@ const WorkExperience = ({
     userId,
 }:PersonalInformationPropsType) => {
     const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
-    const [formValues, setFormValues] = useState<WorkExperienceType[]>(initialValues);
+    const [formValues, setFormValues] = useState<WorkExperienceType[]>(initialValues ? initialValues : []);
     const [openUpdatedDataModal, setOpenUpdatedDataModal] = useState<boolean>(false);
 
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -54,7 +54,9 @@ const WorkExperience = ({
         setFormValues(newFormValues);
     };
 
-    const handleExperience = () => {
+    const handleExperience = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        console.log(">>formValues", formValues)
         const newFormValues = [...formValues];
         newFormValues.push({
             company_name: '',

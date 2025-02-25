@@ -51,7 +51,7 @@ const TalentProfilePage = async ({
 		<PublicLayout>
 			{
 				talentData
-				? <TalentProfile talentData={talentData.acf} />
+				? <TalentProfile talentData={talentData.acf} id={id} />
 				: <div>
 					<h3 className={'text-center text-2xl mt-4'}>
 						Talent not found

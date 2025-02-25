@@ -126,7 +126,7 @@ const MyProfile = ({
                         </h2>
                         <div className='flex flex-col gap-4'>
                             {
-                                user.professional_information.industries.map((industry, index) => (
+                                user.professional_information.industries[0] && user.professional_information.industries.map((industry, index) => (
                                     <div key={index}>
                                         <h2 className='capitalize mb-1 text-xl underline'>
                                             {industry.industry}

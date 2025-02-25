@@ -128,30 +128,6 @@ export const logout = async () => {
     };
 };
 
-/*
-export const createTalent = async (data: ComingSoonEmailType) => {
-    const response = await fetch('/api/talents', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
-
-    if (response.status >= 200 && response.status < 300) {
-        return {
-            status: 200,
-            message: 'Talent Created',
-        };
-    } else {
-        const data = await response.json();
-
-        return {
-            message: data.message,
-        };
-    }
-};*/
-
 type CreateTalentBodyType = {
     first_name: string;
     last_name: string;

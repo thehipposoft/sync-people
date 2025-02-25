@@ -3,15 +3,17 @@ import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf, IndustryType } from '@/types';
-import { INDUSTRIES_BANNER } from '@/app/constants';
+import { INDUSTRIES_BANNER, ROUTES } from '@/app/constants';
 import generatePDF, { Resolution, Margin } from 'react-to-pdf';
 
 type TalentProfileProps = {
     talentData: TalentTypeAcf;
+    id: string;
 };
 
 const TalentProfile = ({
     talentData,
+    id
 }:TalentProfileProps) => {
     const pdfRef = useRef(null);
     const [selectedIndustry, setSelectedIndustry] = useState<IndustryType>(talentData.professional_information.industries[0]);
@@ -27,10 +29,17 @@ const TalentProfile = ({
         });
     };
 
-    console.log('Talent certain data:', talentData)
-
     return (
-        <div className='flex flex-col md:w-full'>
+        !talentData.professional_information.industries
+        ? <div className='flex flex-col md:w-full'>
+            <h5 className='text-center font-bold text-xl mb-4'>
+                We couldn't any industry associated with this talent.
+            </h5>
+            <p className='text-center'>
+                If this is your profile, please login to your account and <Link className='underline' href={`${ROUTES.MY_PROFILE}/${id}`}>update your profile</Link>.
+            </p>
+        </div>
+        : <div className='flex flex-col md:w-full'>
             <div className='md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
                 <div
                     ref={pdfRef}
@@ -81,7 +90,7 @@ const TalentProfile = ({
                                                 value={industry.position}
                                                 onClick={() => setSelectedIndustry(industry)}
                                             >
-                                            {industry.industry.toUpperCase()}
+                                                {industry.industry.toUpperCase()}
                                             </option>
                                         ))}
                                     </select>

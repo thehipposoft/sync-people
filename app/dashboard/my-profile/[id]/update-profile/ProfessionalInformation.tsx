@@ -16,7 +16,10 @@ const ProfessionalInformation = ({
     userId,
 }:ProfessionalPropsType) => {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
-    const [formValues, setFormValues] = useState<professional_information>(initialValues);
+    const [formValues, setFormValues] = useState<professional_information>({
+        ...initialValues,
+        industries: initialValues.industries || [],
+    });
     const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
     const [selectedCertificateToRemoveIndex, setSelectedCertificateToRemoveIndex] = useState<number>(0);
     const [certificateToUpload, setCertificateToUpload] = useState<File | null>(null);
@@ -172,7 +175,7 @@ const ProfessionalInformation = ({
 
     const renderIndustriesFields = (listOfIndustries: professional_information['industries'], isNew: boolean) => {
         return (
-            listOfIndustries.map((industry, index) => (
+            listOfIndustries && listOfIndustries.map((industry, index) => (
                 <div key={index} className='border-b py-3 grid grid-cols-2 gap-4'>
                     {
                         isNew
@@ -219,7 +222,13 @@ const ProfessionalInformation = ({
                                 onChange={(e) => handleIndustryDataChange(e, index, isNew)}
                             >
                                 {
-                                    INDUSTRIES.filter((ind) => !initialValues.industries.map((ind) => ind.industry).includes(ind.value)).map((industry, index) => (
+                                    formValues.industries.length
+                                    ? INDUSTRIES.filter((ind) => !initialValues.industries.map((ind) => ind.industry).includes(ind.value)).map((industry, index) => (
+                                        <option key={index} value={industry.value}>
+                                            {industry.name}
+                                        </option>
+                                    ))
+                                    : INDUSTRIES.map((industry, index) => (
                                         <option key={index} value={industry.value}>
                                             {industry.name}
                                         </option>
@@ -424,7 +433,9 @@ const ProfessionalInformation = ({
                             e.preventDefault();
                             const newIndustriesArray = [...industriesToUpdate];
                             newIndustriesArray.push({
-                                industry: INDUSTRIES.filter((ind) => !initialValues.industries.map((ind) => ind.industry).includes(ind.value))[0].value,
+                                industry: initialValues.industries
+                                    ? INDUSTRIES.filter((ind) => !initialValues.industries.map((ind) => ind.industry).includes(ind.value))[0].value
+                                    : INDUSTRIES[0].value,
                                 position: '',
                                 preferred_salary: '',
                                 certificates: [],
