@@ -21,7 +21,7 @@ const How = () => {
                     <br/> Let us do the hard work for you. Leave it to Insyncx.
             </p>
             <Link
-                href={ROUTES.COMING_SOON}
+                href={ROUTES.SIGN_UP}
                 className='flex mt-4 w-fit font-bold md:mx-2 md:mt-8 text-white border-white border px-6 py-2 rounded-3xl hover:text-[#8D78E0] hover:bg-white duration-300'
             >
                 Let's get started!

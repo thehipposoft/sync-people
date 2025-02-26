@@ -15,7 +15,7 @@ const DigitalPassport = () => {
         </p>
         <strong className='text-[#798196] md:pt-4'>Sign up for free, your next job is coming soon. </strong>
         <Link
-            href={ROUTES.COMING_SOON}
+            href={ROUTES.SIGN_UP}
             className='w-fit font-semibold md:mx-2 md:mt-4 mt-6 text-[#8D78E0] border-[#5B24F2] hover:bg-[#8D78E0] hover:border-[#8D78E0] hover:text-white duration-300 border px-6 py-2 rounded-3xl mb-6 md:mb-0'
         >
             Sign Up

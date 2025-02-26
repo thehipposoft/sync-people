@@ -105,19 +105,6 @@ const ExtraInformation = ({
     return (
         <>
             <form className='grid grid-cols-2 gap-4' onSubmit={handleFormSubmit}>
-                <div className='col-span-2'>
-                    <label htmlFor="more_about_myself" className="block pb-2">More About Myself</label>
-                    <textarea
-                        spellCheck={true}
-                        rows={4}
-                        id="more_about_myself"
-                        name="more_about_myself"
-                        required
-                        value={formValues.more_about_myself}
-                        onChange={handleInputChange}
-                    />
-                </div>
-
                 <div className="col-span-2 md:col-span-1">
                     <label htmlFor="level_of_english" className="block pb-2">Level of English</label>
                     <select
@@ -239,8 +226,8 @@ const ExtraInformation = ({
                         value={formValues.presentation_video}
                         onChange={handleInputChange}
                     />
-                    <p className='text-sm opacity-70'>
-                        Include a link to your preferred platform (YouTube, Vimeo, etc.)
+                    <p className='text-sm opacity-70 mt-1'>
+                        Include a link to your preferred platform (YouTube, Vimeo, TikTok, etc.)
                     </p>
                 </div>
 

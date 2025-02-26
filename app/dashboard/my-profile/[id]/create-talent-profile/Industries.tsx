@@ -1,14 +1,22 @@
+import { useState } from 'react';
+import { TalentTypeAcf } from '@/types';
+
 type IndustriesPropsType = {
-   currentIndex: number;
-   isVisible: boolean;
+    currentIndex: number;
+    initialValues: TalentTypeAcf;
+    showNext: () => void;
+    showPrev: () => void;
+    setMainFormValues: (values: TalentTypeAcf) => void;
 }
 
 const Industries = ({
     currentIndex,
-    isVisible,
+    initialValues,
+    showNext,
+    setMainFormValues,
 }:IndustriesPropsType) => {
     return (
-        <div
+        <form
             className={`flex-col duration-1000 md:min-w-[850px] md:px-4 py-6 md:py-0`}
             style={{
                 translate: `${-100 * currentIndex}%`,
@@ -22,7 +30,7 @@ const Industries = ({
             <p className='pb-4 text-[#1A335D] text-lg'>
                 Come on, this is just the beginning
             </p>
-            <div className={`${isVisible ? 'md:block' : 'md:hidden'}`}>
+            <div className={`md:grid grid-cols-2 gap-4`}>
                 <div className='md:pt-2 flex md:flex-row flex-col md:gap-16 gap-4'>
                     <div className='md:w-3/4'>
                         <p className="mb-4 text-[#1A335D]">Industries of choice *you can choose more than one option</p>
@@ -128,7 +136,7 @@ const Industries = ({
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     );
 };
 

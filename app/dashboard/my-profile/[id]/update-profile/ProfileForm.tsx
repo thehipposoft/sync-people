@@ -168,6 +168,7 @@ const ProfileForm = ({
                     </label>
                     <textarea
                         rows={4}
+                        placeholder='Write a short description about yourself'
                         name='personal_information.about_me'
                         spellCheck={true}
                         id='personal_information.about_me'

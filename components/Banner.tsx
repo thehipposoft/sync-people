@@ -25,13 +25,13 @@ const Banner = () => {
                 </h1>
                 <div className='mt-8 flex-wrap gap-4 md:gap-0 mb-3 md:mb-0 hidden'>
                     <Link
-                        href={ROUTES.COMING_SOON}
+                        href={ROUTES.SIGN_UP}
                         className='secondary-btn w-fit md:w-auto'
                     >
                         Looking for Talent
                     </Link>
                     <Link
-                        href={ROUTES.COMING_SOON}
+                        href={ROUTES.SIGN_UP}
                         className='primary-btn w-fit md:w-auto'
                     >
                         Looking for Work

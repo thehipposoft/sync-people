@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import PublicLayout from "@/components/PublicLayout";
 import TalentsList from './TalentsList';
 import { getTalents } from '@/lib/api';
+import { TalentTypeAcf } from '@/types';
 
 export const metadata: Metadata = {
     title: "Insyncx | Talents list",
@@ -9,12 +10,13 @@ export const metadata: Metadata = {
 };
 
 const TalentsListPage = async () => {
-    const talents = await getTalents();
+    const talents:TalentTypeAcf[] = await getTalents();
+    const filterTalentsWithIndustries = talents.filter((talent) => talent.professional_information.industries);
 
 	return (
 		<PublicLayout>
             <TalentsList
-                talentsList={talents}
+                talentsList={filterTalentsWithIndustries}
             />
 		</PublicLayout>
 	);

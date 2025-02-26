@@ -10,7 +10,6 @@ export const ROUTES = {
     CATEGORIES_HOSPITALITY: '/categories/hospitality',
     CONTACT: '/#contact',
     LOGIN: '/login',
-    COMING_SOON: '/coming-soon',
     BLOG: '/blog',
     FAQS: '/faqs',
     ENTRY: '/blog/entry',

@@ -428,7 +428,7 @@ const ProfessionalInformation = ({
                         renderIndustriesFields(industriesToUpdate, true)
                     }
                     <button
-                        className='primary-btn mt-4 mx-auto text-base'
+                        className='secondary-btn mt-4 mx-auto text-base'
                         onClick={(e) => {
                             e.preventDefault();
                             const newIndustriesArray = [...industriesToUpdate];
