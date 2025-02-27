@@ -2,14 +2,14 @@ import Image from 'next/image';
 import React from 'react';
 
 
-// *TO DO: Delete this form when not needed anymore* 
+// *TO DO: Delete this form when not needed anymore*
 
 const CreateProfile = () => {
 
     const handleChange = (e:any) => {
         const { name, value } = e.target;
       };
-    
+
     return (
         <div>
             <form className='max-w-[1400px] grid grid-cols-10 px-10'>
@@ -102,7 +102,7 @@ const CreateProfile = () => {
                             />
                         </div>
                     </section>
-                    
+
                     <section className='flex gap-4'>
                         <div className='w-1/2'>
                             <label htmlFor="phone" className="block pb-2">Phone:</label>
@@ -158,7 +158,7 @@ const CreateProfile = () => {
                                     <label className='pl-1'>Female</label>
                                 </div>
                                 <div className='flex items-center'>
-                                    
+
                                     <input
                                         type="radio"
                                         name="gender"
@@ -200,7 +200,7 @@ const CreateProfile = () => {
                             <input type="text" id='cp' name='cp' />
                         </div>
                     </section>
-                    
+
                     <section className='flex gap-4'>
                         <div className='w-1/2'>
                             <label className="block pb-2">Languages:</label>
@@ -232,7 +232,7 @@ const CreateProfile = () => {
 
                     <section className='flex gap-4'>
                         <div className='w-1/2'>
-                            <label className="block pb-2">Contry of birth (opt):</label>
+                            <label className="block pb-2">Country of Birth (opt):</label>
                             <select
                                 name="country"
                                 className=" rounded"
@@ -289,18 +289,18 @@ const CreateProfile = () => {
                                     <label className='text-black'>Warehousing</label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    
+
                                     <input
                                         type="checkbox"
                                         name="industrie"
                                         value="logistics"
                                     />
                                     <label className='text-black'>Logistics</label>
-                                   
+
                                 </div>
 
                                 <div className='flex items-center gap-2'>
-                                   
+
                                     <input
                                         type="checkbox"
                                         name="industrie"
@@ -309,7 +309,7 @@ const CreateProfile = () => {
                                      <label className='text-black'>Farming / Solar farming</label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                   
+
                                     <input
                                         type="checkbox"
                                         name="industrie"
@@ -318,7 +318,7 @@ const CreateProfile = () => {
                                      <label className='text-black'>Hospitality</label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    
+
                                     <input
                                         type="checkbox"
                                         name="industrie"
@@ -327,7 +327,7 @@ const CreateProfile = () => {
                                     <label className='text-black'>retail</label>
                                 </div>
                                 <div className='flex items-center gap-2 '>
-                                    
+
                                     <input
                                         type="checkbox"
                                         name="industrie"
@@ -336,7 +336,7 @@ const CreateProfile = () => {
                                     <label className='text-black'>Age Care</label>
                                 </div>
                                 <div className='flex items-center gap-2'>
-                                    
+
                                     <input
                                         type="checkbox"
                                         name="industrie"
@@ -352,7 +352,7 @@ const CreateProfile = () => {
                             <label className="mb-2 pb-2">Licences</label>
                             <div className='block'>
                                 <div className='flex items-center gap-2'>
-                                    
+
                                     <input
                                         type="checkbox"
                                         name="licences"
@@ -361,7 +361,7 @@ const CreateProfile = () => {
                                     <label className='text-black'>White Card</label>
                                 </div>
                                 <div className='flex items-center gap-2'>
-                                    
+
                                     <input
                                         type="checkbox"
                                         name="licences"
@@ -370,7 +370,7 @@ const CreateProfile = () => {
                                     <label className='text-black'>RSA</label>
                                 </div>
                                 <div className='flex items-center gap-2'>
-                                    
+
                                     <input
                                         type="checkbox"
                                         name="licences"
@@ -379,7 +379,7 @@ const CreateProfile = () => {
                                     <label className='text-black'>WWC</label>
                                 </div>
                                 <div className='flex items-center gap-2'>
-                                    
+
                                     <input
                                         type="checkbox"
                                         name="licences"
@@ -389,7 +389,7 @@ const CreateProfile = () => {
                                 </div>
 
                                 <div className='flex items-center gap-2'>
-                                    
+
                                     <input
                                         type="checkbox"
                                         name="licences"

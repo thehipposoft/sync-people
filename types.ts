@@ -18,9 +18,15 @@ export type PersonalInformationType = {
     email: string;
     mobile: string;
     date_of_birth: string;
-    country: string;
+    country_of_birth: string;
     profile_pic: string;
     gender: string;
+    current_location: {
+        address_1: string,
+        suburb: string,
+        state: string,
+        postcode: string,
+    };
 };
 
 export type professional_information = {
@@ -80,12 +86,6 @@ export type TalentTypeAcf = {
             label: string;
             value: string;
         };
-    };
-    current_location: {
-        address_1: string,
-        suburb: string,
-        state: string,
-        postcode: string,
     };
     extras: ExtraInformationType;
     work_experience: WorkExperienceType[];

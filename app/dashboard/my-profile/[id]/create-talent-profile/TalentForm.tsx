@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
@@ -18,6 +18,7 @@ const TalentForm = ({
     user,
     userId,
 }:MyProfileProps) => {
+    const registrationFormRef = useRef<any>(null);
     const [formValues, setFormValues] = useState<TalentTypeAcf>({
         ...user,
     });
@@ -29,6 +30,7 @@ const TalentForm = ({
             if (index === 4) return 0;
             return index + 1;
         })
+        registrationFormRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
     const showPrev = () => {
@@ -38,6 +40,7 @@ const TalentForm = ({
 
             return index - 1;
         })
+        registrationFormRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
     const handleUploadProfileImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,30 +56,12 @@ const TalentForm = ({
         }
     }
 
-    const handleInputChange = (
-        e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>,
-        section: 'personal_information' | 'professional_information' | 'working_rights' | 'current_location' | 'extras' | 'work_experience',
-        field: string
-    ) => {
-        const { value } = e.target;
-
-        setFormValues({
-            ...formValues,
-            [section]: {
-                ...formValues[section],
-                [field]: value,
-            },
-        });
-    };
-
     return (
-        <div className='md:w-full flex justify-center gap-12 px-2 md:px-0'>
+        <div ref={registrationFormRef} className='md:w-full flex justify-center gap-12 px-2 md:px-0'>
             <div className='flex flex-col rounded-2xl my-4 md:w-[900px] w-full md:px-4 px-6 bg-white border'>
-                <div className='border-b'>
-                    <h1 className='text-3xl h-bold py-3 pl-4'>
-                        Create Talent Profile
-                    </h1>
-                </div>
+                <h1 className='text-3xl h-bold py-4 pl-4 border-b'>
+                    Create Talent Profile
+                </h1>
                 <div className='flex justify-between items-center mt-6'>
                     <div className='relative group mx-auto lg:mx-0'>
                         <Image
@@ -160,9 +145,6 @@ const TalentForm = ({
                         <WorkingRights currentIndex={currentIndex} isVisible={currentIndex === 2} />
                         <Extras currentIndex={currentIndex} isVisible={currentIndex === 3} />
                     </div>
-                </div>
-                <div className='md:flex hidden justify-center mt-6'>
-                    {currentIndex + 1} | 4
                 </div>
                 <div className='hidden gap-6 justify-center py-6'>
                     {

@@ -178,3 +178,14 @@ export const SOCIAL_MEDIA_PLATFORMS: SocialMediaPlatformsType[] = [
         value: 'other',
     },
 ];
+
+export const AUSTRALIAN_STATES = [
+    'Victoria',
+    'New South Wales',
+    'Queensland',
+    'Western Australia',
+    'South Australia',
+    'Tasmania',
+    'Australian Capital Territory',
+    'Northern Territory',
+];

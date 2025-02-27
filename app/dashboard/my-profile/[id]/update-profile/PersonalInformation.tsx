@@ -109,13 +109,15 @@ const PersonalInformation = ({
             </div>
 
             <div className='col-span-2 lg:col-span-1'>
-                <label htmlFor="country" className="block pb-2">Country</label>
+                <label htmlFor="country_of_birth" className="block pb-2">
+                    Country of Birth
+                </label>
                 <input
                     type="text"
-                    id="country"
-                    name="country"
+                    id="country_of_birth"
+                    name="country_of_birth"
                     required
-                    value={formValues.country}
+                    value={formValues.country_of_birth}
                     onChange={handleInputChange}
                 />
             </div>

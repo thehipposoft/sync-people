@@ -322,4 +322,7 @@ dialog::backdrop {
     .green-btn {
         @apply h-full py-2 px-4 text-[#326B88] border-[#326B88] border rounded-md hover:bg-[#326B88] hover:text-white duration-500;
     }
+    input[disabled] {
+        @apply cursor-not-allowed opacity-50;
+    }
 }
