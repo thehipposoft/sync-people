@@ -59,12 +59,11 @@ const BasicInformation = ({
     return (
         <form
             onSubmit={handleSubmit}
-            className={`flex-col duration-1000 md:min-w-[850px] md:px-4 py-6 md:py-0`}
+            className={`flex-col duration-1000 md:min-w-[850px] md:px-4 py-6`}
             style={{
                 translate: `${-100 * currentIndex}%`,
             }}
         >
-
             <h4 className='font-bold py-4 text-xl pt-8'>
                 1. Basic Information
             </h4>

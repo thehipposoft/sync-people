@@ -440,6 +440,7 @@ const ProfessionalInformation = ({
                                 preferred_salary: '',
                                 certificates: [],
                                 other_industry: '',
+                                role_description: '',
                             });
 
                             setIndustriesToUpdate(newIndustriesArray);

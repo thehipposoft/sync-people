@@ -102,7 +102,7 @@ const TalentProfile = ({
                                             {talentData.working_rights.current_visa.label}
                                         </p>
                                         <p className='text-[#1A335D]'>
-                                            {talentData.personal_information.country}
+                                            {talentData.personal_information.country_of_birth}
                                         </p>
                                     </div>
                                     <div className={`${selectedIndustry.preferred_salary === '' ? 'hidden' : ''}`}>

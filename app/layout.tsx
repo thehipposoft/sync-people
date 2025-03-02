@@ -3,7 +3,8 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import SchemaOrg from '@/components/SchemaOrg';
-import { ViewTransitions } from "next-view-transitions"
+import { ViewTransitions } from "next-view-transitions";
+import {Providers} from "./providers";
 
 const openSans = localFont({
     src: [
@@ -50,7 +51,9 @@ const RootLayout = async ({ children }: {
                 <body className={`${openSans.variable} ${poppinsRegular.variable} ${poppinsBold.variable}`}>
                     <GoogleAnalytics />
                     <SchemaOrg />
-                    {children}
+                    <Providers>
+                        {children}
+                    </Providers>
                 </body>
             </html>
         </ViewTransitions>

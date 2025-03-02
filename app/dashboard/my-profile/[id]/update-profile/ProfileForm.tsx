@@ -27,7 +27,7 @@ const ProfileForm = ({
 
     const handleInputChange = (
         e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>,
-        section: 'personal_information' | 'professional_information' | 'working_rights' | 'current_location' | 'extras' | 'work_experience',
+        section: 'personal_information' | 'professional_information' | 'working_rights' | 'extras' | 'work_experience',
         field: string
     ) => {
         const { value } = e.target;

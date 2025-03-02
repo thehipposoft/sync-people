@@ -189,3 +189,41 @@ export const AUSTRALIAN_STATES = [
     'Australian Capital Territory',
     'Northern Territory',
 ];
+
+export const TALENT_CURRENT_STATUS_DROPDOWN = [
+    {
+        label: 'Available',
+        value: 'available',
+    },
+    {
+        label: 'Working',
+        value: 'working',
+    },
+    {
+        label: 'Offline',
+        value: 'offline',
+    }
+];
+
+export const TALENT_WORK_PREFERENCE_DROPDOWN = [
+    {
+        label: 'Part-time',
+        value: 'part-time',
+    },
+    {
+        label: 'Full-time',
+        value: 'full-time',
+    },
+    {
+        label: 'Casual',
+        value: 'casual',
+    },
+    {
+        label: 'Contract',
+        value: 'contract',
+    },
+    {
+        label: 'Internship',
+        value: 'internship',
+    },
+];

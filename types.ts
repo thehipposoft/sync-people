@@ -1,8 +1,9 @@
 export type IndustryType = {
     industry: IndustriesAvailable;
-    other_industry: string;
+    other_industry?: string;
     preferred_salary: string;
     position: string;
+    role_description: string;
     certificates: {
         certificate?: string;
         name: string;
@@ -10,7 +11,7 @@ export type IndustryType = {
     }[];
 };
 
-type IndustriesAvailable = 'construction' | 'cleaning' | 'warehousing' | 'logistics' | 'farming' | 'hospitality' | 'retail' | 'age_care' | 'other';
+export type IndustriesAvailable = 'construction' | 'cleaning' | 'warehousing' | 'logistics' | 'farming' | 'hospitality' | 'retail' | 'age_care' | 'other';
 
 export type PersonalInformationType = {
     first_name: string;

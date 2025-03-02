@@ -52,7 +52,7 @@ const TalentsList = ({
 
                                         <div className='flex justify-between mt-2'>
                                             <p className='text-green h-bold'>
-                                                {talent.current_location.state}
+                                                {talent.personal_information.current_location.state}
                                             </p>
                                             <p className='hidden md:flex text-right underline opacity-0 max-h-0 group-hover:max-h-fit group-hover:opacity-100 transition-all'>
                                                 View Profile
