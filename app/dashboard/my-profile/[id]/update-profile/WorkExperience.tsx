@@ -56,7 +56,6 @@ const WorkExperience = ({
 
     const handleExperience = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        console.log(">>formValues", formValues)
         const newFormValues = [...formValues];
         newFormValues.push({
             company_name: '',

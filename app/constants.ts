@@ -37,7 +37,7 @@ export const INDUSTRIES_BANNER:IndustriesBannerType = {
     other: '/assets/images/industries-banners/other.jpg',
 }
 
-type IndustriesAvailable = 'construction' | 'cleaning' | 'warehousing' | 'logistics' | 'farming' | 'hospitality' | 'retail' | 'age_care' | 'other';
+export type IndustriesAvailable = 'construction' | 'cleaning' | 'warehousing' | 'logistics' | 'farming' | 'hospitality' | 'retail' | 'age_care' | 'other';
 
 export const INDUSTRIES: {
     name: string;

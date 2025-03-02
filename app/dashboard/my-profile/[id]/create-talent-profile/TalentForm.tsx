@@ -142,7 +142,13 @@ const TalentForm = ({
                             showNext={showNext}
                             showPrev={showPrev}
                         />
-                        <WorkingRights currentIndex={currentIndex} isVisible={currentIndex === 2} />
+                        <WorkingRights
+                            currentIndex={currentIndex}
+                            setMainFormValues={setFormValues}
+                            initialValues={formValues}
+                            showNext={showNext}
+                            showPrev={showPrev}
+                        />
                         <Extras currentIndex={currentIndex} isVisible={currentIndex === 3} />
                     </div>
                 </div>

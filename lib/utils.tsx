@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { SocialMediaLinksType } from "@/types";
+import { IndustriesAvailable } from "@/types";
 
 export const getAge = (birthDate: string) => {
     const today = new Date();
@@ -36,4 +37,44 @@ export const renderSocialMediaIcon = (platform: SocialMediaLinksType) => {
         case 'other':
             return <Image src='/assets/other.svg' alt='Other' width={20} height={20} />;
     }
+};
+
+export const renderDescriptionPlaceholderByIndustry = (industry: IndustriesAvailable) => {
+    if (industry === 'construction') {
+        return "Briefly describe your responsibilities, achievements, and key projects. Example: Supervised site operations, ensured safety compliance, and assisted in building residential structures.";
+    }
+
+    if (industry === 'cleaning') {
+        return "Briefly describe your responsibilities, achievements, and key projects. Example: Maintained high cleanliness standards, handled industrial cleaning equipment, and improved sanitation efficiency";
+    }
+
+    if (industry === 'warehousing') {
+        return "Briefly describe your responsibilities, achievements, and key projects. Example: Managed inventory, operated forklifts, and optimized storage space to improve efficiency.";
+    }
+
+    if (industry === 'logistics') {
+        return "Briefly describe your responsibilities, achievements, and key projects. Example: Coordinated shipments, tracked deliveries, and reduced transport delays";
+    };
+
+    if (industry === 'farming') {
+        return "Briefly describe your responsibilities, achievements, and key projects. Example: Operated machinery, harvested crops, and implemented sustainable farming techniques.";
+    };
+
+    if (industry === 'hospitality') {
+        return "Briefly describe your responsibilities, achievements, and key projects. Example: Provided excellent customer service, managed reservations, and increased guest satisfaction ratings.";
+    };
+
+    if (industry === 'retail') {
+        return "Briefly describe your responsibilities, achievements, and key projects. Example: Assisted customers, managed stock, and boosted sales through personalized recommendations.";
+    };
+
+    if (industry === 'age_care') {
+        return "Briefly describe your responsibilities, achievements, and key projects. Example: Assisted elderly residents with daily tasks, provided companionship, and ensured high-quality care.";
+    };
+
+    if (industry === 'other') {
+        return "Briefly describe your responsibilities, achievements, and key projects. Example: Adapted to various tasks, collaborated with teams, and contributed to overall business success.";
+    };
+
+    return "Briefly describe your responsibilities, achievements, and key projects. Example: Managed a team of 5, increased sales by 20%, and led a successful product launch.";
 };

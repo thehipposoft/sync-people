@@ -65,7 +65,7 @@ const BasicInformation = ({
             }}
         >
             <h4 className='font-bold py-4 text-xl pt-8'>
-                1. Basic Information
+                1. Personal Information
             </h4>
             <p className='pb-4 text-[#1A335D] text-lg'>
                 Now tell us a little bit about...
