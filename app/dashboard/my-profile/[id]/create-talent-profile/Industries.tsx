@@ -71,7 +71,7 @@ const Industries = ({
                 preferred_salary: '',
                 position: '',
                 certificates: [],
-                role_description: '',
+                industry_description: '',
             };
         }
         );
@@ -157,11 +157,11 @@ const Industries = ({
                     </select>
                 </div>
 
-                <p className="mb-4 text-[#1A335D] col-span-2">
-                    Industries of choice *you can choose more than one option
+                <p className="mt-4 text-[#1A335D] col-span-2">
+                    Industries of choice (you can choose more than one option)
                 </p>
                 <Select
-                    className="col-span-2"
+                    className="col-span-2 mb-3"
                     label=""
                     placeholder="Select one or more industries"
                     selectionMode="multiple"
@@ -232,24 +232,11 @@ const Industries = ({
                                     value={industry.preferred_salary}
                                 />
                             </div>
-
-                            <div className='col-span-2'>
-                                <label htmlFor="role_description" className="block pb-2">
-                                    Role Description
-                                </label>
-                                <textarea
-                                    name={`role_description`}
-                                    id="role_description"
-                                    className="w-full"
-                                    onChange={(e) => handleIndustryInputChange(e, index)}
-                                    value={industry.role_description}
-                                />
-                            </div>
                         </div>
                     </div>
                 ))
             }
-            <div className='flex gap-4 items-center justify-center mt-4'>
+            <div className='flex gap-4 items-center justify-center mt-8 mb-8'>
                 <button
                     className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
                     onClick={(e) => {

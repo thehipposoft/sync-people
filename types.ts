@@ -3,7 +3,7 @@ export type IndustryType = {
     other_industry?: string;
     preferred_salary: string;
     position: string;
-    role_description: string;
+    industry_description: string;
     certificates: {
         certificate?: string;
         name: string;

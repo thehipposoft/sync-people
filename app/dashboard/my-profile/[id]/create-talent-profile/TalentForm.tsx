@@ -149,7 +149,13 @@ const TalentForm = ({
                             showNext={showNext}
                             showPrev={showPrev}
                         />
-                        <Extras currentIndex={currentIndex} isVisible={currentIndex === 3} />
+                        <Extras
+                            currentIndex={currentIndex}
+                            setMainFormValues={setFormValues}
+                            initialValues={formValues}
+                            showNext={showNext}
+                            showPrev={showPrev}
+                        />
                     </div>
                 </div>
                 <div className='hidden gap-6 justify-center py-6'>

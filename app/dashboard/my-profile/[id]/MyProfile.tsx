@@ -46,7 +46,7 @@ const MyProfile = ({
                                 <p>
                                     {user.working_rights.current_visa.label}
                                 </p>
-                                <p className={`${user.personal_information.current_location.state && user.personal_information.current_location.address_1 ? '' : 'hidden'}`}>
+                                <p className={`${user.personal_information.current_location && user.personal_information.current_location.state && user.personal_information.current_location.address_1 ? '' : 'hidden'}`}>
                                     {user.personal_information.current_location.address_1}, {user.personal_information.current_location.suburb}, {user.personal_information.current_location.state} {user.personal_information.current_location.postcode}
                                 </p>
                                 <p>
