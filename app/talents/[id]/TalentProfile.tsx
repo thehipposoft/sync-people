@@ -11,6 +11,11 @@ type TalentProfileProps = {
     id: string;
 };
 
+const hideEmailDomain = (email: string) => {
+	if (!email) return "";
+  	return email.split("@")[0] + "@...";
+};
+
 const TalentProfile = ({
     talentData,
     id
@@ -129,11 +134,40 @@ const TalentProfile = ({
 
                                     <div>
                                         <h2 className='text-lg'>
-                                            Availability:
+                                            Availability
                                         </h2>
                                         <div className={`flex gap-2 capitalize`}>
                                             {talentData.professional_information.work_preference ? talentData.professional_information.work_preference : '-'}
                                         </div>
+                                    </div>
+                                </div>
+                                <div className='flex justify-end flex-col items-end'>
+                                    <h2 className='text-lg mb-2'>
+                                        Contact me
+                                    </h2>
+                                    <div className='flex'>
+                                        <Link
+                                            href={`tel:${talentData.personal_information.mobile}`}
+                                            className='ml-0 flex items-center gap-2 primary-btn group text-sm'
+                                        >
+                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" className="mr-2">
+                                                <path d="M11 18H13M9.2 21H14.8C15.9201 21 16.4802 21 16.908 20.782C17.2843 20.5903 17.5903 20.2843 17.782 19.908C18 19.4802 18 18.9201 18 17.8V6.2C18 5.0799 18 4.51984 17.782 4.09202C17.5903 3.71569 17.2843 3.40973 16.908 3.21799C16.4802 3 15.9201 3 14.8 3H9.2C8.0799 3 7.51984 3 7.09202 3.21799C6.71569 3.40973 6.40973 3.71569 6.21799 4.09202C6 4.51984 6 5.07989 6 6.2V17.8C6 18.9201 6 19.4802 6.21799 19.908C6.40973 20.2843 6.71569 20.5903 7.09202 20.782C7.51984 21 8.07989 21 9.2 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                            </svg>
+                                            {talentData.personal_information.mobile}
+                                        </Link>
+                                        <Link
+                                            href={`mailto:${talentData.personal_information.email}`}
+                                            className='flex items-center gap-2 primary-btn group text-sm mr-0 ml-0'
+                                        >
+                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" className="mr-2">
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" stroke-linecap="round"></rect>
+                                                </g>
+                                            </svg>
+                                            {hideEmailDomain(talentData.personal_information.email)}
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

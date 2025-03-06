@@ -17,7 +17,6 @@ const ExtraInformation = ({
     initialValues,
     userId,
 }:PersonalInformationPropsType) => {
-    //console.log('>>initialValues', initialValues);
     const [openUploadModal, setOpenUploadModal] = useState<boolean>(false);
     const [formValues, setFormValues] = useState<ExtraInformationType>({
         ...initialValues,
@@ -62,7 +61,7 @@ const ExtraInformation = ({
             }
         };
 
-        const response = await updateProfile(apiValues, userId);
+        const response = await updateProfile(userId, apiValues);
 
         setOpenUploadModal(false);
     };
@@ -83,7 +82,7 @@ const ExtraInformation = ({
             }
         };
 
-        const response = await updateProfile(apiValues, userId);
+        const response = await updateProfile(userId, apiValues);
 
         setOpenRemoveCredentialModal(false);
         setIsAPILoading(false);
@@ -93,9 +92,9 @@ const ExtraInformation = ({
         e.preventDefault();
         setIsAPILoading(true);
 
-        const response = await updateProfile({
+        const response = await updateProfile(userId, {
             extras: formValues,
-        }, userId);
+        });
 
         setOpenUpdatedDataModal(true);
 

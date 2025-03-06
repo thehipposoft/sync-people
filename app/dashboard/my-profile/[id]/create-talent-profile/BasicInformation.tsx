@@ -174,13 +174,13 @@ const BasicInformation = ({
                 </h4>
 
                 <div className='col-span-2 lg:col-span-1'>
-                    <label htmlFor="address" className="block pb-2">
+                    <label htmlFor="current_location.address_1" className="block pb-2">
                         Address
                     </label>
                     <input
                         type="text"
-                        id="current_location.address"
-                        name="current_location.address"
+                        id="current_location.address_1"
+                        name="current_location.address_1"
                         value={formValues.current_location.address_1}
                         onChange={handleInputChange}
                     />

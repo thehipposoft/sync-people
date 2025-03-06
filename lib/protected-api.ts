@@ -51,7 +51,7 @@ export const getUserProfile = async (token?: string) => {
     return data;
 }
 
-export const updateProfile = async (body: any, userId: string) => {
+export const updateProfile = async (userId: string, body: any,) => {
     const response = await api({
         endpoint: `/talents/${userId}`,
         method: 'PUT',

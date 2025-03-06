@@ -54,7 +54,7 @@ const ProfileForm = ({
             },
         };
 
-        const response = await updateProfile(apiValues, userId);
+        const response = await updateProfile(userId, apiValues);
 
         if(response.status === 500) {
             setIsAPILoading(true);
@@ -87,7 +87,7 @@ const ProfileForm = ({
                 },
             };
 
-            const response = await updateProfile(apiValues, userId);
+            const response = await updateProfile(userId, apiValues);
 
             setFormValues({
                 ...formValues,

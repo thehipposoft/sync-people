@@ -38,9 +38,10 @@ const WorkingRights = ({
         setFormValues(newFormValues);
     };
 
-    const handleExperience = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleAddExperience = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         const newFormValues = [...formValues];
+
         newFormValues.push({
             company_name: '',
             position: '',
@@ -59,9 +60,7 @@ const WorkingRights = ({
 
         setMainFormValues({
             ...initialValues,
-            work_experience: {
-                ...formValues,
-            },
+            work_experience: formValues,
         });
 
         showNext();
@@ -222,7 +221,7 @@ const WorkingRights = ({
             }
             <button
                 className='primary-btn mt-2 ml-0 col-span-2 md:col-span-1 text-base'
-                onClick={handleExperience}
+                onClick={handleAddExperience}
             >
                 + Add Work Experience
             </button>

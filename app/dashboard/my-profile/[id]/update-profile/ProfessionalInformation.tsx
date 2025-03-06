@@ -54,7 +54,7 @@ const ProfessionalInformation = ({
             }
         }
 
-        const response = updateProfile(body, userId);
+        const response = updateProfile(userId, body);
 
         setFormValues({
             ...formValues,
@@ -95,7 +95,7 @@ const ProfessionalInformation = ({
                 }
             };
 
-            const response = await updateProfile(apiValues, userId);
+            const response = await updateProfile(userId, apiValues);
 
             setFormValues({
                 ...formValues,
@@ -150,7 +150,7 @@ const ProfessionalInformation = ({
         e.preventDefault();
         setIsAPILoading(true);
 
-        const response = await updateProfile({
+        const response = await updateProfile(userId, {
             professional_information: {
                 ...formValues,
                 industries: [
@@ -158,7 +158,7 @@ const ProfessionalInformation = ({
                     ...industriesToUpdate,
                 ],
             },
-        }, userId);
+        });
 
         setFormValues({
             ...formValues,

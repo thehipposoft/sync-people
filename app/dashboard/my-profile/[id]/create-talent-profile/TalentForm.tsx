@@ -3,6 +3,8 @@ import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
+import { updateProfile } from '@/lib/protected-api';
+import Modal from '@/components/Modal';
 //Form steps
 import BasicInformation from './BasicInformation';
 import Industries from './Industries';
@@ -24,6 +26,7 @@ const TalentForm = ({
     });
     const [currentIndex, setCurrentIndex] = useState<number>(0);
     const [profileImage, setProfileImage] = useState<string>('');
+    const [openSuccessModal, setOpenSuccessModal] = useState<boolean>(false);
 
     const showNext = () => {
         setCurrentIndex((index) => {
@@ -55,6 +58,13 @@ const TalentForm = ({
 
         }
     }
+
+    const handleFinishForm = async (apiFormValues: TalentTypeAcf) => {
+        const response = await updateProfile(userId, apiFormValues);
+
+        console.log(">>response", response);
+        setOpenSuccessModal(true);
+    };
 
     return (
         <div ref={registrationFormRef} className='md:w-full flex justify-center gap-12 px-2 md:px-0'>
@@ -153,7 +163,7 @@ const TalentForm = ({
                             currentIndex={currentIndex}
                             setMainFormValues={setFormValues}
                             initialValues={formValues}
-                            showNext={showNext}
+                            showNext={handleFinishForm}
                             showPrev={showPrev}
                         />
                     </div>
@@ -197,6 +207,19 @@ const TalentForm = ({
                     </Link>
                 </div>
             </div>
+            <Modal isOpen={openSuccessModal}>
+                <div>
+                    <h1 className='text-3xl h-bold text-center'>Profile Updated</h1>
+                    <p className='text-center'>Your profile has been successfully updated</p>
+                    <div className='flex justify-center'>
+                        <Link href='/my-profile'>
+                            <button className='text-[#326B88] py-2 px-4 border-[#326B88] border rounded-3xl hover:bg-[#326B88] hover:text-white duration-700 cursor-pointer'>
+                                Go to my profile
+                            </button>
+                        </Link>
+                    </div>
+                </div>
+            </Modal>
         </div>
     );
 };

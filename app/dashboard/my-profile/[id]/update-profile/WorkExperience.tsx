@@ -26,7 +26,7 @@ const WorkExperience = ({
             work_experience: formValues,
         }
 
-        const response = await updateProfile(body, userId);
+        const response = await updateProfile(userId, body);
 
         if(response.status === 500) {
             setIsAPILoading(true);

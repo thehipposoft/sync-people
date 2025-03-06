@@ -7,7 +7,7 @@ import { Tooltip } from "@heroui/tooltip";
 type ExtrasPropsType = {
     currentIndex: number;
     initialValues: TalentTypeAcf;
-    showNext: () => void;
+    showNext: (values: TalentTypeAcf) => void;
     showPrev: () => void;
     setMainFormValues: (values: TalentTypeAcf) => void;
 }
@@ -25,6 +25,8 @@ type ExtrasPropsType = {
     const [credentialToRemove, setCredentialToRemove] = useState<number>(0);
     const [formValues, setFormValues] = useState<TalentTypeAcf['extras']>({
         ...initialValues.extras,
+        other_credentials: initialValues.extras.other_credentials || [],
+        social_media_links: initialValues.extras.social_media_links || [],
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
@@ -51,12 +53,27 @@ type ExtrasPropsType = {
         });
     };
 
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        setMainFormValues({
+            ...initialValues,
+            extras: formValues,
+        });
+
+        showNext({
+            ...initialValues,
+            extras: formValues,
+        });
+    };
+
     return (
         <form
             className={`flex-col duration-1000 md:min-w-[850px] md:px-4 py-6 md:py-0`}
             style={{
                 translate: `${-100 * currentIndex}%`,
             }}
+            onSubmit={handleSubmit}
         >
             <div className='flex items-center justify-between pt-8'>
                 <h4 className='font-bold py-4 text-xl'>
@@ -348,17 +365,8 @@ type ExtrasPropsType = {
                         + Social media
                     </button>
                 </div>
-                <div className='w-full col-span-2 flex'>
-                    <button
-                        className='primary-btn mt-6 mx-auto text-base'
-                        type='submit'
-                        disabled={isAPILoading}
-                    >
-                        Update Extras
-                    </button>
-                </div>
             </div>
-            <div className='flex gap-4 items-center justify-center mt-8 mb-8'>
+            <div className='flex gap-4 items-center justify-center mt-10 mb-8'>
                 <button
                     className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
                     onClick={(e) => {
@@ -375,7 +383,7 @@ type ExtrasPropsType = {
                     className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
                     type='submit'
                 >
-                    Next
+                    Finish
                 </button>
             </div>
         </form>
