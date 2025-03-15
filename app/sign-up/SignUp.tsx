@@ -138,9 +138,11 @@ const SignUpMenu = () => {
             <Modal
                 isOpen={openSuccessModal}
             >
-                <h1 className='text-4xl'>Success</h1>
+                <h1 className='text-4xl'>
+                    Almost done!
+                </h1>
                 <p className='text-center my-4'>
-                    You have successfully signed up.
+                    We have sent you an email to verify your account.
                 </p>
                 <Link href={ROUTES.LOGIN} className='primary-btn'>
                     Login

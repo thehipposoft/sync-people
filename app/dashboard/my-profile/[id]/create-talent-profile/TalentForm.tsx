@@ -5,6 +5,7 @@ import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
 import { updateProfile } from '@/lib/protected-api';
 import Modal from '@/components/Modal';
+import { ROUTES } from '@/app/constants';
 //Form steps
 import BasicInformation from './BasicInformation';
 import Industries from './Industries';
@@ -62,7 +63,6 @@ const TalentForm = ({
     const handleFinishForm = async (apiFormValues: TalentTypeAcf) => {
         const response = await updateProfile(userId, apiFormValues);
 
-        console.log(">>response", response);
         setOpenSuccessModal(true);
     };
 
@@ -212,10 +212,8 @@ const TalentForm = ({
                     <h1 className='text-3xl h-bold text-center'>Profile Updated</h1>
                     <p className='text-center'>Your profile has been successfully updated</p>
                     <div className='flex justify-center'>
-                        <Link href='/my-profile'>
-                            <button className='text-[#326B88] py-2 px-4 border-[#326B88] border rounded-3xl hover:bg-[#326B88] hover:text-white duration-700 cursor-pointer'>
-                                Go to my profile
-                            </button>
+                        <Link href={`${ROUTES.MY_PROFILE}/${userId}`}>
+                            Go to my profile
                         </Link>
                     </div>
                 </div>
