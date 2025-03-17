@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { storeToken, cleanCookies } from "./actions";
 import { getUserProfile } from "./protected-api";
 
@@ -76,14 +77,26 @@ export const getJWTToken = async (email?: string, password?: string) => {
             password: password ? password : process.env.NEXT_PUBLIC_PASS,
         })
     });
+    const data = await response.json();
 
     if (response.ok) {
-        const data = await response.json();
-
-        return data.token;
-    } else {
-        console.error('Failed to retrieve token');
+        return NextResponse.json({
+            token: data.token,
+            message: ''
+        }, { status: 200 });
     }
+
+    if(response.status === 403) {
+        return NextResponse.json({
+            token: '',
+            message: 'Username or password is incorrect',
+        }, { status: 403 });
+    }
+
+    return NextResponse.json({
+        token: '',
+        message: data.message,
+    }, { status: 500 });
 };
 
 type LoginType = {

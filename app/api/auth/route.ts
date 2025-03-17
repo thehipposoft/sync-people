@@ -8,16 +8,18 @@ type LoginType = {
 
 export async function POST(request: NextRequest) {
     const data: LoginType = await request.json();
-    const token = await getJWTToken(data.email, data.password);
+    const tokenResponse = await getJWTToken(data.email, data.password);
+    const responseData = await tokenResponse.json();
 
-    if (!token) {
+    if (tokenResponse.ok) {
         return NextResponse.json({
-            message: 'Failed to retrieve token'
-        },
-        { status: 500 });
+            token: responseData.token,
+            message: "Login success",
+        }, { status: 200 });
     }
+
     return NextResponse.json({
-        token: token,
-        message: "Login success",
-    }, { status: 200 });
+        message: responseData.message,
+    },
+    { status: 500 });
 }
