@@ -183,13 +183,21 @@ export const createTalentNew = async (data: CreateTalentBodyType) => {
 
 export const getTalent = async (id: string) => {
     const apiURL = process.env.NEXT_PUBLIC_WP_URL;
-    const response = await fetch(`${apiURL}/talents/${id}?acf_format=standard`)
+    const response = await fetch(`${apiURL}/talents/${id}?acf_format=standard`);
+    const responseJson = await response.json();
+
+    if (response.status === 404) {
+        return NextResponse.json({
+            message: responseJson.message,
+        },
+        { status: 404 });
+    }
 
     if (!response.ok) {
         throw new Error('failed to fetch talent')
     }
 
-    const talent = await response.json();
+    const talent = responseJson;
 
     return talent;
 };

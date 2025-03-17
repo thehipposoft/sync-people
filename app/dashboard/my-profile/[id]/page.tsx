@@ -3,6 +3,8 @@ import MyProfile from "./MyProfile";
 import { getTalent } from "@/lib/api";
 import { TalentType } from "@/types";
 import PrivateLayout from "@/components/PrivateLayout";
+import { ROUTES } from "@/app/constants";
+import { redirect } from "next/navigation";
 
 type MetadataPropsType = {
     params: Promise<{
@@ -14,7 +16,7 @@ export async function generateMetadata({ params }: MetadataPropsType): Promise<M
     const resolvedParams = await params;
     const userData: TalentType = await getTalent(resolvedParams.id);
 
-    if(userData) {
+    if(userData.acf) {
         return {
             title: `${userData.acf.personal_information.first_name} | Talent Portal`,
         }
@@ -35,6 +37,10 @@ const MyProfilePage = async ({ params }: Props) => {
     const resolvedParams = await params;
     const { id } = resolvedParams;
     const userData:TalentType = await getTalent(id);
+
+    if(!userData.acf) {
+        redirect(ROUTES.CURRENT_TALENT_NOT_FOUND);
+    };
 
     return (
         <PrivateLayout
