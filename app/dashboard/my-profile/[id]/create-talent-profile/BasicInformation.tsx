@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { TalentTypeAcf } from '@/types';
 import { AUSTRALIAN_STATES } from '@/app/constants';
 
@@ -32,7 +32,7 @@ const BasicInformation = ({
         showNext();
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = e.target;
 
         const keys = name.split('.');
@@ -169,7 +169,23 @@ const BasicInformation = ({
                     />
                 </div>
 
-                <h4 className='col-span-2 lg-col-span-1'>
+                <div className='col-span-2'>
+                    <label htmlFor="about_myself" className="block pb-2">
+                        About me
+                    </label>
+                    <textarea
+                        rows={4}
+                        placeholder='Write a short description about yourself'
+                        name='about_myself'
+                        spellCheck={true}
+                        id='about_myself'
+                        className='flex w-full border p-2 resize-none'
+                        value={formValues.about_myself}
+                        onChange={handleInputChange}
+                    />
+                </div>
+
+                <h4 className='col-span-2 lg-col-span-1 mt-3'>
                     Current Address
                 </h4>
 

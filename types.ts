@@ -5,9 +5,11 @@ export type IndustryType = {
     position: string;
     industry_description: string;
     certificates: {
+        partialFile?: File;
         certificate?: string;
         name: string;
         file_url: string;
+        expiry_date: string;
     }[];
 };
 
@@ -22,6 +24,7 @@ export type PersonalInformationType = {
     country_of_birth: string;
     profile_pic: string;
     gender: string;
+    about_myself: string;
     current_location: {
         address_1: string,
         suburb: string,
@@ -59,7 +62,6 @@ export type ExtraInformationType = {
     level_of_english: LevelOfEnglishType;
     preferred_language: string;
     other_languages: string;
-    more_about_myself: string;
     education_level: EducationLevelType;
     other_credentials: {
         file_url: string;

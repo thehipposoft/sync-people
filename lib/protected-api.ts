@@ -68,11 +68,13 @@ export const updateProfile = async (userId: string, body: any,) => {
 
 export const uploadMedia = async (file: FormData) => {
     const adminToken = await getJWTToken();
+    const tokenData = await adminToken.json();
+
     const response = await api({
         endpoint: '/media',
         method: 'POST',
         body: file,
-        token: adminToken,
+        token: tokenData.token,
         isFormData: true,
     });
 

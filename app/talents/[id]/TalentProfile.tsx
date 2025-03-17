@@ -83,8 +83,8 @@ const TalentProfile = ({
                                     height={140}
                                     className='rounded-full border-[6px] border-white -top-[4rem] md:-top-[6rem] w-36 h-36 relative md:absolute object-cover'
                                 />
-                                <p className={`${!talentData.extras.more_about_myself ? 'hidden' : ''} relative -top-10 md:top-0 md:pl-[10rem]`}>
-                                    " {talentData.extras.more_about_myself} "
+                                <p className={`${!talentData.personal_information.about_myself ? 'hidden' : ''} relative -top-10 md:top-0 md:pl-[10rem]`}>
+                                    " {talentData.personal_information.about_myself} "
                                 </p>
                             </div>
 

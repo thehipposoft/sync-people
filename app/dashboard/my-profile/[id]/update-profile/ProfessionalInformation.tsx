@@ -87,6 +87,7 @@ const ProfessionalInformation = ({
                 certificate: uploadResponse.id,
                 name: certificateName,
                 file_url: uploadResponse.url,
+                expiry_date: '',
             });
 
             const apiValues = {

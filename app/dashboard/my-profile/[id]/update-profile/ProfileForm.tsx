@@ -49,8 +49,8 @@ const ProfileForm = ({
         setIsAPILoading(true);
 
         const apiValues = {
-            extras: {
-                more_about_myself: formValues.extras.more_about_myself,
+            PersonalInformation: {
+                about_myself: formValues.personal_information.about_myself,
             },
         };
 
@@ -173,8 +173,8 @@ const ProfileForm = ({
                         spellCheck={true}
                         id='personal_information.about_me'
                         className='flex w-full border p-2 resize-none'
-                        value={formValues.extras.more_about_myself}
-                        onChange={(e) => handleInputChange(e, 'extras', 'more_about_myself')}
+                        value={formValues.personal_information.about_myself}
+                        onChange={(e) => handleInputChange(e, 'personal_information', 'about_myself')}
                     />
                     <button
                         onClick={handleUpdateDescriptionClick}

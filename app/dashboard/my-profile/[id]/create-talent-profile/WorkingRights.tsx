@@ -117,7 +117,7 @@ const WorkingRights = ({
                         </div>
                         <div className="col-span-2 md:col-span-1">
                             <label htmlFor={`position`} className="block pb-2">
-                                Position
+                                Position*
                             </label>
                             <input
                                 type="text"
@@ -130,7 +130,7 @@ const WorkingRights = ({
                         </div>
                         <div className="col-span-2 md:col-span-1">
                             <label htmlFor={`company_name`} className="block pb-2">
-                                Company name
+                                Company name*
                             </label>
                             <input
                                 type="text"
@@ -143,7 +143,7 @@ const WorkingRights = ({
                         </div>
                         <div className="col-span-2 md:col-span-1">
                             <label htmlFor={`start_date`} className="block pb-2">
-                                Start Date
+                                Start Date*
                             </label>
                             <input
                                 type="date"
@@ -162,7 +162,7 @@ const WorkingRights = ({
                                 type="date"
                                 id={`end_date`}
                                 name={`end_date`}
-                                required
+                                required={!experience.currently_working}
                                 value={experience.end_date}
                                 onChange={(e) => handleChange(e, index)}
                                 className='disabled:opacity-50'

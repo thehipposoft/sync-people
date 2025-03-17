@@ -101,7 +101,7 @@ const MyProfile = ({
                                 About Me
                             </h3>
                             <p>
-                                {user.extras.more_about_myself ? user.extras.more_about_myself : '-'}
+                                {user.personal_information.about_myself ? user.personal_information.about_myself : '-'}
                             </p>
                         </div>
                     </div>
