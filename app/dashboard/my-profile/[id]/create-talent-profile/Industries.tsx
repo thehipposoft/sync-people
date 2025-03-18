@@ -24,6 +24,7 @@ const Industries = ({
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [formValues, setFormValues] = useState<TalentTypeAcf['professional_information']>({
         ...initialValues.professional_information,
+        work_preference: 'full-time',
         industries: [],
     });
     const [isAPILoading, setIsAPILoading] = useState<boolean>(false);

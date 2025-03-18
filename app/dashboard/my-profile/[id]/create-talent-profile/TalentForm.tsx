@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
-import { updateProfile } from '@/lib/protected-api';
+import { api, updateProfile, uploadMedia } from '@/lib/protected-api';
 import Modal from '@/components/Modal';
 import { ROUTES } from '@/app/constants';
 //Form steps
@@ -27,7 +27,21 @@ const TalentForm = ({
     });
     const [currentIndex, setCurrentIndex] = useState<number>(0);
     const [profileImage, setProfileImage] = useState<string>('');
+    const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
     const [openSuccessModal, setOpenSuccessModal] = useState<boolean>(false);
+    const [openLoadingModal, setOpenLoadingModal] = useState<boolean>(false);
+
+    const getFileUrl = async (file: File, title: string, altText: string) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("title", title);
+        formData.append("alt_text", altText);
+        formData.append("status", "publish");
+
+        const response = await uploadMedia(formData);
+
+        return response.url;
+    }
 
     const showNext = () => {
         setCurrentIndex((index) => {
@@ -50,19 +64,63 @@ const TalentForm = ({
     const handleUploadProfileImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if ( e.target.files) {
             const file = e.target.files[0];
+            setProfileImageFile(file);
             const reader = new FileReader();
 
             reader.onloadend = () => {
                 setProfileImage(reader.result as string);
             };
             reader.readAsDataURL(file);
-
         }
     }
 
     const handleFinishForm = async (apiFormValues: TalentTypeAcf) => {
+        setOpenLoadingModal(true);
+
+        if (profileImageFile) {
+            const profileImageUrl = await getFileUrl(
+                profileImageFile,
+                `${apiFormValues.personal_information.first_name} ${apiFormValues.personal_information.last_name} - Profile Picture`,
+                `${apiFormValues.personal_information.first_name} ${apiFormValues.personal_information.last_name} - Profile Picture`
+            );
+            apiFormValues.personal_information.profile_pic = profileImageUrl;
+        }
+
+        // Collect promises for industries certificates
+        const certificatePromises = apiFormValues.professional_information.industries
+            .flatMap(industry =>
+                industry.certificates
+                    .filter(certificate => certificate.partialFile)
+                    .map(async (certificate) => {
+                        certificate.file_url = certificate.partialFile
+                        ? await getFileUrl(
+                            certificate.partialFile,
+                            certificate.name,
+                            certificate.name
+                        )
+                        : '';
+                    })
+            );
+
+        // Collect promises for other credentials
+        const credentialPromises = apiFormValues.extras.other_credentials
+            .filter(credential => credential.partialFile)
+            .map(async (credential) => {
+                credential.file_url = credential.partialFile
+                ? await getFileUrl(
+                    credential.partialFile,
+                    credential.name,
+                    credential.name
+                )
+                : '';
+            });
+
+        // Wait for all uploads to complete
+        await Promise.all([...certificatePromises, ...credentialPromises]);
+
         const response = await updateProfile(userId, apiFormValues);
 
+        setOpenLoadingModal(false);
         setOpenSuccessModal(true);
     };
 
@@ -207,11 +265,25 @@ const TalentForm = ({
                     </Link>
                 </div>
             </div>
+            <Modal isOpen={openLoadingModal}>
+                <div>
+                    <h1 className='text-3xl h-bold text-center mb-3'>
+                        Updating Profile
+                    </h1>
+                    <p className='text-center mb-4'>
+                        Please wait while we creating your skills portfolio
+                    </p>
+                </div>
+            </Modal>
             <Modal isOpen={openSuccessModal}>
                 <div>
-                    <h1 className='text-3xl h-bold text-center'>Profile Updated</h1>
-                    <p className='text-center'>Your profile has been successfully updated</p>
-                    <div className='flex justify-center'>
+                    <h1 className='text-3xl h-bold text-center mb-3'>
+                        Profile Updated
+                    </h1>
+                    <p className='text-center mb-4'>
+                        Your profile has been successfully updated
+                    </p>
+                    <div className='flex justify-center primary-btn mx-auto'>
                         <Link href={`${ROUTES.MY_PROFILE}/${userId}`}>
                             Go to my profile
                         </Link>

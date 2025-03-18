@@ -3,6 +3,8 @@ import { getTalent } from "@/lib/api";
 import { TalentType } from "@/types";
 import PrivateLayout from "@/components/PrivateLayout";
 import TalentForm from "./TalentForm";
+import { redirect } from "next/navigation";
+import { ROUTES } from "@/app/constants";
 
 type MetadataPropsType = {
     params: Promise<{
@@ -35,6 +37,10 @@ const CreateTalentProfile = async ({ params }: Props) => {
     const resolvedParams = await params;
     const { id } = resolvedParams;
     const userData:TalentType = await getTalent(id);
+
+    if(userData.acf.professional_information.industries && userData.acf.professional_information.industries.length) {
+        redirect(`${ROUTES.MY_PROFILE}/${id}`);
+    }
 
     return (
         <PrivateLayout

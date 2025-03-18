@@ -35,6 +35,9 @@ const BasicInformation = ({
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = e.target;
 
+        console.log(">>> name", name);
+        console.log(">>> value", value);
+
         const keys = name.split('.');
 
         setFormValues((prevValues) => {
@@ -122,6 +125,7 @@ const BasicInformation = ({
                                 type="radio"
                                 name="gender"
                                 value="Male"
+                                onChange={handleInputChange}
                             />
                             Male
                         </label>
@@ -130,6 +134,7 @@ const BasicInformation = ({
                                 type="radio"
                                 name="gender"
                                 value="Female"
+                                onChange={handleInputChange}
                             />
                             Female
                         </label>
@@ -138,6 +143,7 @@ const BasicInformation = ({
                                 type="radio"
                                 name="gender"
                                 value="Other"
+                                onChange={handleInputChange}
                             />
                                 Other
                         </label>
