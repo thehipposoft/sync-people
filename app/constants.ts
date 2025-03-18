@@ -15,6 +15,7 @@ export const ROUTES = {
     ENTRY: '/blog/entry',
     SIGN_UP: '/sign-up',
     TERMS: '/terms',
+    TALENTS: '/talents',
     PRIVACY_POLICY: '/privacy-policy',
     PRESENTATION_VIDEO: '/blog/why-create-a-presentation-video',
     CURRENT_TALENT_NOT_FOUND: '/current-talent-not-found',
