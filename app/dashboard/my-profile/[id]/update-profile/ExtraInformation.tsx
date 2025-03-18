@@ -47,6 +47,7 @@ const ExtraInformation = ({
                 certificate: fileId,
                 name,
                 file_url,
+                expiry_date: '',
             },
         ];
 

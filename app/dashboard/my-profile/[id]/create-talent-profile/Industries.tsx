@@ -35,8 +35,6 @@ const Industries = ({
     const [certificateName, setCertificateName] = useState<string>('');
     const [certificateExpiryDate, setCertificateExpiryDate] = useState<string>('');
 
-    console.log(">>formValues", formValues);
-
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -282,6 +280,7 @@ const Industries = ({
                                         onChange={(e) => handleIndustryInputChange(e, index)}
                                         value={industry.position}
                                         required
+                                        placeholder='You can add multiple comma separated'
                                     />
                                 </div>
                                 <div className='col-span-2 lg:col-span-1'>
@@ -423,11 +422,11 @@ const Industries = ({
                     ))
                 }
                 {
-                    industriesError && (
+                    !formValues.industries.length && industriesError ? (
                         <p className='text-red-600 mt-4 border-2 border-red-600 rounded-md p-4 bg-red-200'>
                             {industriesError}
                         </p>
-                    )
+                    ) : null
                 }
                 <div className='flex gap-4 items-center justify-center mt-8 mb-8'>
                     <button
@@ -454,7 +453,7 @@ const Industries = ({
                 isOpen={openNewCertificateModal}
             >
                 <form onSubmit={handleUploadCertificate}>
-                    <h4 className="mb-5">
+                    <h4 className="mb-5 text-center">
                         Upload new certificate
                     </h4>
                     <input

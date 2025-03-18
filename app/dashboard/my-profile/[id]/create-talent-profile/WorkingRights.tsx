@@ -203,7 +203,7 @@ const WorkingRights = ({
                         </div>
                         <div className='col-span-2 w-full'>
                             <label htmlFor={`description`} className="block pb-2">
-                                Description
+                                Description*
                             </label>
                             <textarea
                                 id={`description`}

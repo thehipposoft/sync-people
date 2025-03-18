@@ -67,6 +67,8 @@ export type ExtraInformationType = {
         file_url: string;
         certificate: string;
         name: string;
+        expiry_date: string;
+        partialFile?: File;
     }[];
     transport: string;
     presentation_video: string;
@@ -76,6 +78,10 @@ export type ExtraInformationType = {
     }[];
     profile_header_image: string;
     languages: LanguagesType[];
+    other_urls: {
+        url: string;
+        name: string;
+    }[];
 };
 
 export type TalentTypeAcf = {
