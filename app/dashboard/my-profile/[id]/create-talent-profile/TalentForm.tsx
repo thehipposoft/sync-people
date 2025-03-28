@@ -139,7 +139,7 @@ const TalentForm = ({
                             className='h-[140px] lg:h-[150px] rounded-full border-2 border-primary-text object-cover'
                         />
 
-                        <div className='absolute top-0 left-0 rounded-full opacity-0 w-full h-full bg-[#000000b3] group-hover:opacity-100 duration-500 flex justify-center items-center cursor-pointer p-2'>
+                        <div className={`absolute top-0 left-0 rounded-full w-full h-full bg-[#000000b3] ${profileImage ? 'opacity-0' : 'opacity-100'} duration-500 flex justify-center items-center cursor-pointer p-2`}>
                             <span className='text-sm text-center text-white'>
                                 <input
                                     id='profile_pic'
@@ -152,7 +152,7 @@ const TalentForm = ({
                                 />
                                 <label htmlFor='profile_pic'>
                                     <span className='text-white cursor-pointer'>
-                                        Change profile image
+                                        Click to update
                                     </span>
                                 </label>
                             </span>

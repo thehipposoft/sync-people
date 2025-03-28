@@ -5,7 +5,8 @@ import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
 import { getAge } from '@/lib/utils';
 import { renderSocialMediaIcon } from '@/lib/utils';
-import { ROUTES } from '@/app/constants';
+import { ROUTES, INDUSTRIES_BANNER } from '@/app/constants';
+import { differenceInMonths, differenceInDays, parseISO } from 'date-fns';
 
 type MyProfileProps = {
     user: TalentTypeAcf;
@@ -18,10 +19,21 @@ const MyProfile = ({
 }:MyProfileProps) => {
     return (
         <div className='flex flex-col md:w-full'>
+            <div className='md:w-[900px] mx-auto'>
+                <h1 className='text-3xl font-bold text-center my-8'>
+                    Skills Portfolio
+                </h1>
+                <p className='text-center mb-6'>
+                    Welcome to your Talent Dashboard! Here, you can manage and update your Digital Skills Portfolio.
+                    You can also preview your public profile to see how others view your skills and experience.
+                    To see how your profile appears in a specific industry, click the 'View Portfolio' link next
+                    to the industry you want to explore.
+                </p>
+            </div>
             <div className='border rounded-2xl md:w-[900px] mx-auto bg-white'>
                 <div className='relative flex flex-col'>
                     <Image
-                        src={'/assets/images/profile/profile-banner.webp'}
+                       src={INDUSTRIES_BANNER[user.professional_information.industries[0].industry]}
                         alt={`Banner picture of ${user.personal_information.first_name}`}
                         width={900}
                         height={300}
@@ -131,12 +143,19 @@ const MyProfile = ({
                                     className={`pb-4 mb-3 ${index === user.professional_information.industries.length - 1 ? '' : 'border-b'}`}
                                 >
                                     <div className='flex justify-between'>
-                                        <h2 className='capitalize mb-1 text-xl underline'>
-                                            {industry.industry}
-                                        </h2>
                                         <Link
                                             className='underline text-primary-text'
                                             href={`${ROUTES.TALENTS}/${userId}?industry=${industry.industry}`}
+                                            target='_blank'
+                                        >
+                                              <h2 className='capitalize mb-1 text-xl underline'>
+                                                {industry.industry}
+                                            </h2>
+                                        </Link>
+                                        <Link
+                                            className='underline text-primary-text'
+                                            href={`${ROUTES.TALENTS}/${userId}?industry=${industry.industry}`}
+                                            target='_blank'
                                         >
                                             View portfolio
                                         </Link>
@@ -145,17 +164,17 @@ const MyProfile = ({
                                         industry.certificates
                                         ? (
                                             <div>
-                                                <p className=''>
+                                                <p className='mb-1'>
                                                     Certificates / Licenses
                                                 </p>
                                                 <ul>
                                                     {
                                                         industry.certificates.map((certificate, index) => (
-                                                            <li key={index}>
+                                                            <li key={index} className='mb-2'>
                                                                 {
-                                                                    certificate.certificate
+                                                                    certificate.file_url
                                                                     ? <Link
-                                                                        href={certificate.certificate}
+                                                                        href={certificate.file_url}
                                                                         target='_blank'
                                                                         className='underline flex gap-1 items-center'
                                                                     >
@@ -185,10 +204,10 @@ const MyProfile = ({
                                         : null
                                     }
                                     <p className='capitalize mt-2'>
-                                        Position: {industry.position}
+                                        <span className=''>Position:</span> {industry.position}
                                     </p>
                                     <p className='mt-2'>
-                                        Preferred Salary per hour: {industry.preferred_salary ? '$'+industry.preferred_salary : '-'}
+                                    <span className=''>Preferred Salary per hour:</span> {industry.preferred_salary ? '$'+industry.preferred_salary : '-'}
                                     </p>
                                 </div>
                             ))
@@ -202,15 +221,30 @@ const MyProfile = ({
                     </h2>
                     {
                         user.work_experience && user.work_experience.length
-                        ? user.work_experience.map((experience, index) => (
-                            <div key={index} className='flex flex-col'>
-                                <h2 className='text-xl'>{experience.position}</h2>
-                                <p>{experience.company_name}</p>
-                                <p>{experience.start_date} - {experience.currently_working ? 'Current' : experience.end_date}</p>
-                                <p>{experience.description}</p>
-                            </div>
-                        ))
-                        : <div>Load your work experience <Link className='underline' href={`${ROUTES.MY_PROFILE}/${userId}/update-profile`}>here</Link></div>
+                            ? user.work_experience.map((experience, index) => {
+                                const startDate = parseISO(experience.start_date);
+                                const endDate = experience.currently_working ? new Date() : parseISO(experience.end_date);
+
+                                const totalMonths = differenceInMonths(endDate, startDate);
+                                const remainingDays = differenceInDays(endDate, startDate) % 30;
+
+                                return (
+                                    <div key={index} className='flex flex-col gap-2'>
+                                        <h2 className='text-xl font-bold'>{experience.position}</h2>
+                                        <p>{experience.company_name}</p>
+                                        <p className=''>
+                                            {experience.start_date} - {experience.currently_working ? 'Current' : experience.end_date}
+                                            <span className='opacity-70'>
+                                                {totalMonths > 0 || remainingDays > 0
+                                                    ? ` (${totalMonths} months${remainingDays > 0 ? ` and ${remainingDays} days` : ''})`
+                                                    : ''}
+                                            </span>
+                                        </p>
+                                        <p>{experience.description}</p>
+                                    </div>
+                                );
+                            })
+                            : <div>Load your work experience <Link className='underline' href={`${ROUTES.MY_PROFILE}/${userId}/update-profile`}>here</Link></div>
                     }
                 </div>
                 <div className='flex flex-col my-4 bg-white md:px-12 px-6 py-6 border-t'>
@@ -229,11 +263,17 @@ const MyProfile = ({
                     {
                         <p>{user.extras.languages.length > 0 ? user.extras.languages.join(', ') : '-'}</p>
                     }
-                        <h2 className='text-lg mt-2'>
+                    <h2 className='text-lg mt-2'>
                         Education Level:
                     </h2>
                     <p className='capitalize'>
                         {user.extras.education_level ? user.extras.education_level : '-'}
+                    </p>
+                    <h2 className='text-lg mt-2'>
+                        Transport:
+                    </h2>
+                    <p className='capitalize'>
+                        {user.extras.transport ? user.extras.transport : 'No'}
                     </p>
                     <h2 className='text-lg mt-2'>
                         Presentation video:
@@ -258,8 +298,24 @@ const MyProfile = ({
                                     {credential.certificate}
                                 </p>
                                 <p>
-                                    <Link href={credential.name} target='_blank' className='underline'>
+                                    <Link
+                                        href={credential.file_url}
+                                        target='_blank'
+                                        className='underline flex gap-1 items-center'
+                                    >
                                         {credential.name}
+                                        <svg
+                                            fill="#000000"
+                                            viewBox="0 0 52 52"
+                                            enableBackground="new 0 0 52 52"
+                                            width={12}
+                                            height={12}
+                                        >
+                                            <g>
+                                                <path d="M48.7,2H29.6C28.8,2,28,2.5,28,3.3v3C28,7.1,28.7,8,29.6,8h7.9c0.9,0,1.4,1,0.7,1.6l-17,17 c-0.6,0.6-0.6,1.5,0,2.1l2.1,2.1c0.6,0.6,1.5,0.6,2.1,0l17-17c0.6-0.6,1.6-0.2,1.6,0.7v7.9c0,0.8,0.8,1.7,1.6,1.7h2.9 c0.8,0,1.5-0.9,1.5-1.7v-19C50,2.5,49.5,2,48.7,2z"></path>
+                                                <path d="M36.3,25.5L32.9,29c-0.6,0.6-0.9,1.3-0.9,2.1v11.4c0,0.8-0.7,1.5-1.5,1.5h-21C8.7,44,8,43.3,8,42.5v-21 C8,20.7,8.7,20,9.5,20H21c0.8,0,1.6-0.3,2.1-0.9l3.4-3.4c0.6-0.6,0.2-1.7-0.7-1.7H6c-2.2,0-4,1.8-4,4v28c0,2.2,1.8,4,4,4h28 c2.2,0,4-1.8,4-4V26.2C38,25.3,36.9,24.9,36.3,25.5z"></path>
+                                            </g>
+                                        </svg>
                                     </Link>
                                 </p>
                             </div>
@@ -282,6 +338,38 @@ const MyProfile = ({
                             : '-'
                         }
                     </div>
+                    <h2 className='text-lg my-2'>
+                        Other URLs
+                    </h2>
+                    <div className='flex gap-2 flex-wrap'>
+                        {
+                            user.extras.other_urls ?
+                            user.extras.other_urls && user.extras.other_urls.map((item, index) => (
+                                <div key={index}>
+                                    <Link
+                                        href={item.url}
+                                        target='_blank'
+                                        className='underline flex gap-1 items-center'
+                                    >
+                                        {item.name}
+                                        <svg
+                                            fill="#000000"
+                                            viewBox="0 0 52 52"
+                                            enableBackground="new 0 0 52 52"
+                                            width={12}
+                                            height={12}
+                                        >
+                                            <g>
+                                                <path d="M48.7,2H29.6C28.8,2,28,2.5,28,3.3v3C28,7.1,28.7,8,29.6,8h7.9c0.9,0,1.4,1,0.7,1.6l-17,17 c-0.6,0.6-0.6,1.5,0,2.1l2.1,2.1c0.6,0.6,1.5,0.6,2.1,0l17-17c0.6-0.6,1.6-0.2,1.6,0.7v7.9c0,0.8,0.8,1.7,1.6,1.7h2.9 c0.8,0,1.5-0.9,1.5-1.7v-19C50,2.5,49.5,2,48.7,2z"></path>
+                                                <path d="M36.3,25.5L32.9,29c-0.6,0.6-0.9,1.3-0.9,2.1v11.4c0,0.8-0.7,1.5-1.5,1.5h-21C8.7,44,8,43.3,8,42.5v-21 C8,20.7,8.7,20,9.5,20H21c0.8,0,1.6-0.3,2.1-0.9l3.4-3.4c0.6-0.6,0.2-1.7-0.7-1.7H6c-2.2,0-4,1.8-4,4v28c0,2.2,1.8,4,4,4h28 c2.2,0,4-1.8,4-4V26.2C38,25.3,36.9,24.9,36.3,25.5z"></path>
+                                            </g>
+                                        </svg>
+                                    </Link>
+                                </div>
+                            ))
+                            : '-'
+                        }
+                    </div>
                 </div>
             </div>
 
@@ -290,7 +378,7 @@ const MyProfile = ({
                     href={`${ROUTES.MY_PROFILE}/${userId}/update-profile`}
                     className='primary-btn '
                 >
-                    Edit Profile
+                    Edit Skills portfolio
                 </Link>
             </div>
         </div>
