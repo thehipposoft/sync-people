@@ -109,9 +109,9 @@ const TalentProfile = ({
 
                             <div className='flex flex-col gap-2'>
                                 <div className='flex justify-between items-center mb-6 flex-col-reverse md:flex-row gap-4'>
-                                    <h2 className='text-2xl'>
+                                    <h4 className='text-2xl'>
                                         {talentData.personal_information.first_name} <span className='h-bold capitalize'> - {selectedIndustry.position}</span>
-                                    </h2>
+                                    </h4>
 
                                     {
                                         !queryIndustry && (
@@ -139,20 +139,24 @@ const TalentProfile = ({
                                 </div>
                                 <div className='flex justify-between flex-col md:flex-row gap-3'>
                                     <div>
+                                        <h4 className='text-lg'>
+                                            Current Location
+                                        </h4>
                                         <p className='text-[#1A335D]'>
-                                            {talentData.working_rights.current_visa.label}
+                                                {talentData.personal_information.current_location.state && talentData.personal_information.current_location.suburb
+                                                ? `${talentData.personal_information.current_location.suburb}, ${talentData.personal_information.current_location.state}`
+                                                : `-`
+                                            }
                                         </p>
-                                        <p className='text-[#1A335D]'>
+
+                                    </div>
+                                    <div>
+                                        <h4 className='text-lg'>
+                                            Country of Birth
+                                        </h4>
+                                        <p className='text-[#1A335D] text-right'>
                                             {talentData.personal_information.country_of_birth}
                                         </p>
-                                    </div>
-                                    <div className={`${selectedIndustry.preferred_salary === '' ? 'hidden' : ''}`}>
-                                        <h2 className='text-lg'>
-                                            Preferred Salary per hour
-                                        </h2>
-                                        <div className={`flex gap-2`}>
-                                            ${selectedIndustry.preferred_salary} AUD per Hour
-                                        </div>
                                     </div>
                                 </div>
 
@@ -160,7 +164,7 @@ const TalentProfile = ({
                                     {
                                         selectedIndustry.certificates && (
                                         <div>
-                                            <h2 className='text-lg'>Licenses</h2>
+                                            <h4 className='text-lg'>Licenses</h4>
                                             <p>
                                                 {selectedIndustry.certificates.map(certificate => certificate.name).join(', ')}
                                             </p>
@@ -168,19 +172,19 @@ const TalentProfile = ({
                                         )
                                     }
 
-                                    <div>
-                                        <h2 className='text-lg'>
+                                    <div className='flex flex-col items-end'>
+                                        <h4 className='text-lg'>
                                             Availability
-                                        </h2>
-                                        <div className={`flex gap-2 capitalize`}>
+                                        </h4>
+                                        <p className={`flex gap-2 capitalize text-right`}>
                                             {talentData.professional_information.work_preference ? talentData.professional_information.work_preference : '-'}
-                                        </div>
+                                        </p>
                                     </div>
                                 </div>
                                 <div className='flex flex-col mt-4 items-end'>
-                                    <h2 className='text-lg mb-2'>
+                                    <h4 className='text-lg mb-2'>
                                         Contact me
-                                    </h2>
+                                    </h4>
                                     <div className='flex flex-wrap gap-4'>
                                         <Link
                                             href={`tel:${talentData.personal_information.mobile}`}
@@ -211,15 +215,15 @@ const TalentProfile = ({
                     </div>
                     {
                         talentData.work_experience && <div className='flex flex-col my-4 mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>
-                            <h2 className='text-xl pb-4 font-bold'>
+                            <h4 className='text-xl pb-4 font-bold'>
                                 Work Experience
-                            </h2>
+                            </h4>
                             {
                                 talentData.work_experience.map((experience, index) => (
                                     <div key={index} className='flex flex-col mb-3'>
-                                        <h2 className='text-xl mb-2'>
+                                        <h4 className='text-xl mb-2'>
                                             {experience.position}
-                                        </h2>
+                                        </h4>
                                         <p className='opacity-70'>{experience.company_name}</p>
                                         <p className='opacity-70'>{experience.start_date} - {experience.currently_working ? 'Current' : experience.end_date}</p>
                                         <p>{experience.description}</p>
@@ -229,12 +233,12 @@ const TalentProfile = ({
                         </div>
                     }
                     <div className='flex flex-col  my-4 mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>
-                        <h2 className='text-xl pb-4 font-bold'>
+                        <h4 className='text-xl pb-4 font-bold'>
                             Extras
-                        </h2>
-                        <h2 className='text-lg'>
+                        </h4>
+                        <h4 className='text-lg'>
                             Level of English
-                        </h2>
+                        </h4>
                         <p className='capitalize'>
                             {
                                 !talentData.extras.level_of_english ? '-' : talentData.extras.level_of_english
@@ -243,36 +247,36 @@ const TalentProfile = ({
                         {
                             talentData.extras.transport && (
                                 <div>
-                                    <h2 className='text-lg mt-2'>
+                                    <h4 className='text-lg mt-2'>
                                         Own Transport
-                                    </h2>
+                                    </h4>
                                     <p className='capitalize'>
                                         {talentData.extras.transport}
                                     </p>
                                 </div>
                             )
                         }
-                        <h2 className='text-lg mt-2'>
+                        <h4 className='text-lg mt-2'>
                             Languages
-                        </h2>
+                        </h4>
                         {
                             talentData.extras.languages.length === 0 ? '-' : talentData.extras.languages.join(', ')
                         }
-                        <h2 className='text-lg mt-3'>
+                        <h4 className='text-lg mt-3'>
                             Education Level
-                        </h2>
+                        </h4>
                         <p className='capitalize mb-3'>
                             {!talentData.extras.education_level ? '-' : talentData.extras.education_level}
                         </p>
-                        <h2 className='text-lg mt-2 hidden'>
+                        <h4 className='text-lg mt-2 hidden'>
                             Presentation video
-                        </h2>
+                        </h4>
                         <Link href={talentData.extras.presentation_video} target='_blank' className='underline hidden'>
                             {talentData.extras.presentation_video}
                         </Link>
-                        <h2 className='text-lg my-2'>
+                        <h4 className='text-lg my-2'>
                             Social Media Links
-                        </h2>
+                        </h4>
                         <div className='flex gap-2 flex-wrap mb-3'>
                             {
                                 talentData.extras.social_media_links ?
@@ -286,9 +290,9 @@ const TalentProfile = ({
                                 : '-'
                             }
                         </div>
-                        <h2 className={`${!talentData.extras.other_credentials ? 'hidden' : ''} text-lg mt-2`}>
+                        <h4 className={`${!talentData.extras.other_credentials ? 'hidden' : ''} text-lg mt-2`}>
                             Other Credentials
-                        </h2>
+                        </h4>
                         {
                             talentData.extras.other_credentials && talentData.extras.other_credentials.map((credential, index) => (
                                 <div key={index}>
@@ -301,9 +305,9 @@ const TalentProfile = ({
                                 </div>
                             ))
                         }
-                        <h2 className='text-lg my-2'>
+                        <h4 className='text-lg my-2'>
                             Other URLs
-                        </h2>
+                        </h4>
                         <div className='flex gap-2 flex-wrap'>
                             {
                                 talentData.extras.other_urls ?

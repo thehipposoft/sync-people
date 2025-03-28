@@ -12,12 +12,14 @@ type Props = {
     children: React.ReactNode;
     user: TalentTypeAcf;
     userId: string;
+    hideSideNav?: boolean;
 };
 
 const PrivateLayout = ({
     children,
     user,
     userId,
+    hideSideNav,
 }: Props) => {
     const router = useRouter();
 
@@ -30,7 +32,9 @@ const PrivateLayout = ({
 
     return (
         <div className='flex'>
-            <SideNav />
+            {
+                hideSideNav ? null : <SideNav />
+            }
             <div className='flex grow flex-col'>
                 <div className='flex justify-between items-center px-8 w-full bg-white'>
                     <Link href={ROUTES.HOME} className='hidden md:block'>
@@ -60,7 +64,7 @@ const PrivateLayout = ({
                         </Link>
                     </div>
                 </div>
-                <div className='bg-white md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8 flex-grow'>
+                <div className='bg-white md:w-full w-[92vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8 flex-grow'>
                     {children}
                 </div>
                 <Footer />

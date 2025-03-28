@@ -126,7 +126,7 @@ const TalentForm = ({
 
     return (
         <div ref={registrationFormRef} className='md:w-full flex justify-center gap-12 px-2 md:px-0'>
-            <div className='flex flex-col rounded-2xl my-4 md:w-[900px] w-full md:px-4 px-6 bg-white border'>
+            <div className='flex flex-col rounded-2xl my-4 md:w-[900px] w-full px-4 bg-white border'>
                 <h1 className='text-3xl h-bold py-4 pl-4 border-b'>
                     Create Talent Profile
                 </h1>
@@ -196,7 +196,7 @@ const TalentForm = ({
                             <button className='text-[#326B88] border rounded-3xl border-[#326B88] md:px-6 px-2 py-1 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Go Premium!</button>
                         </div>
                     </div>
-                    <div className='md:flex overflow-hidden'>
+                    <div className='flex overflow-hidden'>
                         <BasicInformation
                             currentIndex={currentIndex}
                             initialValues={formValues}
@@ -255,14 +255,6 @@ const TalentForm = ({
                         </Link>
 
                     }
-                </div>
-                <div className='flex md:hidden justify-center my-8'>
-                    <Link
-                        href={'/my-profile'}
-                        className='text-[#326B88] py-2 px-4 border-[#326B88] border rounded-3xl hover:bg-[#326B88] hover:text-white duration-700 cursor-pointer'
-                    >
-                        Finish
-                    </Link>
                 </div>
             </div>
             <Modal isOpen={openLoadingModal}>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { updateProfile } from '@/lib/protected-api';
 import { PersonalInformationType } from '@/types';
+import { AUSTRALIAN_STATES } from '@/app/constants';
 
 type PersonalInformationPropsType = {
     initialValues: PersonalInformationType;
@@ -36,7 +37,7 @@ const PersonalInformation = ({
         }
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
         setFormValues({
             ...formValues,
             [e.target.name]: e.target.value,
@@ -121,6 +122,68 @@ const PersonalInformation = ({
                     onChange={handleInputChange}
                 />
             </div>
+            <h4 className='col-span-2 lg-col-span-1 mt-3'>
+                Current Address
+            </h4>
+
+            <div className='col-span-2 lg:col-span-1'>
+                <label htmlFor="current_location.address_1" className="block pb-2">
+                    Address
+                </label>
+                <input
+                    type="text"
+                    id="current_location.address_1"
+                    name="current_location.address_1"
+                    value={formValues.current_location.address_1}
+                    onChange={handleInputChange}
+                />
+            </div>
+
+            <div className='col-span-2 lg:col-span-1'>
+                <label htmlFor="suburb" className="block pb-2">
+                    Suburb
+                </label>
+                <input
+                    type="text"
+                    id="current_location.suburb"
+                    name="current_location.suburb"
+                    value={formValues.current_location.suburb}
+                    onChange={handleInputChange}
+                />
+            </div>
+
+            <div className='col-span-2 lg:col-span-1'>
+                <label htmlFor="state" className="block pb-2">
+                    State
+                </label>
+                <select
+                    id="current_location.state"
+                    name="current_location.state"
+                    value={formValues.current_location.state}
+                    onChange={handleInputChange}
+                >
+                    {AUSTRALIAN_STATES.map((state) => (
+                        <option key={state} value={state}>
+                            {state}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
+            <div className='col-span-2 lg:col-span-1'>
+                <label htmlFor="postcode" className="block pb-2">
+                    Postcode
+                </label>
+                <input
+                    type='number'
+                    id="current_location.postcode"
+                    name="current_location.postcode"
+                    value={formValues.current_location.postcode}
+                    onChange={handleInputChange}
+                    maxLength={4}
+                />
+            </div>
+
             <div className='w-full col-span-2 flex'>
                 <button
                     className='primary-btn mt-4 mx-auto text-base'

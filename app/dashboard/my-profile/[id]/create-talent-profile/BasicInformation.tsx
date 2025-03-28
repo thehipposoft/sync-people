@@ -34,10 +34,6 @@ const BasicInformation = ({
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-
-        console.log(">>> name", name);
-        console.log(">>> value", value);
-
         const keys = name.split('.');
 
         setFormValues((prevValues) => {
@@ -62,7 +58,7 @@ const BasicInformation = ({
     return (
         <form
             onSubmit={handleSubmit}
-            className={`flex-col duration-1000 md:min-w-[850px] md:px-4 py-6`}
+            className={`flex-col duration-1000 min-w-[80vw] md:min-w-[850px] px-4 py-6`}
             style={{
                 translate: `${-100 * currentIndex}%`,
             }}
@@ -73,7 +69,7 @@ const BasicInformation = ({
             <p className='pb-4 text-[#1A335D] text-lg'>
                 Now tell us a little bit about...
             </p>
-            <div className={`md:grid grid-cols-2 gap-4`}>
+            <div className={`grid grid-cols-2 gap-4`}>
                 <div className='col-span-2 lg:col-span-1'>
                     <label htmlFor="first_name" className="block pb-2">
                         First Name*
@@ -254,7 +250,7 @@ const BasicInformation = ({
                 </div>
             </div>
             <div className='flex flex-col gap-4'>
-                <div className='md:flex hidden justify-center mt-6'>
+                <div className='flex justify-center mt-6'>
                     {currentIndex + 1} | 4
                 </div>
                 <button

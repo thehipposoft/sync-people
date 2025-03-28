@@ -46,14 +46,13 @@ const CreateTalentProfile = async ({ params }: Props) => {
         <PrivateLayout
             user={userData.acf}
             userId={id}
+            hideSideNav
         >
-            <div className="flex">
-                <div className="flex flex-col w-full">
-                    <TalentForm
-                        user={userData.acf}
-                        userId={id}
-                    />
-                </div>
+            <div className="flex flex-col w-full">
+                <TalentForm
+                    user={userData.acf}
+                    userId={id}
+                />
             </div>
         </PrivateLayout>
     )

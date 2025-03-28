@@ -6,7 +6,7 @@ import { TalentTypeAcf } from '@/types';
 import { getAge } from '@/lib/utils';
 import { renderSocialMediaIcon } from '@/lib/utils';
 import { ROUTES, INDUSTRIES_BANNER } from '@/app/constants';
-import { differenceInMonths, differenceInDays, parseISO } from 'date-fns';
+import { differenceInMonths, differenceInDays, parseISO, format } from 'date-fns';
 
 type MyProfileProps = {
     user: TalentTypeAcf;
@@ -17,6 +17,8 @@ const MyProfile = ({
     user,
     userId,
 }:MyProfileProps) => {
+    console.log(">>user.personal_information.date_of_birth", user.personal_information.date_of_birth);
+
     const handleDownloadQR = (url: string) => {
         fetch(`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${url}&margin=30`)
             .then(response => {
@@ -80,7 +82,7 @@ const MyProfile = ({
                                 {user.personal_information.current_location.address_1}, {user.personal_information.current_location.suburb}, {user.personal_information.current_location.state} {user.personal_information.current_location.postcode}
                             </p>
                             <p>
-                                {`DOB: ${user.personal_information.date_of_birth ? user.personal_information.date_of_birth : '-'}`}
+                                {`DOB: ${user.personal_information.date_of_birth ? format(user.personal_information.date_of_birth, 'dd/MM/yyyy') : '-'}`}
                             </p>
                             <div className={`flex gap-2`}>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
