@@ -6,6 +6,7 @@ import { Link } from 'next-view-transitions';
 import { TalentTypeAcf, IndustryType } from '@/types';
 import { INDUSTRIES_BANNER, ROUTES } from '@/app/constants';
 import generatePDF, { Resolution, Margin } from 'react-to-pdf';
+import { renderSocialMediaIcon } from '@/lib/utils';
 
 type TalentProfileProps = {
     talentData: TalentTypeAcf;
@@ -157,11 +158,11 @@ const TalentProfile = ({
                                         </div>
                                     </div>
                                 </div>
-                                <div className='flex flex-col mt-4'>
+                                <div className='flex flex-col mt-4 items-end'>
                                     <h2 className='text-lg mb-2'>
                                         Contact me
                                     </h2>
-                                    <div className='flex'>
+                                    <div className='flex flex-wrap gap-4'>
                                         <Link
                                             href={`tel:${talentData.personal_information.mobile}`}
                                             className='ml-0 flex items-center gap-2 primary-btn group text-sm'
@@ -238,10 +239,10 @@ const TalentProfile = ({
                         {
                             talentData.extras.languages.length === 0 ? '-' : talentData.extras.languages.join(', ')
                         }
-                        <h2 className='text-lg mt-2'>
+                        <h2 className='text-lg mt-3'>
                             Education Level
                         </h2>
-                        <p className='capitalize'>
+                        <p className='capitalize mb-3'>
                             {!talentData.extras.education_level ? '-' : talentData.extras.education_level}
                         </p>
                         <h2 className='text-lg mt-2 hidden'>
@@ -250,6 +251,22 @@ const TalentProfile = ({
                         <Link href={talentData.extras.presentation_video} target='_blank' className='underline hidden'>
                             {talentData.extras.presentation_video}
                         </Link>
+                        <h2 className='text-lg my-2'>
+                            Social Media Links
+                        </h2>
+                        <div className='flex gap-2 flex-wrap mb-3'>
+                            {
+                                talentData.extras.social_media_links ?
+                                talentData.extras.social_media_links && talentData.extras.social_media_links.map((link, index) => (
+                                    <div key={index}>
+                                        <Link href={link.url} target='_blank' className='underline'>
+                                            {renderSocialMediaIcon(link.platform)}
+                                        </Link>
+                                    </div>
+                                ))
+                                : '-'
+                            }
+                        </div>
                         <h2 className={`${!talentData.extras.other_credentials ? 'hidden' : ''} text-lg mt-2`}>
                             Other Credentials
                         </h2>
@@ -265,6 +282,20 @@ const TalentProfile = ({
                                 </div>
                             ))
                         }
+                        <h2 className='text-lg my-2'>
+                            Other URLs
+                        </h2>
+                        <div className='flex gap-2 flex-wrap'>
+                            {
+                                talentData.extras.other_urls ?
+                                talentData.extras.other_urls && talentData.extras.other_urls.map((item, index) => (
+                                    <div key={index}>
+                                        {item.name}
+                                    </div>
+                                ))
+                                : '-'
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
