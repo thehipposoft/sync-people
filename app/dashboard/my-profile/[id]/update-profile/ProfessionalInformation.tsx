@@ -24,6 +24,7 @@ const ProfessionalInformation = ({
     const [selectedCertificateToRemoveIndex, setSelectedCertificateToRemoveIndex] = useState<number>(0);
     const [certificateToUpload, setCertificateToUpload] = useState<File | null>(null);
     const [certificateName, setCertificateName] = useState<string>('');
+    const [certificateExpiryDate, setCertificateExpiryDate] = useState<string>('');
     const [industriesToUpdate, setIndustriesToUpdate] = useState<professional_information['industries']>([]);
     const [selectedIndustryIndex, setSelectedIndustryIndex] = useState<number>(0);
     //Modal
@@ -87,7 +88,7 @@ const ProfessionalInformation = ({
                 certificate: uploadResponse.id,
                 name: certificateName,
                 file_url: uploadResponse.url,
-                expiry_date: '',
+                expiry_date: certificateExpiryDate,
             });
 
             const apiValues = {
@@ -104,6 +105,7 @@ const ProfessionalInformation = ({
             });
 
             setCertificateToUpload(null);
+            setCertificateExpiryDate('');
             setCertificateName('');
             setIsAPILoading(false);
             if (fileInputRef.current) {
@@ -321,53 +323,76 @@ const ProfessionalInformation = ({
                         />
                     </div>
                     {
-                        !isNew && <div className="col-span-2 md:col-span-1">
+                        !isNew && <div className="col-span-2">
                             <label className="block pb-2">
                                 Certificates
                             </label>
                             {
-                                industry.certificates && industry.certificates.map((certificate, index) => (
-                                    <div key={index} className='flex gap-3 mb-3 items-center'>
-                                        {
-                                            certificate.file_url ?
-                                                <Link
-                                                    href={certificate.file_url}
-                                                    className='underline'
-                                                    target='_blank'
+                                industry.certificates.length > 0
+                                ? <table className="w-full p-3 my-3">
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                className={`text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tl-lg`}
+                                            >
+                                                Name
+                                            </th>
+                                            <th
+                                                className={`text-left py-2 px-4 md:px-2 bg-gray-300`}
+                                            >
+                                                Expiry date
+                                            </th>
+                                            <th  className={`text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tr-lg`}>
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {industry.certificates.map((certificate, certificateIndex) => (
+                                            <tr key={certificateIndex} className='py-4 border'>
+                                                <td
+                                                    className={`text-left py-3 text-sm px-4 md:px-2`}
                                                 >
                                                     {certificate.name}
-                                                </Link>
-                                            : <p>{certificate.name}</p>
-                                        }
-
-                                        <button
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                setSelectedCertificateToRemoveIndex(index);
-                                                setOpenRemoveCertificateModal(true);
-                                            }}
-                                            className="bg-red-500 p-1 rounded-md"
-                                        >
-                                            <svg
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width={20}
-                                                height={20}
-                                            >
-                                                <g id="SVGRepo_iconCarrier">
-                                                    <path d="M5.73708 6.54391V18.9857C5.73708 19.7449 6.35257 20.3604 7.11182 20.3604H16.8893C17.6485 20.3604 18.264 19.7449 18.264 18.9857V6.54391M2.90906 6.54391H21.0909" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
-                                                    </path>
-                                                    <path d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
-                                                    </path>
-                                                </g>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                ))
+                                                </td>
+                                                <td
+                                                    className={`text-left py-3 text-sm px-4 md:px-2`}
+                                                >
+                                                    {certificate.expiry_date}
+                                                </td>
+                                                <td className='text-right pr-4'>
+                                                    <button
+                                                        className="bg-red-500 p-1 rounded-md h-fit"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            setSelectedCertificateToRemoveIndex(index);
+                                                            setOpenRemoveCertificateModal(true);
+                                                        }}
+                                                    >
+                                                        <svg
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width={20}
+                                                            height={20}
+                                                        >
+                                                            <g id="SVGRepo_iconCarrier">
+                                                                <path d="M5.73708 6.54391V18.9857C5.73708 19.7449 6.35257 20.3604 7.11182 20.3604H16.8893C17.6485 20.3604 18.264 19.7449 18.264 18.9857V6.54391M2.90906 6.54391H21.0909" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
+                                                                </path>
+                                                                <path d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
+                                                                </path>
+                                                            </g>
+                                                        </svg>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                                : null
                             }
                             <button
-                                className='primary-btn text-sm ml-0 mt-3'
+                                className='primary-btn text-sm ml-0 my-3'
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setSelectedIndustryIndex(index);
@@ -499,6 +524,18 @@ const ProfessionalInformation = ({
                     onChange={(e) => setCertificateName(e.target.value)}
                     className="mb-3"
                 />
+                <div className='w-full my-3'>
+                    <label htmlFor={`certificate_expiry_date`} className="block pb-2">
+                        Expiry date
+                    </label>
+                    <input
+                        name='certificate_expiry_date'
+                        type='date'
+                        value={certificateExpiryDate}
+                        onChange={(e) => setCertificateExpiryDate(e.target.value)}
+                        className="mb-3"
+                    />
+                </div>
                 <input
                     type='file'
                     ref={fileInputRef}
