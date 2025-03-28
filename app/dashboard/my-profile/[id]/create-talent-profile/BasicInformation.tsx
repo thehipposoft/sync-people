@@ -17,6 +17,12 @@ const BasicInformation = ({
 }:BasicInformationPropsType) => {
     const [formValues, setFormValues] = useState<TalentTypeAcf['personal_information']>({
         ...initialValues.personal_information,
+        current_location: {
+            address_1: '',
+            suburb: '',
+            state: 'Victoria',
+            postcode: '',
+        },
     });
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

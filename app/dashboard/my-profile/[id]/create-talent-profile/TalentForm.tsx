@@ -76,14 +76,18 @@ const TalentForm = ({
 
     const handleFinishForm = async (apiFormValues: TalentTypeAcf) => {
         setOpenLoadingModal(true);
+        const uploadPromises = [];
 
         if (profileImageFile) {
-            const profileImageUrl = await getFileUrl(
+            const profileImagePromise = getFileUrl(
                 profileImageFile,
                 `${apiFormValues.personal_information.first_name} ${apiFormValues.personal_information.last_name} - Profile Picture`,
                 `${apiFormValues.personal_information.first_name} ${apiFormValues.personal_information.last_name} - Profile Picture`
-            );
-            apiFormValues.personal_information.profile_pic = profileImageUrl;
+            ).then(url => {
+                apiFormValues.personal_information.profile_pic = url;
+            });
+
+            uploadPromises.push(profileImagePromise);
         }
 
         // Collect promises for industries certificates
@@ -116,7 +120,9 @@ const TalentForm = ({
             });
 
         // Wait for all uploads to complete
-        await Promise.all([...certificatePromises, ...credentialPromises]);
+        uploadPromises.push(...certificatePromises, ...credentialPromises);
+        await Promise.all(uploadPromises);
+        //await Promise.all([...certificatePromises, ...credentialPromises]);
 
         const response = await updateProfile(userId, apiFormValues);
 

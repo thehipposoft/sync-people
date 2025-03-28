@@ -28,6 +28,9 @@ type ExtrasPropsType = {
         other_credentials: initialValues.extras.other_credentials || [],
         social_media_links: initialValues.extras.social_media_links || [],
         other_urls: initialValues.extras.other_urls || [],
+        level_of_english: 'beginner',
+        transport: 'no',
+        education_level: 'No Formal Education'
     });
     //Certificates upload
     const [certificateToUpload, setCertificateToUpload] = useState<File | null>(null);
