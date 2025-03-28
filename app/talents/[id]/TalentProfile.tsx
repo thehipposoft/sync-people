@@ -5,8 +5,9 @@ import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf, IndustryType } from '@/types';
 import { INDUSTRIES_BANNER, ROUTES } from '@/app/constants';
-import generatePDF, { Resolution, Margin } from 'react-to-pdf';
 import { renderSocialMediaIcon } from '@/lib/utils';
+import { toPng } from 'html-to-image';
+import { jsPDF } from 'jspdf';
 
 type TalentProfileProps = {
     talentData: TalentTypeAcf;
@@ -37,15 +38,33 @@ const TalentProfile = ({
         }
     }, []);
 
-    const downloadPDF = () => {
-        generatePDF(pdfRef, {
-            method: "save",
-            filename: `Insyncx-${talentData.personal_information.first_name}-${selectedIndustry.industry}`,
-            page: {
-                margin: Margin.SMALL,
-            },
-            resolution: Resolution.HIGH,
-        });
+    const generatePDF = () => {
+        if (!pdfRef.current) return;
+
+        toPng(pdfRef.current, { quality: 1 })
+            .then((dataUrl) => {
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const imgProps = pdf.getImageProperties(dataUrl);
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                const pageHeight = pdf.internal.pageSize.getHeight();
+
+                let yPos = 0;
+
+                while (yPos < pdfHeight) {
+                    pdf.addImage(dataUrl, 'PNG', 0, -yPos, pdfWidth, pdfHeight);
+                    yPos += pageHeight;
+
+                    if (yPos < pdfHeight) {
+                        pdf.addPage();
+                    }
+                }
+
+                pdf.save(`Insyncx_${talentData.personal_information.first_name}_${talentData.personal_information.last_name}_Profile.pdf`);
+            })
+            .catch((error) => {
+                console.error('Error generating PDF:', error);
+            });
     };
 
     return (
@@ -302,15 +321,9 @@ const TalentProfile = ({
             <div className='flex pb-8 justify-end flex-wrap gap-4 md:gap-6 md:mb-0 w-[80vw] md:w-[900px] mx-auto'>
                 <button
                     className='secondary-btn w-full md:w-auto px-8'
-                    onClick={downloadPDF}
+                    onClick={generatePDF}
                 >
                     Download Profile
-                </button>
-                <button
-                    className='primary-btn w-full md:w-auto px-8 hidden'
-                    onClick={downloadPDF}
-                >
-                    {`Connect with ${talentData.personal_information.first_name}`}
                 </button>
             </div>
         </div>
