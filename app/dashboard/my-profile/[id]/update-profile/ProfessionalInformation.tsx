@@ -288,7 +288,7 @@ const ProfessionalInformation = ({
                     </div>
                     <div className="col-span-2 md:col-span-1">
                         <label htmlFor={`preferred_salary`} className="flex pb-2 items-center gap-2">
-                            Preferred salary (AUD)
+                            Preferred salary per hour (AUD)
                             <Tooltip
                                 className="bg-primary-text text-white rounded-md"
                                 content={

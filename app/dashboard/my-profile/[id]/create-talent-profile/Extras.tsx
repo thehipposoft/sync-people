@@ -334,7 +334,7 @@ type ExtrasPropsType = {
                         </button>
                     </div>
 
-                    <div className="col-span-2 md:col-span-1">
+                    <div className="col-span-2 mb-3">
                         <label htmlFor="social_media_links" className="block pb-2">
                             Social Media Links
                         </label>
@@ -442,12 +442,12 @@ type ExtrasPropsType = {
                             Add Social media
                         </button>
                     </div>
-                    <div className="col-span-2 md:col-span-1">
+                    <div className="col-span-2">
                         <label htmlFor="social_media_links" className="block pb-2">
                             Other URLs
                         </label>
                         <p className="text-sm mb-2">
-                            Add any other URLs that you would like to include in your profile.
+                            Add any other URLs you'd like to showcase in your profile, such as personal websites, online portfolios, blogs, or any relevant links that highlight your work or experience.
                         </p>
                         <ul className='flex flex-col gap-3'>
                             {formValues.other_urls.map((url, index) => (
@@ -463,7 +463,7 @@ type ExtrasPropsType = {
                                                 if (i === index) {
                                                     return {
                                                         ...url,
-                                                        url: e.target.value,
+                                                        name: e.target.value,
                                                     };
                                                 }
 

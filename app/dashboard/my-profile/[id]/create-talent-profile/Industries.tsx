@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { TalentTypeAcf } from '@/types';
+import { TalentTypeAcf, IndustryType, IndustriesAvailable } from '@/types';
 import { TALENT_CURRENT_STATUS_DROPDOWN, TALENT_WORK_PREFERENCE_DROPDOWN, INDUSTRIES } from '@/app/constants';
 import { Select, SelectItem } from "@heroui/select";
 import { Tooltip } from "@heroui/tooltip";
@@ -83,21 +83,26 @@ const Industries = ({
     const handleMultiSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target;
         const industriesArray = value.split(',');
-        const industriesToPush:TalentTypeAcf['professional_information']['industries'] = industriesArray.map((industry:any) => {
-            return {
-                industry,
-                preferred_salary: '',
-                position: '',
-                certificates: [],
-                industry_description: '',
-            };
+        const newIndustryToAdd = industriesArray[industriesArray.length - 1];
+
+       const industryToPush = {
+            industry: newIndustryToAdd as IndustriesAvailable,
+            preferred_salary: '',
+            position: '',
+            certificates: [],
+            industry_description: '',
         }
-        );
+
+       const newIndustriesArray: IndustryType[] = [
+            ...formValues.industries,
+       ];
+
+       newIndustriesArray.push(industryToPush);
 
         setFormValues((prevValues) => {
             return {
                 ...prevValues,
-                industries: industriesToPush,
+                industries: newIndustriesArray,
             };
         });
     };
@@ -286,7 +291,7 @@ const Industries = ({
                                 </div>
                                 <div className='col-span-2 lg:col-span-1'>
                                     <label htmlFor={`preferred_salary`} className="flex pb-2 items-center gap-2">
-                                        Preferred salary (AUD)
+                                        Preferred salary per hour (AUD)
                                         <Tooltip
                                             className="bg-primary-text text-white rounded-md"
                                             content={
@@ -349,8 +354,8 @@ const Industries = ({
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {industry.certificates.map((certificate, index) => (
-                                                <tr key={index} className='py-4 border'>
+                                            {industry.certificates.map((certificate, certificateIndex) => (
+                                                <tr key={certificateIndex} className='py-4 border'>
                                                     <td
                                                         className={`text-left py-3 text-sm px-4 md:px-2`}
                                                     >
@@ -368,8 +373,6 @@ const Industries = ({
                                                                 e.preventDefault();
 
                                                                 const newCertificates = industry.certificates.filter((cert, i) => i !== index);
-
-                                                                //TODO: Fix logic to remove certificates
 
                                                                 setFormValues({
                                                                     ...formValues,

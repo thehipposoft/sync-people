@@ -188,7 +188,7 @@ const MyProfile = ({
                                         Position: {industry.position}
                                     </p>
                                     <p className='mt-2'>
-                                        Preferred Salary: {industry.preferred_salary ? '$'+industry.preferred_salary : '-'}
+                                        Preferred Salary per hour: {industry.preferred_salary ? '$'+industry.preferred_salary : '-'}
                                     </p>
                                 </div>
                             ))

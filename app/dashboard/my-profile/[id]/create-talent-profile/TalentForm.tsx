@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
-import { api, updateProfile, uploadMedia } from '@/lib/protected-api';
+import { updateProfile, uploadMedia } from '@/lib/protected-api';
 import Modal from '@/components/Modal';
 import { ROUTES } from '@/app/constants';
 //Form steps
@@ -284,9 +284,9 @@ const TalentForm = ({
                         Your profile has been successfully updated
                     </p>
                     <div className='flex justify-center primary-btn mx-auto'>
-                        <Link href={`${ROUTES.MY_PROFILE}/${userId}`}>
+                        <a href={`${ROUTES.MY_PROFILE}/${userId}`}>
                             Go to my profile
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </Modal>

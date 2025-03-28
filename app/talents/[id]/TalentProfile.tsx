@@ -128,7 +128,7 @@ const TalentProfile = ({
                                     </div>
                                     <div className={`${selectedIndustry.preferred_salary === '' ? 'hidden' : ''}`}>
                                         <h2 className='text-lg'>
-                                            Preferred Salary
+                                            Preferred Salary per hour
                                         </h2>
                                         <div className={`flex gap-2`}>
                                             ${selectedIndustry.preferred_salary} AUD per Hour
