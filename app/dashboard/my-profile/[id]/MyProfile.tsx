@@ -17,8 +17,6 @@ const MyProfile = ({
     user,
     userId,
 }:MyProfileProps) => {
-    console.log(">>user.personal_information.date_of_birth", user.personal_information.date_of_birth);
-
     const handleDownloadQR = (url: string) => {
         fetch(`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${url}&margin=30`)
             .then(response => {
