@@ -178,7 +178,7 @@ const Industries = ({
                 <div className={`md:grid flex flex-col grid-cols-2 md:gap-4 gap-8`}>
                     <div className='col-span-2 lg:col-span-1'>
                         <label htmlFor="current_status" className="block pb-2">
-                            Current Status*
+                            Employment Status*
                         </label>
                         <select
                             name="current_status"
@@ -273,7 +273,7 @@ const Industries = ({
                                     </svg>
                                 </button>
                             </div>
-                            <div className='md:grid grid-cols-2 gap-4'>
+                            <div className='md:grid flex flex-col grid-cols-2 gap-4'>
                                 <div className='col-span-2 lg:col-span-1'>
                                     <label htmlFor="position" className="block pb-2">
                                         Position*

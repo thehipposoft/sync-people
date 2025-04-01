@@ -36,19 +36,19 @@ const PrivateLayout = ({
                 hideSideNav ? null : <SideNav />
             }
             <div className='flex grow flex-col'>
-                <div className='flex justify-between items-center px-8 w-full bg-white'>
+                <div className='flex justify-between pt-4 md:pt-0 items-center md:px-8 md:w-full w-[80vw] mx-auto bg-white'>
                     <Link href={ROUTES.HOME} className='hidden md:block'>
                         <Image src={'/assets/logo.svg'} alt='Insyncx logo' width={220} height={150} />
                     </Link>
-                    <div className='flex justify-end items-center gap-6 py-1'>
+                    <div className='flex md:justify-end justify-between items-center md:gap-6 gap-4 py-1 w-full md:w-auto'>
                         <Link href={'/training-and-licenses'} className='green-btn hidden'>
                             Training and Licenses
                         </Link>
-                        <Link href={`/talents/${userId}`} className='green-btn lg:px-4 text-sm px-2'>
+                        <Link href={`/talents/${userId}`} className='green-btn lg:px-4 text-sm px-3 py-3 md:py-2'>
                             View Public Profile
                         </Link>
                         <button
-                            className="primary-btn mx-0 rounded-md text-sm px-2 w-auto lg:px-6"
+                            className="primary-btn mx-0 rounded-md text-sm px-4 w-auto lg:px-6 py-3 md:py-2"
                             onClick={handleLogout}
                         >
                             Logout
@@ -64,7 +64,7 @@ const PrivateLayout = ({
                         </Link>
                     </div>
                 </div>
-                <div className='bg-white md:w-full w-[92vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8 flex-grow'>
+                <div className={'bg-white md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 md:my-8 my-4 flex-grow'}>
                     {children}
                 </div>
                 <Footer />
