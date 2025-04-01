@@ -40,15 +40,15 @@ const PrivateLayout = ({
                     <Link href={ROUTES.HOME} className='hidden md:block'>
                         <Image src={'/assets/logo.svg'} alt='Insyncx logo' width={220} height={150} />
                     </Link>
-                    <div className='flex md:justify-end justify-between items-center md:gap-6 gap-4 py-1 w-full md:w-auto'>
+                    <div className='flex md:justify-end justify-between items-center md:gap-6 gap-3 py-1 w-full md:w-auto'>
                         <Link href={'/training-and-licenses'} className='green-btn hidden'>
                             Training and Licenses
                         </Link>
-                        <Link href={`/talents/${userId}`} className='green-btn lg:px-4 text-sm px-3 py-3 md:py-2'>
+                        <Link href={`/talents/${userId}`} className='green-btn lg:px-4 text-sm px-2 py-3 md:py-2'>
                             View Public Profile
                         </Link>
                         <button
-                            className="primary-btn mx-0 rounded-md text-sm px-4 w-auto lg:px-6 py-3 md:py-2"
+                            className="primary-btn mx-0 rounded-md text-sm px-3 w-auto lg:px-6 py-3 md:py-2"
                             onClick={handleLogout}
                         >
                             Logout
@@ -64,7 +64,7 @@ const PrivateLayout = ({
                         </Link>
                     </div>
                 </div>
-                <div className={'bg-white md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 md:my-8 my-4 flex-grow'}>
+                <div className={`${hideSideNav ? 'w-[90vw]' : 'w-[80vw]'} bg-white mx-auto md:mx-0 md:flex justify-center gap-12 md:my-8 my-4 flex-grow`}>
                     {children}
                 </div>
                 <Footer />

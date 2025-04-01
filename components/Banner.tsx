@@ -17,7 +17,7 @@ const Banner = () => {
     return (
         <div className='max-w-[1250px] mx-auto px-8 md:px-0 py-6 md:py-0 md:pt-10 md:h-screen grid grid-cols-1 md:grid-cols-2 items-center'>
             <div className='flex flex-col md:mt-0'>
-                <h2 className='md:tracking-wide text-5xl md:text-6xl'>
+                <h2 className='md:tracking-wide tracking-tight text-[56px] md:text-6xl'>
                     Connecting you with your future
                 </h2>
                 <h1 className='pt-4 light md:text-[20px] text-[18px] md:w-[600px] leading-6'>

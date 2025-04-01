@@ -5,7 +5,7 @@ import { ROUTES } from '@/app/constants';
 
 const DigitalPassport = () => {
   return (
-    <div className='md:h-screen flex justify-between items-center mx-auto max-w-[1250px] px-8 md:p-0 flex-wrap mt-16 md:mt-0'>
+    <div className='md:h-screen flex md:justify-between justify-center items-center mx-auto max-w-[1250px] px-8 md:p-0 flex-wrap mt-16 md:mt-0'>
       <div className='md:w-1/2 flex flex-col justify-center gap-2'>
         <h1 className='font-semibold mb-6 md:mb-0'>What is a Skills Portfolio?</h1>
         <p className='text-[#798196] leading-6 md:pt-4 mb-4 md:mb-0'>
