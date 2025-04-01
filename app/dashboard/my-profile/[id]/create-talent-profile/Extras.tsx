@@ -130,7 +130,7 @@ type ExtrasPropsType = {
                         Fantastic! you have reached the end of the form
                     </h4>
                 </div>
-                <div className={`md:grid grid-cols-2 gap-4`}>
+                <div className={`md:grid flex flex-col md:grid-cols-2 md:gap-4 gap-8`}>
                     <div className="col-span-2 md:col-span-1">
                         <label htmlFor="level_of_english" className="block pb-2">Level of English</label>
                         <select
@@ -193,7 +193,7 @@ type ExtrasPropsType = {
                         </label>
                         <Select
                             className="col-span-2 mb-3 border rounded-xl border-[#656ED3]"
-                            placeholder="Select one or more industries"
+                            placeholder="Select one or more languages"
                             selectionMode="multiple"
                             onChange={handleMultiSelectChange}
                             required

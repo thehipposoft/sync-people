@@ -75,7 +75,7 @@ const BasicInformation = ({
             <p className='pb-4 text-[#1A335D] text-lg'>
                 Now tell us a little bit about...
             </p>
-            <div className={`grid grid-cols-2 gap-4`}>
+            <div className={`grid grid-cols-2 md:gap-4 gap-8`}>
                 <div className='col-span-2 lg:col-span-1'>
                     <label htmlFor="first_name" className="block pb-2">
                         First Name*
@@ -121,7 +121,7 @@ const BasicInformation = ({
                     <label className="block pb-2">
                         To which gender identity do you most identify?
                     </label>
-                    <div className='flex justify-between'>
+                    <div className='flex flex-wrap gap-4'>
                         <label className='flex gap-1'>
                             <input
                                 type="radio"
