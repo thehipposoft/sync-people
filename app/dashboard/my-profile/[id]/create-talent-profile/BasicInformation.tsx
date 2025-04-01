@@ -64,7 +64,7 @@ const BasicInformation = ({
     return (
         <form
             onSubmit={handleSubmit}
-            className={`flex-col duration-1000 min-w-[80vw] md:min-w-[850px] px-4 py-6`}
+            className={`flex-col duration-1000 min-w-[80vw] max-w-[80vw] md:max-w-[850px] md:min-w-[850px] px-4 py-6`}
             style={{
                 translate: `${-100 * currentIndex}%`,
             }}
@@ -75,7 +75,7 @@ const BasicInformation = ({
             <p className='pb-4 text-[#1A335D] text-lg'>
                 Now tell us a little bit about...
             </p>
-            <div className={`grid grid-cols-2 md:gap-4 gap-8`}>
+            <div className={`md:grid flex flex-col grid-cols-2 md:gap-4 gap-8`}>
                 <div className='col-span-2 lg:col-span-1'>
                     <label htmlFor="first_name" className="block pb-2">
                         First Name*
