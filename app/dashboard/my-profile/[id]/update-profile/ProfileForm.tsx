@@ -163,15 +163,15 @@ const ProfileForm = ({
                 </div>
 
                 <div className='flex flex-col w-full'>
-                    <label htmlFor="personal_information.about_me" className="block pb-2">
+                    <label htmlFor="personal_information.about_myself" className="block pb-2">
                         About me
                     </label>
                     <textarea
                         rows={4}
                         placeholder='Write a short description about yourself'
-                        name='personal_information.about_me'
+                        name='personal_information.about_myself'
                         spellCheck={true}
-                        id='personal_information.about_me'
+                        id='personal_information.about_myself'
                         className='flex w-full border p-2 resize-none'
                         value={formValues.personal_information.about_myself}
                         onChange={(e) => handleInputChange(e, 'personal_information', 'about_myself')}

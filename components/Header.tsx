@@ -78,7 +78,7 @@ const Header = ({
                         </div>
                     }
                 </nav>
-                <SideMenu sideMenu={openMenu} closeSideMenu={toggleMenu}/>
+                <SideMenu userId={userId} sideMenu={openMenu} closeSideMenu={toggleMenu}/>
                 <BackDrop sideMenu={openMenu} closeSideMenu={toggleMenu}/>
                 <ComingSoonModal
                     isOpen={openModal}

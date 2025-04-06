@@ -125,7 +125,6 @@ const PersonalInformation = ({
             <h4 className='col-span-2 lg-col-span-1 mt-3'>
                 Current Address
             </h4>
-
             <div className='col-span-2 lg:col-span-1'>
                 <label htmlFor="current_location.address_1" className="block pb-2">
                     Address

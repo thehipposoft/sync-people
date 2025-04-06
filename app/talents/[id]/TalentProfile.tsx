@@ -38,6 +38,8 @@ const TalentProfile = ({
         }
     }, []);
 
+    console.log('Talent data:', talentData)
+
     const generatePDF = () => {
         if (!pdfRef.current) return;
 
@@ -154,8 +156,12 @@ const TalentProfile = ({
                                         <h4 className='text-lg'>
                                             Country of Birth
                                         </h4>
-                                        <p className='text-[#1A335D] text-right'>
+                                        <p className='text-[#1A335D] md:text-right'>
                                             {talentData.personal_information.country_of_birth}
+                                            {talentData.personal_information.country_of_birth
+                                                ? `${talentData.personal_information.country_of_birth}`
+                                                : `-`
+                                            }
                                         </p>
                                     </div>
                                 </div>
@@ -172,7 +178,7 @@ const TalentProfile = ({
                                         )
                                     }
 
-                                    <div className='flex flex-col items-end'>
+                                    <div className='flex flex-col'>
                                         <h4 className='text-lg'>
                                             Availability
                                         </h4>
@@ -181,14 +187,15 @@ const TalentProfile = ({
                                         </p>
                                     </div>
                                 </div>
-                                <div className='flex flex-col mt-4 items-end'>
+                                <div className='flex flex-col mt-4 md:items-end'>
                                     <h4 className='text-lg mb-2'>
                                         Contact me
                                     </h4>
                                     <div className='flex flex-wrap gap-4'>
+
                                         <Link
                                             href={`tel:${talentData.personal_information.mobile}`}
-                                            className='ml-0 flex items-center gap-2 primary-btn group text-sm'
+                                            className={`${talentData.personal_information.mobile === '' ? 'hidden' : ''} ml-0 flex items-center gap-2 primary-btn group text-sm`}
                                         >
                                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" className="mr-2">
                                                 <path d="M11 18H13M9.2 21H14.8C15.9201 21 16.4802 21 16.908 20.782C17.2843 20.5903 17.5903 20.2843 17.782 19.908C18 19.4802 18 18.9201 18 17.8V6.2C18 5.0799 18 4.51984 17.782 4.09202C17.5903 3.71569 17.2843 3.40973 16.908 3.21799C16.4802 3 15.9201 3 14.8 3H9.2C8.0799 3 7.51984 3 7.09202 3.21799C6.71569 3.40973 6.40973 3.71569 6.21799 4.09202C6 4.51984 6 5.07989 6 6.2V17.8C6 18.9201 6 19.4802 6.21799 19.908C6.40973 20.2843 6.71569 20.5903 7.09202 20.782C7.51984 21 8.07989 21 9.2 21Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
