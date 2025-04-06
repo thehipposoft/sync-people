@@ -69,9 +69,9 @@ const TalentProfile = ({
 
     return (
         !talentData.professional_information.industries
-        ? <div className='flex flex-col md:w-full'>
+        ? <div className='flex flex-col md:w-full w-[80vw] h-[60vh] justify-center'>
             <h5 className='text-center font-bold text-xl mb-4'>
-                We couldn't any industry associated with this talent.
+                We couldn't found any industry associated with this talent.
             </h5>
             <p className='text-center'>
                 If this is your profile, please login to your account and <Link className='underline' href={`${ROUTES.MY_PROFILE}/${id}`}>update your profile</Link>.
