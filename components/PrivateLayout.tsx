@@ -64,7 +64,7 @@ const PrivateLayout = ({
                         </Link>
                     </div>
                 </div>
-                <div className={`${hideSideNav ? 'w-[90vw]' : 'w-[80vw]'} bg-white mx-auto md:flex justify-center gap-12 md:my-8 my-4 flex-grow`}>
+                <div className={`${hideSideNav ? 'w-[90vw]' : 'w-[80vw]'} bg-white mx-auto md:mx-0 md:flex justify-center gap-12 md:my-8 my-4 flex-grow w-full`}>
                     {children}
                 </div>
                 <Footer />

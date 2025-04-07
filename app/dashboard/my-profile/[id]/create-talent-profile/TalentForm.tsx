@@ -84,6 +84,7 @@ const TalentForm = ({
                 `${apiFormValues.personal_information.first_name} ${apiFormValues.personal_information.last_name} - Profile Picture`,
                 `${apiFormValues.personal_information.first_name} ${apiFormValues.personal_information.last_name} - Profile Picture`
             ).then(url => {
+                console.log(">>url", url);
                 apiFormValues.personal_information.profile_pic = url;
             });
 
