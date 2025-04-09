@@ -79,13 +79,14 @@ const TalentForm = ({
         const uploadPromises = [];
 
         if (profileImageFile) {
-            const profileImagePromise = getFileUrl(
-                profileImageFile,
-                `${apiFormValues.personal_information.first_name} ${apiFormValues.personal_information.last_name} - Profile Picture`,
-                `${apiFormValues.personal_information.first_name} ${apiFormValues.personal_information.last_name} - Profile Picture`
-            ).then(url => {
-                console.log(">>url", url);
-                apiFormValues.personal_information.profile_pic = url;
+            const formData = new FormData();
+            formData.append("file", profileImageFile);
+            formData.append("title", "Profile Picture");
+            formData.append("alt_text", "Profile Image");
+            formData.append("status", "publish");
+
+            const profileImagePromise = uploadMedia(formData).then(url => {
+                apiFormValues.personal_information.profile_pic = url.id;
             });
 
             uploadPromises.push(profileImagePromise);
@@ -123,7 +124,6 @@ const TalentForm = ({
         // Wait for all uploads to complete
         uploadPromises.push(...certificatePromises, ...credentialPromises);
         await Promise.all(uploadPromises);
-        //await Promise.all([...certificatePromises, ...credentialPromises]);
 
         const response = await updateProfile(userId, apiFormValues);
 
