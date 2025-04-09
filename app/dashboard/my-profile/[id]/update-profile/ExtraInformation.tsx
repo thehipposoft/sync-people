@@ -23,6 +23,7 @@ const ExtraInformation = ({
         other_credentials: initialValues.other_credentials || [],
         languages: initialValues.languages || [],
         social_media_links: initialValues.social_media_links || [],
+        other_urls: initialValues.other_urls || [],
     });
     const [openRemoveCredentialModal, setOpenRemoveCredentialModal] = useState<boolean>(false);
     const [isAPILoading, setIsAPILoading] = useState<boolean>(false);

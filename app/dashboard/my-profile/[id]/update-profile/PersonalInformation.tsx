@@ -44,7 +44,7 @@ const PersonalInformation = ({
         });
     };
 
-    const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
         setFormValues({
             ...formValues,
             current_location: {
