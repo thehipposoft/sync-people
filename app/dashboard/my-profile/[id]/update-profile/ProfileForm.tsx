@@ -49,7 +49,7 @@ const ProfileForm = ({
         setIsAPILoading(true);
 
         const apiValues = {
-            PersonalInformation: {
+            personal_information: {
                 about_myself: formValues.personal_information.about_myself,
             },
         };

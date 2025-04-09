@@ -44,6 +44,16 @@ const PersonalInformation = ({
         });
     };
 
+    const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormValues({
+            ...formValues,
+            current_location: {
+                ...formValues.current_location,
+                [e.target.name]: e.target.value,
+            },
+        });
+    };
+
     return (
         <form
             className='grid grid-cols-2 gap-4'
@@ -82,6 +92,7 @@ const PersonalInformation = ({
                     required
                     value={formValues.email}
                     onChange={handleInputChange}
+                    disabled
                 />
             </div>
 
@@ -126,15 +137,15 @@ const PersonalInformation = ({
                 Current Address
             </h4>
             <div className='col-span-2 lg:col-span-1'>
-                <label htmlFor="current_location.address_1" className="block pb-2">
+                <label htmlFor="address_1" className="block pb-2">
                     Address
                 </label>
                 <input
                     type="text"
-                    id="current_location.address_1"
-                    name="current_location.address_1"
+                    id="address_1"
+                    name="address_1"
                     value={formValues.current_location.address_1}
-                    onChange={handleInputChange}
+                    onChange={handleLocationChange}
                 />
             </div>
 
@@ -144,10 +155,10 @@ const PersonalInformation = ({
                 </label>
                 <input
                     type="text"
-                    id="current_location.suburb"
-                    name="current_location.suburb"
+                    id="suburb"
+                    name="suburb"
                     value={formValues.current_location.suburb}
-                    onChange={handleInputChange}
+                    onChange={handleLocationChange}
                 />
             </div>
 
@@ -156,10 +167,10 @@ const PersonalInformation = ({
                     State
                 </label>
                 <select
-                    id="current_location.state"
-                    name="current_location.state"
+                    id="state"
+                    name="state"
                     value={formValues.current_location.state}
-                    onChange={handleInputChange}
+                    onChange={handleLocationChange}
                 >
                     {AUSTRALIAN_STATES.map((state) => (
                         <option key={state} value={state}>
@@ -175,10 +186,10 @@ const PersonalInformation = ({
                 </label>
                 <input
                     type='number'
-                    id="current_location.postcode"
-                    name="current_location.postcode"
+                    id="postcode"
+                    name="postcode"
                     value={formValues.current_location.postcode}
-                    onChange={handleInputChange}
+                    onChange={handleLocationChange}
                     maxLength={4}
                 />
             </div>
