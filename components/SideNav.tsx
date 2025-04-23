@@ -4,7 +4,7 @@ import { Link } from 'next-view-transitions';
 
 const SideNav = () => {
     return (
-            <div className='bg-[#19325d] md:w-[5vw] w-[12vw] px-0 h-screen sticky flex left-0 top-0 flex-col gap-6 items-center pt-4'>
+            <div className='bg-[#19325d] md:w-[5vw] w-0 px-0 h-screen sticky flex left-0 top-0 flex-col gap-6 items-center pt-4'>
                 <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-auto w-[35px]'/>
                 <div className='w-full'>
                     <Link href={'/'} className='cursor-pointer duration-500 hover:bg-[#334a71] flex justify-center py-3 w-full'>

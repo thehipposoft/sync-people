@@ -236,7 +236,7 @@ const ExtraInformation = ({
                     <label htmlFor="other_credentials" className="block pb-2">
                         Other Credentials or Referrals
                     </label>
-                    <p className="mb-3">
+                    <p className="mb-3 text-sm">
                         You can upload any other credentials or referrals that you think might be relevant to your profile.
                     </p>
                     {
@@ -354,6 +354,7 @@ const ExtraInformation = ({
                                     required
                                     value={socialMedia.url}
                                     className='text-sm'
+                                    placeholder="Your profile URL"
                                     onChange={(e) => {
                                         const newSocialMediaLinks = formValues.social_media_links.map((social, i) => {
                                             if (i === index) {

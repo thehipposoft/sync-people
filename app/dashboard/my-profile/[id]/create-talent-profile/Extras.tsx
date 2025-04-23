@@ -255,7 +255,7 @@ type ExtrasPropsType = {
                         <label htmlFor="other_credentials" className="block pb-2">
                             Other Credentials or Referrals
                         </label>
-                        <p className="mb-2">
+                        <p className="mb-2 text-sm">
                             You can upload any other credentials or referrals that you think might be relevant to your profile.
                         </p>
                         {
@@ -375,6 +375,7 @@ type ExtrasPropsType = {
                                         type="text"
                                         required
                                         value={socialMedia.url}
+                                        placeholder="Your profile URL"
                                         className='text-sm'
                                         onChange={(e) => {
                                             const newSocialMediaLinks = formValues.social_media_links.map((social, i) => {

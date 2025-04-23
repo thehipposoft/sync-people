@@ -281,22 +281,6 @@ const TalentProfile = ({
                         <Link href={talentData.extras.presentation_video} target='_blank' className='underline'>
                             {talentData.extras.presentation_video}
                         </Link>
-                        <h4 className='text-lg my-2'>
-                            Social Media Links
-                        </h4>
-                        <div className='flex gap-2 flex-wrap mb-3'>
-                            {
-                                talentData.extras.social_media_links ?
-                                talentData.extras.social_media_links && talentData.extras.social_media_links.map((link, index) => (
-                                    <div key={index}>
-                                        <Link href={link.url} target='_blank' className='underline'>
-                                            {renderSocialMediaIcon(link.platform)}
-                                        </Link>
-                                    </div>
-                                ))
-                                : '-'
-                            }
-                        </div>
                         <h4 className={`${!talentData.extras.other_credentials ? 'hidden' : ''} text-lg mt-2`}>
                             Other Credentials
                         </h4>
@@ -321,6 +305,22 @@ const TalentProfile = ({
                                 talentData.extras.other_urls && talentData.extras.other_urls.map((item, index) => (
                                     <div key={index}>
                                         {item.name}
+                                    </div>
+                                ))
+                                : '-'
+                            }
+                        </div>
+                        <h4 className='text-lg my-2'>
+                            Social Media Links
+                        </h4>
+                        <div className='flex gap-2 flex-wrap mb-3'>
+                            {
+                                talentData.extras.social_media_links ?
+                                talentData.extras.social_media_links && talentData.extras.social_media_links.map((link, index) => (
+                                    <div key={index}>
+                                        <Link href={link.url} target='_blank' className='underline'>
+                                            {renderSocialMediaIcon(link.platform)}
+                                        </Link>
                                     </div>
                                 ))
                                 : '-'
