@@ -412,7 +412,7 @@ const ProfessionalInformation = ({
         <div>
             <form onSubmit={handleFormSubmit} className='grid grid-cols-2 gap-4'>
                 <div className="col-span-2 md:col-span-1">
-                    <label htmlFor="current_status" className="block pb-2">Current Status</label>
+                    <label htmlFor="current_status" className="block pb-2">Employment Status</label>
                     <select
                         id="current_status"
                         name="current_status"

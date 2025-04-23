@@ -172,7 +172,7 @@ const Industries = ({
                         2. My Industries
                     </h4>
                 </div>
-                <p className='pb-6 text-[#1A335D] text-lg'>
+                <p className='mb-4 text-[#1A335D] text-lg'>
                     Come on, this is just the beginning
                 </p>
                 <div className={`md:grid flex flex-col grid-cols-2 md:gap-4 gap-8`}>
@@ -218,7 +218,19 @@ const Industries = ({
                         </select>
                     </div>
 
-                    <p className="mt-4 text-[#1A335D] col-span-2">
+                    <div className='col-span-2 mt-4'>
+                        <p className='font-bold mb-2'>
+                            Tell us which industries you're most interested in working in.
+                        </p>
+                        <p className='mb-2'>
+                            This helps us match you with the right opportunities and tailor your profile for employers in those fields.
+                        </p>
+                        <p className='text-sm p-4 border-l-2 italic'>
+                            Tip: Your selected industries will affect how your skills are displayed—each one has a unique layout to highlight what matters most!
+                        </p>
+                    </div>
+
+                    <p className="mt-2 text-[#1A335D] col-span-2">
                         Industries of choice (you can choose more than one option)*
                     </p>
                     <Select

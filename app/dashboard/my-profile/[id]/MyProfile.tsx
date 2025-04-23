@@ -140,7 +140,7 @@ const MyProfile = ({
                         Professional Information
                     </h2>
                     <h2 className='text-lg'>
-                        Current Status:
+                        Employment Status:
                     </h2>
                     <p className='pb-4 capitalize'>
                         {user.professional_information.current_status}

@@ -121,7 +121,7 @@ const BasicInformation = ({
                     <label className="block pb-2">
                         To which gender identity do you most identify?
                     </label>
-                    <div className='flex flex-wrap gap-4 max-w-[85vw] md:max-w-max'>
+                    <div className='flex flex-wrap gap-4 mt-1'>
                         <label className='flex gap-1'>
                             <input
                                 type="radio"

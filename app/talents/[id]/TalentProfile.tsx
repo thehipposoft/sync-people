@@ -275,10 +275,10 @@ const TalentProfile = ({
                         <p className='capitalize mb-3'>
                             {!talentData.extras.education_level ? '-' : talentData.extras.education_level}
                         </p>
-                        <h4 className='text-lg mt-2 hidden'>
+                        <h4 className='text-lg mt-2'>
                             Presentation video
                         </h4>
-                        <Link href={talentData.extras.presentation_video} target='_blank' className='underline hidden'>
+                        <Link href={talentData.extras.presentation_video} target='_blank' className='underline'>
                             {talentData.extras.presentation_video}
                         </Link>
                         <h4 className='text-lg my-2'>
