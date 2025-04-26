@@ -39,7 +39,7 @@ const CreateTalentProfile = async ({ params }: Props) => {
     const userData:TalentType = await getTalent(id);
 
     if(userData.acf.professional_information.industries && userData.acf.professional_information.industries.length) {
-        //redirect(`${ROUTES.MY_PROFILE}/${id}`);
+        redirect(`${ROUTES.MY_PROFILE}/${id}`);
     }
 
     return (
@@ -47,6 +47,7 @@ const CreateTalentProfile = async ({ params }: Props) => {
             user={userData.acf}
             userId={id}
             hideSideNav
+            noTalentProfile={true}
         >
             <div className="flex flex-col w-full">
                 <TalentForm

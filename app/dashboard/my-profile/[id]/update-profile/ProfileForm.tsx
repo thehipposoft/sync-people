@@ -129,7 +129,7 @@ const ProfileForm = ({
     };
 
     return (
-        <div className='flex flex-col rounded-2xl my-4 md:w-[900px] w-full md:px-4 p-6 bg-white border '>
+        <div className='flex flex-col rounded-2xl my-4 md:w-[900px] w-[95vw] mx-auto md:mx-0 md:px-4 p-6 bg-white border mt-28 md:mt-0'>
             <h1 className='text-3xl h-bold pb-4 border-b mb-4'>
                 Update Profile
             </h1>

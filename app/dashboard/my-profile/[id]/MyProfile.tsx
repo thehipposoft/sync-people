@@ -37,9 +37,9 @@ const MyProfile = ({
     };
 
     return (
-        <div className='flex flex-col md:w-full'>
+        <div className='flex flex-col md:w-full w-[85vw] mx-auto md:mx-0'>
             <div className='md:w-[900px] mx-auto'>
-                <h1 className='text-3xl font-bold text-center my-8'>
+                <h1 className='text-3xl font-bold text-center my-8 mt-28 md:mt-0'>
                     Skills Portfolio
                 </h1>
                 <p className='text-center mb-6'>

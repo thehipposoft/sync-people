@@ -161,7 +161,7 @@ const Industries = ({
     return (
         <>
             <form
-                className={`flex-col duration-1000 min-w-[80vw] md:min-w-[850px] px-4 py-6 md:py-0`}
+                className={`flex-col duration-1000 min-w-[90vw] max-w-[90vw] md:max-w-[850px] md:min-w-[850px] px-4 py-6 md:py-0`}
                 style={{
                     translate: `${-100 * currentIndex}%`,
                 }}

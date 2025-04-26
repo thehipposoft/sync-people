@@ -10,11 +10,15 @@ import ComingSoonModal from './ComingSoonModal';
 type HeaderProps = {
     isFixed?: boolean;
     userId?: string;
+    inDashboard?: boolean;
+    noTalentProfile?: boolean;
 };
 
 const Header = ({
     isFixed,
     userId,
+    inDashboard,
+    noTalentProfile
 }:HeaderProps) => {
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState<boolean>(false);
@@ -24,9 +28,9 @@ const Header = ({
     };
 
     return (
-        <div className={`${isFixed ? '' : ''} top-0 bg-white md:w-full mx-auto md:py-0 py-2 px-8 md:px-0 flex-wrap z-30 w-full`}>
-            <div className='md:w-[1250px] flex justify-between items-center mx-auto'>
-                <Link href={ROUTES.HOME}>
+        <div className={`header ${inDashboard ? 'px-0 py-0 w-auto mx-0 md:hidden' : 'py-2 px-8 w-full mx-auto'} ${isFixed ? 'fixed lg:relative' : ''} top-0 bg-white lg:w-full  lg:py-0  lg:px-0 flex-wrap z-30 `}>
+            <div className='lg:w-[1250px] flex justify-between items-center mx-auto'>
+                <Link href={ROUTES.HOME} className={`${inDashboard ? 'hidden' : ''}`}>
                     <Image
                         src={'/assets/logo.svg'}
                         alt='Sync-people logo'
@@ -53,7 +57,7 @@ const Header = ({
                     {
                         userId
                         ? <Link
-                            className='primary-btn'
+                            className={`${noTalentProfile ? 'hidden' : ''} primary-btn`}
                             href={`${ROUTES.MY_PROFILE}/${userId}`}
                         >
                             Dashboard
@@ -79,7 +83,7 @@ const Header = ({
                     }
                 </nav>
                 <SideMenu userId={userId} sideMenu={openMenu} closeSideMenu={toggleMenu}/>
-                <BackDrop sideMenu={openMenu} closeSideMenu={toggleMenu}/>
+                <BackDrop sideMenu={openMenu} closeSideMenu={toggleMenu} isDashboard={inDashboard} />
                 <ComingSoonModal
                     isOpen={openModal}
                     onClose={() => setOpenModal(false)}

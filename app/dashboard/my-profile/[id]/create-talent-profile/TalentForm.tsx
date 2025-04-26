@@ -132,7 +132,7 @@ const TalentForm = ({
     };
 
     return (
-        <div ref={registrationFormRef} className='md:w-full flex justify-center gap-12 px-2 md:px-0'>
+        <div ref={registrationFormRef} className='md:w-full flex justify-center gap-12 px-2 md:px-0 pt-24 md:pt-0'>
             <div className='flex flex-col rounded-2xl my-4 md:w-[900px] w-full px-4 bg-white border'>
                 <h1 className='text-3xl h-bold py-4 pl-4 border-b'>
                     Create Talent Profile
@@ -203,7 +203,7 @@ const TalentForm = ({
                             <button className='text-[#326B88] border rounded-3xl border-[#326B88] md:px-6 px-2 py-1 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Go Premium!</button>
                         </div>
                     </div>
-                    <div className='flex overflow-hidden'>
+                    <div className='flex overflow-hidden min-w-[90vw] max-w-[90vw] md:max-w-[850px] md:min-w-[850px]'>
                         <BasicInformation
                             currentIndex={currentIndex}
                             initialValues={formValues}

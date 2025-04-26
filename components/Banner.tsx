@@ -15,8 +15,8 @@ const Banner = () => {
     }
 
     return (
-        <div className='max-w-[1250px] mx-auto px-8 md:px-0 py-6 md:py-0 md:pt-10 md:h-screen grid grid-cols-1 md:grid-cols-2 items-center'>
-            <div className='flex flex-col md:mt-0'>
+        <div className='max-w-[1250px] mx-auto px-8 md:px-0 py-6 md:py-0 md:h-screen grid grid-cols-1 md:grid-cols-2 items-center md:items-start'>
+            <div className='flex flex-col md:mt-[30%]'>
                 <h2 className='md:tracking-wide tracking-tight text-[56px] md:text-6xl'>
                     Connecting you with your future
                 </h2>
@@ -39,7 +39,7 @@ const Banner = () => {
                 </div>
             </div>
             <div
-                className='group cursor-pointer relative flex justify-center items-center w-full h-72 md:w-[540px] md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-8 mt-8 md:mt-auto md:mb-auto'
+                className='group cursor-pointer relative flex justify-center items-center w-full h-72 md:w-[540px] md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-8 mt-8 md:mt-[20%] '
                 onClick={toggleModal}
             >
                 <Image

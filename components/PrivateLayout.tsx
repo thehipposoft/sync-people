@@ -7,12 +7,14 @@ import { TalentTypeAcf } from '@/types';
 import Footer from "@/components/Footer";
 import { logout } from "@/lib/api";
 import { useRouter } from "next/navigation";
+import Header from "./Header";
 
 type Props = {
     children: React.ReactNode;
     user: TalentTypeAcf;
     userId: string;
     hideSideNav?: boolean;
+    noTalentProfile?: boolean,
 };
 
 const PrivateLayout = ({
@@ -20,6 +22,7 @@ const PrivateLayout = ({
     user,
     userId,
     hideSideNav,
+    noTalentProfile
 }: Props) => {
     const router = useRouter();
 
@@ -36,24 +39,24 @@ const PrivateLayout = ({
                 hideSideNav ? null : <SideNav />
             }
             <div className='flex grow flex-col'>
-                <div className='flex justify-between pt-4 md:pt-0 items-center md:px-8 md:w-full w-[80vw] mx-auto bg-white'>
+                <div className={`${noTalentProfile ? 'px-8 w-full' : 'w-full px-4'} flex fixed md:relative z-40 justify-between py-4 md:py-0 items-center md:px-8 md:w-full mx-auto bg-white`}>
                     <Link href={ROUTES.HOME} className='hidden md:block'>
                         <Image src={'/assets/logo.svg'} alt='Insyncx logo' width={220} height={150} />
                     </Link>
-                    <div className='flex md:justify-end justify-between items-center md:gap-6 gap-3 py-1 w-full md:w-auto'>
+                    <div className={`${noTalentProfile ? 'justify-end gap-4' : 'justify-between'} flex bg-white md:justify-end  items-center md:gap-6 gap-2 py-1 w-[95vw] mx-auto md:mx-0 md:w-auto`}>
                         <Link href={'/training-and-licenses'} className='green-btn hidden'>
                             Training and Licenses
                         </Link>
-                        <Link href={`/talents/${userId}`} className='green-btn lg:px-4 text-sm px-2 py-3 md:py-2'>
+                        <Link href={`/talents/${userId}`} className={`${noTalentProfile ? 'hidden' : ''} green-btn lg:px-4 text-sm px-2 py-3 md:py-2`}>
                             View Public Profile
                         </Link>
                         <button
                             className="primary-btn mx-0 rounded-md text-sm px-3 w-auto lg:px-6 py-3 md:py-2"
                             onClick={handleLogout}
                         >
-                            Logout
+                            Log out
                         </button>
-                        <Link href={`${ROUTES.MY_PROFILE}/${userId}`}>
+                        <Link href={`${ROUTES.MY_PROFILE}/${userId}`} className={`${noTalentProfile ? 'hidden' : ''}`}>
                             <Image
                                 src={user.personal_information.profile_pic ? user.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
                                 alt={`${user.personal_information.first_name} ${user.personal_information.last_name}`}
@@ -62,9 +65,10 @@ const PrivateLayout = ({
                                 height={40}
                             />
                         </Link>
+                        <Header inDashboard userId={userId} noTalentProfile={noTalentProfile} />
                     </div>
                 </div>
-                <div className={`${hideSideNav ? 'w-[90vw]' : 'w-[80vw]'} bg-white mx-auto md:mx-0 md:flex justify-center gap-12 md:my-8 my-4 flex-grow w-full`}>
+                <div className={`${hideSideNav ? 'w-[90vw]' : 'w-[80vw]'} bg-white mx-auto md:mx-0 md:flex justify-center gap-12 md:my-8 flex-grow w-full`}>
                     {children}
                 </div>
                 <Footer />

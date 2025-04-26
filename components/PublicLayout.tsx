@@ -28,7 +28,7 @@ const PublicLayout = async ({
                     : null
                 }
             />
-                <div className={`${fullWith ? 'w-full' : 'md:w-[1250px]'} flex justify-between items-center mx-auto flex-grow`}>
+                <div className={`${fullWith ? 'w-full' : 'md:w-[1250px]'} pt-28 lg:pt-0 flex justify-between items-center mx-auto flex-grow`}>
                     {children}
                 </div>
             <Footer />
