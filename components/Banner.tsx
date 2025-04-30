@@ -39,7 +39,7 @@ const Banner = () => {
                 </div>
             </div>
             <div
-                className='group cursor-pointer relative flex justify-center items-center w-full h-72 md:w-[540px] md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-8 mt-8 md:mt-[20%] '
+                className='group cursor-pointer relative flex justify-center items-center w-full h-72 md:w-[540px] md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-8 mt-8 md:mt-[20%] md:ml-[10%] '
                 onClick={toggleModal}
             >
                 <Image
