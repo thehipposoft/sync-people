@@ -65,6 +65,7 @@ const WorkExperience = ({
             currently_working: false,
             description: '',
             industry: 'construction',
+            other_industry: '',
         });
 
         setFormValues(newFormValues);

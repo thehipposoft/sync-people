@@ -109,6 +109,13 @@ const TalentProfile = ({
                                 </p>
                             </div>
 
+                            <h4 className='text-lg mt-2'>
+                                Presentation video
+                            </h4>
+                            <Link href={talentData.personal_information.presentation_video} target='_blank' className='underline'>
+                                {talentData.personal_information.presentation_video}
+                            </Link>
+
                             <div className='flex flex-col gap-2'>
                                 <div className='flex justify-between items-center mb-6 flex-col-reverse md:flex-row gap-4'>
                                     <h4 className='text-2xl'>
@@ -275,12 +282,6 @@ const TalentProfile = ({
                         <p className='capitalize mb-3'>
                             {!talentData.extras.education_level ? '-' : talentData.extras.education_level}
                         </p>
-                        <h4 className='text-lg mt-2'>
-                            Presentation video
-                        </h4>
-                        <Link href={talentData.extras.presentation_video} target='_blank' className='underline'>
-                            {talentData.extras.presentation_video}
-                        </Link>
                         <h4 className={`${!talentData.extras.other_credentials ? 'hidden' : ''} text-lg mt-2`}>
                             Other Credentials
                         </h4>

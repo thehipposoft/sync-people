@@ -114,7 +114,7 @@ const MyProfile = ({
                                     user.extras.transport && (
                                     <div>
                                         <h2 className='text-lg'>
-                                            Transport
+                                            Do you have your own transportation
                                         </h2>
                                         <p className='capitalize'>
                                             {user.extras.transport}
@@ -134,6 +134,18 @@ const MyProfile = ({
                             {user.personal_information.about_myself ? user.personal_information.about_myself : '-'}
                         </p>
                     </div>
+                    <h2 className='text-lg mt-2'>
+                        Presentation video:
+                    </h2>
+                    <p>
+                        {
+                            user.personal_information.presentation_video ?
+                            <Link href={user.personal_information.presentation_video} target='_blank' className='underline'>
+                                {user.personal_information.presentation_video}
+                            </Link>
+                            : '-'
+                        }
+                    </p>
                 </div>
                 <div className='flex flex-col bg-white md:px-12 px-6 py-6 border-t'>
                     <h2 className='text-2xl pb-4 font-bold'>
@@ -289,22 +301,10 @@ const MyProfile = ({
                         {user.extras.education_level ? user.extras.education_level : '-'}
                     </p>
                     <h2 className='text-lg mt-2'>
-                        Transport:
+                        Do you have your own transportation:
                     </h2>
                     <p className='capitalize'>
                         {user.extras.transport ? user.extras.transport : 'No'}
-                    </p>
-                    <h2 className='text-lg mt-2'>
-                        Presentation video:
-                    </h2>
-                    <p>
-                        {
-                            user.extras.presentation_video ?
-                            <Link href={user.extras.presentation_video} target='_blank' className='underline'>
-                                {user.extras.presentation_video}
-                            </Link>
-                            : '-'
-                        }
                     </p>
                     <h2 className='text-lg mt-2'>
                         Other Credentials:

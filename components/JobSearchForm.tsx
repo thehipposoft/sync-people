@@ -236,7 +236,7 @@ const JobSearchForm = () => {
                                         </select>
                                 </div>
                                 <div className='md:w-1/2'>
-                                    <label className="block pb-2 h-bold">Transportation:</label>
+                                    <label className="block pb-2 h-bold">Own Transportation:</label>
                                     <select
                                         name="country"
                                         className=""

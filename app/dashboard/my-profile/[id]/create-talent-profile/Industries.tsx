@@ -82,22 +82,18 @@ const Industries = ({
 
     const handleMultiSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target;
-        const industriesArray = value.split(',');
-        const newIndustryToAdd = industriesArray[industriesArray.length - 1];
+        const industriesArray = value ? value.split(',') : [];
 
-       const industryToPush = {
-            industry: newIndustryToAdd as IndustriesAvailable,
-            preferred_salary: '',
-            position: '',
-            certificates: [],
-            industry_description: '',
-        }
-
-       const newIndustriesArray: IndustryType[] = [
-            ...formValues.industries,
-       ];
-
-       newIndustriesArray.push(industryToPush);
+        const newIndustriesArray: IndustryType[] = industriesArray.map((industry) => {
+            const existing = formValues.industries.find((item) => item.industry === industry);
+            return existing || {
+                industry: industry as IndustriesAvailable,
+                preferred_salary: '',
+                position: '',
+                certificates: [],
+                industry_description: '',
+            };
+        });
 
         setFormValues((prevValues) => {
             return {
@@ -169,16 +165,19 @@ const Industries = ({
             >
                 <div className='flex items-center justify-between pt-8'>
                     <h4 className='font-bold py-2 text-xl'>
-                        2. My Industries
+                        {`${currentIndex + 1}. Shape Your Future Opportunities`}
                     </h4>
                 </div>
-                <p className='mb-4 text-[#1A335D] text-lg'>
-                    Come on, this is just the beginning
+                <p className='mb-2 text-[#1A335D] font-bold'>
+                    Help us understand what you're looking for
+                </p>
+                <p className='mb-6 text-[#1A335D] text-sm'>
+                    Let us know which industries you're most interested in, the type of roles you're after, and how you'd like to work.
                 </p>
                 <div className={`md:grid flex flex-col grid-cols-2 md:gap-4 gap-8`}>
                     <div className='col-span-2 lg:col-span-1'>
                         <label htmlFor="current_status" className="block pb-2">
-                            Employment Status*
+                            Availability*
                         </label>
                         <select
                             name="current_status"
@@ -199,7 +198,7 @@ const Industries = ({
 
                     <div className='col-span-2 lg:col-span-1'>
                         <label htmlFor="current_status" className="block pb-2">
-                            Work Preference*
+                            Preferred work types*
                         </label>
                         <select
                             name="work_preference"
@@ -221,9 +220,6 @@ const Industries = ({
                     <div className='col-span-2 mt-4'>
                         <p className='font-bold mb-2'>
                             Tell us which industries you're most interested in working in.
-                        </p>
-                        <p className='mb-2'>
-                            This helps us match you with the right opportunities and tailor your profile for employers in those fields.
                         </p>
                         <p className='text-sm p-4 border-l-2 italic'>
                             Tip: Your selected industries will affect how your skills are displayed—each one has a unique layout to highlight what matters most!
@@ -254,7 +250,7 @@ const Industries = ({
                         <div key={index} className='border border-[#FF8149] rounded-3xl p-4 mt-4'>
                             <div className='flex items-center justify-between'>
                                 <h4 className='font-bold py-4 text-xl capitalize'>
-                                    {index + 1}. {industry.industry}
+                                    {index + 1}. {industry.industry.replace(/_/g, ' ')}
                                 </h4>
                                 <button
                                     onClick={(e) => {
@@ -345,6 +341,9 @@ const Industries = ({
                                 <label htmlFor={`industry_description`} className="block pb-2">
                                     Certificates <span className='text-xs'>(optional)</span>
                                 </label>
+                                <p className='text-sm'>
+                                    These certificates will always stay safely attached to your profile and will be easy to download whenever you need them.
+                                </p>
                                 {
                                     industry.certificates.length > 0
                                     ? <table className="w-full p-3">

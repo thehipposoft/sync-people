@@ -25,6 +25,7 @@ export type PersonalInformationType = {
     profile_pic: string;
     gender: string;
     about_myself: string;
+    presentation_video: string;
     current_location: {
         address_1: string,
         suburb: string,
@@ -47,6 +48,7 @@ export type WorkExperienceType = {
     currently_working: boolean;
     description: string;
     industry: IndustriesAvailable;
+    other_industry: string;
 };
 
 export type LevelOfEnglishType =  'beginner' | 'elementary' | 'intermediate' | 'upper_intermediate' | 'advanced' | 'proficient' | 'native';
@@ -71,7 +73,6 @@ export type ExtraInformationType = {
         partialFile?: File;
     }[];
     transport: string;
-    presentation_video: string;
     social_media_links: {
         platform: SocialMediaLinksType;
         url: string;

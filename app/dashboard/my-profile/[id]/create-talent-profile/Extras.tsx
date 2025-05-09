@@ -174,7 +174,9 @@ type ExtrasPropsType = {
                     </div>
 
                     <div className="col-span-2 md:col-span-1">
-                        <label htmlFor="transport" className="block pb-2">Transport</label>
+                        <label htmlFor="transport" className="block pb-2">
+                            Do you have your own transportation
+                        </label>
                         <select
                             id="transport"
                             name="transport"
@@ -211,45 +213,6 @@ type ExtrasPropsType = {
                         </Select>
                     </div>
 
-                    <div className="col-span-2 md:col-span-1">
-                        <div className='flex gap-2 items-center mb-2'>
-                            <label htmlFor="presentation_video" className="block">
-                                Presentation Video URL
-                            </label>
-                            <Tooltip
-                                className="bg-primary-text text-white rounded-md"
-                                content={
-                                    <div className="px-1 py-2">
-                                        <Link target='_blank' href={ROUTES.PRESENTATION_VIDEO} className="text-sm">
-                                            Why Create a "presentation" Video? Click here
-                                        </Link>
-                                    </div>
-                                }
-                            >
-                                <svg
-                                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                    width={15}
-                                    height={15}
-                                >
-                                    <g id="SVGRepo_iconCarrier">
-                                        <path fillRule="evenodd" clipRule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM12 17.75C12.4142 17.75 12.75 17.4142 12.75 17V11C12.75 10.5858 12.4142 10.25 12 10.25C11.5858 10.25 11.25 10.5858 11.25 11V17C11.25 17.4142 11.5858 17.75 12 17.75ZM12 7C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8C11 7.44772 11.4477 7 12 7Z" fill="#1C274C">
-                                        </path>
-                                    </g>
-                                </svg>
-                            </Tooltip>
-                        </div>
-
-                        <input
-                            type="text"
-                            id="presentation_video"
-                            name="presentation_video"
-                            value={formValues.presentation_video}
-                            onChange={handleInputChange}
-                        />
-                        <p className='text-sm opacity-70 mt-1'>
-                            Include a link to your preferred platform (YouTube, Vimeo, TikTok, etc.)
-                        </p>
-                    </div>
 
                     <div className="col-span-2 mb-6">
                         <label htmlFor="other_credentials" className="block pb-2">
@@ -333,7 +296,7 @@ type ExtrasPropsType = {
                                 setOpenNewCertificateModal(true);
                             }}
                         >
-                            Add Credential
+                            Add File
                         </button>
                     </div>
 

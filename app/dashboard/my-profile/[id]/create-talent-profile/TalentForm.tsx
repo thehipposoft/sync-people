@@ -210,17 +210,17 @@ const TalentForm = ({
                             setMainFormValues={setFormValues}
                             showNext={showNext}
                         />
-                        <Industries
-                            currentIndex={currentIndex}
-                            initialValues={formValues}
-                            setMainFormValues={setFormValues}
-                            showNext={showNext}
-                            showPrev={showPrev}
-                        />
                         <WorkingRights
                             currentIndex={currentIndex}
                             setMainFormValues={setFormValues}
                             initialValues={formValues}
+                            showNext={showNext}
+                            showPrev={showPrev}
+                        />
+                        <Industries
+                            currentIndex={currentIndex}
+                            initialValues={formValues}
+                            setMainFormValues={setFormValues}
                             showNext={showNext}
                             showPrev={showPrev}
                         />

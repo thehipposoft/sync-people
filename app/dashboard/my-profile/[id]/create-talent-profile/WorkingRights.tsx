@@ -50,6 +50,7 @@ const WorkingRights = ({
             currently_working: false,
             description: '',
             industry: 'construction',
+            other_industry: '',
         });
 
         setFormValues(newFormValues);
@@ -79,8 +80,12 @@ const WorkingRights = ({
                    {`${currentIndex + 1}. Work Experience`}
                 </h4>
             </div>
-            <p className='pb-4 text-[#1A335D] text-lg'>
-                We're almost done
+            <p className='pb-4 text-[#1A335D] text-lg font-bold'>
+                Tell us about your past work experience
+            </p>
+            <p className='pb-4 text-[#1A335D] text-sm'>
+                This is your chance to showcase what you've done before! Let us know the position you held, the company you worked for, when you started (and ended, if applicable), and the industry you were in. If you're currently working there, just tick the box.
+                You can also use the description to highlight your key responsibilities, achievements, or anything you're proud of in that role.
             </p>
             {
                 formValues && formValues.map((experience, index) => (
@@ -169,6 +174,18 @@ const WorkingRights = ({
                                 disabled={experience.currently_working}
                             />
                         </div>
+                        <div className='flex gap-4 items-center md:pt-2 col-span-2'>
+                            <input
+                                type="checkbox"
+                                id={`currently_working`}
+                                name={`currently_working`}
+                                checked={experience.currently_working}
+                                onChange={(e) => handleCheckboxChange(e, index)}
+                            />
+                            <label htmlFor={`currently_working`} className="block">
+                                Currently working here
+                            </label>
+                        </div>
                         <div className="col-span-2 md:col-span-1">
                             <label htmlFor={`industry`} className="block pb-2">
                                 Industry
@@ -187,20 +204,28 @@ const WorkingRights = ({
                                         </option>
                                     ))
                                 }
+                                <option value="other">
+                                    Other
+                                </option>
                             </select>
                         </div>
-                        <div className='flex gap-4 items-center md:pt-6 col-span-2 md:col-span-1'>
-                            <input
-                                type="checkbox"
-                                id={`currently_working`}
-                                name={`currently_working`}
-                                checked={experience.currently_working}
-                                onChange={(e) => handleCheckboxChange(e, index)}
-                            />
-                            <label htmlFor={`currently_working`} className="block">
-                                Currently working here
-                            </label>
-                        </div>
+                        {
+                            experience.industry === 'other' && (
+                                <div className="col-span-2 md:col-span-1">
+                                    <label htmlFor={`other_industry`} className="block pb-2">
+                                        Other Industry name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id={`other_industry`}
+                                        name={`other_industry`}
+                                        required
+                                        value={experience.other_industry}
+                                        onChange={(e) => handleChange(e, index)}
+                                    />
+                                </div>
+                            )
+                        }
                         <div className='col-span-2 w-full'>
                             <label htmlFor={`description`} className="block pb-2">
                                 Description*
@@ -220,7 +245,7 @@ const WorkingRights = ({
                 ))
             }
             <button
-                className='primary-btn mt-2 ml-0 col-span-2 md:col-span-1 text-base'
+                className='primary-btn my-6 col-span-2 md:col-span-1 text-lg ml-0'
                 onClick={handleAddExperience}
             >
                 + Add Work Experience
