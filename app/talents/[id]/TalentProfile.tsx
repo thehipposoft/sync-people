@@ -1,13 +1,14 @@
 'use client';
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf, IndustryType } from '@/types';
 import { INDUSTRIES_BANNER, ROUTES } from '@/app/constants';
 import { renderSocialMediaIcon } from '@/lib/utils';
-import { toPng } from 'html-to-image';
-import { jsPDF } from 'jspdf';
+import { pdf } from '@react-pdf/renderer';
+import { saveAs } from 'file-saver';
+import TalentPDFDocument from './TalentPDFDocument';
 
 type TalentProfileProps = {
     talentData: TalentTypeAcf;
@@ -25,8 +26,6 @@ const TalentProfile = ({
 }:TalentProfileProps) => {
     const pathname = useSearchParams();
     const queryIndustry = pathname.get('industry') || '';
-
-    const pdfRef = useRef(null);
     const [selectedIndustry, setSelectedIndustry] = useState<IndustryType>(talentData.professional_information.industries[0]);
 
     useEffect(() => {
@@ -38,35 +37,12 @@ const TalentProfile = ({
         }
     }, []);
 
-    console.log('Talent data:', talentData)
+    const generatePDF = async () => {
+        const blob = await pdf(
+          <TalentPDFDocument talentData={talentData} selectedIndustry={selectedIndustry} />
+        ).toBlob();
 
-    const generatePDF = () => {
-        if (!pdfRef.current) return;
-
-        toPng(pdfRef.current, { quality: 1 })
-            .then((dataUrl) => {
-                const pdf = new jsPDF('p', 'mm', 'a4');
-                const imgProps = pdf.getImageProperties(dataUrl);
-                const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-                const pageHeight = pdf.internal.pageSize.getHeight();
-
-                let yPos = 0;
-
-                while (yPos < pdfHeight) {
-                    pdf.addImage(dataUrl, 'PNG', 0, -yPos, pdfWidth, pdfHeight);
-                    yPos += pageHeight;
-
-                    if (yPos < pdfHeight) {
-                        pdf.addPage();
-                    }
-                }
-
-                pdf.save(`Insyncx_${talentData.personal_information.first_name}_${talentData.personal_information.last_name}_Profile.pdf`);
-            })
-            .catch((error) => {
-                console.error('Error generating PDF:', error);
-            });
+        saveAs(blob, `Insyncx_${talentData.personal_information.first_name}_${talentData.personal_information.last_name}_Profile.pdf`);
     };
 
     return (
@@ -82,7 +58,6 @@ const TalentProfile = ({
         : <div className='flex flex-col md:w-full'>
             <div className='md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
                 <div
-                    ref={pdfRef}
                     className='border rounded-2xl bg-white'
                 >
                     <div className='relative flex flex-col mx-auto md:w-[900px] bg-white'>
@@ -96,32 +71,24 @@ const TalentProfile = ({
                             />
                         </div>
                         <div className='relative flex flex-col justify-between md:px-12 px-6 py-6'>
-                            <div className='flex md:gap-4 flex-col md:flex-row relative mb-4 pb-14'>
+                            <div className='flex md:gap-4 flex-col md:flex-row relative mb-0 lg:mb-4 pb-0 md:pb-14'>
                                 <Image
                                     src={talentData.personal_information.profile_pic ? talentData.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
                                     alt={`Profile picture for ${talentData.personal_information.first_name}`}
                                     width={140}
                                     height={140}
-                                    className='rounded-full border-[6px] border-white -top-[4rem] md:-top-[6rem] w-36 h-36 relative md:absolute object-cover'
+                                    className='rounded-full border-[6px] border-white -top-[4rem] md:-top-[6rem] w-36 h-36 relative md:absolute object-cover left-[50%] transform -translate-x-1/2 lg:left-0 lg:translate-x-0'
                                 />
                                 <p className={`${!talentData.personal_information.about_myself ? 'hidden' : ''} relative -top-10 md:top-0 md:pl-[10rem]`}>
                                     " {talentData.personal_information.about_myself} "
                                 </p>
                             </div>
 
-                            <h4 className='text-lg mt-2'>
-                                Presentation video
-                            </h4>
-                            <Link href={talentData.personal_information.presentation_video} target='_blank' className='underline'>
-                                {talentData.personal_information.presentation_video}
-                            </Link>
-
                             <div className='flex flex-col gap-2'>
                                 <div className='flex justify-between items-center mb-6 flex-col-reverse md:flex-row gap-4'>
-                                    <h4 className='text-2xl'>
+                                    <h4 className='text-2xl mt-4 lg:mt-0'>
                                         {talentData.personal_information.first_name} <span className='h-bold capitalize'> - {selectedIndustry.position}</span>
                                     </h4>
-
                                     {
                                         !queryIndustry && (
                                             <select
@@ -164,7 +131,6 @@ const TalentProfile = ({
                                             Country of Birth
                                         </h4>
                                         <p className='text-[#1A335D] md:text-right'>
-                                            {talentData.personal_information.country_of_birth}
                                             {talentData.personal_information.country_of_birth
                                                 ? `${talentData.personal_information.country_of_birth}`
                                                 : `-`
@@ -173,7 +139,7 @@ const TalentProfile = ({
                                     </div>
                                 </div>
 
-                                <div className='flex justify-between pt-4 flex-col md:flex-row gap-3'>
+                                <div className='flex justify-between mt-1 flex-col md:flex-row gap-3'>
                                     {
                                         selectedIndustry.certificates && (
                                         <div>
@@ -187,13 +153,39 @@ const TalentProfile = ({
 
                                     <div className='flex flex-col'>
                                         <h4 className='text-lg'>
-                                            Availability
+                                            Work Preference
                                         </h4>
                                         <p className={`flex gap-2 capitalize text-right`}>
                                             {talentData.professional_information.work_preference ? talentData.professional_information.work_preference : '-'}
                                         </p>
                                     </div>
                                 </div>
+                                {
+                                    talentData.personal_information.presentation_video && (
+                                        <div className='gap-3 mt-4'>
+                                            <Link href={talentData.personal_information.presentation_video} target='_blank' className='underline w-fit flex items-center gap-3 group'>
+                                                    <h4 className='text-lg'>
+                                                        Presentation video
+                                                    </h4>
+                                                    <div className='p-2 bg-primary-text w-fit rounded-full border-primary-text border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-300'>
+                                                        <svg viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width={12}
+                                                            height={12}
+                                                        >
+                                                            <g id="SVGRepo_iconCarrier">
+                                                                <path
+                                                                    className='group-hover:fill-primary-text'
+                                                                    d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
+                                                                </path>
+                                                            </g>
+                                                        </svg>
+                                                    </div>
+                                            </Link>
+                                        </div>
+                                    )
+                                }
                                 <div className='flex flex-col mt-4 md:items-end'>
                                     <h4 className='text-lg mb-2'>
                                         Contact me
@@ -233,15 +225,17 @@ const TalentProfile = ({
                                 Work Experience
                             </h4>
                             {
-                                talentData.work_experience.map((experience, index) => (
-                                    <div key={index} className='flex flex-col mb-3'>
-                                        <h4 className='text-xl mb-2'>
-                                            {experience.position}
-                                        </h4>
-                                        <p className='opacity-70'>{experience.company_name}</p>
-                                        <p className='opacity-70'>{experience.start_date} - {experience.currently_working ? 'Current' : experience.end_date}</p>
-                                        <p>{experience.description}</p>
-                                    </div>
+                            [...talentData.work_experience]
+                                .sort((a, b) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime())
+                                .map((experience, index) => (
+                                <div key={index} className='flex flex-col mb-3'>
+                                    <h4 className='text-xl mb-2'>{experience.position}</h4>
+                                    <p className='opacity-70'>{experience.company_name}</p>
+                                    <p className='opacity-70'>
+                                    {experience.start_date} - {experience.currently_working ? 'Current' : experience.end_date}
+                                    </p>
+                                    <p>{experience.description}</p>
+                                </div>
                                 ))
                             }
                         </div>
@@ -314,7 +308,7 @@ const TalentProfile = ({
                         <h4 className='text-lg my-2'>
                             Social Media Links
                         </h4>
-                        <div className='flex gap-2 flex-wrap mb-3'>
+                        <div className='flex gap-3 flex-wrap mb-3'>
                             {
                                 talentData.extras.social_media_links ?
                                 talentData.extras.social_media_links && talentData.extras.social_media_links.map((link, index) => (
