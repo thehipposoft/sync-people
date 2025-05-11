@@ -26,7 +26,7 @@ const Modal = ({
     return (
         <dialog
             ref={modalRef}
-            className="border-2 md:px-16 px-8 md:py-20 py-8 fixed z-10 overflow-hidden rounded-xl border-purple"
+            className="border-2 md:px-20 px-8 md:py-24 py-8 fixed z-10 overflow-hidden rounded-xl border-transparent"
         >
             {children}
         </dialog>

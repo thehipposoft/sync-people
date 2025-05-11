@@ -141,7 +141,7 @@ const ProfileForm = ({
                         width={140} height={140}
                         className='h-[140px] lg:h-28 rounded-full border-2 border-primary-text object-cover'
                     />
-                    <div className='absolute top-0 left-0 rounded-full opacity-0 w-full h-full bg-[#000000b3] group-hover:opacity-100 duration-500 flex justify-center items-center cursor-pointer p-2'>
+                    <div className='absolute top-0 left-0 rounded-full opacity-0 w-[140px] h-[140px] lg:h-28 lg:w-full   bg-[#000000b3] group-hover:opacity-100 duration-500 flex justify-center items-center cursor-pointer p-2'>
                         <span className='text-sm text-center text-white'>
                             <input
                                 id='profile_pic'
@@ -152,13 +152,13 @@ const ProfileForm = ({
                                 onChange={handleUploadProfileImage}
                                 multiple={false}
                             />
-                            <label htmlFor='profile_pic'>
-                                <span className='text-white cursor-pointer'>Change profile image</span>
+                            <label htmlFor='profile_pic' className='flex w-[140px] h-[140px] lg:h-28 lg:w-full cursor-pointer justify-center items-center rounded-full'>
+                                <span className='text-white'>Change profile image</span>
                             </label>
                         </span>
                     </div>
                     <p className='text-center text-sm mt-2 lg:hidden'>
-                        Tap to image to update
+                        Tap to update image
                     </p>
                 </div>
 
