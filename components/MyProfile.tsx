@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
-import { TalentTypeAcf } from '@/types';
 
 type MyProfileProps = {
     user: any;
@@ -17,7 +16,13 @@ const MyProfile = ({
                     user === 'business' ?
                     <div className='flex justify-between items-center md:px-8 px-2 py-2 w-full bg-white'>
                         <Link href={'/'} className='hidden md:block'>
-                            <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} className='md:w-full w-[140px]'/>
+                            <Image
+                                src={'/assets/logo.png'}
+                                alt='Insyncx logo'
+                                width={593}
+                                height={337}
+                                className='max-w-[12rem] md:max-w-lg w-[200px]'
+                            />
                         </Link>
                         <div className='flex justify-end gap-6'>
                             <div className='flex flex-col md:flex-row gap-2 md:gap-0'>
@@ -32,7 +37,13 @@ const MyProfile = ({
                     :
                     <div className='flex justify-between items-center px-8 py-2 w-full bg-white'>
                         <Link href={'/'} className='hidden md:block'>
-                            <Image src={'/assets/logo.svg'} alt='Synto logo' width={180} height={140} />
+                            <Image
+                                src={'/assets/logo.png'}
+                                alt='Insyncx logo'
+                                width={593}
+                                height={337}
+                                className='max-w-[12rem] md:max-w-lg w-[200px]'
+                            />
                         </Link>
                         <div className='flex justify-end gap-6 py-1'>
                             <Link href={'/training-and-licences'}><button className='h-full text-[#326B88] border-[#326B88] border rounded-md px-4 hover:bg-[#326B88] hover:text-white duration-500 cursor-pointer'>Training and Licences</button></Link>

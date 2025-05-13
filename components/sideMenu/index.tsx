@@ -27,11 +27,11 @@ const SideMenu = ({sideMenu, closeSideMenu, userId}:SideMenuTypes) => {
     return(
         <div className={`duration-500 top-0 right-0 md:w-80 w-screen fixed h-screen bg-[#EBEFFF] z-10 flex flex-col justify-center items-center opacity-0 ${ sideMenu ? 'translate-x-0 opacity-100' : 'translate-x-full'}`}>
             <Image
-                src={'/assets/logo.svg'}
-                alt={'Sync Logo'}
-                width={200}
-                height={60}
-                className="mx-auto"
+                src={'/assets/logo.png'}
+                width={593}
+                height={337}
+                className='max-w-[12rem] md:max-w-lg w-[200px]'
+                alt='Insyncx logo'
             />
             <ul className="text-center md:mt-12 font-bold">
                 <li className="my-5  text-lg cursor-pointer duration-500 rounded-xl py-2 px-8 hover:underline">

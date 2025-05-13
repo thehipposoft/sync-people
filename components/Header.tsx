@@ -32,11 +32,11 @@ const Header = ({
             <div className='lg:w-[1250px] flex justify-between items-center mx-auto'>
                 <Link href={ROUTES.HOME} className={`${inDashboard ? 'hidden' : ''}`}>
                     <Image
-                        src={'/assets/logo.svg'}
-                        alt='Sync-people logo'
-                        width={220}
-                        height={150}
-                        className='max-w-[12rem] md:max-w-lg'
+                        src={'/assets/logo.png'}
+                        alt='Insyncx logo'
+                        width={593}
+                        height={337}
+                        className='max-w-[12rem] md:max-w-lg w-[200px]'
                     />
                 </Link>
                 <svg viewBox="0 0 100 80" width="40" height="40" onClick={toggleMenu} className='md:hidden block w-fit'>

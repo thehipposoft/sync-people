@@ -15,7 +15,7 @@ const SchemaOrg = () => {
                         "@type": "Organization",
                         "name": "Insyncx",
                         "url": "https://insyncx.co",
-                        "logo": "https://insyncx.co/assets/logo.svg"
+                        "logo": "https://insyncx.co/assets/logo.png"
                     }`,
                 }}
             />

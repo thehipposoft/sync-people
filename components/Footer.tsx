@@ -5,17 +5,17 @@ import { ROUTES } from '@/app/constants';
 
 const Footer = () => {
     return (
-        <div className='flex md:py-12 py-6 bg-bg-primary px-6 md:px-0 flex-wrap'>
+        <div className='flex md:py-20 py-6 bg-bg-primary px-6 md:px-0 flex-wrap'>
             <div className='container grid grid-cols-1 md:grid-cols-4 gap-2 '>
                 <div className='w-full flex justify-center md:justify-start'>
                     <div>
-                        <div className='relative md:w-[170px] w-[200px] md:h-[75px] h-[120px] mx-auto'>
-                            <Image
-                                src={'/assets/logo.svg'}
-                                alt='Sync-people logo'
-                                fill
-                            />
-                        </div>
+                        <Image
+                            src={'/assets/logo.png'}
+                            width={593}
+                            height={337}
+                            className='mx-auto md:max-w-lg md:w-[200px] w-[220px]'
+                            alt='Sync logo'
+                        />
                         <p className='pt-2'>
                             <Link className='underline' href={ROUTES.CONTACT}>Contact us</Link> for more information
                         </p>
@@ -24,23 +24,23 @@ const Footer = () => {
                 <div className='hidden md:block'>
                     <h4 className='font-bold text-xl'>Job Categories</h4>
                     <ul>
-                        <li className='py-1'>
-                            <Link href={ROUTES.CATEGORIES_HOSPITALITY}>
-                            Hospitality
+                        <li className='py-2'>
+                            <Link href={ROUTES.CATEGORIES_HOSPITALITY} className='hover:underline'>
+                                Hospitality
                             </Link>
                         </li>
-                        <li className='py-1'>
-                            <Link href={ROUTES.CATEGORIES_WAREHOUSING}>
+                        <li className='py-2'>
+                            <Link href={ROUTES.CATEGORIES_WAREHOUSING} className='hover:underline'>
                                 Warehousing
                             </Link>
                         </li>
-                        <li className='py-1'>
-                            <Link href={ROUTES.CATEGORIES_CONSTRUCTION}>
+                        <li className='py-2'>
+                            <Link href={ROUTES.CATEGORIES_CONSTRUCTION} className='hover:underline'>
                                 Construction
                             </Link>
                         </li>
-                        <li className='py-1'>
-                            <Link href={ROUTES.CATEGORIES_CLEANING}>
+                        <li className='py-2'>
+                            <Link href={ROUTES.CATEGORIES_CLEANING} className='hover:underline'>
                                 Cleaning
                             </Link>
                         </li>
@@ -48,10 +48,10 @@ const Footer = () => {
                 </div>
                 <ul className='flex flex-col md:items-start gap-4 items-center mt-4 md:mt-0'>
                     <li className='py-1'>
-                        <Link href={ROUTES.ABOUT} className='text-xl md:text-base'>About</Link>
+                        <Link href={ROUTES.ABOUT} className='text-xl md:text-base hover:underline'>About</Link>
                     </li>
                     <li className='py-1'>
-                        <Link href={ROUTES.CONTACT} className='text-xl md:text-base'>Contact</Link>
+                        <Link href={ROUTES.CONTACT} className='text-xl md:text-base hover:underline'>Contact</Link>
                     </li>
                 </ul>
                 <div className='flex flex-col items-center my-4 md:my-0'>

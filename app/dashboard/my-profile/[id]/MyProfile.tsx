@@ -6,7 +6,7 @@ import { TalentTypeAcf } from '@/types';
 import { getAge } from '@/lib/utils';
 import { renderSocialMediaIcon } from '@/lib/utils';
 import { ROUTES, INDUSTRIES_BANNER } from '@/app/constants';
-import { differenceInMonths, differenceInDays, parseISO, format } from 'date-fns';
+import { differenceInMonths, differenceInDays, parseISO, format, differenceInYears } from 'date-fns';
 
 type MyProfileProps = {
     user: TalentTypeAcf;
@@ -271,8 +271,9 @@ const MyProfile = ({
                                     const startDate = parseISO(experience.start_date);
                                     const endDate = experience.currently_working ? new Date() : parseISO(experience.end_date);
 
-                                    const totalMonths = differenceInMonths(endDate, startDate);
+                                    const remainingMonths = differenceInMonths(endDate, startDate) % 12;
                                     const remainingDays = differenceInDays(endDate, startDate) % 30;
+                                    const totalYears = differenceInYears(endDate, startDate);
 
                                     return (
                                         <div key={index} className='flex flex-col gap-2 mb-2'>
@@ -281,8 +282,8 @@ const MyProfile = ({
                                             <p>
                                                 {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(experience.end_date, 'dd/MM/yyyy')}
                                                 <span className='opacity-70'>
-                                                    {totalMonths > 0 || remainingDays > 0
-                                                        ? ` (${totalMonths} months${remainingDays > 0 ? ` and ${remainingDays} days` : ''})`
+                                                    {totalYears > 0 || remainingDays > 0 || remainingMonths > 0
+                                                        ? ` (${totalYears} years, ${remainingMonths} months${remainingDays > 0 ? ` and ${remainingDays} days` : ''})`
                                                         : ''}
                                                 </span>
                                             </p>

@@ -41,7 +41,13 @@ const PrivateLayout = ({
             <div className='flex grow flex-col'>
                 <div className={`${noTalentProfile ? 'px-8 w-full' : 'w-full px-4'} flex fixed md:relative z-40 justify-between py-4 md:py-0 items-center md:px-8 md:w-full mx-auto bg-white`}>
                     <Link href={ROUTES.HOME} className='hidden md:block'>
-                        <Image src={'/assets/logo.svg'} alt='Insyncx logo' width={220} height={150} />
+                        <Image
+                            src={'/assets/logo.png'}
+                            alt='Insyncx logo'
+                            width={593}
+                            height={337}
+                            className='max-w-[12rem] md:max-w-lg w-[200px]'
+                        />
                     </Link>
                     <div className={`${noTalentProfile ? 'justify-end gap-4' : 'justify-between'} flex bg-white md:justify-end  items-center md:gap-6 gap-2 py-1 w-[95vw] mx-auto md:mx-0 md:w-auto`}>
                         <Link href={'/training-and-licenses'} className='green-btn hidden'>

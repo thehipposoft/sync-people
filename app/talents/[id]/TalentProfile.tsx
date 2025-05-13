@@ -37,6 +37,8 @@ const TalentProfile = ({
         }
     }, []);
 
+    console.log('DATA',talentData)
+
     const generatePDF = async () => {
         const blob = await pdf(
           <TalentPDFDocument talentData={talentData} selectedIndustry={selectedIndustry} />
@@ -299,7 +301,7 @@ const TalentProfile = ({
                                 talentData.extras.other_urls ?
                                 talentData.extras.other_urls && talentData.extras.other_urls.map((item, index) => (
                                     <div key={index}>
-                                        {item.name}
+                                        <Link href={item.url} target='_blank' rel='noreferrer' className='hover:underline'>{item.name}</Link>
                                     </div>
                                 ))
                                 : '-'

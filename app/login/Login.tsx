@@ -117,7 +117,13 @@ const LoginMenu = () => {
                     </Link>
                 </p>
                 <div className='flex justify-around items-center md:w-[450px] pt-10'>
-                    <Image src={'/assets/logo.svg'} width={150} height={100} alt='Sync logo' />
+                    <Image
+                        src={'/assets/logo.png'}
+                        width={593}
+                        height={337}
+                        className='max-w-[12rem] md:max-w-lg w-[200px]'
+                        alt='Insyncx logo'
+                    />
                     <div className='flex justify-end items-end'>
                         <Image src={'/assets/images/vectors/facebook.svg'} width={30} height={30} alt='icon' className='mr-2' />
                         <Image src={'/assets/images/vectors/twitter.svg'} width={30} height={30} alt='icon' className='mx-4' />
