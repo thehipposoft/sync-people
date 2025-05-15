@@ -282,9 +282,11 @@ const MyProfile = ({
                                             <p>
                                                 {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(experience.end_date, 'dd/MM/yyyy')}
                                                 <span className='opacity-70'>
-                                                    {totalYears > 0 || remainingDays > 0 || remainingMonths > 0
-                                                        ? ` (${totalYears} years, ${remainingMonths} months${remainingDays > 0 ? ` and ${remainingDays} days` : ''})`
-                                                        : ''}
+                                                    {
+                                                    totalYears > 0
+                                                        ? ` (${totalYears > 0 ? `${totalYears} years` : ''}${remainingMonths > 0 ? `, ${remainingMonths} months` : ''})`
+                                                        : ` (${totalYears > 0 ? `${totalYears} years` : ''}${remainingMonths > 0 ? `${remainingMonths} months` : ''})`
+                                                    }
                                                 </span>
                                             </p>
                                             <p>{experience.description}</p>

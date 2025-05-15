@@ -234,7 +234,7 @@ const TalentProfile = ({
                                     <h4 className='text-xl mb-2'>{experience.position}</h4>
                                     <p className='opacity-70'>{experience.company_name}</p>
                                     <p className='opacity-70'>
-                                    {experience.start_date} - {experience.currently_working ? 'Current' : experience.end_date}
+                                    {experience.start_date} {<strong className='font-bold'>-</strong>} {experience.currently_working ? 'Current' : experience.end_date}
                                     </p>
                                     <p>{experience.description}</p>
                                 </div>

@@ -57,20 +57,20 @@ const TalentPDFDocument = ({ talentData, selectedIndustry }:Props) => {
                 </View>
 
                 {/* Name and role */}
-                <Text style={tw('text-2xl font-bold mb-2')}>
+                <Text style={tw('text-2xl font-bold mb-2 text-[#1A335D] poppins')}>
                 {talentData.personal_information.first_name} - {selectedIndustry.position}
                 </Text>
 
                 {/* Current Location & Birth Country */}
                 <View style={tw('flex-row justify-between mb-4')}>
                     <View>
-                        <Text style={tw('text-lg font-bold text-primary')}>Current Location</Text>
+                        <Text style={tw('text-lg font-bold text-primary poppins')}>Current Location</Text>
                         <Text style={tw('text-sm text-primary')}>
                         {talentData.personal_information.current_location?.suburb}, {talentData.personal_information.current_location?.state}
                         </Text>
                     </View>
                     <View>
-                        <Text style={tw('text-lg font-bold text-primary')}>Country of Birth</Text>
+                        <Text style={tw('text-lg font-bold text-primary poppins')}>Country of Birth</Text>
                         <Text style={tw('text-sm text-primary')}>
                         {talentData.personal_information.country_of_birth || '-'}
                         </Text>
@@ -80,13 +80,13 @@ const TalentPDFDocument = ({ talentData, selectedIndustry }:Props) => {
                 {/* Availability and Licenses */}
                 <View style={tw('flex-row justify-between mb-4')}>
                 <View>
-                    <Text style={tw('text-lg font-bold')}>Licenses</Text>
+                    <Text style={tw('text-lg font-bold poppins')}>Licenses</Text>
                     <Text style={tw('text-sm')}>
                     {selectedIndustry.certificates && selectedIndustry.certificates?.map(c => c.name).join(', ') || '-'}
                     </Text>
                 </View>
                 <View>
-                    <Text style={tw('text-lg font-bold')}>Availability</Text>
+                    <Text style={tw('text-lg font-bold poppins')}>Availability</Text>
                     <Text style={tw('text-sm capitalize')}>
                     {talentData.professional_information.work_preference || '-'}
                     </Text>
@@ -95,7 +95,7 @@ const TalentPDFDocument = ({ talentData, selectedIndustry }:Props) => {
 
                 {/* Contact Info */}
                 <View style={tw('mt-4')}>
-                <Text style={tw('text-lg font-bold mb-2')}>Contact me</Text>
+                <Text style={tw('text-lg font-bold mb-2 poppins')}>Contact me</Text>
                 {talentData.personal_information.mobile && (
                     <Text style={tw('text-sm')}>{talentData.personal_information.mobile}</Text>
                 )}
@@ -107,10 +107,10 @@ const TalentPDFDocument = ({ talentData, selectedIndustry }:Props) => {
                 {/* Work Experience */}
                 {talentData.work_experience?.length > 0 && (
                 <View style={tw('mt-8')}>
-                    <Text style={tw('text-xl font-bold mb-2')}>Work Experience</Text>
+                    <Text style={tw('text-xl font-bold mb-2 poppins')}>Work Experience</Text>
                     {talentData.work_experience.map((exp, idx) => (
                     <View key={idx} style={tw('mb-3')}>
-                        <Text style={tw('text-lg font-semibold')}>{exp.position}</Text>
+                        <Text style={tw('text-lg font-semibold poppins')}>{exp.position}</Text>
                         <Text style={tw('text-sm opacity-70')}>{exp.company_name}</Text>
                         <Text style={tw('text-sm opacity-70')}>
                         {exp.start_date} - {exp.currently_working ? 'Current' : exp.end_date}
@@ -123,7 +123,7 @@ const TalentPDFDocument = ({ talentData, selectedIndustry }:Props) => {
 
                 {/* Extras */}
                 <View style={tw('mt-6')}>
-                    <Text style={tw('text-xl font-bold mb-2')}>Extras</Text>
+                    <Text style={tw('text-xl font-bold mb-2 poppins')}>Extras</Text>
                     <Text style={tw('text-lg')}>Level of English</Text>
                     <Text style={tw('capitalize mb-2')}>{talentData.extras.level_of_english || '-'}</Text>
 
