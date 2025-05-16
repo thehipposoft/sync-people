@@ -37,7 +37,7 @@ const TalentProfile = ({
         }
     }, []);
 
-    console.log('DATA',talentData)
+    console.log('PDF Data:', talentData)
 
     const generatePDF = async () => {
         const blob = await pdf(
