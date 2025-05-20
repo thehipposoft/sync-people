@@ -38,8 +38,12 @@ export const api = async ({
 
     const response = await fetch(baseURL + endpoint, config);
 
+    console.log(">>response", response);
+
     if (response.status === 401) {
+        console.log(">>truee");
         redirect(ROUTES.SESSION_EXPIRED);
+        //return;
     };
 
     return response;

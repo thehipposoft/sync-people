@@ -1,27 +1,43 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import SideMenu from './sideMenu';
 import BackDrop from './sideMenu/backDrop';
 import { ROUTES } from '@/app/constants';
 import ComingSoonModal from './ComingSoonModal';
+import { getUserProfile } from '@/lib/protected-api';
 
 type HeaderProps = {
     isFixed?: boolean;
-    userId?: string;
+    //userId?: string;
     inDashboard?: boolean;
     noTalentProfile?: boolean;
+    isLoggedIn?: boolean;
 };
 
 const Header = ({
     isFixed,
-    userId,
+    //userId,
     inDashboard,
-    noTalentProfile
+    noTalentProfile,
+    isLoggedIn,
 }:HeaderProps) => {
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState<boolean>(false);
+    const [userId, setUserId] = useState<string | undefined>();
+
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            const userData = await getUserProfile();
+            if (userData) {
+                setUserId(userData.id);
+            }
+        };
+        if (isLoggedIn) {
+            fetchUserProfile();
+        }
+    }, []);
 
     const toggleMenu = () => {
         setOpenMenu(!openMenu);
