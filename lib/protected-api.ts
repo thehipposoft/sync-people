@@ -2,6 +2,8 @@ import {
     getToken,
 } from "./actions";
 import { getJWTToken } from "./api";
+import { redirect } from "next/navigation";
+import { ROUTES } from "@/app/constants";
 
 type ApiType = {
     endpoint: string;
@@ -35,6 +37,10 @@ export const api = async ({
     }
 
     const response = await fetch(baseURL + endpoint, config);
+
+    if (response.status === 401) {
+        redirect(ROUTES.SESSION_EXPIRED);
+    };
 
     return response;
 };
