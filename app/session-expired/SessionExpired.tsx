@@ -9,7 +9,7 @@ const SessionExpired = () => {
         const clearCookies = async () => {
             await cleanCookies();
         };
-        //clearCookies();
+        clearCookies();
     }, []);
 
     return (

@@ -341,7 +341,7 @@ const Industries = ({
                                 <label htmlFor={`industry_description`} className="block pb-2">
                                     Certificates <span className='text-xs'>(optional)</span>
                                 </label>
-                                <p className='text-sm'>
+                                <p className='text-sm mb-2'>
                                     These certificates will always stay safely attached to your profile and will be easy to download whenever you need them.
                                 </p>
                                 {

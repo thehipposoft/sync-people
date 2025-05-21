@@ -38,7 +38,10 @@ export const api = async ({
 
     const response = await fetch(baseURL + endpoint, config);
 
-    if (response.status === 401) {
+    console.log(">>response", response)
+    console.log(">>accessToken", accessToken)
+
+    if (response.status === 401 && accessToken) {
         redirect(ROUTES.SESSION_EXPIRED);
     };
 

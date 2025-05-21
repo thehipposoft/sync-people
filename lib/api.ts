@@ -115,15 +115,16 @@ export const login = async (data: LoginType) => {
 
     if (response.status >= 200 && response.status < 300) {
         const data = await response.json();
-        const savedToken = await storeToken({token: data.token});
         const getUserProfileResponse = await getUserProfile(data.token);
 
         if(!getUserProfileResponse.verified) {
             return {
                 status: 401,
-                message: 'User not verified. Please check your email for verification link.',
+                message: 'User not verified. Please check your inbox or spam folder for the verification link.',
             };
         }
+
+        const savedToken = await storeToken({token: data.token});
 
         return {
             status: 200,
@@ -161,7 +162,6 @@ export const createTalentNew = async (data: CreateTalentBodyType) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-
         },
         body: JSON.stringify(data)
     });

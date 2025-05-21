@@ -61,9 +61,6 @@ const Header = ({
                     <rect y="60" width="100" height="15" rx="10" fill='#1A335D'></rect>
                 </svg>
                 <nav className='md:flex justify-center hidden items-center flex-wrap w-full md:w-fit gap-6 md:gap-0'>
-                    <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.HOME}>
-                        Home
-                    </Link>
                     <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.ABOUT}>
                         About
                     </Link>
