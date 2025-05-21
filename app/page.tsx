@@ -13,7 +13,7 @@ export default async function Home() {
             <PublicLayout
                 fullWith
             >
-                <div className="w-full pt-4 lg:pt-0">
+                <div className="w-full pt-4 md:pt-0">
                     <Banner />
                     <How />
                     <DigitalPassport />

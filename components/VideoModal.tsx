@@ -11,9 +11,8 @@ const VideoModal = ({isModalOpen, closeModalFunc}:any) => {
                 </svg>
             </div>
             <div className='flex flex-col items-end md:w-[960px] w-full md:h-[740px] h-full'>
-
                 <video
-                    src="https://res.cloudinary.com/du31j65g6/video/upload/v1746997125/video_presentacion_insyncx_25_dgjiwa.mp4"
+                    src="https://res.cloudinary.com/du31j65g6/video/upload/v1747820909/Insyncx/video_presentacion_insyncx_25_05-25_gpxa1i.mp4"
                     className='rounded-3xl'
                     controls
                 >

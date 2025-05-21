@@ -42,6 +42,7 @@ export async function getToken() {
 }
 
 export async function cleanCookies() {
+    console.log(">>cleanCookies");
     const cookieStore = await cookies();
     cookieStore.delete('wp_accessToken');
     cookieStore.delete('userType');
