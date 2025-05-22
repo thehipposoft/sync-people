@@ -10,7 +10,6 @@ import { getUserProfile } from '@/lib/protected-api';
 
 type HeaderProps = {
     isFixed?: boolean;
-    //userId?: string;
     inDashboard?: boolean;
     noTalentProfile?: boolean;
     isLoggedIn?: boolean;
@@ -18,7 +17,6 @@ type HeaderProps = {
 
 const Header = ({
     isFixed,
-    //userId,
     inDashboard,
     noTalentProfile,
     isLoggedIn,
