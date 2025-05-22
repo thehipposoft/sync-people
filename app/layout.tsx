@@ -4,7 +4,7 @@ import localFont from 'next/font/local';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import SchemaOrg from '@/components/SchemaOrg';
 import { ViewTransitions } from "next-view-transitions";
-import {Providers} from "./providers";
+import { Providers } from "./providers";
 
 const openSans = localFont({
     src: [

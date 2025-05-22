@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { storeToken, cleanCookies } from "./actions";
+import { storeToken, cleanCookies, storeTalentId } from "./actions";
 import { getUserProfile } from "./protected-api";
 
 type ApiType = {
@@ -125,6 +125,7 @@ export const login = async (data: LoginType) => {
         }
 
         const savedToken = await storeToken({token: data.token});
+        const savedTalentId = await storeTalentId(getUserProfileResponse.meta.talent_id);
 
         return {
             status: 200,
@@ -132,6 +133,13 @@ export const login = async (data: LoginType) => {
             talent_id: getUserProfileResponse.meta.talent_id,
         };
     } else {
+        if (response.status === 500) {
+            return {
+                status: 500,
+                message: 'Something went wrong. Please try again later.',
+            };
+        }
+
         const data = await response.json();
 
         return {

@@ -1,9 +1,8 @@
 'use client';
 import { useState } from "react";
 import Image from "next/image";
-import { createClient } from "@/lib/api";
 import { Link } from 'next-view-transitions';
-import { ROUTES } from "../constants";
+import { ROUTES } from "@/app/constants";
 import Modal from "@/components/Modal";
 
 type FormValues = {

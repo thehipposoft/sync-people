@@ -39,23 +39,18 @@ const MyProfilePage = async ({ params }: Props) => {
     const userData:TalentType = await getTalent(id);
 
     if(!userData.acf) {
-        redirect(ROUTES.CURRENT_TALENT_NOT_FOUND);
+        //redirect(ROUTES.CURRENT_TALENT_NOT_FOUND);
     };
 
     return (
-        <PrivateLayout
-            user={userData.acf}
-            userId={id}
-        >
-            <div className="flex">
-                <div className="flex flex-col w-full">
-                    <MyProfile
-                        user={userData.acf}
-                        userId={id}
-                    />
-                </div>
+        <div className="flex">
+            <div className="flex flex-col w-full">
+                <MyProfile
+                    user={userData.acf}
+                    userId={id}
+                />
             </div>
-        </PrivateLayout>
+        </div>
     )
 };
 

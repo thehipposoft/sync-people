@@ -71,7 +71,7 @@ const PrivateLayout = ({
                                 height={40}
                             />
                         </Link>
-                        <Header inDashboard isLoggedIn noTalentProfile={noTalentProfile} />
+                        <Header inDashboard />
                     </div>
                 </div>
                 <div className={`${hideSideNav ? 'w-[90vw]' : 'w-[80vw]'} bg-white mx-auto md:mx-0 md:flex justify-center gap-12 md:my-8 flex-grow w-full`}>

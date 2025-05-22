@@ -11,14 +11,12 @@ import { getUserProfile } from '@/lib/protected-api';
 type HeaderProps = {
     isFixed?: boolean;
     inDashboard?: boolean;
-    noTalentProfile?: boolean;
     isLoggedIn?: boolean;
 };
 
 const Header = ({
     isFixed,
     inDashboard,
-    noTalentProfile,
     isLoggedIn,
 }:HeaderProps) => {
     const [openMenu, setOpenMenu] = useState<boolean>(false);
@@ -65,33 +63,24 @@ const Header = ({
                     <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.CONTACT}>
                         Contact
                     </Link>
-                    {
-                        userId
-                        ? <Link
-                            className={`${noTalentProfile ? 'hidden' : ''} primary-btn`}
-                            href={`${ROUTES.MY_PROFILE}/${userId}`}
-                        >
-                            Dashboard
-                        </Link>
-                        : <div className='flex'>
-                            <div>
-                                <Link
-                                    className='primary-btn'
-                                    href={ROUTES.SIGN_UP}
-                                >
-                                    Sign Up
-                                </Link>
-                            </div>
-                            <div className='mx-2'>
-                                <Link
-                                    className='secondary-btn'
-                                    href={ROUTES.LOGIN}
-                                >
-                                    Log In
-                                </Link>
-                            </div>
+                    <div className='flex'>
+                        <div>
+                            <Link
+                                className='primary-btn'
+                                href={ROUTES.SIGN_UP}
+                            >
+                                Sign Up
+                            </Link>
                         </div>
-                    }
+                        <div className='mx-2'>
+                            <Link
+                                className='secondary-btn'
+                                href={ROUTES.LOGIN}
+                            >
+                                Log In
+                            </Link>
+                        </div>
+                    </div>
                 </nav>
                 <SideMenu userId={userId} sideMenu={openMenu} closeSideMenu={toggleMenu}/>
                 <BackDrop sideMenu={openMenu} closeSideMenu={toggleMenu} isDashboard={inDashboard} />

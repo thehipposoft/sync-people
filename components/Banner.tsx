@@ -15,31 +15,17 @@ const Banner = () => {
     }
 
     return (
-        <div className='max-w-[1250px] mx-auto px-8 md:px-0 py-6 md:py-0 md:h-[90vh] grid grid-cols-1 md:grid-cols-2 items-center justify-between'>
+        <div className='max-w-[1250px] mx-auto px-8 md:px-0 py-6 md:py-0 md:h-[90vh] md:gap-32 grid grid-cols-1 md:grid-cols-2 items-center justify-between'>
             <div className='flex flex-col'>
                 <h2 className='md:tracking-wide tracking-tight text-[56px] md:text-6xl'>
                     Connecting you with your future
                 </h2>
-                <h1 className='pt-4 light text-xl leading-6'>
+                <h1 className='pt-4 light text-xl leading-7'>
                     Looking to work while you explore Australia? <span>We will <br/> design for you a Skills Portfolio specifically tailored to <br/> the industry you want to apply for so that you get the job you are looking for, without stress or cost.</span>
                 </h1>
-                <div className='mt-8 flex-wrap gap-4 md:gap-0 mb-3 md:mb-0 hidden'>
-                    <Link
-                        href={ROUTES.SIGN_UP}
-                        className='secondary-btn w-fit md:w-auto'
-                    >
-                        Looking for Talent
-                    </Link>
-                    <Link
-                        href={ROUTES.SIGN_UP}
-                        className='primary-btn w-fit md:w-auto'
-                    >
-                        Looking for Work
-                    </Link>
-                </div>
             </div>
             <div
-                className='group cursor-pointer relative flex justify-center items-center w-full h-72 md:w-[540px] md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-8 mt-8 md:mt-0'
+                className='group cursor-pointer relative flex justify-center items-center w-full h-72 md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-8 mt-8 md:mt-0'
                 onClick={toggleModal}
             >
                 <Image

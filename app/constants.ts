@@ -21,6 +21,7 @@ export const ROUTES = {
     CURRENT_TALENT_NOT_FOUND: '/current-talent-not-found',
     SESSION_EXPIRED: '/session-expired',
     //Private routes
+    DASHBOARD: '/dashboard',
     MY_PROFILE: '/dashboard/my-profile',
 }
 
