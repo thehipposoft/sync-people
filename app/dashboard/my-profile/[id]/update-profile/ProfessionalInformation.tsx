@@ -241,7 +241,7 @@ const ProfessionalInformation = ({
                         </div>
                         : <div className="w-full flex justify-between col-span-2 flex-wrap">
                             <h3 className='capitalize mb-2 text-2xl'>
-                                {`${index + 1}. ${industry.industry}`}
+                                {`${index + 1}. ${industry.industry.replace(/_/g, ' ')}`}
                             </h3>
                             {
                                 listOfIndustries.length > 1 &&

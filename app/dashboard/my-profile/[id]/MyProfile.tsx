@@ -193,7 +193,7 @@ const MyProfile = ({
                                             target='_blank'
                                         >
                                               <h2 className='capitalize mb-1 text-xl underline'>
-                                                {industry.industry}
+                                                {industry.industry.replace(/_/g, ' ')}
                                             </h2>
                                         </Link>
                                         <Link

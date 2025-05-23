@@ -37,15 +37,10 @@ const MyProfilePage = async ({ params }: Props) => {
     const userData:TalentType = await getTalent(id);
 
     return (
-        <PrivateLayout
-            user={userData.acf}
+        <ProfileForm
+            userData={userData.acf}
             userId={id}
-        >
-            <ProfileForm
-                userData={userData.acf}
-                userId={id}
-            />
-        </PrivateLayout>
+        />
     )
 };
 

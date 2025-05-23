@@ -109,7 +109,7 @@ const TalentProfile = ({
                                                         value={industry.position}
                                                         onClick={() => setSelectedIndustry(industry)}
                                                     >
-                                                        {industry.industry.toUpperCase()}
+                                                        {industry.industry.replace(/_/g, ' ').toUpperCase()}
                                                     </option>
                                                 ))}
                                             </select>
