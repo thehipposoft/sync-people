@@ -39,7 +39,7 @@ const MyProfilePage = async ({ params }: Props) => {
     const userData:TalentType = await getTalent(id);
 
     if(!userData.acf) {
-        //redirect(ROUTES.CURRENT_TALENT_NOT_FOUND);
+        redirect(ROUTES.CURRENT_TALENT_NOT_FOUND);
     };
 
     return (

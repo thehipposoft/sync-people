@@ -146,77 +146,80 @@ const TalentProfile = ({
                                     {
                                         selectedIndustry.certificates && (
                                         <div>
-                                            <h4 className='text-lg'>Licenses</h4>
+                                            <h4 className='text-lg'>
+                                                Licenses or Certificates
+                                            </h4>
                                             <p>
                                                 {selectedIndustry.certificates.map(certificate => certificate.name).join(', ')}
                                             </p>
                                         </div>
                                         )
                                     }
-
                                     <div className='flex flex-col'>
                                         <h4 className='text-lg'>
                                             Work Preference
                                         </h4>
-                                        <p className={`flex gap-2 capitalize text-right`}>
+                                        <p className={`capitalize text-right`}>
                                             {talentData.professional_information.work_preference ? talentData.professional_information.work_preference : '-'}
                                         </p>
                                     </div>
                                 </div>
-                                {
-                                    talentData.personal_information.presentation_video && (
-                                        <div className='gap-3 mt-4'>
-                                            <Link href={talentData.personal_information.presentation_video} target='_blank' className='underline w-fit flex items-center gap-3 group'>
-                                                    <h4 className='text-lg'>
-                                                        Presentation video
-                                                    </h4>
-                                                    <div className='p-2 bg-primary-text w-fit rounded-full border-primary-text border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-300'>
-                                                        <svg viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            width={12}
-                                                            height={12}
-                                                        >
-                                                            <g id="SVGRepo_iconCarrier">
-                                                                <path
-                                                                    className='group-hover:fill-primary-text'
-                                                                    d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
-                                                                </path>
-                                                            </g>
-                                                        </svg>
-                                                    </div>
+                                <div className='flex justify-between mt-3 flex-wrap gap-4'>
+                                    {
+                                        talentData.personal_information.presentation_video ? (
+                                            <div className='gap-3 mt-4'>
+                                                <Link href={talentData.personal_information.presentation_video} target='_blank' className='underline w-fit flex items-center gap-3 group'>
+                                                        <h4 className='text-lg'>
+                                                            Presentation video
+                                                        </h4>
+                                                        <div className='p-2 bg-primary-text w-fit rounded-full border-primary-text border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-300'>
+                                                            <svg viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                width={12}
+                                                                height={12}
+                                                            >
+                                                                <g id="SVGRepo_iconCarrier">
+                                                                    <path
+                                                                        className='group-hover:fill-primary-text'
+                                                                        d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
+                                                                    </path>
+                                                                </g>
+                                                            </svg>
+                                                        </div>
+                                                </Link>
+                                            </div>
+                                        ) : <div/>
+                                    }
+                                    <div className='flex flex-col mt-4 md:items-end'>
+                                        <h4 className='text-lg mb-2'>
+                                            Contact me
+                                        </h4>
+                                        <div className='flex flex-wrap gap-4'>
+
+                                            <Link
+                                                href={`tel:${talentData.personal_information.mobile}`}
+                                                className={`${talentData.personal_information.mobile === '' ? 'hidden' : ''} ml-0 flex items-center gap-2 primary-btn group text-sm`}
+                                            >
+                                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" className="mr-2">
+                                                    <path d="M11 18H13M9.2 21H14.8C15.9201 21 16.4802 21 16.908 20.782C17.2843 20.5903 17.5903 20.2843 17.782 19.908C18 19.4802 18 18.9201 18 17.8V6.2C18 5.0799 18 4.51984 17.782 4.09202C17.5903 3.71569 17.2843 3.40973 16.908 3.21799C16.4802 3 15.9201 3 14.8 3H9.2C8.0799 3 7.51984 3 7.09202 3.21799C6.71569 3.40973 6.40973 3.71569 6.21799 4.09202C6 4.51984 6 5.07989 6 6.2V17.8C6 18.9201 6 19.4802 6.21799 19.908C6.40973 20.2843 6.71569 20.5903 7.09202 20.782C7.51984 21 8.07989 21 9.2 21Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                    </path>
+                                                </svg>
+                                                {talentData.personal_information.mobile}
+                                            </Link>
+                                            <Link
+                                                href={`mailto:${talentData.personal_information.email}`}
+                                                className='flex items-center gap-2 primary-btn group text-sm mr-0 ml-0'
+                                            >
+                                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" className="mr-2">
+                                                    <g id="SVGRepo_iconCarrier">
+                                                        <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                                                        <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></rect>
+                                                    </g>
+                                                </svg>
+                                                {hideEmailDomain(talentData.personal_information.email)}
                                             </Link>
                                         </div>
-                                    )
-                                }
-                                <div className='flex flex-col mt-4 md:items-end'>
-                                    <h4 className='text-lg mb-2'>
-                                        Contact me
-                                    </h4>
-                                    <div className='flex flex-wrap gap-4'>
-
-                                        <Link
-                                            href={`tel:${talentData.personal_information.mobile}`}
-                                            className={`${talentData.personal_information.mobile === '' ? 'hidden' : ''} ml-0 flex items-center gap-2 primary-btn group text-sm`}
-                                        >
-                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" className="mr-2">
-                                                <path d="M11 18H13M9.2 21H14.8C15.9201 21 16.4802 21 16.908 20.782C17.2843 20.5903 17.5903 20.2843 17.782 19.908C18 19.4802 18 18.9201 18 17.8V6.2C18 5.0799 18 4.51984 17.782 4.09202C17.5903 3.71569 17.2843 3.40973 16.908 3.21799C16.4802 3 15.9201 3 14.8 3H9.2C8.0799 3 7.51984 3 7.09202 3.21799C6.71569 3.40973 6.40973 3.71569 6.21799 4.09202C6 4.51984 6 5.07989 6 6.2V17.8C6 18.9201 6 19.4802 6.21799 19.908C6.40973 20.2843 6.71569 20.5903 7.09202 20.782C7.51984 21 8.07989 21 9.2 21Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                </path>
-                                            </svg>
-                                            {talentData.personal_information.mobile}
-                                        </Link>
-                                        <Link
-                                            href={`mailto:${talentData.personal_information.email}`}
-                                            className='flex items-center gap-2 primary-btn group text-sm mr-0 ml-0'
-                                        >
-                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" className="mr-2">
-                                                <g id="SVGRepo_iconCarrier">
-                                                    <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                                                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></rect>
-                                                </g>
-                                            </svg>
-                                            {hideEmailDomain(talentData.personal_information.email)}
-                                        </Link>
                                     </div>
                                 </div>
                             </div>
