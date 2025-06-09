@@ -134,6 +134,15 @@ export const login = async (data: LoginType) => {
         };
     } else {
         if (response.status === 500) {
+            if (response.body) {
+                const data = await response.json();
+
+                return {
+                    status: 500,
+                    message: data.message || 'Something went wrong. Please try again later.',
+                };
+            }
+
             return {
                 status: 500,
                 message: 'Something went wrong. Please try again later.',

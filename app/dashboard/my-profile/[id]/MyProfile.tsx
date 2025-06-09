@@ -411,7 +411,7 @@ const MyProfile = ({
             <div className='flex md:flex-row gap-6 md:gap-0 w-5/6 md:w-auto flex-col pb-8 md:mb-0 md:ml-auto mt-6 mx-auto md:mx-0'>
                 <button
                     className='secondary-btn md:ml-4'
-                    onClick={() => handleDownloadQR(`${ROUTES.TALENTS}/${userId}`)}
+                    onClick={() => handleDownloadQR(`https://insyncx.com${ROUTES.TALENTS}/${userId}`)}
                 >
                     Download QR Code to share
                 </button>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { getTalent } from "@/lib/api";
 import { TalentType } from "@/types";
-import PrivateLayout from "@/components/PrivateLayout";
 import TalentForm from "./TalentForm";
 import { redirect } from "next/navigation";
 import { ROUTES } from "@/app/constants";
@@ -43,19 +42,12 @@ const CreateTalentProfile = async ({ params }: Props) => {
     }
 
     return (
-        <PrivateLayout
-            user={userData.acf}
-            userId={id}
-            hideSideNav
-            noTalentProfile={true}
-        >
-            <div className="flex flex-col w-full">
-                <TalentForm
-                    user={userData.acf}
-                    userId={id}
-                />
-            </div>
-        </PrivateLayout>
+        <div className="flex flex-col w-full">
+            <TalentForm
+                user={userData.acf}
+                userId={id}
+            />
+        </div>
     )
 };
 

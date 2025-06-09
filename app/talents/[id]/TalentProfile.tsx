@@ -143,18 +143,19 @@ const TalentProfile = ({
                                 </div>
 
                                 <div className='flex justify-between mt-1 flex-col md:flex-row gap-3'>
-                                    {
-                                        selectedIndustry.certificates && (
-                                        <div>
-                                            <h4 className='text-lg'>
-                                                Licenses or Certificates
-                                            </h4>
-                                            <p>
+                                    <div>
+                                        <h4 className='text-lg'>
+                                            Licenses or Certificates
+                                        </h4>
+                                        {
+                                            selectedIndustry.certificates?.length > 0
+                                            ? <p>
                                                 {selectedIndustry.certificates.map(certificate => certificate.name).join(', ')}
                                             </p>
-                                        </div>
-                                        )
-                                    }
+                                            : '-'
+                                        }
+                                    </div>
+
                                     <div className='flex flex-col'>
                                         <h4 className='text-lg'>
                                             Work Preference

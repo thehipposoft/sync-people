@@ -64,6 +64,10 @@ const TalentForm = ({
     const handleUploadProfileImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if ( e.target.files) {
             const file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+
             setProfileImageFile(file);
             const reader = new FileReader();
 
@@ -270,7 +274,7 @@ const TalentForm = ({
                         Updating Profile
                     </h1>
                     <p className='text-center mb-4'>
-                        Please wait while we creating your skills portfolio
+                        Please wait while we creating your Skills Portfolio
                     </p>
                 </div>
             </Modal>
