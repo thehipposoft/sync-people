@@ -44,36 +44,36 @@ const TalentPDFDocument = ({
     talentData,
     selectedIndustry
 }:Props) => {
+    console.log(">>talentData", talentData);
     return (
         <Document>
             <Page size="A4" style={tw('bg-white px-6 py-8 font-sans')}>
-                <View style={tw('rounded-t-2xl overflow-hidden h-20')}>
+                {/* <View style={tw('rounded-t-2xl overflow-hidden h-20')}>
                     <Image
                         style={tw('object-cover w-full h-full')}
                         src={INDUSTRIES_BANNER[selectedIndustry.industry]}
                     />
-                </View>
+                </View> */}
 
                 <View style={tw('flex flex-col mt-6')}>
                     <View style={tw('flex-row items-start gap-4 mb-4')}>
                         <Image
-                            style={tw('rounded-full border-4 border-white w-36 h-36')}
+                            style={tw('rounded-full border-4 border-white w-24 h-24')}
                             src={talentData.personal_information.profile_pic
                                 ? talentData.personal_information.profile_pic
                                 : '/assets/images/profile-avatar.png'
                             }
                         />
-                        <Text style={tw('text-base max-w-[420px] text-primary')}>
-                            {talentData.personal_information.about_myself
-                            ? `" ${talentData.personal_information.about_myself} "`
-                            : ''}
-                        </Text>
-                    </View>
-
-                    <View style={tw('flex-row items-center justify-between mb-4')}>
-                        <Text style={tw('text-3xl font-bold mb-2 text-primary')}>
-                            {talentData.personal_information.first_name} {talentData.personal_information.last_name} - {selectedIndustry.position}
-                        </Text>
+                        <View style={tw('mb-4')}>
+                            <Text style={tw('text-3xl font-bold text-primary')}>
+                                {talentData.personal_information.first_name} {talentData.personal_information.last_name} - {selectedIndustry.position}
+                            </Text>
+                            <Text style={tw('text-base text-primary')}>
+                                {talentData.personal_information.about_myself
+                                ? `" ${talentData.personal_information.about_myself} "`
+                                : ''}
+                            </Text>
+                        </View>
                     </View>
 
                     <View style={tw('flex-row justify-between mb-4')}>
@@ -122,29 +122,27 @@ const TalentPDFDocument = ({
                     <View style={tw('mt-8')}>
                         <Text style={tw('text-2xl font-bold mb-2 text-primary')}>Work Experience</Text>
                         {
-                            talentData.work_experience && talentData.work_experience.length > 0
-                            ? [...talentData.work_experience]
+                            [...talentData.work_experience]
                                 .sort((a, b) => parseISO(b.start_date).getTime() - parseISO(a.start_date).getTime())
                                 .map((experience, index) => {
                                     const startDate = parseISO(experience.start_date);
                                     const endDate = experience.currently_working ? new Date() : parseISO(experience.end_date);
 
                                     return (
-                                        <div key={index} className='flex flex-col gap-2 mb-2'>
-                                            <h2 className='text-xl font-bold'>
-                                                {experience.position} - <span className='text-lg'>{experience.company_name}</span>
-                                            </h2>
-                                            <p>
+                                        <View key={index} style={tw('flex flex-col gap-2 mb-2')}>
+                                            <Text style={tw('text-xl font-bold')}>
+                                                {experience.position} - <Text style={tw('text-lg')}>{experience.company_name}</Text>
+                                            </Text>
+                                            <Text>
                                                 {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(experience.end_date, 'dd/MM/yyyy')}
-                                                <span className='ml-1 text-sm'>
+                                                <Text style={tw('ml-1 text-sm')}>
                                                     ({handleRenderTimeInJobs(startDate, endDate)})
-                                                </span>
-                                            </p>
-                                            <p>{experience.description}</p>
-                                        </div>
+                                                </Text>
+                                            </Text>
+                                            <Text>{experience.description}</Text>
+                                        </View>
                                     );
                                 })
-                            : <div></div>
                         }
                     </View>
                     )}
