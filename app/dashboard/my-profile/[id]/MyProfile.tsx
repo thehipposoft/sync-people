@@ -98,13 +98,13 @@ const MyProfile = ({
                                     {user.personal_information.email}
                                 </p>
                             </div>
-                            <div className='flex flex-col gap-4 pt-4 '>
+                            <div className='flex flex-col gap-4 pt-4'>
                                 <div>
                                     <h2 className='text-lg'>Industries of Preference</h2>
                                     <p className='capitalize'>
                                         {
-                                        user.professional_information.industries[0] ?
-                                        user.professional_information.industries.map(industry => industry.industry).join(', ')
+                                        user.professional_information.industries[0]
+                                        ? user.professional_information.industries.map(industry => industry.industry.replace(/_/g, ' ')).join(', ')
                                         : '-'
                                         }
                                     </p>

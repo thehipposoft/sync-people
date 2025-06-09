@@ -18,7 +18,7 @@ Font.register({ family: 'Poppins', fonts: [
     { src: '/assets/fonts/Poppins-Regular.ttf' },
     { src: '/assets/fonts/Poppins-Bold.ttf', fontWeight: 'bold' },
     { src: '/assets/fonts/Poppins-Light.ttf', fontWeight: 'light' },
-   ]});
+]});
 
 const tw = createTw({
     theme: {
@@ -27,10 +27,9 @@ const tw = createTw({
         },
         extend: {
             colors: {
-            primary: '#1A335D',
-            secondary: '#6B7280',
-            accent: '#F59E0B',
-            // Add more custom colors here
+                primary: '#1A335D',
+                secondary: '#6B7280',
+                accent: '#F59E0B',
             },
         },
     },
