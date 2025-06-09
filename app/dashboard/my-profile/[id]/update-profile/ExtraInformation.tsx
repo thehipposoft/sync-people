@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { Link } from 'next-view-transitions';
 import { updateProfile } from '@/lib/protected-api';
 import { ExtraInformationType } from '@/types';
-import { LEVEL_OF_ENGLISH, EDUCATION_LEVEL, LANGUAGES, ROUTES } from '@/app/constants';
+import { LEVEL_OF_ENGLISH, EDUCATION_LEVEL, LANGUAGES } from '@/app/constants';
 import UploadFileModal from '@/components/UploadFileModal';
 import Modal from '@/components/Modal';
 import { SOCIAL_MEDIA_PLATFORMS } from '@/app/constants';
-import { Tooltip } from "@heroui/tooltip";
+import { format } from 'date-fns';
 
 type PersonalInformationPropsType = {
     initialValues: ExtraInformationType;
@@ -232,7 +232,7 @@ const ExtraInformation = ({
                                         <td
                                             className={`text-left py-3 text-sm px-4 md:px-2`}
                                         >
-                                            {credential.expiry_date}
+                                            {format(credential.expiry_date, 'dd/MM/yyyy')}
                                         </td>
                                         <td className='text-right pr-4'>
                                             <button

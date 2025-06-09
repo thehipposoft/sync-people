@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { SocialMediaLinksType } from "@/types";
-import { IndustriesAvailable } from "@/types";
+import { SocialMediaLinksType, IndustriesAvailable } from "@/types";
+import { differenceInYears, differenceInMonths, differenceInDays } from "date-fns";
 
 export const getAge = (birthDate: string) => {
     const today = new Date();
@@ -12,6 +12,21 @@ export const getAge = (birthDate: string) => {
         age--;
     }
     return age;
+};
+
+export const handleRenderTimeInJobs = (startDate: Date, endDate: Date) => {
+    const diffInYears = differenceInYears(endDate, startDate);
+    const diffInMonths = differenceInMonths(endDate, startDate) % 12;
+    const diffInDays = differenceInDays(endDate, startDate) % 30;
+
+    if (diffInYears > 0) {
+        return `${diffInYears} year${diffInYears > 1 ? 's' : ''}, ${diffInMonths} month${diffInMonths > 1 ? 's' : ''}, ${diffInDays} day${diffInDays > 1 ? 's' : ''}`;
+    }
+
+    if (diffInMonths > 0) {
+        return `${diffInMonths} month${diffInMonths > 1 ? 's' : ''}, ${diffInDays} day${diffInDays > 1 ? 's' : ''}`;
+    }
+    return `${diffInDays} day${diffInDays > 1 ? 's' : ''}`;
 };
 
 export const renderSocialMediaIcon = (platform: SocialMediaLinksType) => {

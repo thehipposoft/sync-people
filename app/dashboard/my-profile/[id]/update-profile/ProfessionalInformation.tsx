@@ -5,6 +5,7 @@ import { professional_information } from "@/types";
 import { Link } from "next-view-transitions";
 import Modal from "@/components/Modal";
 import { Tooltip } from "@heroui/tooltip";
+import { format } from "date-fns";
 
 type ProfessionalPropsType = {
     initialValues: professional_information;
@@ -358,7 +359,7 @@ const ProfessionalInformation = ({
                                                 <td
                                                     className={`text-left py-3 text-sm px-4 md:px-2`}
                                                 >
-                                                    {certificate.expiry_date}
+                                                    {format(certificate.expiry_date, 'dd/MM/yyyy')}
                                                 </td>
                                                 <td className='text-right pr-4'>
                                                     <button

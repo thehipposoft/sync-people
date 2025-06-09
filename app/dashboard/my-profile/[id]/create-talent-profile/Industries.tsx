@@ -5,6 +5,7 @@ import { Select, SelectItem } from "@heroui/select";
 import { Tooltip } from "@heroui/tooltip";
 import Link from "next/link";
 import Modal from '@/components/Modal';
+import { format } from 'date-fns';
 
 type IndustriesPropsType = {
     currentIndex: number;
@@ -375,7 +376,7 @@ const Industries = ({
                                                     <td
                                                         className={`text-left py-3 text-sm px-4 md:px-2`}
                                                     >
-                                                        {certificate.expiry_date}
+                                                        {format(certificate.expiry_date, 'dd/MM/yyyy')}
                                                     </td>
                                                     <td className='text-right pr-4'>
                                                         <button

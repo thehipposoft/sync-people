@@ -1,10 +1,9 @@
 import { useState, useRef } from "react";
-import { Link } from "next-view-transitions";
 import { TalentTypeAcf } from "@/types";
-import { LEVEL_OF_ENGLISH, EDUCATION_LEVEL, LANGUAGES, ROUTES, SOCIAL_MEDIA_PLATFORMS } from "@/app/constants";
-import { Tooltip } from "@heroui/tooltip";
+import { LEVEL_OF_ENGLISH, EDUCATION_LEVEL, LANGUAGES, SOCIAL_MEDIA_PLATFORMS } from "@/app/constants";
 import { Select, SelectItem } from "@heroui/select";
 import Modal from "@/components/Modal";
+import { format } from "date-fns";
 
 type ExtrasPropsType = {
     currentIndex: number;
@@ -252,7 +251,7 @@ type ExtrasPropsType = {
                                             <td
                                                 className={`text-left py-3 text-sm px-4 md:px-2`}
                                             >
-                                                {credential.expiry_date}
+                                                {format(credential.expiry_date, 'dd/MM/yyyy')}
                                             </td>
                                             <td className='text-right pr-4'>
                                                 <button

@@ -11,6 +11,8 @@ import {
 } from '@react-pdf/renderer';
 import { createTw } from 'react-pdf-tailwind';
 import { INDUSTRIES_BANNER } from '@/app/constants';
+import { parseISO, format } from 'date-fns';
+import { handleRenderTimeInJobs } from '@/lib/utils';
 
 Font.register({ family: 'Poppins', fonts: [
     { src: '/assets/fonts/Poppins-Regular.ttf' },
@@ -41,11 +43,12 @@ type Props = {
 
 const TalentPDFDocument = ({
     talentData,
-    selectedIndustry }:Props) => {
+    selectedIndustry
+}:Props) => {
     return (
         <Document>
             <Page size="A4" style={tw('bg-white px-6 py-8 font-sans')}>
-                <View style={tw('rounded-t-2xl overflow-hidden h-40')}>
+                <View style={tw('rounded-t-2xl overflow-hidden h-20')}>
                     <Image
                         style={tw('object-cover w-full h-full')}
                         src={INDUSTRIES_BANNER[selectedIndustry.industry]}
@@ -56,7 +59,10 @@ const TalentPDFDocument = ({
                     <View style={tw('flex-row items-start gap-4 mb-4')}>
                         <Image
                             style={tw('rounded-full border-4 border-white w-36 h-36')}
-                            src={'/assets/images/profile-avatar.png'}
+                            src={talentData.personal_information.profile_pic
+                                ? talentData.personal_information.profile_pic
+                                : '/assets/images/profile-avatar.png'
+                            }
                         />
                         <Text style={tw('text-base max-w-[420px] text-primary')}>
                             {talentData.personal_information.about_myself
@@ -67,10 +73,7 @@ const TalentPDFDocument = ({
 
                     <View style={tw('flex-row items-center justify-between mb-4')}>
                         <Text style={tw('text-3xl font-bold mb-2 text-primary')}>
-                            {talentData.personal_information.first_name} - {selectedIndustry.position}
-                        </Text>
-                        <Text style={tw('text-xl font-bold mb-2 text-primary capitalize')}>
-                            {selectedIndustry.industry}
+                            {talentData.personal_information.first_name} {talentData.personal_information.last_name} - {selectedIndustry.position}
                         </Text>
                     </View>
 
@@ -119,16 +122,31 @@ const TalentPDFDocument = ({
                     {talentData.work_experience?.length > 0 && (
                     <View style={tw('mt-8')}>
                         <Text style={tw('text-2xl font-bold mb-2 text-primary')}>Work Experience</Text>
-                        {talentData.work_experience.map((exp, idx) => (
-                        <View key={idx} style={tw('mb-3')}>
-                            <Text style={tw('text-lg font-semibold text-primary')}>{exp.position}</Text>
-                            <Text style={tw('text-sm opacity-70 text-primary')}>{exp.company_name}</Text>
-                            <Text style={tw('text-sm opacity-70 text-primary')}>
-                            {exp.start_date} - {exp.currently_working ? 'Current' : exp.end_date}
-                            </Text>
-                            <Text style={tw('text-sm text-primary')}>{exp.description}</Text>
-                        </View>
-                        ))}
+                        {
+                            talentData.work_experience && talentData.work_experience.length > 0
+                            ? [...talentData.work_experience]
+                                .sort((a, b) => parseISO(b.start_date).getTime() - parseISO(a.start_date).getTime())
+                                .map((experience, index) => {
+                                    const startDate = parseISO(experience.start_date);
+                                    const endDate = experience.currently_working ? new Date() : parseISO(experience.end_date);
+
+                                    return (
+                                        <div key={index} className='flex flex-col gap-2 mb-2'>
+                                            <h2 className='text-xl font-bold'>
+                                                {experience.position} - <span className='text-lg'>{experience.company_name}</span>
+                                            </h2>
+                                            <p>
+                                                {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(experience.end_date, 'dd/MM/yyyy')}
+                                                <span className='ml-1 text-sm'>
+                                                    ({handleRenderTimeInJobs(startDate, endDate)})
+                                                </span>
+                                            </p>
+                                            <p>{experience.description}</p>
+                                        </div>
+                                    );
+                                })
+                            : <div></div>
+                        }
                     </View>
                     )}
 

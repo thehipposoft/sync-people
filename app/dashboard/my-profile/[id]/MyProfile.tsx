@@ -3,10 +3,9 @@ import React from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
-import { getAge } from '@/lib/utils';
-import { renderSocialMediaIcon } from '@/lib/utils';
+import { getAge, renderSocialMediaIcon, handleRenderTimeInJobs } from '@/lib/utils';
 import { ROUTES, INDUSTRIES_BANNER } from '@/app/constants';
-import { differenceInMonths, differenceInDays, parseISO, format, differenceInYears } from 'date-fns';
+import { parseISO, format } from 'date-fns';
 
 type MyProfileProps = {
     user: TalentTypeAcf;
@@ -257,7 +256,6 @@ const MyProfile = ({
                             ))
                         }
                     </div>
-
                 </div>
                 <div className='flex flex-col my-4 bg-white md:px-12 px-6 py-6 border-t'>
                     <h2 className='text-2xl pb-4 font-bold'>
@@ -271,22 +269,15 @@ const MyProfile = ({
                                     const startDate = parseISO(experience.start_date);
                                     const endDate = experience.currently_working ? new Date() : parseISO(experience.end_date);
 
-                                    const remainingMonths = differenceInMonths(endDate, startDate) % 12;
-                                    const remainingDays = differenceInDays(endDate, startDate) % 30;
-                                    const totalYears = differenceInYears(endDate, startDate);
-
                                     return (
                                         <div key={index} className='flex flex-col gap-2 mb-2'>
-                                            <h2 className='text-xl font-bold'>{experience.position}</h2>
-                                            <p>{experience.company_name}</p>
+                                            <h2 className='text-xl font-bold'>
+                                                {experience.position} - <span className='text-lg'>{experience.company_name}</span>
+                                            </h2>
                                             <p>
                                                 {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(experience.end_date, 'dd/MM/yyyy')}
-                                                <span className='opacity-70'>
-                                                    {
-                                                    totalYears > 0
-                                                        ? ` (${totalYears > 0 ? `${totalYears} years` : ''}${remainingMonths > 0 ? `, ${remainingMonths} months` : ''})`
-                                                        : ` (${totalYears > 0 ? `${totalYears} years` : ''}${remainingMonths > 0 ? `${remainingMonths} months` : ''})`
-                                                    }
+                                                <span className='ml-1 text-sm'>
+                                                    ({handleRenderTimeInJobs(startDate, endDate)})
                                                 </span>
                                             </p>
                                             <p>{experience.description}</p>

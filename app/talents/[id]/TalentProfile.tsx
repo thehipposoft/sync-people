@@ -5,10 +5,11 @@ import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf, IndustryType } from '@/types';
 import { INDUSTRIES_BANNER, ROUTES } from '@/app/constants';
-import { renderSocialMediaIcon } from '@/lib/utils';
-import { pdf } from '@react-pdf/renderer';
+import { renderSocialMediaIcon, handleRenderTimeInJobs } from '@/lib/utils';
+import { pdf, PDFViewer } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 import TalentPDFDocument from './TalentPDFDocument';
+import { format, parseISO } from 'date-fns';
 
 type TalentProfileProps = {
     talentData: TalentTypeAcf;
@@ -36,9 +37,6 @@ const TalentProfile = ({
             }
         }
     }, []);
-
-    console.log('>>PDF Data:', talentData)
-    console.log('>>selectedIndustry:', selectedIndustry)
 
     const generatePDF = async () => {
         const blob = await pdf(
@@ -233,17 +231,26 @@ const TalentProfile = ({
                             </h4>
                             {
                             [...talentData.work_experience]
-                                .sort((a, b) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime())
-                                .map((experience, index) => (
-                                <div key={index} className='flex flex-col mb-3'>
-                                    <h4 className='text-xl mb-2'>{experience.position}</h4>
-                                    <p className='opacity-70'>{experience.company_name}</p>
-                                    <p className='opacity-70'>
-                                    {experience.start_date} {<strong className='font-bold'>-</strong>} {experience.currently_working ? 'Current' : experience.end_date}
-                                    </p>
-                                    <p>{experience.description}</p>
-                                </div>
-                                ))
+                                .sort((a, b) => parseISO(b.start_date).getTime() - parseISO(a.start_date).getTime())
+                                .map((experience, index) => {
+                                    const startDate = parseISO(experience.start_date);
+                                    const endDate = experience.currently_working ? new Date() : parseISO(experience.end_date);
+
+                                    return (
+                                        <div key={index} className='flex flex-col gap-2 mb-2'>
+                                            <h2 className='text-xl font-bold'>
+                                                {experience.position} - <span className='text-lg'>{experience.company_name}</span>
+                                            </h2>
+                                            <p>
+                                                {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(experience.end_date, 'dd/MM/yyyy')}
+                                                <span className='ml-1 text-sm'>
+                                                    ({handleRenderTimeInJobs(startDate, endDate)})
+                                                </span>
+                                            </p>
+                                            <p>{experience.description}</p>
+                                        </div>
+                                    );
+                                })
                             }
                         </div>
                     }
@@ -339,6 +346,11 @@ const TalentProfile = ({
                     Download Profile
                 </button>
             </div>
+            {/* <div className='min-h-screen'>
+                <PDFViewer>
+                    <TalentPDFDocument talentData={talentData} selectedIndustry={selectedIndustry} />
+                </PDFViewer>
+            </div> */}
         </div>
     );
 };
