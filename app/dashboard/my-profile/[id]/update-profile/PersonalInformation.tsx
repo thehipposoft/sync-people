@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'next-view-transitions';
 import { updateProfile } from '@/lib/protected-api';
 import { PersonalInformationType } from '@/types';
-import { AUSTRALIAN_STATES } from '@/app/constants';
+import { AUSTRALIAN_STATES, ROUTES } from '@/app/constants';
 import Modal from '@/components/Modal';
 
 type PersonalInformationPropsType = {
@@ -127,6 +127,44 @@ const PersonalInformation = ({
                 </div>
 
                 <div className='col-span-2 lg:col-span-1'>
+                    <label className="block pb-2">
+                        To which gender identity do you most identify?
+                    </label>
+                    <div className='flex md:flex-row flex-col items-start gap-4 mt-1'>
+                        <label className='flex gap-1'>
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="Male"
+                                onChange={handleInputChange}
+                                checked={formValues.gender === 'Male'}
+                            />
+                            Male
+                        </label>
+                        <label className='flex gap-1'>
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="Female"
+                                onChange={handleInputChange}
+                                checked={formValues.gender === 'Female'}
+                            />
+                            Female
+                        </label>
+                        <label className='flex gap-1 '>
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="Other"
+                                onChange={handleInputChange}
+                                checked={formValues.gender === 'Other'}
+                            />
+                                Other
+                        </label>
+                    </div>
+                </div>
+
+                <div className='col-span-2'>
                     <label htmlFor="country_of_birth" className="block pb-2">
                         Country of Birth
                     </label>
@@ -139,6 +177,38 @@ const PersonalInformation = ({
                         onChange={handleInputChange}
                     />
                 </div>
+
+                <div className='col-span-2 lg:col-span-1'>
+                    <div className='flex gap-2 mb-2 flex-col'>
+                        <label htmlFor="presentation_video" className="block">
+                            Presentation Video URL
+                        </label>
+                        <input
+                            type="text"
+                            id="presentation_video"
+                            name="presentation_video"
+                            value={formValues.presentation_video}
+                            onChange={handleInputChange}
+                        />
+                        <p className='text-sm opacity-70 mt-1'>
+                            Include a link to your preferred platform (YouTube, Vimeo, TikTok, etc.)
+                        </p>
+                    </div>
+                </div>
+
+                <div className='col-span-2 lg:col-span-1 flex flex-col items-center justify-center mb-2'>
+                    <p className=''>
+                        Why Create a "presentation" Video?
+                    </p>
+                    <Link
+                        className='text-primary-text underline'
+                        href={ROUTES.PRESENTATION_VIDEO}
+                        target='_blank'
+                    >
+                        Click here
+                    </Link>
+                </div>
+
                 <h4 className='col-span-2 lg-col-span-1 mt-3'>
                     Current Address
                 </h4>

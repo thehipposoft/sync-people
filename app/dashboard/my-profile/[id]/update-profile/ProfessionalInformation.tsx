@@ -180,7 +180,7 @@ const ProfessionalInformation = ({
     const renderIndustriesFields = (listOfIndustries: professional_information['industries'], isNew: boolean) => {
         return (
             listOfIndustries && listOfIndustries.map((industry, index) => (
-                <div key={index} className='border-b py-3 grid grid-cols-2 gap-4'>
+                <div key={index} className='border border-[#FF8149] rounded-3xl p-4 mt-4'>
                     {
                         isNew
                         ? <div className="col-span-2">
@@ -241,7 +241,7 @@ const ProfessionalInformation = ({
                             </select>
                         </div>
                         : <div className="w-full flex justify-between col-span-2 flex-wrap">
-                            <h3 className='capitalize mb-2 text-2xl'>
+                            <h3 className='font-bold py-4 text-xl capitalize'>
                                 {`${index + 1}. ${industry.industry.replace(/_/g, ' ')}`}
                             </h3>
                             {
@@ -276,57 +276,59 @@ const ProfessionalInformation = ({
                             }
                         </div>
                     }
-                    <div className="col-span-2 md:col-span-1">
-                        <label htmlFor={`position`} className="block pb-2">
-                            Position
-                        </label>
-                        <input
-                            type="text"
-                            id={'position'}
-                            name={'position'}
-                            required
-                            value={industry.position}
-                            onChange={(e) => handleIndustryDataChange(e, index, isNew)}
-                        />
-                    </div>
-                    <div className="col-span-2 md:col-span-1">
-                        <label htmlFor={`preferred_salary`} className="flex pb-2 items-center gap-2">
-                            Preferred salary per hour (AUD)
-                            <Tooltip
-                                className="bg-primary-text text-white rounded-md"
-                                content={
-                                    <div className="px-1 py-2">
-                                        <Link href={`/categories/${industry.industry}`} className="text-sm">
-                                            Link to category / Money converter
-                                        </Link>
-                                    </div>
-                                }
-                            >
-                                <svg
-                                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                    width={15}
-                                    height={15}
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="col-span-2 md:col-span-1">
+                            <label htmlFor={`position`} className="block pb-2">
+                                Position
+                            </label>
+                            <input
+                                type="text"
+                                id={'position'}
+                                name={'position'}
+                                required
+                                value={industry.position}
+                                onChange={(e) => handleIndustryDataChange(e, index, isNew)}
+                            />
+                        </div>
+                        <div className="col-span-2 md:col-span-1">
+                            <label htmlFor={`preferred_salary`} className="flex pb-2 items-center gap-2">
+                                Preferred salary per hour (AUD)
+                                <Tooltip
+                                    className="bg-primary-text text-white rounded-md"
+                                    content={
+                                        <div className="px-1 py-2">
+                                            <Link href={`/categories/${industry.industry}`} className="text-sm">
+                                                Link to category / Money converter
+                                            </Link>
+                                        </div>
+                                    }
                                 >
-                                    <g id="SVGRepo_iconCarrier">
-                                        <path fillRule="evenodd" clipRule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM12 17.75C12.4142 17.75 12.75 17.4142 12.75 17V11C12.75 10.5858 12.4142 10.25 12 10.25C11.5858 10.25 11.25 10.5858 11.25 11V17C11.25 17.4142 11.5858 17.75 12 17.75ZM12 7C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8C11 7.44772 11.4477 7 12 7Z" fill="#1C274C">
-                                        </path>
-                                    </g>
-                                </svg>
-                            </Tooltip>
-                        </label>
-                        <input
-                            type="text"
-                            id={'preferred_salary'}
-                            name={'preferred_salary'}
-                            required
-                            value={industry.preferred_salary}
-                            onChange={(e) => handleIndustryDataChange(e, index, isNew)}
-                        />
+                                    <svg
+                                        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                        width={15}
+                                        height={15}
+                                    >
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM12 17.75C12.4142 17.75 12.75 17.4142 12.75 17V11C12.75 10.5858 12.4142 10.25 12 10.25C11.5858 10.25 11.25 10.5858 11.25 11V17C11.25 17.4142 11.5858 17.75 12 17.75ZM12 7C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8C11 7.44772 11.4477 7 12 7Z" fill="#1C274C">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </Tooltip>
+                            </label>
+                            <input
+                                type="text"
+                                id={'preferred_salary'}
+                                name={'preferred_salary'}
+                                required
+                                value={industry.preferred_salary}
+                                onChange={(e) => handleIndustryDataChange(e, index, isNew)}
+                            />
+                        </div>
                     </div>
                     {
-                        !isNew && <div className="col-span-2">
-                            <label className="block pb-2">
-                                Certificates
+                        !isNew && <div className="col-span-2 mt-4">
+                            <label className="block mt-2">
+                               Certificates <span className='text-xs'>(optional)</span>
                             </label>
                             {
                                 industry.certificates.length > 0
@@ -400,7 +402,7 @@ const ProfessionalInformation = ({
                                     setOpenNewCertificateModal(true);
                                 }}
                             >
-                                + new certificate
+                                Add certificate
                             </button>
                         </div>
                     }

@@ -161,6 +161,18 @@ const WorkExperience = ({
                                     disabled={experience.currently_working}
                                 />
                             </div>
+                            <div className='flex gap-4 items-center md:pt-2 col-span-2'>
+                                <input
+                                    type="checkbox"
+                                    id={`currently_working`}
+                                    name={`currently_working`}
+                                    checked={experience.currently_working}
+                                    onChange={(e) => handleCheckboxChange(e, index)}
+                                />
+                                <label htmlFor={`currently_working`} className="block">
+                                    Currently working here
+                                </label>
+                            </div>
                             <div className="col-span-2 md:col-span-1">
                                 <label htmlFor={`industry`} className="block pb-2">
                                     Industry
@@ -179,20 +191,29 @@ const WorkExperience = ({
                                             </option>
                                         ))
                                     }
+                                    <option value="other">
+                                        Other
+                                    </option>
                                 </select>
                             </div>
-                            <div className='flex gap-4 items-center md:pt-6 col-span-2 md:col-span-1'>
-                                <input
-                                    type="checkbox"
-                                    id={`currently_working`}
-                                    name={`currently_working`}
-                                    checked={experience.currently_working}
-                                    onChange={(e) => handleCheckboxChange(e, index)}
-                                />
-                                <label htmlFor={`currently_working`} className="block">
-                                    Currently working here
-                                </label>
-                            </div>
+                            {
+                                experience.industry === 'other' && (
+                                    <div className="col-span-2 md:col-span-1">
+                                        <label htmlFor={`other_industry`} className="block pb-2">
+                                            Other Industry name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id={`other_industry`}
+                                            name={`other_industry`}
+                                            required
+                                            value={experience.other_industry}
+                                            onChange={(e) => handleChange(e, index)}
+                                        />
+                                    </div>
+                                )
+                            }
+
                             <div className='col-span-2 w-full'>
                                 <label htmlFor={`description`} className="block pb-2">
                                     Description

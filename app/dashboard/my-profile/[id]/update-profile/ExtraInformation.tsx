@@ -7,6 +7,7 @@ import UploadFileModal from '@/components/UploadFileModal';
 import Modal from '@/components/Modal';
 import { SOCIAL_MEDIA_PLATFORMS } from '@/app/constants';
 import { format } from 'date-fns';
+import { Select, SelectItem } from "@heroui/select";
 
 type PersonalInformationPropsType = {
     initialValues: ExtraInformationType;
@@ -103,6 +104,16 @@ const ExtraInformation = ({
         setIsAPILoading(false);
     };
 
+    const handleMultiSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const { value } = e.target;
+        const languages: any[] = value.split(',');
+
+        setFormValues({
+            ...formValues,
+            languages,
+        });
+    };
+
     return (
         <>
             <form className='grid grid-cols-2 gap-4' onSubmit={handleFormSubmit}>
@@ -168,30 +179,24 @@ const ExtraInformation = ({
                     <label htmlFor="languages" className="block pb-2">
                         Languages
                     </label>
-                    {LANGUAGES.map((language) => (
-                        <div key={language} className='flex gap-2'>
-                            <input
-                                type="checkbox"
-                                id={language}
-                                name={language}
-                                checked={formValues.languages.includes(language)}
-                                onChange={e => {
-                                    if (e.target.checked) {
-                                        setFormValues({
-                                            ...formValues,
-                                            languages: [...formValues.languages, language],
-                                        });
-                                    } else {
-                                        setFormValues({
-                                            ...formValues,
-                                            languages: formValues.languages.filter((lang) => lang !== language),
-                                        });
-                                    }
-                                }}
-                            />
-                            <label htmlFor={language}>{language}</label>
-                        </div>
-                    ))}
+                    <Select
+                        className="col-span-2 mb-3 border rounded-xl border-[#656ED3]"
+                        placeholder="Select one or more languages"
+                        selectionMode="multiple"
+                        onChange={handleMultiSelectChange}
+                        required
+                        items={LANGUAGES.map((language) => ({
+                            key: language,
+                            value: language,
+                        }))}
+                        selectedKeys={formValues.languages.map((language) => language)}
+                    >
+                        {LANGUAGES.map((language) => (
+                            <SelectItem key={language}>
+                                {language}
+                            </SelectItem>
+                        ))}
+                    </Select>
                 </div>
 
                 <div className="col-span-2">
@@ -273,7 +278,7 @@ const ExtraInformation = ({
                             setOpenUploadModal(true)
                         }}
                     >
-                        + new Credential
+                        Add File
                     </button>
                 </div>
 
@@ -383,7 +388,7 @@ const ExtraInformation = ({
                             });
                         }}
                     >
-                        + Social media
+                        Add Social media
                     </button>
                 </div>
 

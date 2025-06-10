@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { storeToken, cleanCookies, storeTalentId } from "./actions";
 import { getUserProfile } from "./protected-api";
+import { redirect } from "next/navigation";
 
 type ApiType = {
     endpoint: string;
@@ -209,6 +210,10 @@ export const getTalent = async (id: string) => {
         },
         { status: 404 });
     }
+
+    if (response.status === 401) {
+        return redirect('/login');
+    };
 
     if (!response.ok) {
         throw new Error('failed to fetch talent')

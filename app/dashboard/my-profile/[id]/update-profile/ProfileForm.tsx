@@ -196,16 +196,16 @@ const ProfileForm = ({
                         Personal Information
                     </li>
                     <li
-                        className={`px-4 cursor-pointer transition-all ${selectedTab === 'professional' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
-                        onClick={() => handleTabChange('professional')}
-                    >
-                        Professional Information
-                    </li>
-                    <li
                         className={`px-4 cursor-pointer transition-all ${selectedTab === 'experience' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
                         onClick={() => handleTabChange('experience')}
                     >
                         Work Experience
+                    </li>
+                    <li
+                        className={`px-4 cursor-pointer transition-all ${selectedTab === 'professional' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
+                        onClick={() => handleTabChange('professional')}
+                    >
+                        Professional Information
                     </li>
                     <li
                         className={`px-4 cursor-pointer transition-all ${selectedTab === 'extras' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}

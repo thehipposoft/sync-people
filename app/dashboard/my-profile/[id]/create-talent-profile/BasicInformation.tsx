@@ -107,6 +107,32 @@ const BasicInformation = ({
                 </div>
 
                 <div className='col-span-2 lg:col-span-1'>
+                    <label htmlFor="email" className="block pb-2">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        value={formValues.email}
+                        onChange={handleInputChange}
+                        disabled
+                    />
+                </div>
+
+                <div className='col-span-2 lg:col-span-1'>
+                    <label htmlFor="mobile" className="block pb-2">
+                        Mobile
+                    </label>
+                    <input
+                        type="tel"
+                        id="mobile"
+                        name="mobile"
+                        value={formValues.mobile}
+                        onChange={handleInputChange}
+                    />
+                </div>
+
+                <div className='col-span-2 lg:col-span-1'>
                     <label htmlFor="date_of_birth" className="block pb-2">
                         Date of Birth*
                     </label>
@@ -152,19 +178,6 @@ const BasicInformation = ({
                                 Other
                         </label>
                     </div>
-                </div>
-
-                <div className='col-span-2 lg:col-span-1'>
-                    <label htmlFor="mobile" className="block pb-2">
-                        Mobile
-                    </label>
-                    <input
-                        type="tel"
-                        id="mobile"
-                        name="mobile"
-                        value={formValues.mobile}
-                        onChange={handleInputChange}
-                    />
                 </div>
 
                 <div className='col-span-2 lg:col-span-1'>
