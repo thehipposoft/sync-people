@@ -7,33 +7,46 @@ import BackDrop from './sideMenu/backDrop';
 import { ROUTES } from '@/app/constants';
 import ComingSoonModal from './ComingSoonModal';
 import { getUserProfile } from '@/lib/protected-api';
+import { logout } from '@/lib/api';
+import { useRouter } from 'next/navigation';
 
 type HeaderProps = {
     isFixed?: boolean;
     inDashboard?: boolean;
-    isLoggedIn?: boolean;
+    isLoggedIn?: string | undefined;
+    userId?: string,
 };
 
 const Header = ({
     isFixed,
     inDashboard,
     isLoggedIn,
+    userId
 }:HeaderProps) => {
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState<boolean>(false);
-    const [userId, setUserId] = useState<string | undefined>();
+    const [stateUserId, setStateUserId] = useState<string | undefined>(userId);
 
     useEffect(() => {
         const fetchUserProfile = async () => {
             const userData = await getUserProfile();
             if (userData) {
-                setUserId(userData.id);
+                setStateUserId(userData.id);
             }
         };
         if (isLoggedIn) {
             fetchUserProfile();
         }
     }, []);
+
+    const router = useRouter();
+
+    const handleLogout = async () => {
+        const response = await logout();
+        if (response.status === 200) {
+            router.push(ROUTES.HOME);
+        }
+    };
 
     const toggleMenu = () => {
         setOpenMenu(!openMenu);
@@ -63,24 +76,45 @@ const Header = ({
                     <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.CONTACT}>
                         Contact
                     </Link>
-                    <div className='flex'>
-                        <div>
-                            <Link
-                                className='primary-btn'
-                                href={ROUTES.SIGN_UP}
+
+                    {
+                        isLoggedIn ?
+                        <div className='flex items-center'>
+                            <div>
+                                <Link
+                                    className='primary-btn'
+                                    href={`${ROUTES.MY_PROFILE}/${userId}`}
+                                >
+                                    Dashboard
+                                </Link>
+                            </div>
+                            <button
+                                className="primary-btn "
+                                onClick={handleLogout}
                             >
-                                Sign Up
-                            </Link>
+                                Log out
+                            </button>
                         </div>
-                        <div className='mx-2'>
-                            <Link
-                                className='secondary-btn'
-                                href={ROUTES.LOGIN}
-                            >
-                                Log In
-                            </Link>
+                        :
+                        <div className='flex'>
+                            <div>
+                                <Link
+                                    className='primary-btn'
+                                    href={ROUTES.SIGN_UP}
+                                >
+                                    Sign Up
+                                </Link>
+                            </div>
+                            <div className='mx-2'>
+                                <Link
+                                    className='secondary-btn'
+                                    href={ROUTES.LOGIN}
+                                >
+                                    Log In
+                                </Link>
+                            </div>
                         </div>
-                    </div>
+                    }
                 </nav>
                 <SideMenu userId={userId} sideMenu={openMenu} closeSideMenu={toggleMenu}/>
                 <BackDrop sideMenu={openMenu} closeSideMenu={toggleMenu} isDashboard={inDashboard} />

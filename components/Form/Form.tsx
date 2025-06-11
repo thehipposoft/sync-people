@@ -1,81 +1,64 @@
+"use client";
 import React, { useState } from 'react';
-//import PropTypes from 'prop-types';
-//Hook
-import useContactForm from './useContactForm';
-//Component
-import MyInput from './CustomInput';
-import styles from './form.module.scss';
+import axios from 'axios';
+
+const initialValues = {
+    name: '',
+    lastName: '',
+    customerEmail: '',
+    message: '',
+};
+
+type FieldsType = {
+    name: 'lastName' | 'name' | 'customerEmail' | 'message' ;
+    type: 'text' | 'textArea' | 'email' ;
+    label: string;
+    placeholder: string;
+    required?: boolean;
+}
+
+type MyCustomFormProps = {
+    fields: FieldsType[];
+    onSuccessMessage: string;
+    onErrorMessage: string;
+    emailServiceURL: string;
+    submitButtonLabel: string;
+};
+
+type FormValues = {
+    name: string;
+    lastName: string;
+    customerEmail: string;
+    message: string;
+};
 
 const MyCustomForm = ({
     fields,
     onSuccessMessage,
     onErrorMessage,
-    customClass,
     emailServiceURL,
     submitButtonLabel
-}:any) => {
-    const [messageSent, setMessageSent] = useState('');
-    const [isAPILoading, setIsAPILoading] = useState(false);
-    const [messageDescription, setMessageDescription] = useState('');
-    const initialValues = {
+}:MyCustomFormProps) => {
+    const [messageSent, setMessageSent] = useState<string>('');
+    const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
+    const [messageDescription, setMessageDescription] = useState<string>('');
+    const [values, setValues] = useState<FormValues>({
         name: '',
+        lastName: '',
         customerEmail: '',
-        phone: '',
         message: '',
-    };
-
-    const {
-        values,
-        handleChange,
-        errors,
-        handleSubmit,
-        setValues,
-    } = useContactForm({
-        initialValues,
-        fields,
-        /*
-        onSubmit: () => {
-            setIsAPILoading(true);
-            axios.post(
-                emailServiceURL,
-                {
-                    message: values.message,
-                    name: values.name,
-                    phone: values.phone,
-                    customerEmail: values.customerEmail,
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'accept': 'application/json, text/plain, *//*',
-                    },
-                }
-            )
-                .then(function (response) {
-                    setValues(initialValues);
-                    setMessageSent('succeed');
-                    setIsAPILoading(false);
-                })
-                .catch(function (error) {
-                    setMessageDescription(error.toString());
-                    setMessageSent('error');
-                    setIsAPILoading(false);
-                });
-        }
-        */
-
     });
 
     const renderSentMessage = () => {
         if (messageSent === 'succeed') {
             return <div className={`message succeed w-full text-center mb-6`}>
-                <h2 className={'mb-4 font-semibold'}>Thanks!</h2>
-                <p>{onSuccessMessage}</p>
+                <h2 className={'text-4xl text-[#8D78E0]'}>Thanks! </h2>
+                <p className='pt-2'>{onSuccessMessage}</p>
             </div>
         }
         if (messageSent === 'error') {
             return <div className={`message error w-full text-center mb-6`}>
-                <h2 className={'mb-4 text-red-500'}>Algo salió mal</h2>
+                <h2 className={'mb-4 text-red-500'}>Something went wrong</h2>
                 <p>{onErrorMessage}</p>
                 <p>{messageDescription}</p>
             </div>
@@ -83,106 +66,120 @@ const MyCustomForm = ({
         return null;
     };
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { target } = e;
+        const { name, value } = target;
+
+        setValues({
+            ...values,
+            [name]: value
+        });
+    };
+
+    const handleSubmit = (event:any) => {
+        if (event) event.preventDefault();
+
+        setIsAPILoading(true);
+        axios.post(
+            emailServiceURL,
+            {
+                message: values.message,
+                name: values.name,
+                lastName: values.lastName,
+                customerEmail: values.customerEmail,
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'accept': 'application/json, text/plain, */*',
+                },
+            }
+        )
+            .then(function (response) {
+                setValues(initialValues);
+                setMessageSent('succeed');
+                setIsAPILoading(false);
+            })
+            .catch(function (error) {
+                setMessageDescription(error.toString());
+                setMessageSent('error');
+                setIsAPILoading(false);
+            });
+    };
+
     return (
         <form
-            className={'mx-auto mt-10 bg-white p-4 w-[700px] grid grid-cols-2'}
+            className={`flex flex-wrap justify-between md:mt-6 mt-12 mx-auto md:w-[550px] w-[85vw]`}
             onSubmit={(event) => handleSubmit(event)}
         >
             {
-                fields.map((field:any)=> {
-                    const { name, type, label, multiple, validations, selectOptions, size, placeholder } = field;
+                fields.map((field, index)=> {
+                    const { name, type, label, placeholder } = field;
 
                     switch (type) {
-                        case 'text':
-                            return (
-                                <MyInput
-                                    key={name}
-                                    fieldName={name}
-                                    fieldType={'text'}
-                                    label={label}
-                                    handleChange={handleChange}
-                                    value={values[name]}
-                                    validations={validations}
-                                    errors={errors}
-                                    size={size}
-                                    placeholder={placeholder}
-                                />
-                            );
                         case 'textArea':
                             return (
-                                <section className={'item'} key={name}>
+                                <section className={'mb-4 w-full'} key={name}>
                                     <label className={'contact-label'}>{label}</label>
                                     <textarea
                                         name={name}
                                         id={name}
                                         value={values[name]}
-                                        rows={8}
+                                        rows={6}
                                         cols={40}
-                                        className={'input_box'}
+                                        className='resize-none py-3 px-8 lg:w-full md:max-w-[550px] w-full placeholder-[#8D78E0]'
                                         placeholder={placeholder}
-                                        onChange={(e) => handleChange(e, [])}
+                                        onChange={handleChange}
+                                        required={field.required}
                                     />
                                 </section>
                             );
-                        case 'select':
+                        case 'email':
                             return (
-                                <section className='flex flex-col' key={name}>
-                                    <label className='contact-label'>{label}</label>
-                                    <select key={name} className='bg-[#565b5f1e] w-[300px] rounded-md h-[40px] p-[5px] my-[5px]' multiple={multiple} name={name} id={name} value={values[name]}>
-                                        {
-                                            selectOptions.map((option:any, index:any) => <option value={option.value} key={index}>{option.label}</option>)
-                                        }
-                                    </select>
-                                </section>
-                            );
-                        case 'date':
-                            return (
-                                <section className='flex flex-col'>
-                                    <label className='contact-label'>{label}</label>
-                                    <input type="date" className='input' name={name} id={name} value={values[name]}></input>
+                                <section className='mb-4 w-full' key={index}>
+                                    <label className={'contact-label'}>{label}</label>
+                                    <input
+                                        type={type}
+                                        name={name}
+                                        id={name}
+                                        className={'py-3 px-8 lg:w-full md:max-w-[550px] w-full  placeholder-[#8D78E0] rounded-[2em]'}
+                                        onChange={handleChange}
+                                        value={values[name]}
+                                        placeholder={placeholder}
+                                        required={field.required}
+                                    />
                                 </section>
                             );
                         default:
                             return (
-                                <MyInput
-                                    key={name}
-                                    fieldName={name}
-                                    fieldType={'text'}
-                                    label={label}
-                                    size={size}
-                                    handleChange={handleChange}
-                                    value={values[name]}
-                                    validations={validations}
-                                    errors={errors}
-                                    placeholder={placeholder}
-                                />
+                                <section className='mb-4 md:w-[49%] w-full' key={index}>
+                                    <label className={'contact-label'}>{label}</label>
+                                    <input
+                                        type={type}
+                                        name={name}
+                                        id={name}
+                                        className={'py-3 px-8 lg:w-full lg:max-w-[500px] w-full md:max-w-[525px] placeholder-[#8D78E0] rounded-[2em]'}
+                                        onChange={handleChange}
+                                        value={values[name]}
+                                        placeholder={placeholder}
+                                        required={field.required}
+                                    />
+                                </section>
                             )
                     }
                 })
             }
             {renderSentMessage()}
-            <section className={`${styles.item} text-center flex justify-end`}>
-                <input
-                    type={'submit'}
-                    value={submitButtonLabel ? submitButtonLabel : 'SEND'}
-                    className={`contact-input-button py-2 px-7 text-white cursor-pointer relative bottom-6 ${isAPILoading ? 'opacity-50' : ''}`}
-                    disabled={isAPILoading}
-                />
-            </section>
+            <button
+                disabled={isAPILoading}
+                value={submitButtonLabel ? submitButtonLabel : 'Send'}
+                type="submit"
+                className={` ${isAPILoading ? 'opacity-50' : ''} purple-b rounded-3xl px-8 py-2 text-white text-lg font-semibold w-fit`}
+            >
+                {submitButtonLabel}
+            </button>
         </form>
     )
-};
-
-
-MyCustomForm.defaultProps = {
-    fields: [{
-        name: 'name',
-        type: 'text',
-        label: 'Name',
-        placeholder: 'Name'
-    }],
-    onSuccessMessage: 'Success!',
-    onErrorMessage: 'Something went wrong.'
 };
 
 export default MyCustomForm

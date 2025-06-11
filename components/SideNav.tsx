@@ -1,13 +1,18 @@
 import React from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
+import { ROUTES } from '@/app/constants';
 
-const SideNav = () => {
+type Props = {
+    userId: string | undefined;
+}
+
+const SideNav = ({ userId }:Props) => {
     return (
             <div className='bg-[#19325d] md:w-[5vw] w-0 px-0 h-screen sticky flex left-0 top-0 flex-col gap-6 items-center pt-4'>
                 <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-auto w-[35px]'/>
                 <div className='w-full'>
-                    <Link href={'/'} className='cursor-pointer duration-500 hover:bg-[#334a71] flex justify-center py-3 w-full'>
+                    <Link href={`${ROUTES.MY_PROFILE}/${userId}`} className='cursor-pointer duration-500 hover:bg-[#334a71] flex justify-center py-3 w-full'>
                         <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg" className='px-[2px]'>
                             <path d="M4.5 14.3998L16.5 4.7998L28.5 14.3998" stroke="#DEE1E6" strokeWidth="1.92" strokeMiterlimit="10"/>
                             <path d="M14.0996 27.1998L14.0996 20.7998H18.8996V27.1998" stroke="#DEE1E6" strokeWidth="1.92" strokeMiterlimit="10"/>
@@ -45,14 +50,6 @@ const SideNav = () => {
                         </svg>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
             </div>
     );
 };
