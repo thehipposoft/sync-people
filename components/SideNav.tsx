@@ -4,7 +4,7 @@ import { Link } from 'next-view-transitions';
 import { ROUTES } from '@/app/constants';
 
 type Props = {
-    userId: string | undefined;
+    userId?: string | undefined;
 }
 
 const SideNav = ({ userId }:Props) => {
