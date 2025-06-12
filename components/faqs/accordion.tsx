@@ -11,7 +11,7 @@ type FaqAccordionProps = {
   items: any
 }
 
-export default function FaqAccordion({ items }: FaqAccordionProps) {
+const FaqAccordion = ({ items }: FaqAccordionProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   const toggleItem = (index: number) => {
@@ -57,3 +57,5 @@ export default function FaqAccordion({ items }: FaqAccordionProps) {
     </div>
   )
 }
+
+export default FaqAccordion
