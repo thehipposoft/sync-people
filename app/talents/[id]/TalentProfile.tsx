@@ -88,7 +88,7 @@ const TalentProfile = ({
                             <div className='flex flex-col gap-2'>
                                 <div className='flex justify-between items-center mb-6 flex-col-reverse md:flex-row gap-4'>
                                     <h4 className='text-2xl mt-4 lg:mt-0'>
-                                        {talentData.personal_information.first_name} <span className='h-bold capitalize'> - {selectedIndustry.position}</span>
+                                        {talentData.personal_information.first_name} {talentData.personal_information.last_name} <span className='h-bold capitalize'> - {selectedIndustry.position}</span>
                                     </h4>
                                     {
                                         !queryIndustry && (

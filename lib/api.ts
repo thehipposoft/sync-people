@@ -265,3 +265,19 @@ export const createClient = async (data: ComingSoonEmailType) => {
         };
     }
 };
+
+export const getFaqs = async () => {
+    const apiURL = process.env.NEXT_PUBLIC_WP_URL;
+    const response = await fetch(`${apiURL}/faqs/1056`)
+    if (!response.ok) {
+        throw new Error('failed to fetch faqs')
+    }
+
+    const faqs = await response.json();
+    const cleanFaqs = {
+        faqs: faqs.acf.faqs,
+        id: faqs.id,
+        status: faqs.status,
+    }
+    return cleanFaqs
+};

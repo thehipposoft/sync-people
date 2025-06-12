@@ -1,26 +1,19 @@
 import React from 'react';
-import Accordion from './accordion';
 import Image from 'next/image';
+import Accordion from './Accordion';
 
-const FaqsComp = () => {
+type Props = {
+    faqsData: any;
+}
 
-    const items = [
-        { title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?', content: 'Content for Item 1' },
-        { title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?', content: 'Content for Item 2' },
-        { title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?', content: 'Content for Item 3' },
-        { title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?', content: 'Content for Item 4' },
-        { title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?', content: 'Content for Item 5' },
-        { title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?', content: 'Content for Item 6' },
-      ];
+const FaqsComp = ({faqsData}:Props) => {
 
 
     return (
-        <div className='flex flex-col gap-12 md:gap-0 md:flex-row items-center md:w-[1250px] w-[85vw] py-12 mx-auto justify-between'>
-            <div>
+        <div className='flex flex-col gap-12 md:gap-0 md:flex-row items-center md:items-start md:w-[1250px] w-[85vw] py-12 mx-auto justify-between'>
+            <div className='flex flex-col gap-12'>
                 <h1>FAQs</h1>
-                <div>
-                    <Accordion items={items} />
-                </div>
+                <Accordion items={faqsData} />
             </div>
             <div className='relative md:w-[450px] w-[85vw] h-[525px] '>
                 <div className='absolute left-0 z-10 h-full w-full rounded-tl-[250px] bg-gradient-to-l opacity-30 rounded-br-[250px] from-[#8D78E0] to-[#15DFBB] ' />
