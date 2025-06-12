@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import FaqAccordion from './Accordion';
+import FaqAccordion from './FaqAccordion';
 
 type Props = {
     faqsData: any;

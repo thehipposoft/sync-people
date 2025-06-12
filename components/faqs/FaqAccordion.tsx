@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState } from 'react'
 
 type FaqItem = {
@@ -58,4 +57,4 @@ const FaqAccordion = ({ items }: FaqAccordionProps) => {
   )
 }
 
-export default FaqAccordion
+export default FaqAccordion;
