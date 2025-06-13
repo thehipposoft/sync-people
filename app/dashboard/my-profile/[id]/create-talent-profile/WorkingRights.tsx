@@ -204,9 +204,6 @@ const WorkingRights = ({
                                         </option>
                                     ))
                                 }
-                                <option value="other">
-                                    Other
-                                </option>
                             </select>
                         </div>
                         {

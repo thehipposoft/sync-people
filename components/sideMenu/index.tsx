@@ -22,7 +22,7 @@ const SideMenu = ({sideMenu, closeSideMenu, userId}:SideMenuTypes) => {
     };
 
     return(
-        <div className={`duration-500 top-0 right-0 md:w-80 w-screen fixed h-screen bg-[#EBEFFF] z-10 flex flex-col justify-center items-center opacity-0 ${ sideMenu ? 'translate-x-0 opacity-100' : 'translate-x-full'}`}>
+        <div className={`duration-500 top-0 right-0 md:w-80 w-screen fixed h-screen bg-[#EBEFFF] z-10 flex flex-col justify-center items-center opacity-0 ${ sideMenu ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-100'}`}>
             <Image
                 src={'/assets/logo.png'}
                 width={593}
@@ -41,7 +41,7 @@ const SideMenu = ({sideMenu, closeSideMenu, userId}:SideMenuTypes) => {
                     userId ?
                     <div className="flex flex-col ">
                         <div className='mx-4 my-4'>
-                            <Link href={`${ROUTES.MY_PROFILE}/${userId}`}>
+                            <Link href={`${ROUTES.MY_PROFILE}/${userId}`} onClick={closeSideMenu}>
                                 <button className='primary-btn py-2 px-4 rounded-xl cursor-pointer'>Dashboard</button>
                             </Link>
                         </div>

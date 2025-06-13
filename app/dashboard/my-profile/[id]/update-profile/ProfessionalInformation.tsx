@@ -178,6 +178,10 @@ const ProfessionalInformation = ({
     };
 
     const renderIndustriesFields = (listOfIndustries: professional_information['industries'], isNew: boolean) => {
+
+        console.log('Industrias:', listOfIndustries)
+        console.log('Form Values:', formValues)
+
         return (
             listOfIndustries && listOfIndustries.map((industry, index) => (
                 <div key={index} className='border border-[#FF8149] rounded-3xl p-4 mt-4'>
@@ -190,7 +194,7 @@ const ProfessionalInformation = ({
                                 </label>
                                 <div className="flex gap-3 items-center">
                                     <p className="opacity-50">
-                                        not saved
+                                        Not saved
                                     </p>
                                     <button
                                         onClick={(e) => {
@@ -242,7 +246,7 @@ const ProfessionalInformation = ({
                         </div>
                         : <div className="w-full flex justify-between col-span-2 flex-wrap">
                             <h3 className='font-bold py-4 text-xl capitalize'>
-                                {`${index + 1}. ${industry.industry.replace(/_/g, ' ')}`}
+                                {`${index + 1}. ${industry.industry === 'other' ? industry.other_industry : industry.industry.replace(/_/g, ' ')}`}
                             </h3>
                             {
                                 listOfIndustries.length > 1 &&

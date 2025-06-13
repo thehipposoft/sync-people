@@ -79,6 +79,10 @@ export const INDUSTRIES: {
         name: 'Age Care',
         value: 'age_care',
     },
+    {
+        name: 'Other',
+        value: 'other',
+    },
 ];
 
 export const LEVEL_OF_ENGLISH: {

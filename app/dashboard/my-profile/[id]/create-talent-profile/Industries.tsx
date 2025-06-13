@@ -79,6 +79,11 @@ const Industries = ({
 
             return updatedValues;
         });
+
+    };
+
+    const handleOtherIndustry = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+
     };
 
     const handleMultiSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -239,11 +244,13 @@ const Industries = ({
                         items={INDUSTRIES}
                         selectedKeys={formValues.industries.map((industry) => industry.industry)}
                     >
-                        {INDUSTRIES.map((industry) => (
+                        {
+                        INDUSTRIES.map((industry) => (
                             <SelectItem key={industry.value}>
                                 {industry.name}
                             </SelectItem>
-                        ))}
+                        ))
+                        }
                     </Select>
                 </div>
                 {
@@ -283,6 +290,26 @@ const Industries = ({
                                 </button>
                             </div>
                             <div className='md:grid flex flex-col grid-cols-2 gap-4'>
+                                {
+                                    industry.industry === 'other' ?
+                                        <div className='col-span-2 lg:col-span-1'>
+                                            <label htmlFor="position" className="block pb-2">
+                                                Other Industry name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name={`other_industry`}
+                                                id="other_industry"
+                                                className="w-full"
+                                                onChange={(e) => handleIndustryInputChange(e, index)}
+                                                value={industry.other_industry}
+                                                required
+                                                placeholder='You can add multiple comma separated'
+                                            />
+                                        </div>
+                                        :
+                                        <></>
+                                }
                                 <div className='col-span-2 lg:col-span-1'>
                                     <label htmlFor="position" className="block pb-2">
                                         Position*

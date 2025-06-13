@@ -62,15 +62,23 @@ const TalentProfile = ({
                     className='border rounded-2xl bg-white'
                 >
                     <div className='relative flex flex-col mx-auto md:w-[900px] bg-white'>
-                        <div className='relative h-[7rem] md:h-[10rem] md:w-[900px] w-[80vw]'>
-                            <Image
-                                src={INDUSTRIES_BANNER[selectedIndustry.industry]}
-                                alt={`Banner for ${talentData.personal_information.first_name}`}
-                                width={900}
-                                height={200}
-                                className={`object-cover rounded-t-2xl object-center max-h-[7rem] md:max-h-[10rem] w-full`}
-                            />
-                        </div>
+                        {
+                            selectedIndustry.industry === 'other' ?
+                            <div className='relative bg-[#1A335D] h-[7rem] rounded-t-2xl md:h-[10rem] md:w-[900px] w-[80vw] flex justify-end'>
+                                <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-24 w-12 md:mr-12 mr-8'/>
+                            </div>
+                            :
+                            <div className='relative h-[7rem] md:h-[10rem] md:w-[900px] w-[80vw]'>
+                                <Image
+                                    src={INDUSTRIES_BANNER[selectedIndustry.industry]}
+                                    alt={`Banner for ${talentData.personal_information.first_name}`}
+                                    width={900}
+                                    height={200}
+                                    className={`object-cover rounded-t-2xl object-center max-h-[7rem] md:max-h-[10rem] w-full`}
+                                />
+                            </div>
+                        }
+
                         <div className='relative flex flex-col justify-between md:px-12 px-6 py-6'>
                             <div className='flex md:gap-4 flex-col md:flex-row relative mb-0 lg:mb-4 pb-0 md:pb-14'>
                                 <Image
@@ -107,7 +115,7 @@ const TalentProfile = ({
                                                         value={industry.position}
                                                         onClick={() => setSelectedIndustry(industry)}
                                                     >
-                                                        {industry.industry.replace(/_/g, ' ').toUpperCase()}
+                                                        {industry.industry === 'other' ? industry.other_industry?.toUpperCase() : industry.industry.replace(/_/g, ' ').toUpperCase()}
                                                     </option>
                                                 ))}
                                             </select>
@@ -346,11 +354,11 @@ const TalentProfile = ({
                     Download Profile
                 </button>
             </div>
-            {/* <div className='min-h-screen'>
+            <div className='min-h-screen'>
                 <PDFViewer>
                     <TalentPDFDocument talentData={talentData} selectedIndustry={selectedIndustry} />
                 </PDFViewer>
-            </div> */}
+            </div>
         </div>
     );
 };

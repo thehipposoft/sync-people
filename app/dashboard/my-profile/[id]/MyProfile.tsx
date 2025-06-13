@@ -42,7 +42,7 @@ const MyProfile = ({
                     Skills Portfolio
                 </h1>
                 <p className='text-center mb-6'>
-                    Welcome to your Talent Dashboard! Here, you can manage and update your Digital Skills Portfolio.
+                    Welcome to your <strong>Talent Dashboard!</strong> Here, you can manage and update your Digital Skills Portfolio.
                     You can also preview your public profile to see how others view your skills and experience.
                     To see how your profile appears in a specific industry, click the 'View Portfolio' link next
                     to the industry you want to explore.
@@ -50,13 +50,21 @@ const MyProfile = ({
             </div>
             <div className='border rounded-2xl md:w-[900px] mx-auto bg-white'>
                 <div className='relative flex flex-col'>
-                    <Image
-                       src={INDUSTRIES_BANNER[user.professional_information.industries[0].industry]}
-                        alt={`Banner picture of ${user.personal_information.first_name}`}
-                        width={900}
-                        height={300}
-                        className='object-cover rounded-t-2xl max-h-[200px]'
-                    />
+                    {
+                        INDUSTRIES_BANNER[user.professional_information.industries[0].industry] ?
+                        <div className='rounded-t-2xl max-h-[200px] bg-[#1A335D] h-[300px] md:w-[900px] flex justify-end'>
+                            <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-28 w-20 md:mr-12 mr-8'/>
+                        </div>
+                        :
+                        <Image
+                            src={INDUSTRIES_BANNER[user.professional_information.industries[0].industry]}
+                            alt={`Banner picture of ${user.personal_information.first_name}`}
+                            width={900}
+                            height={300}
+                            className='object-cover rounded-t-2xl max-h-[200px]'
+                        />
+                    }
+
                     <div className='relative flex flex-col justify-between md:px-12 px-6 py-6'>
                         <Image
                             src={user.personal_information.profile_pic ? user.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
@@ -192,7 +200,7 @@ const MyProfile = ({
                                             target='_blank'
                                         >
                                               <h2 className='capitalize mb-1 text-xl underline'>
-                                                {industry.industry.replace(/_/g, ' ')}
+                                                {industry.industry === 'other' ? industry.other_industry : industry.industry.replace(/_/g, ' ')}
                                             </h2>
                                         </Link>
                                         <Link
@@ -272,7 +280,7 @@ const MyProfile = ({
                                     return (
                                         <div key={index} className='flex flex-col gap-2 mb-2'>
                                             <h2 className='text-xl font-bold'>
-                                                {experience.position} - <span className='text-lg'>{experience.company_name}</span>
+                                                {experience.position} - <span className='text-lg'>{experience.company_name}</span> <span className='opacity-70 text-base'>({experience.industry.charAt(0).toUpperCase()+experience.industry.slice(1)})</span>
                                             </h2>
                                             <p>
                                                 {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(experience.end_date, 'dd/MM/yyyy')}

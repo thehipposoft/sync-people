@@ -191,9 +191,6 @@ const WorkExperience = ({
                                             </option>
                                         ))
                                     }
-                                    <option value="other">
-                                        Other
-                                    </option>
                                 </select>
                             </div>
                             {
