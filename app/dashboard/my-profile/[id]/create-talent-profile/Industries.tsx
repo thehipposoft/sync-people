@@ -82,10 +82,6 @@ const Industries = ({
 
     };
 
-    const handleOtherIndustry = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
-
-    };
-
     const handleMultiSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target;
         const industriesArray = value ? value.split(',') : [];

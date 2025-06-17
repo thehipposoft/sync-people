@@ -354,11 +354,11 @@ const TalentProfile = ({
                     Download Profile
                 </button>
             </div>
-            <div className='min-h-screen'>
+{/*             <div className='min-h-screen'>
                 <PDFViewer>
                     <TalentPDFDocument talentData={talentData} selectedIndustry={selectedIndustry} />
                 </PDFViewer>
-            </div>
+            </div> */}
         </div>
     );
 };

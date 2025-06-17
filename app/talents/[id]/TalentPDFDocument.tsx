@@ -130,16 +130,16 @@ const TalentPDFDocument = ({
 
                                     return (
                                         <View key={index} style={tw('flex flex-col gap-2 mb-2')}>
-                                            <Text style={tw('text-xl font-bold')}>
+                                            <Text style={tw('text-xl font-bold text-primary')}>
                                                 {experience.position} - <Text style={tw('text-lg')}>{experience.company_name}</Text>
                                             </Text>
-                                            <Text>
-                                                {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(experience.end_date, 'dd/MM/yyyy')}
+                                            <Text style={tw('text-base text-primary')}>
+                                                {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current ' : format(experience.end_date, 'dd/MM/yyyy')}
                                                 <Text style={tw('ml-1 text-sm')}>
                                                     ({handleRenderTimeInJobs(startDate, endDate)})
                                                 </Text>
                                             </Text>
-                                            <Text>{experience.description}</Text>
+                                            <Text style={tw('text-sm')}>{experience.description}</Text>
                                         </View>
                                     );
                                 })
@@ -152,13 +152,13 @@ const TalentPDFDocument = ({
                         <Text style={tw('text-lg text-primary')}>
                             Level of English
                         </Text>
-                        <Text style={tw('capitalize text-sm mb-2 text-primary')}>
+                        <Text style={tw('capitalize text-sm mb-5 text-primary')}>
                             {talentData.extras.level_of_english || '-'}
                         </Text>
                         {talentData.extras.transport && (
                             <>
                                 <Text style={tw('text-lg text-primary')}>Own Transport</Text>
-                                <Text style={tw('capitalize text-sm text-primary')}>{talentData.extras.transport}</Text>
+                                <Text style={tw('capitalize mb-5 text-sm text-primary')}>{talentData.extras.transport}</Text>
                             </>
                         )}
                         {
@@ -195,6 +195,26 @@ const TalentPDFDocument = ({
                                                     >
                                                         {item.name}
                                                     </Link>
+                                                </View>
+                                            ))}
+                                            </View>
+                                        ) : (
+                                            <Text style={tw('text-sm text-primary')}>-</Text>
+                                        )}
+                                    </View>
+                                )
+                        }
+                        {
+                            talentData.extras.social_media_links?.length > 0 && (
+                            <View style={tw('mt-6')}>
+                                <Text style={tw('text-xl mb-2 text-primary')}>Other URLs</Text>
+                                {talentData.extras.social_media_links && talentData.extras.social_media_links.length > 0 ? (
+                                    <View style={tw('flex-row flex-wrap gap-2')}>
+                                            {talentData.extras.social_media_links.map((item, index) => (
+                                                <View key={index} style={tw('mr-2 mb-2')}>
+                                                    <Text style={tw('text-lg text-primary')}>
+                                                        {item.url}
+                                                    </Text>
                                                 </View>
                                             ))}
                                             </View>
