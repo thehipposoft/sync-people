@@ -40,7 +40,58 @@ const poppinsBold = localFont({
 export const metadata: Metadata = {
     title: 'Insyncx | Home',
     description: 'Connecting talents with opportunities',
-}
+    manifest: '/manifest.json',
+    keywords: [
+        "Insyncx",
+        "talents",
+        "skills portfolio",
+        "job seekers",
+        "immigrants in Australia",
+        "find a job",
+        "online resume",
+        "video resume",
+        "Australian job market",
+        "hospitality jobs",
+        "construction jobs",
+        "warehouse jobs",
+        "casual jobs Australia",
+        "backpackers",
+        "international students",
+    ],
+    themeColor: [
+        { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+        { media: '(prefers-color-scheme: dark)', color: '#7052E5' },
+    ],
+    authors: [
+        {
+        name: 'The Hipposoft',
+        url: 'https://www.thehipposoft.com',
+        },
+    ],
+    viewport:
+        'minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover',
+    icons: {
+        icon: '/icons/favicon.ico',
+        apple: '/icons/apple-touch-icon.png',
+        shortcut: '/icons/favicon-96x96.png',
+        other: [
+        {
+            rel: 'mask-icon',
+            url: '/icons/favicon.svg',
+            color: '#7052E5',
+        },
+        ],
+    },
+    appleWebApp: {
+        title: 'Insyncx',
+        statusBarStyle: 'black-translucent',
+        capable: true,
+    },
+    formatDetection: {
+        telephone: false,
+    },
+};
+
 
 const RootLayout = async ({ children }: {
   children: React.ReactNode
