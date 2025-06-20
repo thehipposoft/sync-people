@@ -15,13 +15,15 @@ type HeaderProps = {
     inDashboard?: boolean;
     isLoggedIn?: string | undefined;
     userId?: string,
+    is404?: boolean;
 };
 
 const Header = ({
     isFixed,
     inDashboard,
     isLoggedIn,
-    userId
+    userId,
+    is404,
 }:HeaderProps) => {
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState<boolean>(false);
@@ -69,14 +71,13 @@ const Header = ({
                     <rect y="30" width="100" height="15" rx="10" fill='#1A335D'></rect>
                     <rect y="60" width="100" height="15" rx="10" fill='#1A335D'></rect>
                 </svg>
-                <nav className='md:flex justify-center hidden items-center flex-wrap w-full md:w-fit gap-6 md:gap-0'>
+                <nav className={`${is404 ? 'md:hidden' : ''} md:flex justify-center hidden items-center flex-wrap w-full md:w-fit gap-6 md:gap-0`}>
                     <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.ABOUT}>
                         About
                     </Link>
                     <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.CONTACT}>
                         Contact
                     </Link>
-
                     {
                         isLoggedIn ?
                         <div className='flex items-center'>
@@ -116,6 +117,21 @@ const Header = ({
                         </div>
                     }
                 </nav>
+                {
+                    is404 ?
+                    <nav className='md:flex justify-center hidden items-center flex-wrap w-full md:w-fit gap-6 md:gap-0'>
+                        <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.HOME}>
+                            Home
+                        </Link>
+                        <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.ABOUT}>
+                            About
+                        </Link>
+                        <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.CONTACT}>
+                            Contact
+                        </Link>
+                    </nav>
+                    : <></>
+                }
                 <SideMenu userId={userId} sideMenu={openMenu} closeSideMenu={toggleMenu}/>
                 <BackDrop sideMenu={openMenu} closeSideMenu={toggleMenu} isDashboard={inDashboard} />
                 <ComingSoonModal
