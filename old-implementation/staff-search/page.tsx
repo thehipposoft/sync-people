@@ -5,7 +5,7 @@ import StaffSearch from "@/components/StaffSearch"
 export default function StaffSearchPage() {
     return(
         <div className="flex">
-            <SideNav />
+            {/* <SideNav /> */}
             <div className="flex flex-col w-full">
                 <StaffSearch />
                 <Footer />

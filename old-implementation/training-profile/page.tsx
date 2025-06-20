@@ -5,7 +5,7 @@ import TrainingProfile from "@/components/TrainingProfile"
 export default async function TrainingProfilePage() {
     return(
         <div className="flex">
-            <SideNav />
+            {/* <SideNav /> */}
             <div className="flex flex-col w-full">
                 <TrainingProfile />
                 <Footer />

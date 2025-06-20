@@ -5,9 +5,9 @@ import SideNav from "@/components/SideNav";
 export default function MyProfilePage() {
     return(
         <div className="flex">
-            <SideNav />
+            {/* <SideNav /> */}
             <div className="flex flex-col w-full">
-              
+
                 <Footer />
             </div>
         </div>

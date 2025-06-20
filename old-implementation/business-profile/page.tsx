@@ -5,7 +5,7 @@ import BusinessProfile from "@/components/BusinessProfile"
 export default async function BusinessProfilePage() {
     return(
         <div className="flex">
-            <SideNav />
+            {/* <SideNav /> */}
             <div className="flex flex-col w-full">
                 <BusinessProfile user='business'/>
                 <Footer />

@@ -6,7 +6,7 @@ import { STAFF_RESULTS } from "@/components//Search/constants"
 export default function StaffMarketPage() {
     return(
         <div className="flex">
-            <SideNav />
+            {/* <SideNav /> */}
             <div className="flex flex-col w-full">
                 <SearchComponent data={STAFF_RESULTS} user='business' />
                 <Footer />

@@ -5,7 +5,7 @@ import Footer from "@/components/Footer"
 export default function JobSearchPage() {
     return(
         <div className="flex">
-            <SideNav />
+           {/*  <SideNav /> */}
             <div className="flex flex-col w-full">
                 <JobSearchForm />
                 <Footer />

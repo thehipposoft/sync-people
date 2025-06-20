@@ -64,8 +64,8 @@ const TalentProfile = ({
                     <div className='relative flex flex-col mx-auto md:w-[900px] bg-white'>
                         {
                             selectedIndustry.industry === 'other' ?
-                            <div className='relative bg-[#1A335D] h-[7rem] rounded-t-2xl md:h-[10rem] md:w-[900px] w-[80vw] flex justify-end'>
-                                <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-24 w-12 md:mr-12 mr-8'/>
+                            <div className='relative bg-[#1A335D] h-[7rem] rounded-t-2xl md:h-[8rem] md:w-[900px] w-[80vw] flex justify-end'>
+                                <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-16 w-12 md:mr-12 mr-8'/>
                             </div>
                             :
                             <div className='relative h-[7rem] md:h-[10rem] md:w-[900px] w-[80vw]'>

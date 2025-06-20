@@ -6,7 +6,7 @@ import { BUSINESS_RESULTS } from "@/components/Search/constants";
 export default function BusinessMarketPage() {
     return(
         <div className="flex">
-            <SideNav />
+            {/* <SideNav /> */}
             <div className="flex flex-col w-full">
                 <SearchComponent  data={BUSINESS_RESULTS} />
                 <Footer />

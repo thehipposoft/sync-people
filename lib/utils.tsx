@@ -165,3 +165,22 @@ export const renderDescriptionPlaceholderByIndustry = (industry: IndustriesAvail
 
     return "Briefly describe your responsibilities, achievements, and key projects. Example: Managed a team of 5, increased sales by 20%, and led a successful product launch.";
 };
+
+export const handleDownloadQR = (url: string, first_name: string, last_name: string) => {
+    fetch(`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${url}&margin=30`)
+        .then(response => {
+            response.blob()
+            .then((blob) => {
+                let blobUrl = window.URL.createObjectURL(blob);
+                let a = document.createElement('a');
+                a.download = `Insyncx-${first_name}-${last_name}-QR`;
+                a.href = blobUrl;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            })
+        })
+        .catch(error => {
+            console.log(">>error", error);
+        })
+};

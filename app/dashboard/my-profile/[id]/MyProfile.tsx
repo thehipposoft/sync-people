@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
-import { getAge, renderSocialMediaIcon, handleRenderTimeInJobs } from '@/lib/utils';
+import { getAge, renderSocialMediaIcon, handleRenderTimeInJobs, handleDownloadQR } from '@/lib/utils';
 import { ROUTES, INDUSTRIES_BANNER } from '@/app/constants';
 import { parseISO, format } from 'date-fns';
 
@@ -16,24 +16,8 @@ const MyProfile = ({
     user,
     userId,
 }:MyProfileProps) => {
-    const handleDownloadQR = (url: string) => {
-        fetch(`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${url}&margin=30`)
-            .then(response => {
-                response.blob()
-                .then((blob) => {
-                    let blobUrl = window.URL.createObjectURL(blob);
-                    let a = document.createElement('a');
-                    a.download = `Insyncx-${user.personal_information.first_name}-${user.personal_information.last_name}-QR`;
-                    a.href = blobUrl;
-                    document.body.appendChild(a);
-                    a.click();
-                    a.remove();
-                })
-            })
-            .catch(error => {
-                console.log(">>error", error);
-            })
-    };
+
+
 
     return (
         <div className='flex flex-col md:w-full w-[85vw] mx-auto md:mx-0'>
@@ -52,8 +36,8 @@ const MyProfile = ({
                 <div className='relative flex flex-col'>
                     {
                         INDUSTRIES_BANNER[user.professional_information.industries[0].industry] ?
-                        <div className='rounded-t-2xl max-h-[200px] bg-[#1A335D] h-[300px] md:w-[900px] flex justify-end'>
-                            <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-28 w-20 md:mr-12 mr-8'/>
+                        <div className='rounded-t-2xl max-h-[120px] bg-[#1A335D] h-[300px] md:w-[900px] flex justify-end'>
+                            <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-16 w-20 md:mr-12 mr-8'/>
                         </div>
                         :
                         <Image
@@ -410,7 +394,7 @@ const MyProfile = ({
             <div className='flex md:flex-row gap-6 md:gap-0 w-5/6 md:w-auto flex-col pb-8 md:mb-0 md:ml-auto mt-6 mx-auto md:mx-0'>
                 <button
                     className='secondary-btn md:ml-4'
-                    onClick={() => handleDownloadQR(`https://insyncx.com${ROUTES.TALENTS}/${userId}`)}
+                    onClick={() => handleDownloadQR(`https://insyncx.com${ROUTES.TALENTS}/${userId}`, user.personal_information.first_name, user.personal_information.last_name)}
                 >
                     Download QR Code to share
                 </button>

@@ -36,7 +36,7 @@ const PrivateLayout = ({
     return (
         <div className='flex'>
             {
-                hideSideNav ? null : <SideNav userId={userId} />
+                hideSideNav ? null : <SideNav userId={userId} userName={user.personal_information.first_name} userLastName={user.personal_information.last_name} />
             }
             <div className='flex grow flex-col'>
                 <div className={`${noTalentProfile ? 'px-8 w-full' : 'w-full px-4'} flex fixed md:relative z-40 justify-between py-4 md:py-0 items-center md:px-8 md:w-full mx-auto bg-white`}>
