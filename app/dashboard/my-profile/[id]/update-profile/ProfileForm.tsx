@@ -211,7 +211,7 @@ const ProfileForm = ({
                         className={`px-4 cursor-pointer transition-all ${selectedTab === 'extras' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
                         onClick={() => handleTabChange('extras')}
                     >
-                        Extras
+                        More about me
                     </li>
                 </ul>
             </div>

@@ -296,7 +296,7 @@ const ProfessionalInformation = ({
                             :
                             <></>
                     }
-                    <div className="grid grid-cols-2 gap-4 pt-2">
+{/*                     <div className="grid grid-cols-2 gap-4 pt-2">
                         <div className="col-span-2 md:col-span-1">
                             <label htmlFor={`position`} className="block pb-2">
                                 Position
@@ -344,7 +344,7 @@ const ProfessionalInformation = ({
                                 onChange={(e) => handleIndustryDataChange(e, index, isNew)}
                             />
                         </div>
-                    </div>
+                    </div> */}
                     {
                         !isNew && <div className="col-span-2 mt-4">
                             <label className="block mt-2">

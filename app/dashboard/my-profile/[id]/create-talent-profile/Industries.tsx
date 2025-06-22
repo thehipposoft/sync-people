@@ -306,7 +306,7 @@ const Industries = ({
                                         :
                                         <></>
                                 }
-                                <div className='col-span-2 lg:col-span-1'>
+                               {/*  <div className='col-span-2 lg:col-span-1'>
                                     <label htmlFor="position" className="block pb-2">
                                         Position*
                                     </label>
@@ -359,7 +359,7 @@ const Industries = ({
                                         value={industry.preferred_salary}
                                         placeholder='Will not be displayed publicly'
                                     />
-                                </div>
+                                </div> */}
                             </div>
                             <div className='mt-4'>
                                 <label htmlFor={`industry_description`} className="block pb-2">
