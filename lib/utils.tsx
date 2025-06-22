@@ -184,3 +184,43 @@ export const handleDownloadQR = (url: string, first_name: string, last_name: str
             console.log(">>error", error);
         })
 };
+
+//Function to check if a URL is a YouTube link
+export function isYouTubeUrl(urlString: string): boolean {
+    try {
+      const url = new URL(urlString);
+
+      // Puede ser youtube.com o youtu.be
+      return (
+        url.hostname === 'www.youtube.com' ||
+        url.hostname === 'youtube.com' ||
+        url.hostname === 'youtu.be'
+      );
+    } catch (error) {
+      // No es una URL válida
+      return false;
+    }
+  }
+
+// Function to extract YouTube video ID from a URL
+export function extractYouTubeVideoId(urlString: string): string | null {
+    try {
+        const url = new URL(urlString);
+
+        if (url.hostname === 'youtu.be') {
+        return url.pathname.slice(1); // /abc123 -> abc123
+        }
+
+        if (
+        url.hostname === 'www.youtube.com' ||
+        url.hostname === 'youtube.com'
+        ) {
+        return url.searchParams.get('v');
+        }
+
+        return null;
+    } catch {
+        return null;
+    }
+}
+

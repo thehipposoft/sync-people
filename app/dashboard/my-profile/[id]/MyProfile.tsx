@@ -3,9 +3,10 @@ import React from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
-import { getAge, renderSocialMediaIcon, handleRenderTimeInJobs, handleDownloadQR } from '@/lib/utils';
+import { getAge, renderSocialMediaIcon, handleRenderTimeInJobs, handleDownloadQR, isYouTubeUrl, extractYouTubeVideoId } from '@/lib/utils';
 import { ROUTES, INDUSTRIES_BANNER } from '@/app/constants';
 import { parseISO, format } from 'date-fns';
+
 
 type MyProfileProps = {
     user: TalentTypeAcf;
@@ -17,6 +18,8 @@ const MyProfile = ({
     userId,
 }:MyProfileProps) => {
 
+    const isYouTube = isYouTubeUrl(user.personal_information.presentation_video);
+    const videoId = extractYouTubeVideoId(user.personal_information.presentation_video);
 
 
     return (
@@ -125,30 +128,62 @@ const MyProfile = ({
                             {user.personal_information.about_myself ? user.personal_information.about_myself : '-'}
                         </p>
                     </div>
-
                     {
-                        user.personal_information.presentation_video ?
-                        <Link href={user.personal_information.presentation_video} target='_blank' className='underline w-fit flex items-center gap-3 group mt-2 md:px-12 px-6 pb-6'>
-                                <h4 className='text-lg'>
-                                    Presentation video
-                                </h4>
-                                <div className='p-2 bg-primary-text w-fit rounded-full border-primary-text border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-300'>
-                                    <svg viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width={12}
-                                        height={12}
-                                    >
-                                        <g id="SVGRepo_iconCarrier">
-                                            <path
-                                                className='group-hover:fill-primary-text'
-                                                d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
-                                            </path>
-                                        </g>
-                                    </svg>
-                                </div>
-                        </Link>
-                        : ''
+                        user.personal_information.presentation_video && isYouTube === true
+                        ? <div className='flex flex-col justify-center pb-6'>
+                            <Link href={user.personal_information.presentation_video} target='_blank' className='underline w-fit flex items-center gap-3 group mt-2 md:px-12 px-6 pb-6'>
+                                    <h4 className='text-lg'>
+                                        Presentation video
+                                    </h4>
+                                    <div className='p-2 bg-primary-text w-fit rounded-full border-primary-text border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-300'>
+                                        <svg viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width={12}
+                                            height={12}
+                                        >
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path
+                                                    className='group-hover:fill-primary-text'
+                                                    d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
+                                                </path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                            </Link>
+                            <iframe
+                                width="460"
+                                height="215"
+                                src={`https://www.youtube.com/embed/${videoId}`}
+                                title="YouTube video player"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                                className='px-12'
+                            ></iframe>
+                        </div>
+                        : user.personal_information.presentation_video && isYouTube === false
+                        ? <Link href={user.personal_information.presentation_video} target='_blank' className='underline w-fit flex items-center gap-3 group mt-2 md:px-12 px-6 pb-6'>
+                                    <h4 className='text-lg'>
+                                        Presentation video
+                                    </h4>
+                                    <div className='p-2 bg-primary-text w-fit rounded-full border-primary-text border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-300'>
+                                        <svg viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width={12}
+                                            height={12}
+                                        >
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path
+                                                    className='group-hover:fill-primary-text'
+                                                    d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
+                                                </path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                            </Link>
+                        : null
                     }
                 </div>
                 <div className='flex flex-col bg-white md:px-12 px-6 py-6 border-t'>
