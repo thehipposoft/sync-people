@@ -22,6 +22,7 @@ const ProfessionalInformation = ({
     const [formValues, setFormValues] = useState<professional_information>({
         ...initialValues,
         industries: initialValues.industries || [],
+        skills_set: initialValues.skills_set || [],
     });
     const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
     const [selectedCertificateToRemoveIndex, setSelectedCertificateToRemoveIndex] = useState<number>(0);
@@ -176,13 +177,13 @@ const ProfessionalInformation = ({
             ...formValues,
             industries: newInd,
         });
-
-        console.log('Values after change:', newInd);
     };
 
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsAPILoading(true);
+
+        console.log('Submitting to API with skills_set:', formValues.skills_set);
 
         const response = await updateProfile(userId, {
             professional_information: {
@@ -194,6 +195,7 @@ const ProfessionalInformation = ({
             },
         });
 
+        console.log('Submitting form with skills_set:', formValues.skills_set);
         setFormValues({
             ...formValues,
             industries: [
@@ -431,6 +433,8 @@ const ProfessionalInformation = ({
         )
     };
 
+    console.log('formValues', formValues);
+
     return (
         <div>
             <form onSubmit={handleFormSubmit} className='grid grid-cols-2 gap-4'>
@@ -498,6 +502,86 @@ const ProfessionalInformation = ({
                     {
                         renderIndustriesFields(industriesToUpdate, true)
                     }
+                </div>
+                <div className="col-span-2 pt-4">
+                    <label htmlFor="skills_set" className="block pb-2">
+                        Key Skills
+                    </label>
+                    <ul className='flex flex-col gap-3'>
+                        {formValues.skills_set.map((value, index) => (
+                            <li key={index} className='flex gap-3 items-center'>
+                                <input
+                                    type="text"
+                                    required
+                                    value={value.skill}
+                                    placeholder="Add your skill"
+                                    className='text-sm'
+                                    onChange={(e) => {
+                                        const newSkills = formValues.skills_set.map((skill, i) => {
+                                            if (i === index) {
+                                                return {
+                                                    ...skill,
+                                                    skill: e.target.value,
+                                                }
+                                            }
+                                            return skill;
+                                        });
+
+                                        setFormValues({
+                                            ...formValues,
+                                            skills_set: newSkills,
+                                        });
+                                    }}
+                                />
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        const newSkills = formValues.skills_set.filter((_, i) => i !== index);
+
+                                        setFormValues({
+                                            ...formValues,
+                                            skills_set: newSkills,
+                                        });
+                                    }}
+                                    className="bg-red-500 p-1 rounded-md"
+                                >
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width={20}
+                                        height={20}
+                                    >
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path d="M5.73708 6.54391V18.9857C5.73708 19.7449 6.35257 20.3604 7.11182 20.3604H16.8893C17.6485 20.3604 18.264 19.7449 18.264 18.9857V6.54391M2.90906 6.54391H21.0909" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
+                                            </path>
+                                            <path d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                    <button
+                        className='primary-btn text-sm ml-0 mt-3'
+                        onClick={(e) => {
+                            e.preventDefault();
+
+                            const newSkills = [
+                                ...formValues.skills_set,
+                            ];
+                            newSkills.push({
+                                skill: '',
+                            });
+                            setFormValues({
+                                ...formValues,
+                                skills_set: newSkills,
+                            });
+                        }}
+                    >
+                        Add Skill
+                    </button>
                 </div>
                 <div className='w-full col-span-2 flex'>
                     <button

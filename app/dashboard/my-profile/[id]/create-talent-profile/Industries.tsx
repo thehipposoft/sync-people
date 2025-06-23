@@ -2,8 +2,6 @@ import { useState, useRef } from 'react';
 import { TalentTypeAcf, IndustryType, IndustriesAvailable } from '@/types';
 import { TALENT_CURRENT_STATUS_DROPDOWN, TALENT_WORK_PREFERENCE_DROPDOWN, INDUSTRIES } from '@/app/constants';
 import { Select, SelectItem } from "@heroui/select";
-import { Tooltip } from "@heroui/tooltip";
-import Link from "next/link";
 import Modal from '@/components/Modal';
 import { format } from 'date-fns';
 
@@ -27,6 +25,8 @@ const Industries = ({
         ...initialValues.professional_information,
         work_preference: 'full-time',
         industries: [],
+        skills_set: initialValues.professional_information.skills_set || [],
+
     });
     const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
     const [industriesError, setIndustriesError] = useState<string>('');
@@ -155,7 +155,6 @@ const Industries = ({
         setIsAPILoading(false);
         setOpenNewCertificateModal(false);
     };
-
     return (
         <>
             <form
@@ -218,7 +217,6 @@ const Industries = ({
                             }
                         </select>
                     </div>
-
                     <div className='col-span-2 mt-4'>
                         <p className='font-bold mb-2'>
                             Tell us which industries you're most interested in working in.
@@ -460,6 +458,86 @@ const Industries = ({
                         </div>
                     ))
                 }
+                <div className="col-span-2 pt-4">
+                        <label htmlFor="skills_set" className="block pb-2">
+                            Key Skills
+                        </label>
+                        <ul className='flex flex-col gap-3'>
+                            {formValues.skills_set.map((skill, index) => (
+                                <li key={index} className='flex gap-3 items-center'>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={skill.skill}
+                                        placeholder="Add your skill"
+                                        className='text-sm'
+                                        onChange={(e) => {
+                                            const newSkills = formValues.skills_set.map((skill, i) => {
+                                                if (i === index) {
+                                                    return {
+                                                        ...skill,
+                                                        skill: e.target.value,
+                                                    }
+                                                }
+                                                return skill;
+                                            });
+
+                                            setFormValues({
+                                                ...formValues,
+                                                skills_set: newSkills,
+                                            });
+                                        }}
+                                    />
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            const newSkills = formValues.skills_set.filter((_, i) => i !== index);
+
+                                            setFormValues({
+                                                ...formValues,
+                                                skills_set: newSkills,
+                                            });
+                                        }}
+                                        className="bg-red-500 p-1 rounded-md"
+                                    >
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width={20}
+                                            height={20}
+                                        >
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path d="M5.73708 6.54391V18.9857C5.73708 19.7449 6.35257 20.3604 7.11182 20.3604H16.8893C17.6485 20.3604 18.264 19.7449 18.264 18.9857V6.54391M2.90906 6.54391H21.0909" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
+                                                </path>
+                                                <path d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
+                                                </path>
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                        <button
+                            className='primary-btn text-sm ml-0 mt-3'
+                            onClick={(e) => {
+                                e.preventDefault();
+
+                                const newSkills = [
+                                    ...formValues.skills_set,
+                                ];
+                                newSkills.push({
+                                    skill: '',
+                                });
+                                setFormValues({
+                                    ...formValues,
+                                    skills_set: newSkills,
+                                });
+                            }}
+                        >
+                            Add Skill
+                        </button>
+                    </div>
                 {
                     !formValues.industries.length && industriesError ? (
                         <p className='text-red-600 mt-4 border-2 border-red-600 rounded-md p-4 bg-red-200'>

@@ -48,6 +48,7 @@ const TalentProfile = ({
         saveAs(blob, `Insyncx_${talentData.personal_information.first_name}_${talentData.personal_information.last_name}_Profile.pdf`);
     };
 
+    console.log('Talent Data:', talentData);
     return (
         !talentData.professional_information.industries
         ? <div className='flex flex-col md:w-full w-[80vw] h-[60vh] justify-center'>
@@ -231,7 +232,7 @@ const TalentProfile = ({
                                         </Link>
                                     : null
                                 }
-                                    <div className='flex flex-col mt-4 md:items-end'>
+                                    <div className='flex flex-col mt-4'>
                                         <h4 className='text-lg mb-2'>
                                             Contact me
                                         </h4>
@@ -295,7 +296,22 @@ const TalentProfile = ({
                             }
                         </div>
                     }
-                    <div className='flex flex-col  my-4 mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>
+
+                    <div className='flex flex-col my-4 mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>
+                        <h4 className={`${talentData.professional_information.skills_set.length > 0 ? '' : 'hidden'} text-xl pb-4 font-bold`}>
+                            Key Skills:
+                        </h4>
+                        <ul className='list-inside list-disc pb-4'>
+                            {
+                                talentData.professional_information.skills_set && talentData.professional_information.skills_set.length > 0
+                                    ? talentData.professional_information.skills_set.map((skill, index) => (
+                                        <li key={index} className='capitalize'>
+                                            {skill.skill}
+                                        </li>
+                                    ))
+                                    : null
+                            }
+                        </ul>
                         <h4 className='text-xl pb-4 font-bold'>
                             Extras
                         </h4>

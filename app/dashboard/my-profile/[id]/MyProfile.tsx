@@ -20,8 +20,7 @@ const MyProfile = ({
 
     const isYouTube = isYouTubeUrl(user.personal_information.presentation_video);
     const videoId = extractYouTubeVideoId(user.personal_information.presentation_video);
-
-
+    console.log('User data:', user);
     return (
         <div className='flex flex-col md:w-full w-[85vw] mx-auto md:mx-0'>
             <div className='md:w-[900px] mx-auto'>
@@ -283,6 +282,20 @@ const MyProfile = ({
                             ))
                         }
                     </div>
+                    <h2 className='text-2xl pb-4 font-bold'>
+                        Key Skills:
+                    </h2>
+                    <ul className='list-inside list-disc'>
+                        {
+                            user.professional_information.skills_set && user.professional_information.skills_set.length > 0
+                                ? user.professional_information.skills_set.map((skill, index) => (
+                                    <li key={index} className='capitalize'>
+                                        {skill.skill}
+                                    </li>
+                                ))
+                                : <div>No skills added yet. You can add your skills <Link className='underline' href={`${ROUTES.MY_PROFILE}/${userId}/update-profile`}>here</Link></div>
+                        }
+                    </ul>
                 </div>
                 <div className='flex flex-col my-4 bg-white md:px-12 px-6 py-6 border-t'>
                     <h2 className='text-2xl pb-4 font-bold'>

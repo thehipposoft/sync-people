@@ -38,6 +38,9 @@ export type professional_information = {
     industries: IndustryType[];
     current_status: 'available' | 'working' | 'offline';
     work_preference: 'parti-time' | 'full-time' | 'casual' | 'contract' | 'internship';
+    skills_set: {
+        skill: string;
+    }[];
 };
 
 export type WorkExperienceType = {
