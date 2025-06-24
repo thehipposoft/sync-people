@@ -49,6 +49,8 @@ const TalentProfile = ({
     };
 
     console.log('Talent Data:', talentData);
+    console.log('Selected Industry:', selectedIndustry);
+
     return (
         !talentData.professional_information.industries
         ? <div className='flex flex-col md:w-full w-[80vw] h-[60vh] justify-center'>
@@ -174,11 +176,11 @@ const TalentProfile = ({
                                         </p>
                                     </div>
                                 </div>
-                                <div className='flex justify-between mt-3 flex-wrap gap-4'>
+                                <div className='flex flex-col justify-between mt-3 flex-wrap '>
                                 {
                                     talentData.personal_information.presentation_video && isYouTube === true
-                                    ? <div className='flex flex-col md:justify-center pb-6'>
-                                        <Link href={talentData.personal_information.presentation_video} target='_blank' className='underline w-fit flex items-center gap-3 group mt-2 pb-6'>
+                                    ? <div className='flex flex-col md:justify-center pb-2'>
+                                        <Link href={talentData.personal_information.presentation_video} target='_blank' className='underline w-fit flex items-center gap-3 group mt-2 pb-3'>
                                                 <h4 className='text-lg'>
                                                     Presentation video
                                                 </h4>
@@ -236,7 +238,7 @@ const TalentProfile = ({
                                         <h4 className='text-lg mb-2'>
                                             Contact me
                                         </h4>
-                                        <div className='flex flex-wrap gap-4'>
+                                        <div className='flex flex-wrap'>
 
                                             <Link
                                                 href={`tel:${talentData.personal_information.mobile}`}

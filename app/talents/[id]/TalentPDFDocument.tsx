@@ -45,16 +45,22 @@ const TalentPDFDocument = ({
     selectedIndustry
 }:Props) => {
     console.log(">>talentData", talentData);
+    console.log(">>selectedIndustry", INDUSTRIES_BANNER[selectedIndustry.industry]);
     return (
         <Document>
             <Page size="A4" style={tw('bg-white px-6 py-8 font-sans')}>
-                {/* <View style={tw('rounded-t-2xl overflow-hidden h-20')}>
-                    <Image
-                        style={tw('object-cover w-full h-full')}
-                        src={INDUSTRIES_BANNER[selectedIndustry.industry]}
-                    />
-                </View> */}
-
+                {
+                    selectedIndustry.industry === 'other' ?
+                    <View style={tw('relative bg-[#1A335D] h-24 rounded-t-2xl  w-full flex justify-center')}>
+                    </View>
+                    :
+                    <View style={tw('rounded-t-2xl overflow-hidden h-24')}>
+                        <Image
+                            style={tw('object-cover w-full h-full')}
+                            src={`${INDUSTRIES_BANNER[selectedIndustry.industry]}`}
+                        />
+                    </View>
+                }
                 <View style={tw('flex flex-col mt-6')}>
                     <View style={tw('flex-row items-start gap-4 mb-4')}>
                         <Image
@@ -64,11 +70,11 @@ const TalentPDFDocument = ({
                                 : '/assets/images/profile-avatar.png'
                             }
                         />
-                        <View style={tw('mb-4')}>
+                        <View style={tw('mb-4 max-w-[400px]')}>
                             <Text style={tw('text-3xl font-bold text-primary')}>
                                 {talentData.personal_information.first_name} {talentData.personal_information.last_name} - {selectedIndustry.position}
                             </Text>
-                            <Text style={tw('text-base text-primary')}>
+                            <Text style={tw('text-base text-primary max-w-[400px]')}>
                                 {talentData.personal_information.about_myself
                                 ? `" ${talentData.personal_information.about_myself} "`
                                 : ''}
@@ -76,7 +82,7 @@ const TalentPDFDocument = ({
                         </View>
                     </View>
 
-                    <View style={tw('flex-row justify-between mb-4')}>
+                    <View style={tw('flex-row justify-between my-4')}>
                         <View>
                             <Text style={tw('text-xl text-primary')}>Current Location</Text>
                             <Text style={tw('text-sm text-primary')}>
@@ -139,14 +145,25 @@ const TalentPDFDocument = ({
                                                     ({handleRenderTimeInJobs(startDate, endDate)})
                                                 </Text>
                                             </Text>
-                                            <Text style={tw('text-sm')}>{experience.description}</Text>
+                                            <Text style={tw('text-sm text-primary')}>{experience.description}</Text>
                                         </View>
                                     );
                                 })
                         }
                     </View>
                     )}
-
+{/*                     {talentData.professional_information.skills_set?.length > 0 && (
+                        <View style={tw('mt-8')}>
+                            <Text style={tw('text-2xl font-bold text-primary')}>Key Skills</Text>
+                            <View style={tw('flex-col flex-wrap gap-2')}>
+                                {talentData.professional_information.skills_set.map((skill, index) => (
+                                    <Text key={index} style={tw('text-sm text-primary py-1')}>
+                                        {skill.skill}
+                                    </Text>
+                                ))}
+                            </View>
+                        </View>
+                    )} */}
                     <View style={tw('mt-6')}>
                         <Text style={tw('text-2xl font-bold mb-2 text-primary')}>Extras</Text>
                         <Text style={tw('text-lg text-primary')}>
@@ -184,7 +201,7 @@ const TalentPDFDocument = ({
                         {
                             talentData.extras.other_urls?.length > 0 && (
                             <View style={tw('mt-6')}>
-                                <Text style={tw('text-xl mb-2 text-primary')}>Other URLs</Text>
+                                <Text style={tw('text-xl text-primary')}>Other URLs</Text>
                                 {talentData.extras.other_urls && talentData.extras.other_urls.length > 0 ? (
                                     <View style={tw('flex-row flex-wrap gap-2')}>
                                             {talentData.extras.other_urls.map((item, index) => (
@@ -212,7 +229,7 @@ const TalentPDFDocument = ({
                                     <View style={tw('flex-row flex-wrap gap-2')}>
                                             {talentData.extras.social_media_links.map((item, index) => (
                                                 <View key={index} style={tw('mr-2 mb-2')}>
-                                                    <Text style={tw('text-lg text-primary')}>
+                                                    <Text style={tw('text-sm text-primary')}>
                                                         {item.url}
                                                     </Text>
                                                 </View>
