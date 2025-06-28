@@ -69,8 +69,8 @@ const TalentProfile = ({
                     <div className='relative flex flex-col mx-auto md:w-[900px] bg-white'>
                         {
                             selectedIndustry.industry === 'other' ?
-                            <div className='relative bg-[#1A335D] h-[7rem] rounded-t-2xl md:h-[8rem] md:w-[900px] w-[80vw] flex justify-end'>
-                                <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-16 w-12 md:mr-12 mr-8'/>
+                            <div className='relative bg-[#1A335D] h-[7rem] rounded-t-2xl md:h-[10rem] md:w-[900px] w-[80vw] flex justify-end'>
+                                <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-20 w-12 md:mr-12 mr-8'/>
                             </div>
                             :
                             <div className='relative h-[7rem] md:h-[10rem] md:w-[900px] w-[80vw]'>
@@ -108,7 +108,7 @@ const TalentProfile = ({
                                             <select
                                                 className='bg-[#f3f4f6] rounded-lg p-2 w-full md:w-[200px] text-[#1A335D] text-center ml-auto flex'
                                                 onChange={(e) => {
-                                                    const selected = talentData.professional_information.industries.find((industry) => industry.position === e.target.value);
+                                                    const selected = talentData.professional_information.industries.find((industry) => industry.industry === e.target.value);
                                                     if (selected) {
                                                         setSelectedIndustry(selected);
                                                     }
@@ -117,8 +117,7 @@ const TalentProfile = ({
                                                 {talentData.professional_information.industries.map((industry, index) => (
                                                     <option
                                                         key={index}
-                                                        value={industry.position}
-                                                        onClick={() => setSelectedIndustry(industry)}
+                                                        value={industry.industry}
                                                     >
                                                         {industry.industry === 'other' ? industry.other_industry?.toUpperCase() : industry.industry.replace(/_/g, ' ').toUpperCase()}
                                                     </option>
@@ -171,7 +170,7 @@ const TalentProfile = ({
                                         <h4 className='text-lg'>
                                             Work Preference
                                         </h4>
-                                        <p className={`capitalize text-right`}>
+                                        <p className={`capitalize md:text-right`}>
                                             {talentData.professional_information.work_preference ? talentData.professional_information.work_preference : '-'}
                                         </p>
                                     </div>
@@ -182,23 +181,8 @@ const TalentProfile = ({
                                     ? <div className='flex flex-col md:justify-center pb-2'>
                                         <Link href={talentData.personal_information.presentation_video} target='_blank' className='underline w-fit flex items-center gap-3 group mt-2 pb-3'>
                                                 <h4 className='text-lg'>
-                                                    Presentation video
+                                                    Presentation video:
                                                 </h4>
-                                                <div className='p-2 bg-primary-text w-fit rounded-full border-primary-text border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-300'>
-                                                    <svg viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        width={12}
-                                                        height={12}
-                                                    >
-                                                        <g id="SVGRepo_iconCarrier">
-                                                            <path
-                                                                className='group-hover:fill-primary-text'
-                                                                d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
-                                                            </path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
                                         </Link>
                                         <iframe
                                             width="340"
@@ -206,7 +190,7 @@ const TalentProfile = ({
                                             src={`https://www.youtube.com/embed/${videoId}`}
                                             title="YouTube video player"
                                             frameBorder="0"
-                                            className='rounded-md w-[68vw] h-[180px] md:h-[165px] md:w-[320px]'
+                                            className='rounded-md w-[68vw] h-[140px] md:h-[165px] md:w-[320px]'
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                             allowFullScreen
                                         ></iframe>
@@ -238,7 +222,7 @@ const TalentProfile = ({
                                         <h4 className='text-lg mb-2'>
                                             Contact me
                                         </h4>
-                                        <div className='flex flex-wrap'>
+                                        <div className='flex gap-4 md:gap-0 flex-wrap'>
 
                                             <Link
                                                 href={`tel:${talentData.personal_information.mobile}`}

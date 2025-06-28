@@ -12,7 +12,7 @@ export default function ConstructionPage() {
         <PublicLayout>
             <div className="my-20 flex flex-col md:flex-row gap-16 max-w-[80vw] md:max-w-none">
                 <div>
-                    <h1 className="md:text-5xl mb-10">
+                    <h1 className="md:text-5xl mb-10 tracking-tight md:tracking-normal">
                         Why Choose a Career in Construction?
                     </h1>
 
@@ -75,8 +75,8 @@ export default function ConstructionPage() {
                     </p>
                 </div>
                 <div className="flex flex-col gap-6">
-                    <div className="relative w-[340px] md:w-[490px] h-[400px] md:h-[520px]">
-                        <Image src={'/assets/images/categories/construction-1.webp'} alt="" fill  className="object-cover md:rounded-tl-[300px] rounded-tl-[200px] md:rounded-br-[300px] rounded-br-[200px]"/>
+                    <div className="relative w-[240px] md:w-[490px] h-[300px] md:h-[520px]">
+                        <Image src={'/assets/images/categories/construction-1.webp'} alt="" fill  className="object-cover md:rounded-tl-[300px] rounded-tl-[120px] md:rounded-br-[300px] rounded-br-[120px]"/>
                     </div>
                     <div className="relative flex flex-col md:flex-row md:h-[520px] gap-6 md:gap-0">
                         <div className="hidden md:block relative w-[285px] h-[280px]">

@@ -16,9 +16,9 @@ const Discover = () => {
     <div className='bg-[#54D8C0] rounded-bl-[200px] relative'>
       <div className='max-w-[1350px] mx-auto md:px-4 px-8 md:pl-20 pb-20 pt-10 md:pt-32 flex flex-wrap '>
         <div className='w-full lg:w-1/2'>
-          <h2 className='text-6xl md:text-[64px]'>Discover Australia</h2>
+          <h2 className='text-6xl md:text-[64px] tracking-tight md:tracking-normal'>Discover Australia</h2>
           <div className='flex flex-col lg:flex-row'>
-              <h2 className='text-6xl md:text-[64px]'>with</h2>
+              <h2 className='text-6xl md:text-[64px] tracking-tight md:tracking-normal'>with</h2>
               <Image
                     src={'/assets/logo.png'}
                     width={593}

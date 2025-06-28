@@ -155,6 +155,19 @@ h4 {
     }
 
 }
+//header glass effect
+#header-nav {
+    animation: blur linear both;
+    animation-timeline: scroll();
+    animation-range: 0 400px;
+  }
+
+  @keyframes blur {
+    to {
+      background: #efefff8d;
+      backdrop-filter: blur(7px);
+    }
+  }
 
 .progress {
     border-radius: 25px;

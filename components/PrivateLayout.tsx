@@ -39,7 +39,7 @@ const PrivateLayout = ({
                 hideSideNav ? null : <SideNav userId={userId} userName={user.personal_information.first_name} userLastName={user.personal_information.last_name} />
             }
             <div className='flex grow flex-col'>
-                <div className={`${noTalentProfile ? 'px-8 w-full' : 'w-full px-4'} flex fixed md:relative z-40 justify-between py-4 md:py-0 items-center md:px-8 md:w-full mx-auto bg-white`}>
+                <div id="header-nav" className={`${noTalentProfile ? 'px-8 w-full' : 'w-full px-9'} flex fixed md:relative z-40 justify-between py-4 md:py-0 items-center md:px-8 md:w-full mx-auto `}>
                     <Link href={ROUTES.HOME} className='hidden md:block'>
                         <Image
                             src={'/assets/logo.png'}
@@ -49,15 +49,12 @@ const PrivateLayout = ({
                             className='max-w-[12rem] md:max-w-lg w-[200px]'
                         />
                     </Link>
-                    <div className={`${noTalentProfile ? 'justify-end gap-4' : 'justify-between'} flex bg-white md:justify-end  items-center md:gap-6 gap-2 py-1 w-[95vw] mx-auto md:mx-0 md:w-auto`}>
-                        <Link href={'/training-and-licenses'} className='green-btn hidden'>
-                            Training and Licenses
-                        </Link>
-                        <Link href={`/talents/${userId}`} className={`${noTalentProfile ? 'hidden' : ''} green-btn lg:px-4 text-sm px-2 py-3 md:py-2`}>
+                    <div className={`${noTalentProfile ? 'justify-end gap-4' : 'justify-between'} flex md:justify-end  items-center md:gap-6 gap-2 py-1 w-[95vw] mx-auto md:mx-0 md:w-auto`}>
+                        <Link href={`/talents/${userId}`} className={`${noTalentProfile ? 'hidden' : ''} md:block hidden green-btn lg:px-4 text-sm px-2 py-3 md:py-2`}>
                             View Public Profile
                         </Link>
                         <button
-                            className="primary-btn mx-0 rounded-md text-sm px-3 w-auto lg:px-6 py-3 md:py-2"
+                            className="primary-btn mx-0 rounded-md text-sm px-3 w-auto lg:px-6 py-3 md:py-2 md:block hidden"
                             onClick={handleLogout}
                         >
                             Log out
