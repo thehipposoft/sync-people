@@ -54,7 +54,7 @@ const Header = ({
     };
 
     return (
-        <div id="header-nav" className={`header ${inDashboard ? 'px-0 py-0 w-auto mx-0 md:hidden' : 'px-8 w-full mx-auto'} ${isFixed ? 'fixed lg:relative' : ''} top-0 lg:w-full lg:py-0 lg:px-0 flex-wrap z-30 `}>
+        <div id="header-nav" className={`header h-[96px] md:h-auto ${inDashboard ? 'px-0 py-0 w-auto mx-0 md:hidden' : 'px-8 w-full mx-auto'} ${isFixed ? 'fixed lg:relative' : ''} top-0 lg:w-full lg:py-0 lg:px-0 flex-wrap z-30 `}>
             <div className='lg:w-[1250px] flex justify-between items-center mx-auto'>
                 <Link href={ROUTES.HOME} className={`${inDashboard ? 'hidden' : ''}`}>
                     <Image
