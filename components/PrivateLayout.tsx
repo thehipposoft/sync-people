@@ -39,17 +39,17 @@ const PrivateLayout = ({
                 hideSideNav ? null : <SideNav userId={userId} userName={user.personal_information.first_name} userLastName={user.personal_information.last_name} />
             }
             <div className='flex grow flex-col'>
-                <div id="header-nav" className={`${noTalentProfile ? 'px-8 w-full' : 'w-full px-9'} flex fixed md:relative z-40 justify-between py-4 md:py-0 items-center md:px-8 md:w-full mx-auto `}>
+                <div className={`${noTalentProfile ? 'px-8 w-full' : 'w-full px-8 h-[180px] header-glass md:h-auto -translate-y-[90px] md:-translate-y-0'} flex fixed md:relative z-40 justify-between items-end md:items-center md:px-8 md:w-full mx-auto `}>
                     <Link href={ROUTES.HOME} className='hidden md:block'>
                         <Image
                             src={'/assets/logo.png'}
                             alt='Insyncx logo'
                             width={593}
                             height={337}
-                            className='max-w-[12rem] md:max-w-lg w-[200px]'
+                            className='max-w-[12rem] md:max-w-lg w-[200px] '
                         />
                     </Link>
-                    <div className={`${noTalentProfile ? 'justify-end gap-4' : 'justify-between'} flex md:justify-end  items-center md:gap-6 gap-2 py-1 w-[95vw] mx-auto md:mx-0 md:w-auto`}>
+                    <div className={`${noTalentProfile ? 'justify-end gap-4' : 'justify-between'} flex md:justify-end items-center md:gap-6 gap-2 py-1 w-[95vw] mx-auto md:mx-0 md:w-auto`}>
                         <Link href={`/talents/${userId}`} className={`${noTalentProfile ? 'hidden' : ''} md:block hidden green-btn lg:px-4 text-sm px-2 py-3 md:py-2`}>
                             View Public Profile
                         </Link>
@@ -59,7 +59,7 @@ const PrivateLayout = ({
                         >
                             Log out
                         </button>
-                        <Link href={`${ROUTES.MY_PROFILE}/${userId}`} className={`${noTalentProfile ? 'hidden' : ''}`}>
+                        <Link href={`${ROUTES.MY_PROFILE}/${userId}`} className={`${noTalentProfile ? 'hidden' : 'h-[96px] md:h-auto flex items-center'}`}>
                             <Image
                                 src={user.personal_information.profile_pic ? user.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
                                 alt={`${user.personal_information.first_name} ${user.personal_information.last_name}`}

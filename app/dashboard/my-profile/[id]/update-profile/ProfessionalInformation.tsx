@@ -685,7 +685,7 @@ const ProfessionalInformation = ({
                 <h4 className="mb-4">
                     Your data has been updated successfully
                 </h4>
-                <div className="flex gap-4">
+                <div className="flex flex-wrap gap-4">
                     <button
                         className="secondary-btn"
                         onClick={() => setOpenUpdatedDataModal(false)}
