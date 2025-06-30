@@ -77,10 +77,10 @@ const Discover = () => {
           <div className='md:pl-5'>
             <div className='grid grid-cols-1 md:grid-cols-2 md:w-[600px] gap-5'>
               <div className='flex flex-col md:w-[280px] md:h-[600px] col-span-1 mx-auto md:mx-0'>
-                <div className={'md:h-[300px] h-[340px] md:w-[280px] w-[320px] relative'}>
+                <div className={'md:h-[300px] h-[220px] md:w-[280px] w-[260px] relative'}>
                   <Image className='object-cover rounded-t-[200px]' src={'/assets/images/discover/discover.jpg'} alt='Opera house photo' fill />
                 </div>
-                <div className='bg-[#7052E5] rounded-bl-[100px] md:w-[280px] w-[320px] md:h-[320px] h-[300px] flex flex-col justify-end items-end'>
+                <div className='bg-[#7052E5] rounded-bl-[100px] md:w-[280px] w-[260px] md:h-[320px] h-[240px] flex flex-col justify-end items-end'>
                   <div className='pr-10 pb-10'>
                     <button
                       className='text-white text-xl pb-2 border-none hover:underline'
@@ -91,7 +91,7 @@ const Discover = () => {
                   </div>
                 </div>
               </div>
-              <div className='flex flex-col md:w-[280px] w-[320px] md:h-[600px] h-[640px] col-span-1 mx-auto md:mx-0 gap-5 md:gap-0'>
+              <div className='md:flex flex-col md:w-[280px] w-[320px] md:h-[600px] h-[640px] hidden col-span-1 mx-auto md:mx-0 gap-5 md:gap-0'>
                 <div className={`relative bg-cover bg-center rounded-full rounded-bl-none md:h-[300px] h-[320px] md:w-[280px] w-[320px] overflow-hidden`}>
                   <Image className='object-cover' src={'/assets/images/discover/discover2.png'} alt='Guy smilling picture' fill />
                 </div>

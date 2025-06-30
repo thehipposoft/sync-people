@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <div className='flex justify-between md:px-20 md:max-w-[1350px] max-w-[85vw] mx-auto py-20 flex-wrap' id='contact'>
         <div className='xl:w-2/5 w-full md:p-4'>
-            <h2 className='text-6xl'>Contact us</h2>
+            <h2 className='text-6xl tracking-tight md:tracking-normal'>Contact us</h2>
             <Form
                 fields={[
                     {

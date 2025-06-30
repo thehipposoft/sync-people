@@ -60,6 +60,9 @@ const SideMenu = ({sideMenu, closeSideMenu, userId}:SideMenuTypes) => {
                     :
                     <div className='mx-4'>
                         <li className="my-5 text-white text-lg cursor-pointer duration-500 rounded-xl py-2 px-8 hover:underline">
+                            <Link href="/" onClick={closeSideMenu}>Home</Link>
+                        </li>
+                        <li className="my-5 text-white text-lg cursor-pointer duration-500 rounded-xl py-2 px-8 hover:underline">
                             <Link href="/#about" onClick={closeSideMenu}>About</Link>
                         </li>
                         <li className="my-5 text-white text-lg cursor-pointer duration-500 rounded-xl py-2 px-8 hover:underline">
