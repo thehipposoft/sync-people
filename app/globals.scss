@@ -157,10 +157,13 @@ h4 {
 }
 //Padding top for safe area on Mobile
 @media (max-width: 475px) {
-    main {
-        padding-top: calc(96px + env(safe-area-inset-top));
+      main {
+        --safe-area-inset-top: env(safe-area-inset-top);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom);
+        height: calc(100% + (var(--safe-area-inset-top) + var(--safe-area-inset-bottom)));
       }
 }
+
 
 //header glass effect
 #header-nav {
