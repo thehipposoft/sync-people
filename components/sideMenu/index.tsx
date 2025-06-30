@@ -22,7 +22,7 @@ const SideMenu = ({sideMenu, closeSideMenu, userId}:SideMenuTypes) => {
     };
 
     return(
-        <div className={`duration-500 top-0 right-0 md:w-80 w-screen fixed h-screen bg-[#1A335D] z-10 flex flex-col gap-8 justify-center items-center opacity-0 ${ sideMenu ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-100'}`}>
+        <div className={`md:hidden duration-500 top-0 right-0 md:w-80 w-screen fixed h-screen bg-[#1A335D] z-10 flex flex-col gap-8 justify-center items-center opacity-0 ${ sideMenu ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-100'}`}>
             <Image
                 src={'/logo-white.svg'}
                 width={593}
