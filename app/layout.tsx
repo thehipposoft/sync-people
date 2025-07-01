@@ -5,6 +5,7 @@ import GoogleAnalytics from '@/components/GoogleAnalytics';
 import SchemaOrg from '@/components/SchemaOrg';
 import { ViewTransitions } from "next-view-transitions";
 import { Providers } from "./providers";
+import Head from 'next/head';
 
 const openSans = localFont({
     src: [
@@ -99,6 +100,10 @@ const RootLayout = async ({ children }: {
     return (
         <ViewTransitions>
             <html lang="en">
+                <Head>
+                    {/* Apple Touch Icon para iOS */}
+                    <link rel="apple-touch-icon" href="/icons/ios-180.png" />
+                </Head>
                 <body className={`${openSans.variable} ${poppinsRegular.variable} ${poppinsBold.variable}`}>
                     <GoogleAnalytics />
                     <SchemaOrg />
