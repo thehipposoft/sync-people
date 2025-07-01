@@ -5,7 +5,7 @@ import { ROUTES } from '@/app/constants';
 
 const Footer = () => {
     return (
-        <div className='flex md:py-20 py-6 bg-bg-primary px-6 md:px-0 flex-wrap'>
+        <div className='flex md:py-20 py-16 bg-bg-primary px-6 md:px-0 flex-wrap'>
             <div className='container grid grid-cols-1 md:grid-cols-4 gap-2 '>
                 <div className='w-full flex justify-center md:justify-start'>
                     <div>
@@ -62,7 +62,7 @@ const Footer = () => {
                             target='_blank'
                             className='md:mr-2'
                         >
-                            <svg width={35} height={35} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width={30} height={30} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g id="SVGRepo_iconCarrier">
                                     <path fillRule="evenodd" clipRule="evenodd" d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" fill="#1A335D">
                                     </path>
@@ -73,10 +73,10 @@ const Footer = () => {
                             </svg>
                         </Link>
                         <Link target='_blank' href={'https://www.facebook.com/profile.php?id=61561044445028'} className='md:mx-2'>
-                            <Image src={'/assets/images/vectors/facebook.svg'} alt='icon' width={35} height={35}  />
+                            <Image src={'/assets/images/vectors/facebook.svg'} alt='icon' width={30} height={30}  />
                         </Link>
                         <Link target='_blank' href={'https://www.linkedin.com/company/insyncx/about/'} className='md:mx-2'>
-                            <Image src={'/assets/images/vectors/linkedin.svg'} alt='icon' width={35} height={35} />
+                            <Image src={'/assets/images/vectors/linkedin.svg'} alt='icon' width={30} height={30} />
                         </Link>
                     </div>
                 </div>
