@@ -71,7 +71,7 @@ const BasicInformation = ({
                 translate: `${-100 * currentIndex}%`,
             }}
         >
-            <h4 className='font-bold py-4 text-xl pt-8'>
+            <h4 className='font-bold py-4 text-xl pt-8 md:pt-6'>
                 1. Personal Information
             </h4>
             <p className='pb-4 text-[#1A335D] text-lg'>
@@ -150,32 +150,32 @@ const BasicInformation = ({
                         To which gender identity do you most identify?
                     </label>
                     <div className='flex md:flex-row flex-col items-start gap-4 mt-1'>
-                        <label className='flex gap-1'>
+                        <label className='flex'>
                             <input
                                 type="radio"
                                 name="gender"
                                 value="Male"
                                 onChange={handleInputChange}
                             />
-                            Male
+                            <p className='pl-1'>Male</p>
                         </label>
-                        <label className='flex gap-1'>
+                        <label className='flex'>
                             <input
                                 type="radio"
                                 name="gender"
                                 value="Female"
                                 onChange={handleInputChange}
                             />
-                            Female
+                            <p className='pl-1'>Female</p>
                         </label>
-                        <label className='flex gap-1 '>
+                        <label className='flex'>
                             <input
                                 type="radio"
                                 name="gender"
                                 value="Other"
                                 onChange={handleInputChange}
                             />
-                                Other
+                            <p className='pl-1'>Other</p>
                         </label>
                     </div>
                 </div>

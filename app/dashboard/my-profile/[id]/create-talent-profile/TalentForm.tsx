@@ -141,13 +141,13 @@ const TalentForm = ({
                 <h1 className='text-3xl h-bold py-4 pl-4 border-b'>
                     Create Talent Profile
                 </h1>
-                <div className='flex justify-between items-center mt-6'>
+                <div className='flex justify-between items-center mt-6 md:w-11/12 md:mx-auto'>
                     <div className='relative group mx-auto lg:mx-0'>
                         <Image
                             src={profileImage ? profileImage : '/assets/images/profile-avatar.png'}
                             alt={`${formValues.personal_information.first_name} ${formValues.personal_information.last_name}`}
                             width={150} height={150}
-                            className='h-[140px] lg:h-[150px] rounded-full border-2 border-primary-text object-cover'
+                            className='h-[150px] rounded-full border-2 border-primary-text object-cover'
                         />
 
                         <div className={`absolute top-0 left-0 rounded-full w-full h-full bg-[#000000b3] ${profileImage ? 'opacity-0' : 'opacity-100'} duration-500 flex justify-center items-center cursor-pointer p-2`}>

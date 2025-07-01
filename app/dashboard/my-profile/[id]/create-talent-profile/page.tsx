@@ -38,7 +38,7 @@ const CreateTalentProfile = async ({ params }: Props) => {
     const userData:TalentType = await getTalent(id);
 
     if(userData.acf.professional_information.industries && userData.acf.professional_information.industries.length) {
-      /*   redirect(`${ROUTES.MY_PROFILE}/${id}`); */
+        redirect(`${ROUTES.MY_PROFILE}/${id}`);
     }
 
     return (
