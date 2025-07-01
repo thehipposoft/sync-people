@@ -5,7 +5,6 @@ import GoogleAnalytics from '@/components/GoogleAnalytics';
 import SchemaOrg from '@/components/SchemaOrg';
 import { ViewTransitions } from "next-view-transitions";
 import { Providers } from "./providers";
-import InstallButton from '@/components/DownloadButton';
 
 const openSans = localFont({
     src: [
@@ -106,7 +105,6 @@ const RootLayout = async ({ children }: {
                     <Providers>
                         {children}
                     </Providers>
-                    <InstallButton />
                 </body>
             </html>
         </ViewTransitions>
