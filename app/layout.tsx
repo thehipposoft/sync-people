@@ -101,8 +101,7 @@ const RootLayout = async ({ children }: {
         <ViewTransitions>
             <html lang="en">
                 <Head>
-                    {/* Apple Touch Icon para iOS */}
-                    <link rel="apple-touch-icon" href="/icons/ios-180.png" />
+                    <link rel="apple-touch-icon" href="/icons/ios-512.png" />
                 </Head>
                 <body className={`${openSans.variable} ${poppinsRegular.variable} ${poppinsBold.variable}`}>
                     <GoogleAnalytics />
