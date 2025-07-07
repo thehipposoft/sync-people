@@ -3,6 +3,7 @@ import { TalentTypeAcf } from '@/types';
 import { AUSTRALIAN_STATES } from '@/app/constants';
 import { Link } from 'next-view-transitions';
 import { ROUTES } from '@/app/constants';
+import VideoRecorder from '@/components/VideoRecorder';
 
 type BasicInformationPropsType = {
     currentIndex: number;
@@ -26,6 +27,8 @@ const BasicInformation = ({
             postcode: '',
         },
     });
+
+    const [recordedVideoBlob, setRecordedVideoBlob] = useState<Blob | null>(null);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -224,6 +227,7 @@ const BasicInformation = ({
                             Include a link to your preferred platform (YouTube, Vimeo, TikTok, etc.)
                         </p>
                     </div>
+                    <VideoRecorder onVideoReady={(blob) => setRecordedVideoBlob(blob)} />
                 </div>
 
                 <div className='col-span-2 lg:col-span-1 flex flex-col items-center justify-center mb-2'>
