@@ -3,7 +3,7 @@ import { TalentTypeAcf } from '@/types';
 import { AUSTRALIAN_STATES } from '@/app/constants';
 import { Link } from 'next-view-transitions';
 import { ROUTES } from '@/app/constants';
-import VideoRecorderModal from '@/components/VideoRecorder';
+import VideoRecorder from '@/components/VideoRecorder';
 
 type BasicInformationPropsType = {
     currentIndex: number;
@@ -65,6 +65,8 @@ const BasicInformation = ({
             return updatedValues;
         });
     };
+
+    console.log('recordedVideoBlob', recordedVideoBlob)
 
     return (
         <form
@@ -227,8 +229,6 @@ const BasicInformation = ({
                             Include a link to your preferred platform (YouTube, Vimeo, TikTok, etc.)
                         </p>
                     </div>
-                    <VideoRecorderModal onVideoReady={(blob) => setRecordedVideoBlob(blob)} />
-
                 </div>
 
                 <div className='col-span-2 lg:col-span-1 flex flex-col items-center justify-center mb-2'>
@@ -243,7 +243,25 @@ const BasicInformation = ({
                         Click here
                     </Link>
                 </div>
+                <div className='col-span-2 lg:col-span-2'>
+                    <div className='flex gap-2 mb-2 flex-col'>
+                        <label htmlFor="presentation_video" className="block">
+                            Record your presentation video now
+                        </label>
+                        <p className='text-sm opacity-70 my-2'>
+                            The video should be 30 to 60 seconds long, introducing yourself and your professional profile.<br /> Keep it simple and relaxed.<br /> This video will be used to create your profile.
+                        </p>
+                    </div>
+                    <VideoRecorder onVideoReady={(blob) => setRecordedVideoBlob(blob)} />
 
+                    {recordedVideoBlob && (
+                        <video
+                            controls
+                            src={URL.createObjectURL(recordedVideoBlob)}
+                            className="mt-4 rounded shadow w-full max-w-md"
+                        />
+                        )}
+                </div>
                 <h4 className='col-span-2 lg-col-span-1 mt-3'>
                     Current Address
                 </h4>

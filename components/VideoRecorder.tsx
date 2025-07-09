@@ -31,9 +31,7 @@ const VideoRecorder = ({ onVideoReady }: { onVideoReady: (blob: Blob) => void })
 
   return (
     <div className="flex flex-col gap-2">
-        <div className={`${recording ? '' : 'hidden' } absolute left-0 top-0 h-full w-full z-40 bg-black/90 flex justify-center items-center`}>
-            <video ref={videoRef} autoPlay muted className={` w-full max-w-lg rounded-lg shadow relative z-50`} />
-        </div>
+        <video ref={videoRef} autoPlay muted className={`${recording ? '' : 'hidden' } my-2 w-full max-w-xl mx-auto rounded-lg shadow relative z-50`} />
       <div className="flex gap-2 relative">
         {!recording ? (
           <div onClick={startRecording} className="group cursor-pointer bg-primary-text hover:bg-white border-2 border-primary-text duration-500 flex gap-2 items-center text-white hover:text-primary-text px-4 py-2 rounded-3xl">
@@ -55,7 +53,7 @@ const VideoRecorder = ({ onVideoReady }: { onVideoReady: (blob: Blob) => void })
             Start Recording
           </div>
         ) : (
-          <div onClick={stopRecording} className="cursor-pointer bg-red-600 text-white px-4 py-2 rounded top-[40%] absolute z-50">
+          <div onClick={stopRecording} className="cursor-pointer bg-red-600 text-white px-4 py-2 rounded">
             Stop Recording
           </div>
         )}
