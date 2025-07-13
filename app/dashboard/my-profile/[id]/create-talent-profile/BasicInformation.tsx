@@ -197,6 +197,20 @@ const BasicInformation = ({
                     />
                 </div>
 
+                <div className='col-span-2 lg:col-span-2'>
+                    <div className='flex gap-2 flex-col'>
+                        <label htmlFor="presentation_video" className="block">
+                            Record your presentation video now
+                        </label>
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                            <VideoRecorder onVideoReady={(blob) => setRecordedVideoBlob(blob)} />
+                            <p className='text-sm opacity-70 my-2'>
+                                The video should be 15 to 30 seconds long, introducing yourself and your professional profile.<br /> Keep it simple and relaxed.<br />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 <div className='col-span-2'>
                     <label htmlFor="about_myself" className="block pb-2">
                         About me
@@ -243,25 +257,7 @@ const BasicInformation = ({
                         Click here
                     </Link>
                 </div>
-                <div className='col-span-2 lg:col-span-2'>
-                    <div className='flex gap-2 mb-2 flex-col'>
-                        <label htmlFor="presentation_video" className="block">
-                            Record your presentation video now
-                        </label>
-                        <p className='text-sm opacity-70 my-2'>
-                            The video should be 30 to 60 seconds long, introducing yourself and your professional profile.<br /> Keep it simple and relaxed.<br /> This video will be used to create your profile.
-                        </p>
-                    </div>
-                    <VideoRecorder onVideoReady={(blob) => setRecordedVideoBlob(blob)} />
 
-                    {recordedVideoBlob && (
-                        <video
-                            controls
-                            src={URL.createObjectURL(recordedVideoBlob)}
-                            className="mt-4 rounded shadow w-full max-w-md"
-                        />
-                        )}
-                </div>
                 <h4 className='col-span-2 lg-col-span-1 mt-3'>
                     Current Address
                 </h4>
