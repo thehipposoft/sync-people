@@ -88,7 +88,21 @@ const VideoRecorder = ({ onVideoReady }: Props) => {
 
     return (
         <div className="relative flex flex-col gap-4">
-            <div className="relative w-full max-w-xl mx-auto rounded overflow-hidden shadow">
+            {
+                (!recording && !recordedBlob) && (
+                    <div>
+                        <p className='text-sm mb-2'>Notes:</p>
+                        <ul className="list-disc pl-5 text-sm">
+                            <li>1. You can re-record if you're not satisfied with the first take.</li>
+                            <li>2. The video will be saved in your profile for you to review later.</li>
+                            <li>3. The script is just a starting point; you can change it as needed.</li>
+                            <li>4. The script will be visible while the video is recorded but will not be part of the final video.</li>
+                        </ul>
+                    </div>
+                )
+            }
+
+            <div className={`relative w-full max-w-xl mx-auto rounded overflow-hidden ${recording || recordedBlob ? '' : 'hidden'}`}>
                 <video
                     ref={videoRef}
                     className="w-full"
@@ -114,34 +128,64 @@ const VideoRecorder = ({ onVideoReady }: Props) => {
                 )}
             </div>
 
-            <textarea
-                className="border rounded p-2 text-sm w-full max-w-xl mx-auto"
-                rows={4}
-                value={script}
-                onChange={(e) => setScript(e.target.value)}
-                placeholder="Write or paste your script here..."
-            />
+            {
+                (!recording && !recordedBlob) && (
+                     <p className=''>
+                        We created a simple script to help you get started. Feel free to modify it as you like.
+                    </p>
+                )
+            }
+
+            {(!recording && !recordedBlob) && (
+                <textarea
+                    className="border rounded p-2 text-sm w-full"
+                    rows={4}
+                    value={script}
+                    onChange={(e) => setScript(e.target.value)}
+                    placeholder="Write or paste your script here..."
+                />
+            )}
 
             <div className="flex gap-4 justify-center">
                 {recording ? (
                     <button
                         onClick={stopRecording}
-                        className="bg-red-600 text-white px-4 py-2 rounded"
+                        className="bg-red-600 text-white px-4 py-2 rounded-3xl"
                     >
                         Stop Recording
                     </button>
                 ) : recordedBlob ? (
-                    <button
-                        onClick={resetRecording}
-                        className="bg-gray-600 text-white px-4 py-2 rounded"
-                    >
-                        Re-record
-                    </button>
+                    <div className='flex gap-4'>
+                        <button
+                            onClick={resetRecording}
+                            className="secondary-btn"
+                        >
+                            Re-record
+                        </button>
+                        <button className='primary-btn'>
+                            Keep this Video
+                        </button>
+                    </div>
                 ) : (
                     <button
                         onClick={startRecording}
-                        className="bg-blue-600 text-white px-4 py-2 rounded"
+                        className="group cursor-pointer bg-primary-text hover:bg-white border-2 border-primary-text duration-500 flex gap-2 items-center text-white hover:text-primary-text px-4 py-2 rounded-3xl"
                     >
+                        <div className='p-1 bg-white w-fit rounded-full border-white border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-500'>
+                            <svg viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width={8}
+                                height={8}
+                            >
+                                <g id="SVGRepo_iconCarrier">
+                                    <path
+                                        className='fill-primary-text transition-all duration-500'
+                                        d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
                         Start Recording
                     </button>
                 )}

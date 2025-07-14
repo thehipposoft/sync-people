@@ -4,6 +4,7 @@ import { AUSTRALIAN_STATES } from '@/app/constants';
 import { Link } from 'next-view-transitions';
 import { ROUTES } from '@/app/constants';
 import VideoRecorder from '@/components/VideoRecorder';
+import Modal from '@/components/Modal';
 
 type BasicInformationPropsType = {
     currentIndex: number;
@@ -27,7 +28,7 @@ const BasicInformation = ({
             postcode: '',
         },
     });
-
+    const [recordVideoModalOpen, setRecordVideoModalOpen] = useState<boolean>(false);
     const [recordedVideoBlob, setRecordedVideoBlob] = useState<Blob | null>(null);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -197,16 +198,46 @@ const BasicInformation = ({
                     />
                 </div>
 
-                <div className='col-span-2 lg:col-span-2'>
-                    <div className='flex gap-2 flex-col'>
-                        <label htmlFor="presentation_video" className="block">
+                <div className='col-span-2'>
+                    <div className='flex gap-2 flex-col my-4'>
+                        <label htmlFor="presentation_video" className="block text-xl font-bold">
                             Record your presentation video now
                         </label>
-                        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                            <VideoRecorder onVideoReady={(blob) => setRecordedVideoBlob(blob)} />
-                            <p className='text-sm opacity-70 my-2'>
-                                The video should be 15 to 30 seconds long, introducing yourself and your professional profile.<br /> Keep it simple and relaxed.<br />
-                            </p>
+                        <div className='flex items-center gap-2'>
+                            <div>
+                                <p className='font-bold text-sm'>We know recording a video can feel like a pain—so don’t worry, we’ve got your back!</p>
+                                <p className='my-2'>
+                                    Here are a few tips to make it easier:
+                                </p>
+                                <ul>
+                                    <li className='text-sm'>1. Keep it short and sweet—aim for 30 seconds to 1 minute.</li>
+                                    <li className='text-sm'>2. Be yourself! Relax, smile, and let your personality shine through.</li>
+                                    <li className='text-sm'>3. Use the teleprompter to guide you with some talking points.</li>
+                                    <li className='text-sm'>4. Don’t worry about perfection—just be genuine and authentic.</li>
+                                    <li className='text-sm'>5. If you make a mistake, just keep going. You can always re-record if needed.</li>
+                                </ul>
+                            </div>
+                            <div
+                                onClick={() => setRecordVideoModalOpen(true)}
+                                className="group cursor-pointer bg-primary-text hover:bg-white border-2 border-primary-text duration-500 flex gap-2 items-center text-white hover:text-primary-text px-4 py-2 rounded-3xl"
+                            >
+                                <div className='p-1 bg-white w-fit rounded-full border-white border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-500'>
+                                    <svg viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width={8}
+                                        height={8}
+                                    >
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path
+                                                className='fill-primary-text transition-all duration-500'
+                                                d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </div>
+                                Record Video
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -331,7 +362,12 @@ const BasicInformation = ({
                     Next
                 </button>
             </div>
-
+            <Modal
+                isOpen={recordVideoModalOpen}
+                onClose={() => setRecordVideoModalOpen(false)}
+            >
+                <VideoRecorder onVideoReady={(blob) => setRecordedVideoBlob(blob)} />
+            </Modal>
         </form>
     );
 };
