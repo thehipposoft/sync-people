@@ -67,7 +67,16 @@ const BasicInformation = ({
         });
     };
 
-    console.log('recordedVideoBlob', recordedVideoBlob)
+    const handleVideoReady = (blob: Blob) => {
+        setRecordedVideoBlob(blob);
+        setFormValues((prevValues) => ({
+            ...prevValues,
+            presentation_video: URL.createObjectURL(blob),
+        }));
+        setRecordVideoModalOpen(false);
+    };
+
+    console.log('>>recordedVideoBlob', recordedVideoBlob)
 
     return (
         <form
@@ -200,45 +209,79 @@ const BasicInformation = ({
 
                 <div className='col-span-2'>
                     <div className='flex gap-2 flex-col my-4'>
-                        <label htmlFor="presentation_video" className="block text-xl font-bold">
+                        <p className="block text-xl font-bold">
                             Record your presentation video now
-                        </label>
-                        <div className='flex items-center gap-2'>
-                            <div>
-                                <p className='font-bold text-sm'>We know recording a video can feel like a pain—so don’t worry, we’ve got your back!</p>
-                                <p className='my-2'>
-                                    Here are a few tips to make it easier:
-                                </p>
-                                <ul>
-                                    <li className='text-sm'>1. Keep it short and sweet—aim for 30 seconds to 1 minute.</li>
-                                    <li className='text-sm'>2. Be yourself! Relax, smile, and let your personality shine through.</li>
-                                    <li className='text-sm'>3. Use the teleprompter to guide you with some talking points.</li>
-                                    <li className='text-sm'>4. Don’t worry about perfection—just be genuine and authentic.</li>
-                                    <li className='text-sm'>5. If you make a mistake, just keep going. You can always re-record if needed.</li>
-                                </ul>
-                            </div>
-                            <div
-                                onClick={() => setRecordVideoModalOpen(true)}
-                                className="group cursor-pointer bg-primary-text hover:bg-white border-2 border-primary-text duration-500 flex gap-2 items-center text-white hover:text-primary-text px-4 py-2 rounded-3xl"
+                        </p>
+                        <div className='flex gap-2 flex-wrap'>
+                            <p className=''>
+                                Why Create a "presentation" Video?
+                            </p>
+                            <Link
+                                className='text-primary-text underline'
+                                href={ROUTES.PRESENTATION_VIDEO}
+                                target='_blank'
                             >
-                                <div className='p-1 bg-white w-fit rounded-full border-white border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-500'>
-                                    <svg viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width={8}
-                                        height={8}
-                                    >
-                                        <g id="SVGRepo_iconCarrier">
-                                            <path
-                                                className='fill-primary-text transition-all duration-500'
-                                                d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
-                                            </path>
-                                        </g>
-                                    </svg>
-                                </div>
-                                Record Video
-                            </div>
+                                Click here
+                            </Link>
                         </div>
+                        {
+                            recordedVideoBlob
+                            ? <div>
+                                <video
+                                    className='w-full lg:w-1/2 lg:mx-auto h-auto rounded-lg'
+                                    controls
+                                    src={URL.createObjectURL(recordedVideoBlob)}
+                                />
+                                <div className='flex items-center mx-auto my-6 gap-3 flex-wrap'>
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setRecordVideoModalOpen(true);
+                                        }}
+                                        className="primary-btn"
+                                    >
+                                        Re-record Video
+                                    </button>
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setRecordedVideoBlob(null);
+                                            setFormValues((prevValues) => ({
+                                                ...prevValues,
+                                                presentation_video: '',
+                                            }));
+                                        }}
+                                        className="danger-btn"
+                                    >
+                                        Remove Video
+                                    </button>
+                                </div>
+                            </div>
+                            : <div className='flex items-center gap-2 mx-auto my-6'>
+                                <div
+                                    onClick={() => setRecordVideoModalOpen(true)}
+                                    className="group cursor-pointer h-28 px-10 bg-primary-text hover:bg-white border-2 border-primary-text duration-500 flex gap-2 items-center text-white hover:text-primary-text rounded-3xl flex-col justify-center"
+                                >
+                                    <div className='p-1 bg-white w-fit rounded-full border-white border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-500'>
+                                        <svg viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width={16}
+                                            height={16}
+                                        >
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path
+                                                    className='fill-primary-text transition-all duration-500'
+                                                    d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
+                                                </path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    Record Video
+                                </div>
+                            </div>
+                        }
+
                     </div>
                 </div>
 
@@ -366,7 +409,7 @@ const BasicInformation = ({
                 isOpen={recordVideoModalOpen}
                 onClose={() => setRecordVideoModalOpen(false)}
             >
-                <VideoRecorder onVideoReady={(blob) => setRecordedVideoBlob(blob)} />
+                <VideoRecorder onVideoReady={(blob) => handleVideoReady(blob)} />
             </Modal>
         </form>
     );
