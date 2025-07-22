@@ -11,6 +11,8 @@ type BasicInformationPropsType = {
     initialValues: TalentTypeAcf;
     showNext: () => void;
     setMainFormValues: (values: TalentTypeAcf) => void;
+    setRecordedVideoBlob: (blob: Blob | null) => void;
+    recordedVideoBlob: Blob | null;
 }
 
 const BasicInformation = ({
@@ -18,6 +20,8 @@ const BasicInformation = ({
     initialValues,
     showNext,
     setMainFormValues,
+    setRecordedVideoBlob,
+    recordedVideoBlob,
 }:BasicInformationPropsType) => {
     const [formValues, setFormValues] = useState<TalentTypeAcf['personal_information']>({
         ...initialValues.personal_information,
@@ -29,7 +33,6 @@ const BasicInformation = ({
         },
     });
     const [recordVideoModalOpen, setRecordVideoModalOpen] = useState<boolean>(false);
-    const [recordedVideoBlob, setRecordedVideoBlob] = useState<Blob | null>(null);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -75,8 +78,6 @@ const BasicInformation = ({
         }));
         setRecordVideoModalOpen(false);
     };
-
-    console.log('>>recordedVideoBlob', recordedVideoBlob)
 
     return (
         <form
@@ -281,7 +282,6 @@ const BasicInformation = ({
                                 </div>
                             </div>
                         }
-
                     </div>
                 </div>
 
@@ -299,37 +299,6 @@ const BasicInformation = ({
                         value={formValues.about_myself}
                         onChange={handleInputChange}
                     />
-                </div>
-
-                <div className='col-span-2 lg:col-span-1'>
-                    <div className='flex gap-2 mb-2 flex-col'>
-                        <label htmlFor="presentation_video" className="block">
-                            Presentation Video URL
-                        </label>
-                        <input
-                            type="text"
-                            id="presentation_video"
-                            name="presentation_video"
-                            value={formValues.presentation_video}
-                            onChange={handleInputChange}
-                        />
-                        <p className='text-sm opacity-70 mt-1'>
-                            Include a link to your preferred platform (YouTube, Vimeo, TikTok, etc.)
-                        </p>
-                    </div>
-                </div>
-
-                <div className='col-span-2 lg:col-span-1 flex flex-col items-center justify-center mb-2'>
-                    <p className=''>
-                        Why Create a "presentation" Video?
-                    </p>
-                    <Link
-                        className='text-primary-text underline'
-                        href={ROUTES.PRESENTATION_VIDEO}
-                        target='_blank'
-                    >
-                        Click here
-                    </Link>
                 </div>
 
                 <h4 className='col-span-2 lg-col-span-1 mt-3'>

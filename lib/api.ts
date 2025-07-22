@@ -281,3 +281,31 @@ export const getFaqs = async () => {
     }
     return cleanFaqs
 };
+
+export const uploadPresentationVideo = async (blob: Blob) => {
+    // TODO: Move this into separate API or Restrict URL
+    const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || '';
+    const formData = new FormData();
+    formData.append('file', blob);
+    formData.append('upload_preset', 'presentation_videos');
+
+    const apiResponse = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/video/upload`, {
+        method: 'POST',
+        body: formData,
+    });
+
+    if (!apiResponse.ok) {
+        return {
+            status: 500,
+            message: 'Media not uploaded',
+        };
+    }
+
+    const responseData = await apiResponse.json();
+
+    return {
+        status: 200,
+        message: "Media uploaded",
+        data: responseData,
+    };
+};

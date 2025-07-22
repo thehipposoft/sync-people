@@ -6,6 +6,7 @@ import { TalentTypeAcf } from '@/types';
 import { updateProfile, uploadMedia } from '@/lib/protected-api';
 import Modal from '@/components/Modal';
 import { ROUTES } from '@/app/constants';
+import { uploadPresentationVideo } from '@/lib/api';
 //Form steps
 import BasicInformation from './BasicInformation';
 import Industries from './Industries';
@@ -30,6 +31,7 @@ const TalentForm = ({
     const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
     const [openSuccessModal, setOpenSuccessModal] = useState<boolean>(false);
     const [openLoadingModal, setOpenLoadingModal] = useState<boolean>(false);
+    const [recordedVideoBlob, setRecordedVideoBlob] = useState<Blob | null>(null);
 
     const getFileUrl = async (file: File, title: string, altText: string) => {
         const formData = new FormData();
@@ -95,6 +97,21 @@ const TalentForm = ({
 
             uploadPromises.push(profileImagePromise);
         }
+
+        if (recordedVideoBlob) {
+            uploadPresentationVideo(recordedVideoBlob)
+            .then(response => {
+                if (response.status === 200) {
+                    console.log('Video uploaded successfully');
+                    apiFormValues.personal_information.presentation_video = response.data.secure_url;
+                } else {
+                    console.error('Failed to upload video:', response.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error uploading video:', error);
+            });
+        };
 
         // Collect promises for industries certificates
         const certificatePromises = apiFormValues.professional_information.industries
@@ -213,6 +230,8 @@ const TalentForm = ({
                             initialValues={formValues}
                             setMainFormValues={setFormValues}
                             showNext={showNext}
+                            setRecordedVideoBlob={setRecordedVideoBlob}
+                            recordedVideoBlob={recordedVideoBlob}
                         />
                         <WorkingRights
                             currentIndex={currentIndex}

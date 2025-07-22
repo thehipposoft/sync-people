@@ -4,6 +4,9 @@ import { updateProfile } from '@/lib/protected-api';
 import { PersonalInformationType } from '@/types';
 import { AUSTRALIAN_STATES, ROUTES } from '@/app/constants';
 import Modal from '@/components/Modal';
+import VideoRecorder from '@/components/VideoRecorder';
+import { uploadPresentationVideo } from '@/lib/api';
+import { form } from '@heroui/theme';
 
 type PersonalInformationPropsType = {
     initialValues: PersonalInformationType;
@@ -17,7 +20,8 @@ const PersonalInformation = ({
     const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
     const [formValues, setFormValues] = useState<PersonalInformationType>(initialValues);
     const [openUpdatedDataModal, setOpenUpdatedDataModal] = useState<boolean>(false);
-
+    const [recordedVideoBlob, setRecordedVideoBlob] = useState<Blob | null>(null);
+    const [recordVideoModalOpen, setRecordVideoModalOpen] = useState<boolean>(false);
 
     const handleUpdatePersonalInformationClick = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -56,6 +60,34 @@ const PersonalInformation = ({
                 ...formValues.current_location,
                 [e.target.name]: e.target.value,
             },
+        });
+    };
+
+    const handleVideoReady = (blob: Blob) => {
+        setRecordedVideoBlob(blob);
+        setRecordVideoModalOpen(false);
+
+        uploadPresentationVideo(blob)
+        .then(async response => {
+            if (response.status === 200) {
+                console.log('Video uploaded successfully');
+                setFormValues((prevValues) => ({
+                    ...prevValues,
+                    presentation_video: response.data.secure_url,
+                }));
+                const updateProfileResponse = await updateProfile(userId, {
+                    personal_information: {
+                        ...formValues,
+                        presentation_video: response.data.secure_url,
+                    },
+                });
+            } else {
+                console.error('Failed to upload video:', response.message);
+            }
+
+        })
+        .catch(error => {
+            console.error('Error uploading video:', error);
         });
     };
 
@@ -178,6 +210,83 @@ const PersonalInformation = ({
                     />
                 </div>
 
+                <div className='col-span-2'>
+                    <div className='flex gap-2 flex-col my-4'>
+                        <p className="block text-xl font-bold">
+                            Record your presentation video now
+                        </p>
+                        <div className='flex gap-2 flex-wrap'>
+                            <p className=''>
+                                Why Create a "presentation" Video?
+                            </p>
+                            <Link
+                                className='text-primary-text underline'
+                                href={ROUTES.PRESENTATION_VIDEO}
+                                target='_blank'
+                            >
+                                Click here
+                            </Link>
+                        </div>
+                        {
+                            recordedVideoBlob || formValues.presentation_video
+                            ? <div>
+                                <video
+                                    className='w-full lg:w-1/2 lg:mx-auto h-auto rounded-lg'
+                                    controls
+                                    src={recordedVideoBlob ? URL.createObjectURL(recordedVideoBlob) : formValues.presentation_video}
+                                />
+                                <div className='flex items-center mx-auto my-6 gap-3 flex-wrap'>
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setRecordVideoModalOpen(true);
+                                        }}
+                                        className="primary-btn"
+                                    >
+                                        Re-record Video
+                                    </button>
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setRecordedVideoBlob(null);
+                                            setFormValues((prevValues) => ({
+                                                ...prevValues,
+                                                presentation_video: '',
+                                            }));
+                                        }}
+                                        className="danger-btn"
+                                    >
+                                        Remove Video
+                                    </button>
+                                </div>
+                            </div>
+                            : <div className='flex items-center gap-2 mx-auto my-6'>
+                                <div
+                                    onClick={() => setRecordVideoModalOpen(true)}
+                                    className="group cursor-pointer h-28 px-10 bg-primary-text hover:bg-white border-2 border-primary-text duration-500 flex gap-2 items-center text-white hover:text-primary-text rounded-3xl flex-col justify-center"
+                                >
+                                    <div className='p-1 bg-white w-fit rounded-full border-white border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-500'>
+                                        <svg viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width={16}
+                                            height={16}
+                                        >
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path
+                                                    className='fill-primary-text transition-all duration-500'
+                                                    d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
+                                                </path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    Record Video
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
                 <div className='col-span-2 lg:col-span-1'>
                     <div className='flex gap-2 mb-2 flex-col'>
                         <label htmlFor="presentation_video" className="block">
@@ -298,6 +407,12 @@ const PersonalInformation = ({
                         View Public Profile
                     </Link>
                 </div>
+            </Modal>
+            <Modal
+                isOpen={recordVideoModalOpen}
+                onClose={() => setRecordVideoModalOpen(false)}
+            >
+                <VideoRecorder onVideoReady={(blob) => handleVideoReady(blob)} />
             </Modal>
         </>
     )

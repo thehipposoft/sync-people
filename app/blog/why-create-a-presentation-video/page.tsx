@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import PublicLayout from "@/components/PublicLayout";
-import Image from "next/image";
 
 export const metadata: Metadata = {
     title: "Insyncx | Why Create a Presentation Video?",
