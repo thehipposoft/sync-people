@@ -48,9 +48,6 @@ const TalentProfile = ({
         saveAs(blob, `Insyncx_${talentData.personal_information.first_name}_${talentData.personal_information.last_name}_Profile.pdf`);
     };
 
-    console.log('Talent Data:', talentData);
-    console.log('Selected Industry:', selectedIndustry);
-
     return (
         !talentData.professional_information.industries
         ? <div className='flex flex-col md:w-full w-[80vw] h-[60vh] justify-center'>
@@ -63,9 +60,7 @@ const TalentProfile = ({
         </div>
         : <div className='flex flex-col md:w-full'>
             <div className='md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
-                <div
-                    className='border rounded-2xl bg-white'
-                >
+                <div className='border rounded-2xl bg-white'>
                     <div className='relative flex flex-col mx-auto md:w-[900px] bg-white'>
                         {
                             selectedIndustry.industry === 'other' ?
@@ -99,9 +94,9 @@ const TalentProfile = ({
                             </div>
 
                             <div className='flex flex-col gap-2'>
-                                <div className='flex justify-between items-center mb-6 flex-col-reverse md:flex-row gap-4'>
+                                <div className='flex justify-between items-center mb-3 flex-col-reverse md:flex-row gap-4'>
                                     <h4 className='text-2xl mt-4 lg:mt-0'>
-                                        {talentData.personal_information.first_name} {talentData.personal_information.last_name} <span className='h-bold capitalize'> - {selectedIndustry.position}</span>
+                                        {talentData.personal_information.first_name} {talentData.personal_information.last_name} <span className='h-bold capitalize'> - {talentData.personal_information.country_of_birth}</span>
                                     </h4>
                                     {
                                         !queryIndustry && (
@@ -126,128 +121,88 @@ const TalentProfile = ({
                                         )
                                     }
                                 </div>
-                                <div className='flex justify-between flex-col md:flex-row gap-3'>
-                                    <div>
-                                        <h4 className='text-lg'>
-                                            Current Location
-                                        </h4>
-                                        <p className='text-[#1A335D]'>
-                                                {talentData.personal_information.current_location.state && talentData.personal_information.current_location.suburb
-                                                ? `${talentData.personal_information.current_location.suburb}, ${talentData.personal_information.current_location.state}`
-                                                : `-`
-                                            }
-                                        </p>
-
-                                    </div>
-                                    <div>
-                                        <h4 className='text-lg'>
-                                            Country of Birth
-                                        </h4>
-                                        <p className='text-[#1A335D] md:text-right'>
-                                            {talentData.personal_information.country_of_birth
-                                                ? `${talentData.personal_information.country_of_birth}`
-                                                : `-`
-                                            }
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className='flex justify-between mt-1 flex-col md:flex-row gap-3'>
-                                    <div>
-                                        <h4 className='text-lg'>
-                                            Licenses or Certificates
-                                        </h4>
-                                        {
-                                            selectedIndustry.certificates?.length > 0
-                                            ? <p>
-                                                {selectedIndustry.certificates.map(certificate => certificate.name).join(', ')}
+                                <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                                    <div className='order-2 md:order-1'>
+                                        <div className='flex justify-between flex-col mb-5'>
+                                            <h4 className='text-lg'>
+                                                Current Location
+                                            </h4>
+                                            <p className='text-[#1A335D]'>
+                                                    {talentData.personal_information.current_location.state && talentData.personal_information.current_location.suburb
+                                                    ? `${talentData.personal_information.current_location.suburb}, ${talentData.personal_information.current_location.state}`
+                                                    : `-`
+                                                }
                                             </p>
-                                            : '-'
-                                        }
-                                    </div>
+                                        </div>
 
-                                    <div className='flex flex-col'>
-                                        <h4 className='text-lg'>
-                                            Work Preference
-                                        </h4>
-                                        <p className={`capitalize md:text-right`}>
-                                            {talentData.professional_information.work_preference ? talentData.professional_information.work_preference : '-'}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className='flex flex-col justify-between mt-3 flex-wrap '>
-                                {
-                                    talentData.personal_information.presentation_video && isYouTube === true
-                                    ? <div className='flex flex-col md:justify-center pb-2'>
-                                        <Link href={talentData.personal_information.presentation_video} target='_blank' className='underline w-fit flex items-center gap-3 group mt-2 pb-3'>
-                                                <h4 className='text-lg'>
-                                                    Presentation video:
+                                        <div className='flex flex-col mb-5'>
+                                            <h4 className='text-lg'>
+                                                Work Preference
+                                            </h4>
+                                            <p className={`capitalize`}>
+                                                {talentData.professional_information.work_preference ? talentData.professional_information.work_preference : '-'}
+                                            </p>
+                                        </div>
+                                        <div className='flex justify-between mt-1 flex-col'>
+                                            <h4 className='text-lg'>
+                                                Licenses or Certificates
+                                            </h4>
+                                            {
+                                                selectedIndustry.certificates?.length > 0
+                                                ? <p>
+                                                    {selectedIndustry.certificates.map(certificate => certificate.name).join(', ')}
+                                                </p>
+                                                : '-'
+                                            }
+                                        </div>
+
+                                        <div className='flex flex-col justify-between mt-8 flex-wrap '>
+                                            <div className='flex flex-col'>
+                                                <h4 className='text-lg mb-2'>
+                                                    Contact me
                                                 </h4>
-                                        </Link>
-                                        <iframe
-                                            width="340"
-                                            height="195"
-                                            src={`https://www.youtube.com/embed/${videoId}`}
-                                            title="YouTube video player"
-                                            frameBorder="0"
-                                            className='rounded-md w-[68vw] h-[140px] md:h-[165px] md:w-[320px]'
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                            allowFullScreen
-                                        ></iframe>
-                                    </div>
-                                    : talentData.personal_information.presentation_video && isYouTube === false
-                                    ? <Link href={talentData.personal_information.presentation_video} target='_blank' className='underline w-fit flex items-center gap-3 group mt-2 md:px-12 px-6 pb-6'>
-                                                <h4 className='text-lg'>
-                                                    Presentation video
-                                                </h4>
-                                                <div className='p-2 bg-primary-text w-fit rounded-full border-primary-text border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-300'>
-                                                    <svg viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        width={12}
-                                                        height={12}
+                                                <div className='flex gap-4 md:gap-0 flex-wrap'>
+
+                                                    <Link
+                                                        href={`tel:${talentData.personal_information.mobile}`}
+                                                        className={`${talentData.personal_information.mobile === '' ? 'hidden' : ''} ml-0 flex items-center gap-2 primary-btn group text-sm`}
                                                     >
-                                                        <g id="SVGRepo_iconCarrier">
-                                                            <path
-                                                                className='group-hover:fill-primary-text'
-                                                                d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
+                                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" className="mr-2">
+                                                            <path d="M11 18H13M9.2 21H14.8C15.9201 21 16.4802 21 16.908 20.782C17.2843 20.5903 17.5903 20.2843 17.782 19.908C18 19.4802 18 18.9201 18 17.8V6.2C18 5.0799 18 4.51984 17.782 4.09202C17.5903 3.71569 17.2843 3.40973 16.908 3.21799C16.4802 3 15.9201 3 14.8 3H9.2C8.0799 3 7.51984 3 7.09202 3.21799C6.71569 3.40973 6.40973 3.71569 6.21799 4.09202C6 4.51984 6 5.07989 6 6.2V17.8C6 18.9201 6 19.4802 6.21799 19.908C6.40973 20.2843 6.71569 20.5903 7.09202 20.782C7.51984 21 8.07989 21 9.2 21Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                             </path>
-                                                        </g>
-                                                    </svg>
+                                                        </svg>
+                                                        {talentData.personal_information.mobile}
+                                                    </Link>
+                                                    <Link
+                                                        href={`mailto:${talentData.personal_information.email}`}
+                                                        className='flex items-center gap-2 primary-btn group text-sm mr-0 ml-0'
+                                                    >
+                                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" className="mr-2">
+                                                            <g id="SVGRepo_iconCarrier">
+                                                                <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                                                                <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></rect>
+                                                            </g>
+                                                        </svg>
+                                                        {hideEmailDomain(talentData.personal_information.email)}
+                                                    </Link>
                                                 </div>
-                                        </Link>
-                                    : null
-                                }
-                                    <div className='flex flex-col mt-4'>
-                                        <h4 className='text-lg mb-2'>
-                                            Contact me
-                                        </h4>
-                                        <div className='flex gap-4 md:gap-0 flex-wrap'>
-
-                                            <Link
-                                                href={`tel:${talentData.personal_information.mobile}`}
-                                                className={`${talentData.personal_information.mobile === '' ? 'hidden' : ''} ml-0 flex items-center gap-2 primary-btn group text-sm`}
-                                            >
-                                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" className="mr-2">
-                                                    <path d="M11 18H13M9.2 21H14.8C15.9201 21 16.4802 21 16.908 20.782C17.2843 20.5903 17.5903 20.2843 17.782 19.908C18 19.4802 18 18.9201 18 17.8V6.2C18 5.0799 18 4.51984 17.782 4.09202C17.5903 3.71569 17.2843 3.40973 16.908 3.21799C16.4802 3 15.9201 3 14.8 3H9.2C8.0799 3 7.51984 3 7.09202 3.21799C6.71569 3.40973 6.40973 3.71569 6.21799 4.09202C6 4.51984 6 5.07989 6 6.2V17.8C6 18.9201 6 19.4802 6.21799 19.908C6.40973 20.2843 6.71569 20.5903 7.09202 20.782C7.51984 21 8.07989 21 9.2 21Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                    </path>
-                                                </svg>
-                                                {talentData.personal_information.mobile}
-                                            </Link>
-                                            <Link
-                                                href={`mailto:${talentData.personal_information.email}`}
-                                                className='flex items-center gap-2 primary-btn group text-sm mr-0 ml-0'
-                                            >
-                                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" className="mr-2">
-                                                    <g id="SVGRepo_iconCarrier">
-                                                        <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                                                        <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></rect>
-                                                    </g>
-                                                </svg>
-                                                {hideEmailDomain(talentData.personal_information.email)}
-                                            </Link>
+                                            </div>
                                         </div>
                                     </div>
+                                    {
+                                        talentData.personal_information.presentation_video && (
+                                            <div className='flex flex-col order-1 md:order-2'>
+                                                <h4 className='text-lg mb-2 block md:hidden'>
+                                                    Presentation Video
+                                                </h4>
+                                                <video
+                                                    controls
+                                                    className='w-full h-auto rounded-lg'
+                                                    src={talentData.personal_information.presentation_video}
+                                                />
+                                            </div>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>

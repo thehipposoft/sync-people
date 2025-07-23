@@ -6,7 +6,6 @@ import { AUSTRALIAN_STATES, ROUTES } from '@/app/constants';
 import Modal from '@/components/Modal';
 import VideoRecorder from '@/components/VideoRecorder';
 import { uploadPresentationVideo } from '@/lib/api';
-import { form } from '@heroui/theme';
 
 type PersonalInformationPropsType = {
     initialValues: PersonalInformationType;

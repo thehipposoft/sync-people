@@ -127,48 +127,35 @@ const MyProfile = ({
                             {user.personal_information.about_myself ? user.personal_information.about_myself : '-'}
                         </p>
                     </div>
-                    {
-                        user.personal_information.presentation_video && isYouTube === true
-                        ? <div className='flex flex-col justify-center pb-6'>
-                            <Link href={user.personal_information.presentation_video} target='_blank' className='underline w-fit flex items-center gap-3 group mt-2 md:px-12 px-6 pb-6'>
-                                    <h4 className='text-lg'>
-                                        Presentation video:
-                                    </h4>
-                            </Link>
-                            <iframe
-                                width="460"
-                                height="215"
-                                src={`https://www.youtube.com/embed/${videoId}`}
-                                title="YouTube video player"
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowFullScreen
-                                className='md:px-12 px-6 w-[70vw] h-[140px] md:h-[190px] md:w-[440px] rounded-md'
-                            ></iframe>
+                    <div className='md:px-12 px-6 flex flex-col gap-3 mb-4'>
+                        <h3 className='text-lg'>
+                            Presentation Video
+                        </h3>
+                        <div>
+                            {
+                                user.personal_information.presentation_video
+                                ? <div className='col-span-2 lg:col-span-1 flex flex-col items-center justify-center mb-2'>
+                                    <video
+                                        className='w-full lg:w-1/2 lg:mx-auto h-auto rounded-2xl'
+                                        controls
+                                        src={user.personal_information.presentation_video}
+                                    />
+                                </div>
+                                : <div className='col-span-2 lg:col-span-1 flex flex-col items-center justify-center mb-2'>
+                                    <p className=''>
+                                        Why Create a "presentation" Video?
+                                    </p>
+                                    <Link
+                                        className='text-primary-text underline'
+                                        href={ROUTES.PRESENTATION_VIDEO}
+                                        target='_blank'
+                                    >
+                                        Click here
+                                    </Link>
+                                </div>
+                            }
                         </div>
-                        : user.personal_information.presentation_video && isYouTube === false
-                        ? <Link href={user.personal_information.presentation_video} target='_blank' className='underline w-fit flex items-center gap-3 group mt-2 md:px-12 px-6 pb-6'>
-                                    <h4 className='text-lg'>
-                                        Presentation video
-                                    </h4>
-                                    <div className='p-2 bg-primary-text w-fit rounded-full border-primary-text border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-300'>
-                                        <svg viewBox="0 0 24 24"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width={12}
-                                            height={12}
-                                        >
-                                            <g id="SVGRepo_iconCarrier">
-                                                <path
-                                                    className='group-hover:fill-primary-text'
-                                                    d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </div>
-                            </Link>
-                        : null
-                    }
+                    </div>
                 </div>
                 <div className='flex flex-col bg-white md:px-12 px-6 py-6 border-t'>
                     <h2 className='text-2xl pb-4 font-bold'>
