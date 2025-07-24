@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
@@ -28,8 +28,8 @@ const TalentProfile = ({
     const pathname = useSearchParams();
     const queryIndustry = pathname.get('industry') || '';
     const [selectedIndustry, setSelectedIndustry] = useState<IndustryType>(talentData.professional_information.industries[0]);
-    const isYouTube = isYouTubeUrl(talentData.personal_information.presentation_video);
-    const videoId = extractYouTubeVideoId(talentData.personal_information.presentation_video);
+    const [isPlaying, setIsPlaying] = useState<boolean>(false);
+    const videoRef = useRef<HTMLVideoElement | null>(null);
 
     useEffect(() => {
         if (queryIndustry) {
@@ -46,6 +46,13 @@ const TalentProfile = ({
         ).toBlob();
 
         saveAs(blob, `Insyncx_${talentData.personal_information.first_name}_${talentData.personal_information.last_name}_Profile.pdf`);
+    };
+
+    const handlePlay = () => {
+        if (videoRef.current) {
+            videoRef.current.play();
+            setIsPlaying(true);
+        };
     };
 
     return (
@@ -195,11 +202,38 @@ const TalentProfile = ({
                                                 <h4 className='text-lg mb-2 block md:hidden'>
                                                     Presentation Video
                                                 </h4>
-                                                <video
-                                                    controls
-                                                    className='w-full h-auto rounded-lg'
-                                                    src={talentData.personal_information.presentation_video}
-                                                />
+                                                <div className='relative'>
+                                                    <video
+                                                        ref={videoRef}
+                                                        controls
+                                                        className='w-full h-auto rounded-3xl'
+                                                        src={talentData.personal_information.presentation_video}
+                                                    />
+                                                    <div className={`${isPlaying ? '-z-10 !opacity-0 ' : ''} opacity-100 absolute inset-0 flex items-center justify-center`}>
+                                                        <button
+                                                            onClick={handlePlay}
+                                                            className={`group cursor-pointer text-xl w-full h-full bg-primary-text hover:bg-[#c2bfbf] border-2 border-primary-text duration-500 flex gap-4 items-center text-white hover:text-primary-text rounded-3xl flex-col justify-center`}
+                                                        >
+                                                            {`Play video`}
+                                                            <div className='p-2 bg-white w-fit rounded-full border-white border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-500'>
+                                                                <svg viewBox="0 0 24 24"
+                                                                    fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    width={26}
+                                                                    height={26}
+                                                                >
+                                                                    <g id="SVGRepo_iconCarrier">
+                                                                        <path
+                                                                            className='fill-primary-text transition-all duration-500'
+                                                                            d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
+                                                                        </path>
+                                                                    </g>
+                                                                </svg>
+                                                            </div>
+
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         )
                                     }
