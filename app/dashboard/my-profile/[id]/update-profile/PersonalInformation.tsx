@@ -21,6 +21,8 @@ const PersonalInformation = ({
     const [openUpdatedDataModal, setOpenUpdatedDataModal] = useState<boolean>(false);
     const [recordedVideoBlob, setRecordedVideoBlob] = useState<Blob | null>(null);
     const [recordVideoModalOpen, setRecordVideoModalOpen] = useState<boolean>(false);
+    const [removeVideoModalOpen, setRemoveVideoModalOpen] = useState<boolean>(false);
+    const [uploadVideoError, setUploadVideoError] = useState<string | null>(null);
 
     const handleUpdatePersonalInformationClick = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -45,6 +47,29 @@ const PersonalInformation = ({
         }
     };
 
+    const handleRemoveVideoClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+
+        const body: any = {
+            personal_information: {
+                presentation_video: '',
+            },
+        };
+        const response = await updateProfile(userId, body);
+
+        if(response.status === 500) {
+            setIsAPILoading(false);
+        } else {
+            setIsAPILoading(false);
+            setRemoveVideoModalOpen(false);
+            setRecordedVideoBlob(null);
+            setFormValues((prevValues) => ({
+                ...prevValues,
+                presentation_video: '',
+            }));
+        }
+    };
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
         setFormValues({
             ...formValues,
@@ -63,30 +88,33 @@ const PersonalInformation = ({
     };
 
     const handleVideoReady = (blob: Blob) => {
+        setUploadVideoError(null);
         setRecordedVideoBlob(blob);
         setRecordVideoModalOpen(false);
 
         uploadPresentationVideo(blob)
         .then(async response => {
             if (response.status === 200) {
-                console.log('Video uploaded successfully');
                 setFormValues((prevValues) => ({
                     ...prevValues,
                     presentation_video: response.data.secure_url,
                 }));
+
                 const updateProfileResponse = await updateProfile(userId, {
                     personal_information: {
-                        ...formValues,
                         presentation_video: response.data.secure_url,
                     },
                 });
             } else {
                 console.error('Failed to upload video:', response.message);
+                setRecordedVideoBlob(blob);
+                setRecordVideoModalOpen(false);
+                setUploadVideoError('Error uploading video. Please try again.');
             }
 
         })
         .catch(error => {
-            console.error('Error uploading video:', error);
+            setUploadVideoError('Error uploading video. Please try again.');
         });
     };
 
@@ -212,7 +240,7 @@ const PersonalInformation = ({
                 <div className='col-span-2'>
                     <div className='flex gap-2 flex-col my-4'>
                         <p className="block text-xl font-bold">
-                            Record your presentation video now
+                            Your Presentation Video
                         </p>
                         <div className='flex gap-2 flex-wrap'>
                             <p className=''>
@@ -226,6 +254,13 @@ const PersonalInformation = ({
                                 Click here
                             </Link>
                         </div>
+                        {
+                            uploadVideoError && (
+                                <p className='text-red-500'>
+                                    {uploadVideoError}
+                                </p>
+                            )
+                        }
                         {
                             recordedVideoBlob || formValues.presentation_video
                             ? <div>
@@ -247,11 +282,7 @@ const PersonalInformation = ({
                                     <button
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            setRecordedVideoBlob(null);
-                                            setFormValues((prevValues) => ({
-                                                ...prevValues,
-                                                presentation_video: '',
-                                            }));
+                                            setRemoveVideoModalOpen(true);
                                         }}
                                         className="danger-btn"
                                     >
@@ -405,6 +436,33 @@ const PersonalInformation = ({
                     >
                         View Public Profile
                     </Link>
+                </div>
+            </Modal>
+            <Modal
+                isOpen={removeVideoModalOpen}
+                onClose={() => setRemoveVideoModalOpen(false)}
+            >
+                <div className='flex flex-col gap-4'>
+                    <h4 className='text-lg font-bold'>
+                        Are you sure you want to remove your video?
+                    </h4>
+                    <p className=''>
+                        This action cannot be undone.
+                    </p>
+                    <div className='flex gap-2'>
+                        <button
+                            className='danger-btn'
+                            onClick={handleRemoveVideoClick}
+                        >
+                            Yes, remove video
+                        </button>
+                        <button
+                            className='secondary-btn'
+                            onClick={() => setRemoveVideoModalOpen(false)}
+                        >
+                            Cancel
+                        </button>
+                    </div>
                 </div>
             </Modal>
             <Modal
