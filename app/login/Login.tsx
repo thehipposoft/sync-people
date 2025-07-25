@@ -41,7 +41,7 @@ const LoginMenu = () => {
     };
 
     return (
-        <div className='flex items-center justify-center w-full my-20'>
+        <div className='flex items-center justify-center w-full my-6 lg:my-20'>
             <div className='bg-white mx-4 rounded-2xl border p-8 shadow-xl'>
                 <h1 className='text-5xl text-center'>Welcome back!</h1>
                 <form className='md:pt-6' onSubmit={handleSubmit}>
@@ -104,7 +104,7 @@ const LoginMenu = () => {
                     <button
                         type="submit"
                         value="Sign up"
-                        className='primary-btn mx-0 w-fit lg:w-auto'
+                        className='primary-btn mx-0 w-full lg:w-auto'
                         disabled={isApiLoading}
                     >
                         Login
@@ -142,7 +142,7 @@ const LoginMenu = () => {
                     >Forgot your password?
                     </Link>
                 </p>
-                <div className='flex justify-around items-center md:w-[450px] pt-10'>
+                <div className='flex justify-around items-center lg:mt-10 flex-wrap'>
                     <Image
                         src={'/assets/logo.png'}
                         width={593}
@@ -150,7 +150,7 @@ const LoginMenu = () => {
                         className='max-w-[12rem] md:max-w-lg w-[200px]'
                         alt='Insyncx logo'
                     />
-                    <div className='flex justify-end items-end'>
+                    <div className='flex'>
                         <Image src={'/assets/images/vectors/facebook.svg'} width={30} height={30} alt='icon' className='mr-2' />
                         <Image src={'/assets/images/vectors/twitter.svg'} width={30} height={30} alt='icon' className='mx-4' />
                         <Image src={'/assets/images/vectors/linkedin.svg'} width={30} height={30} alt='icon' className='ml-2' />
