@@ -241,14 +241,14 @@ const VideoRecorder = ({
 
                 {
                     recorderStep === 'confirmation' && (
-                        <div className='flex gap-4'>
+                        <div className='flex gap-4 flex-col lg:flex-row w-full lg:w-auto'>
                             <button
                                 onClick={resetRecording}
-                                className="secondary-btn"
+                                className="secondary-btn w-full lg:w-auto"
                             >
                                 Re-record
                             </button>
-                            <button className='primary-btn' onClick={handleKeepVideoPress}>
+                            <button className='primary-btn w-full lg:w-auto' onClick={handleKeepVideoPress}>
                                 Keep this Video
                             </button>
                         </div>
