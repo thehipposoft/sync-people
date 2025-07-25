@@ -49,8 +49,8 @@ const SignUpMenu = () => {
             <div className='bg-white rounded-2xl border p-8 shadow-xl'>
                 <h1 className='text-5xl text-center'>Sign up</h1>
                 <form onSubmit={handleSubmit} className='md:pt-6 pt-4'>
-                    <section className='flex gap-4'>
-                        <div className='w-1/2 flex flex-col gap-1'>
+                    <section className='flex gap-4 flex-col md:flex-row'>
+                        <div className='lg:w-1/2 flex flex-col gap-1'>
                             <label
                                 htmlFor="first-name"
                             >
@@ -62,7 +62,7 @@ const SignUpMenu = () => {
                                 required
                             />
                         </div>
-                        <div className='w-1/2 flex flex-col gap-1'>
+                        <div className='lg:w-1/2 flex flex-col gap-1'>
                             <label
                                 htmlFor="last-name"
                             >
@@ -144,7 +144,7 @@ const SignUpMenu = () => {
                     <button
                         type="submit"
                         value="Sign up"
-                        className='primary-btn mx-0 w-fit lg:w-auto'
+                        className='primary-btn mx-0 w-full lg:w-auto'
                         disabled={isApiLoading}
                     >
                         Sign up
@@ -153,20 +153,6 @@ const SignUpMenu = () => {
                 <p className='text-center pt-6'>
                     Already have an account? <Link href={ROUTES.LOGIN} className='font-semibold text-purple hover:underline'>Login</Link>
                 </p>
-                <div className='flex justify-around items-center pt-10'>
-                    <Image
-                        src={'/assets/logo.png'}
-                        width={593}
-                        height={337}
-                        className='max-w-[12rem] md:max-w-lg w-[200px]'
-                        alt='Insyncx logo'
-                    />
-                    <div className='flex justify-end items-end'>
-                        <Image src={'/assets/images/vectors/facebook.svg'} width={30} height={30} alt='icon' className='mr-2' />
-                        <Image src={'/assets/images/vectors/twitter.svg'} width={30} height={30} alt='icon' className='mx-4' />
-                        <Image src={'/assets/images/vectors/linkedin.svg'} width={30} height={30} alt='icon' className='ml-2' />
-                    </div>
-                </div>
             </div>
             <Modal
                 isOpen={openSuccessModal}

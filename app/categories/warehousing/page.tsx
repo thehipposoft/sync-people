@@ -12,7 +12,7 @@ export default function WarehousingPage() {
         <PublicLayout>
             <div className="my-20 flex flex-col md:flex-row gap-16 max-w-[80vw] md:max-w-none">
                 <div>
-                    <h1 className="md:text-5xl mb-10 tracking-tight md:tracking-normal">
+                    <h1 className="lg:text-5xl text-4xl mb-10 tracking-tight md:tracking-normal">
                         Why Choose a Career in Warehousing?
                     </h1>
 

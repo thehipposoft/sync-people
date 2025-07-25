@@ -22,7 +22,7 @@ const How = () => {
             </p>
             <Link
                 href={ROUTES.SIGN_UP}
-                className='flex mt-4 w-fit font-bold md:mx-2 md:mt-8 text-white border-white border px-6 py-2 rounded-3xl hover:text-[#8D78E0] hover:bg-white duration-300'
+                className='flex mt-4 w-fit md:mx-2 md:mt-8 text-white border-white border px-6 py-2 rounded-3xl hover:text-[#8D78E0] hover:bg-white duration-300'
             >
                 Let's get started!
             </Link>

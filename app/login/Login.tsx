@@ -142,20 +142,6 @@ const LoginMenu = () => {
                     >Forgot your password?
                     </Link>
                 </p>
-                <div className='flex justify-around items-center lg:mt-10 flex-wrap'>
-                    <Image
-                        src={'/assets/logo.png'}
-                        width={593}
-                        height={337}
-                        className='max-w-[12rem] md:max-w-lg w-[200px]'
-                        alt='Insyncx logo'
-                    />
-                    <div className='flex'>
-                        <Image src={'/assets/images/vectors/facebook.svg'} width={30} height={30} alt='icon' className='mr-2' />
-                        <Image src={'/assets/images/vectors/twitter.svg'} width={30} height={30} alt='icon' className='mx-4' />
-                        <Image src={'/assets/images/vectors/linkedin.svg'} width={30} height={30} alt='icon' className='ml-2' />
-                    </div>
-                </div>
             </div>
         </div>
     )
