@@ -333,7 +333,7 @@ dialog::backdrop {
 
 @layer components {
     .container {
-        @apply md:w-[1250px] mx-auto;
+        @apply lg:w-[1250px] mx-auto flex-grow px-10 py-20 lg:py-0;
     }
     .primary-btn {
         @apply border border-purple text-white bg-purple transition-all duration-500 ease-in-out hover:border-purple hover:bg-white hover:text-purple md:mx-4 px-6 py-2 rounded-3xl text-xl md:text-base md:w-fit w-full text-center disabled:opacity-30;
@@ -349,5 +349,18 @@ dialog::backdrop {
     }
     input[disabled] {
         @apply cursor-not-allowed opacity-50;
+    }
+
+    //FAQs
+    .faq-container {
+        a {
+            @apply text-blue-600 underline;
+        }
+        img {
+            @apply max-w-full h-auto mx-auto my-4;
+        }
+        ul {
+            @apply list-disc pl-5;
+        }
     }
 }

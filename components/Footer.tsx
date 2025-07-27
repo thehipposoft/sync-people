@@ -5,8 +5,8 @@ import { ROUTES } from '@/app/constants';
 
 const Footer = () => {
     return (
-        <div className='flex md:py-20 py-16 bg-bg-primary px-6 md:px-0 flex-wrap'>
-            <div className='container grid grid-cols-1 md:grid-cols-4 gap-2 '>
+        <div className='flex md:py-20 py-16 bg-bg-primary px-6 md:px-10 flex-wrap'>
+            <div className='grid grid-cols-1 md:grid-cols-4 gap-2 w-full'>
                 <div className='w-full flex justify-center md:justify-start'>
                     <div>
                         <Image

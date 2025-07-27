@@ -1,16 +1,13 @@
-import FaqsComp from "@/components/faqs/FaqsComp";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import FaqsComp from "@/app/faqs/FaqsComp";
 import { getFaqs } from "@/lib/api";
+import PublicLayout from "@/components/PublicLayout";
 
 const FaqsPage = async () => {
     const faqsData = await getFaqs();
     return(
-        <div>
-            <Header isFixed={false}/>
-                <FaqsComp faqsData={faqsData.faqs} />
-            <Footer />
-        </div>
+        <PublicLayout>
+            <FaqsComp faqsData={faqsData.faqs} />
+        </PublicLayout>
     )
 }
 
