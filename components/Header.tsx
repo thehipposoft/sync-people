@@ -1,16 +1,13 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import SideMenu from './sideMenu';
 import { ROUTES } from '@/app/constants';
-import ComingSoonModal from './ComingSoonModal';
-import { getUserProfile } from '@/lib/protected-api';
 import { logout } from '@/lib/api';
 import { useRouter } from 'next/navigation';
 
 type HeaderProps = {
-    isFixed?: boolean;
     inDashboard?: boolean;
     isLoggedIn?: string | undefined;
     userId?: string,
@@ -18,28 +15,12 @@ type HeaderProps = {
 };
 
 const Header = ({
-    isFixed,
     inDashboard,
     isLoggedIn,
     userId,
     is404,
 }:HeaderProps) => {
     const [openMenu, setOpenMenu] = useState<boolean>(false);
-    const [openModal, setOpenModal] = useState<boolean>(false);
-    const [stateUserId, setStateUserId] = useState<string | undefined>(userId);
-
-    useEffect(() => {
-        const fetchUserProfile = async () => {
-            const userData = await getUserProfile();
-            if (userData) {
-                setStateUserId(userData.id);
-            }
-        };
-        if (isLoggedIn) {
-            fetchUserProfile();
-        }
-    }, []);
-
     const router = useRouter();
 
     const handleLogout = async () => {
@@ -54,7 +35,7 @@ const Header = ({
     };
 
     return (
-        <div className={` md:h-auto h-[180px] ${inDashboard ? 'px-0 py-0 w-auto mx-0 md:hidden h-auto' : 'header-glass -translate-y-[90px] md:-translate-y-0 px-8 w-full mx-auto'} ${isFixed ? 'fixed lg:relative' : ''} flex justify-between items-end md:items-start top-0 lg:w-full lg:py-0 lg:px-0 flex-wrap z-30 `}>
+        <header className={`md:h-auto h-[180px] ${inDashboard ? 'px-0 py-0 w-auto mx-0 md:hidden h-auto' : 'header-glass -translate-y-[90px] md:-translate-y-0 px-8 w-full mx-auto'} flex justify-between items-end md:items-start top-0 lg:w-full lg:py-0 lg:px-0 flex-wrap z-30 `}>
             <div className='lg:w-[1250px] w-full flex justify-between items-center mx-auto'>
                 <Link href={ROUTES.HOME} className={`${inDashboard ? 'hidden' : ''}`}>
                     <Image
@@ -132,13 +113,8 @@ const Header = ({
                     : <></>
                 }
                 <SideMenu userId={userId} sideMenu={openMenu} closeSideMenu={toggleMenu}/>
-                {/* <BackDrop sideMenu={openMenu} closeSideMenu={toggleMenu} isDashboard={inDashboard} /> */}
-                <ComingSoonModal
-                    isOpen={openModal}
-                    onClose={() => setOpenModal(false)}
-                />
             </div>
-        </div>
+        </header>
     )
 }
 
