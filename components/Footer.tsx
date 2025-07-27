@@ -47,11 +47,20 @@ const Footer = () => {
                     </ul>
                 </div>
                 <ul className='flex flex-col md:items-start gap-4 items-center mt-4 md:mt-0'>
-                    <li className='py-1'>
+                    <li>
                         <Link href={ROUTES.ABOUT} className='text-xl md:text-base hover:underline'>About</Link>
                     </li>
-                    <li className='py-1'>
+                    <li>
                         <Link href={ROUTES.CONTACT} className='text-xl md:text-base hover:underline'>Contact</Link>
+                    </li>
+                    <li>
+                        <Link href={ROUTES.FAQS} className='text-xl md:text-base hover:underline'>FAQs</Link>
+                    </li>
+                    <li>
+                        <Link href={ROUTES.TERMS} className='text-xl md:text-base hover:underline'>Terms of Service</Link>
+                    </li>
+                    <li>
+                        <Link href={ROUTES.PRIVACY_POLICY} className='text-xl md:text-base hover:underline'>Privacy Policy</Link>
                     </li>
                 </ul>
                 <div className='flex flex-col items-center my-4 md:my-0'>

@@ -11,14 +11,12 @@ type HeaderProps = {
     inDashboard?: boolean;
     isLoggedIn?: string | undefined;
     userId?: string,
-    is404?: boolean;
 };
 
 const Header = ({
     inDashboard,
     isLoggedIn,
     userId,
-    is404,
 }:HeaderProps) => {
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const router = useRouter();
@@ -35,7 +33,7 @@ const Header = ({
     };
 
     return (
-        <header className={`md:h-auto h-[180px] ${inDashboard ? 'px-0 py-0 w-auto mx-0 md:hidden h-auto' : 'header-glass -translate-y-[90px] md:-translate-y-0 px-8 w-full mx-auto'} flex justify-between items-end md:items-start top-0 lg:w-full lg:py-0 lg:px-0 flex-wrap z-30 `}>
+        <header className={`${inDashboard ? 'px-0 py-0 w-auto mx-0 md:hidden h-auto' : 'header-glass px-8 w-full mx-auto'} flex justify-between items-end md:items-start top-0 lg:w-full lg:py-0 lg:px-0 flex-wrap z-30 `}>
             <div className='lg:w-[1250px] w-full flex justify-between items-center mx-auto'>
                 <Link href={ROUTES.HOME} className={`${inDashboard ? 'hidden' : ''}`}>
                     <Image
@@ -51,12 +49,15 @@ const Header = ({
                     <rect className={`duration-700 ease-in-out ${openMenu ? 'opacity-0' : ''}`} y="6.125" width="30" height="3.5" rx="1.375" fill="#1A335D"/>
                     <rect className={`duration-700 ease-in-out origin-left ${openMenu ? '-rotate-45 translate-y-[6px] fill-white' : ''}`} y="12.25" width="30" height="3.5" rx="1.375" fill="#1A335D"/>
                 </svg>
-                <nav className={`${is404 ? 'md:hidden' : ''} md:flex justify-center hidden items-center flex-wrap w-full md:w-fit gap-6 md:gap-0`}>
+                <nav className={`md:flex justify-center hidden items-center flex-wrap w-full md:w-fit gap-6 md:gap-0`}>
                     <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.ABOUT}>
                         About
                     </Link>
                     <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.CONTACT}>
                         Contact
+                    </Link>
+                    <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.FAQS}>
+                        FAQs
                     </Link>
                     {
                         isLoggedIn ?
@@ -97,21 +98,6 @@ const Header = ({
                         </div>
                     }
                 </nav>
-                {
-                    is404 ?
-                    <nav className='md:flex justify-center hidden items-center flex-wrap w-full md:w-fit gap-6 md:gap-0'>
-                        <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.HOME}>
-                            Home
-                        </Link>
-                        <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.ABOUT}>
-                            About
-                        </Link>
-                        <Link className='md:mx-2 md:p-2 hover:opacity-50 duration-300' href={ROUTES.CONTACT}>
-                            Contact
-                        </Link>
-                    </nav>
-                    : <></>
-                }
                 <SideMenu userId={userId} sideMenu={openMenu} closeSideMenu={toggleMenu}/>
             </div>
         </header>

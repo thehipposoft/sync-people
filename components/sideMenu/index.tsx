@@ -70,7 +70,10 @@ const SideMenu = ({sideMenu, closeSideMenu, userId}:SideMenuTypes) => {
                         <li className="my-5 text-white text-lg cursor-pointer duration-500 rounded-xl py-2 px-8 hover:underline">
                             <Link href="/#contact" onClick={closeSideMenu}>Contact</Link>
                         </li>
-                        <Link href={'/login'} className='primary-btn text-base flex justify-center w-full'>
+                        <li className="my-5 text-white text-lg cursor-pointer duration-500 rounded-xl py-2 px-8 hover:underline">
+                            <Link href={ROUTES.FAQS} onClick={closeSideMenu}>FAQs</Link>
+                        </li>
+                        <Link href={ROUTES.LOGIN} className='primary-btn text-base flex justify-center w-full'>
                             Log In
                         </Link>
                         <li className="mt-8">
