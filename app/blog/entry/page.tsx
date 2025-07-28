@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ComingsoonPage () {
     return (
         <div>
-            <Header isFixed={false} />
+            <Header />
             <SingleEntry />
             <Footer />
         </div>
