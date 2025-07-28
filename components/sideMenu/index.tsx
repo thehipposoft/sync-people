@@ -23,7 +23,7 @@ const SideMenu = ({sideMenu, closeSideMenu, userId}:SideMenuTypes) => {
     };
 
     return(
-        <div className={`md:hidden -translate-y-[40vh] duration-500 top-0 right-0 md:w-80 w-screen fixed h-[200vh] bg-[#1A335D] z-10 flex flex-col gap-8 justify-center items-center opacity-0 ${ sideMenu ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-100'}`}>
+        <div className={`md:hidden duration-500 top-0 right-0 md:w-80 w-screen fixed h-[100vh] bg-[#1A335D] z-10 flex flex-col gap-8 justify-center items-center opacity-0 ${ sideMenu ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-100'}`}>
             <Image
                 src={'/logo-white.svg'}
                 width={593}
@@ -79,7 +79,7 @@ const SideMenu = ({sideMenu, closeSideMenu, userId}:SideMenuTypes) => {
                     </div>
                 }
             </ul>
-            <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='w-20 mt-6'/>
+            <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='w-12 mt-6'/>
         </div>
     )
 }

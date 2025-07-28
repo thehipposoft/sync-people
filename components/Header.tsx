@@ -44,7 +44,13 @@ const Header = ({
                         className='max-w-[12rem] md:max-w-lg md:w-[200px] w-[170px]'
                     />
                 </Link>
-                <svg width="35" height="35" viewBox="0 0 30 15" fill="none" onClick={toggleMenu} className='z-40 md:hidden bg-transparent' xmlns="http://www.w3.org/2000/svg">
+                <svg
+                    width="35" height="35" viewBox="0 0 30 15"
+                    fill="none"
+                    onClick={toggleMenu}
+                    className={`z-40 md:hidden bg-transparent ${openMenu ? 'fixed right-8' : ''}`}
+                    xmlns="http://www.w3.org/2000/svg"
+                >
                     <rect className={`duration-700 ease-in-out origin-left ${openMenu ? 'rotate-45 -translate-y-[6px] fill-white' : ''}`} width="30" height="3.5" rx="1.375" fill="#1A335D"/>
                     <rect className={`duration-700 ease-in-out ${openMenu ? 'opacity-0' : ''}`} y="6.125" width="30" height="3.5" rx="1.375" fill="#1A335D"/>
                     <rect className={`duration-700 ease-in-out origin-left ${openMenu ? '-rotate-45 translate-y-[6px] fill-white' : ''}`} y="12.25" width="30" height="3.5" rx="1.375" fill="#1A335D"/>
