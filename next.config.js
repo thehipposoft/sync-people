@@ -15,6 +15,7 @@ const nextConfig = {
         "admin.insyncx.com",
         "insyncx.co",
         "res.cloudinary.com",
+        "api.qrserver.com",
       ],
     },
   };

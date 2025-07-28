@@ -317,38 +317,7 @@ const PersonalInformation = ({
                     </div>
                 </div>
 
-                <div className='col-span-2 lg:col-span-1'>
-                    <div className='flex gap-2 mb-2 flex-col'>
-                        <label htmlFor="presentation_video" className="block">
-                            Presentation Video URL
-                        </label>
-                        <input
-                            type="text"
-                            id="presentation_video"
-                            name="presentation_video"
-                            value={formValues.presentation_video}
-                            onChange={handleInputChange}
-                        />
-                        <p className='text-sm opacity-70 mt-1'>
-                            Include a link to your preferred platform (YouTube, Vimeo, TikTok, etc.)
-                        </p>
-                    </div>
-                </div>
-
-                <div className='col-span-2 lg:col-span-1 flex flex-col items-center justify-center mb-2'>
-                    <p className=''>
-                        Why Create a "presentation" Video?
-                    </p>
-                    <Link
-                        className='text-primary-text underline'
-                        href={ROUTES.PRESENTATION_VIDEO}
-                        target='_blank'
-                    >
-                        Click here
-                    </Link>
-                </div>
-
-                <h4 className='col-span-2 lg-col-span-1 mt-3'>
+                <h4 className='col-span-2 lg-col-span-1'>
                     Current Address
                 </h4>
                 <div className='col-span-2 lg:col-span-1'>

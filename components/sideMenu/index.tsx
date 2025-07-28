@@ -35,9 +35,6 @@ const SideMenu = ({sideMenu, closeSideMenu, userId}:SideMenuTypes) => {
                 {
                     userId ?
                     <div className="flex flex-col text-center gap-6 justify-start">
-                        <Link className="text-white hover:underline text-xl" href={'/'} onClick={closeSideMenu}>
-                            Home
-                        </Link>
                         <Link onClick={closeSideMenu} href={`${ROUTES.MY_PROFILE}/${userId}`} className='flex py-4 w-full text-white items-center gap-4 text-xl hover:underline'>
                             <svg className="bg-white/25 rounded-full p-3" width="50" height="50" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" >
                                 <path d="M4.5 14.3998L16.5 4.7998L28.5 14.3998" stroke="#DEE1E6" strokeWidth="1.92" strokeMiterlimit="10"/>
