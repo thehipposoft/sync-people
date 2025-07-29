@@ -39,7 +39,7 @@ const PrivateLayout = ({
                 hideSideNav ? null : <SideNav userId={userId} userName={user.personal_information.first_name} userLastName={user.personal_information.last_name} />
             }
             <div className='flex grow flex-col'>
-                <div className={`${noTalentProfile ? 'px-8 w-full' : 'w-full px-8 h-[180px] header-glass md:h-auto -translate-y-[90px] md:-translate-y-0'} flex fixed md:relative z-40 justify-between items-end md:items-center md:px-8 md:w-full mx-auto `}>
+                <div className={`${noTalentProfile ? 'px-8 w-full' : 'w-full px-8 header-glass md:h-auto'} flex fixed md:relative z-40 justify-between items-end md:items-center md:px-8 md:w-full mx-auto `}>
                     <Link href={ROUTES.HOME} className='hidden md:block'>
                         <Image
                             src={'/assets/logo.png'}
