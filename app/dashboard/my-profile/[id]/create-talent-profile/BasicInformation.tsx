@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { TalentTypeAcf } from '@/types';
 import { AUSTRALIAN_STATES } from '@/app/constants';
 import { Link } from 'next-view-transitions';
@@ -33,6 +33,13 @@ const BasicInformation = ({
         },
     });
     const [recordVideoModalOpen, setRecordVideoModalOpen] = useState<boolean>(false);
+
+    const videoUrl = useMemo(() => {
+        if (!recordedVideoBlob) return null;
+
+        const url = URL.createObjectURL(recordedVideoBlob);
+        return url;
+    }, [recordedVideoBlob]);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -157,7 +164,7 @@ const BasicInformation = ({
                         id="date_of_birth"
                         name="date_of_birth"
                         required
-                        value={formValues.date_of_birth}
+                        value={formValues.date_of_birth || ''}
                         onChange={handleInputChange}
                     />
                 </div>
@@ -229,9 +236,10 @@ const BasicInformation = ({
                             recordedVideoBlob
                             ? <div>
                                 <video
-                                    className='w-full lg:w-1/2 lg:mx-auto h-auto rounded-lg'
+                                    className='w-full lg:w-1/2 lg:mx-auto rounded-lg'
                                     controls
-                                    src={URL.createObjectURL(recordedVideoBlob)}
+                                    height={410}
+                                    src={videoUrl || ''}
                                 />
                                 <div className='flex items-center mx-auto my-6 gap-3 flex-wrap'>
                                     <button

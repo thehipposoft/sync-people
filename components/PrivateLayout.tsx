@@ -6,7 +6,7 @@ import { ROUTES } from "@/app/constants";
 import { TalentTypeAcf } from '@/types';
 import Footer from "@/components/Footer";
 import { logout } from "@/lib/api";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Header from "./Header";
 
 type Props = {
@@ -25,6 +25,7 @@ const PrivateLayout = ({
     noTalentProfile
 }: Props) => {
     const router = useRouter();
+    const pathname = usePathname();
 
     const handleLogout = async () => {
         const response = await logout();
@@ -36,7 +37,9 @@ const PrivateLayout = ({
     return (
         <div className='flex'>
             {
-                hideSideNav ? null : <SideNav userId={userId} userName={user.personal_information.first_name} userLastName={user.personal_information.last_name} />
+                hideSideNav || (pathname && pathname.includes('create-talent-profile'))
+                    ? null
+                    : <SideNav userId={userId} userName={user.personal_information.first_name} userLastName={user.personal_information.last_name} />
             }
             <div className='flex grow flex-col'>
                 <div className={`${noTalentProfile ? 'px-8 w-full' : 'w-full px-8 header-glass md:h-auto'} flex fixed md:relative z-40 justify-between items-end md:items-center md:px-8 md:w-full mx-auto `}>

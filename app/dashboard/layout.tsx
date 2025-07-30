@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next";;
 import PrivateLayout from "@/components/PrivateLayout";
 import { getTalent } from "@/lib/api";
 import { TalentType } from "@/types";

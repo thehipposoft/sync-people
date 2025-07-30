@@ -397,7 +397,11 @@ const Industries = ({
                                                     <td
                                                         className={`text-left py-3 text-sm px-4 md:px-2`}
                                                     >
-                                                        {format(certificate.expiry_date, 'dd/MM/yyyy')}
+                                                        {
+                                                        certificate.expiry_date && format(certificate.expiry_date, 'dd/MM/yyyy')
+                                                            ? format(certificate.expiry_date, 'dd/MM/yyyy')
+                                                            : '-'
+                                                        }
                                                     </td>
                                                     <td className='text-right pr-4'>
                                                         <button
