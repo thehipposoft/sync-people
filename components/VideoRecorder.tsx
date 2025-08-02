@@ -45,7 +45,7 @@ const VideoRecorder = ({
         };
 
         recorder.onstop = () => {
-            const completeBlob = new Blob(localChunks, { type: 'video/webm' });
+            const completeBlob = new Blob(localChunks, { type: 'video/mp4' });
             setRecordedBlob(completeBlob);
 
             if (videoRef.current) {
