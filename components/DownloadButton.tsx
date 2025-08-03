@@ -45,14 +45,19 @@ export default function InstallButton() {
 
     if (isIOS && !isInStandaloneMode) {
         return (
-            <div className="p-4 bg-yellow-100 border border-yellow-300 rounded-xl text-sm text-gray-800">
+            <div className="p-4 bg-[#FF8149] border border-[#FF8149] rounded-3xl text-sm text-white flex items-center flex-col gap-2">
                 To install the app, tap{' '}
                 <span className="inline-block px-1 py-0.5 rounded bg-white border border-gray-300">
-                <img
-                    src="/share-icon.svg"
-                    alt="Share"
-                    className="inline-block w-4 h-4 align-text-bottom"
-                />
+                <svg
+                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    width={20}
+                    height={20}
+                >
+                    <g id="SVGRepo_iconCarrier">
+                        <path d="M20 13V17.5C20 20.5577 16 20.5 12 20.5C8 20.5 4 20.5577 4 17.5V13M12 3L12 15M12 3L16 7M12 3L8 7" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        </path>
+                    </g>
+                </svg>
                 </span>{' '}
                 then "Add to Home Screen"
             </div>
