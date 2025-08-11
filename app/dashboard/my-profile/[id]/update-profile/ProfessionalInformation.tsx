@@ -383,7 +383,11 @@ const ProfessionalInformation = ({
                                                 <td
                                                     className={`text-left py-3 text-sm px-4 md:px-2`}
                                                 >
-                                                    {format(certificate.expiry_date, 'dd/MM/yyyy')}
+                                                    {
+                                                     certificate.expiry_date && format(certificate.expiry_date, 'dd/MM/yyyy')
+                                                            ? format(certificate.expiry_date, 'dd/MM/yyyy')
+                                                            : '-'
+                                                    }
                                                 </td>
                                                 <td className='text-right pr-4'>
                                                     <button
@@ -471,14 +475,10 @@ const ProfessionalInformation = ({
                 </div>
 
                 <div className='col-span-2'>
-                    <div className="flex items-center gap-2 pb-4 pt-2">
-                        <h4 className='font-bold '>
-                            Industries
-                        </h4>
-                        <p className="opacity-50 ">
-                            (Limited to one position per industry)
-                        </p>
-                    </div>
+
+                    <h4 className='font-bold pb-4 pt-2'>
+                        Industries
+                    </h4>
                     <Select
                         className="col-span-2 mb-3"
                         placeholder="Select one or more industries"

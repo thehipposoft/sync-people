@@ -13,13 +13,11 @@ const TalentsList = ({
     talentsList
 }:TalentsListProps) => {
     return (
-        <div className='pb-8 flex flex-col md:flex-row justify-around gap-6 pt-6 md:px-0 px-2 my-4 w-full'>
-            <div className='md:w-[20vw] rounded-2xl border flex md:flex-col bg-white'>
-                <div className='grid col-span-1'>
-                    <Filters />
-                </div>
+        <div className='pb-8 grid grid-cols-12 justify-around gap-6 pt-6 md:px-0 px-2 my-4 w-full relative'>
+            <div className='grid sticky top-0 h-fit rounded-2xl border md:flex-col bg-white col-span-3'>
+                <Filters />
             </div>
-            <div className='flex flex-col bg-white rounded-2xl border py-4 flex-grow'>
+            <div className='flex flex-col bg-white rounded-2xl border py-4 col-span-12 lg:col-span-9'>
                 <h2 className='h-bold text-black text-3xl font-semibold pb-4 pl-8 border-b mb-6'>
                     Talents
                 </h2>
@@ -30,7 +28,7 @@ const TalentsList = ({
                                 <Link
                                     key={`${talent.id}-${talent.personal_information.first_name}-${index}`}
                                     href={`/talents/${talent.id}`}
-                                    className='hover:cursor-pointer group hover:bg-[#efefef] transition-all'
+                                    className='hover:cursor-pointer group hover:bg-[#efefef] transition-all hover:border-primary-text'
                                 >
                                     <div
                                         className='flex flex-col gap-1 my-4 md:my-0 border-2 rounded-lg p-4'

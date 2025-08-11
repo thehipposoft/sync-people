@@ -168,7 +168,7 @@ const TalentProfile = ({
                                                 <h4 className='text-lg mb-2'>
                                                     Contact me
                                                 </h4>
-                                                <div className='flex gap-4 md:gap-0 flex-wrap'>
+                                                <div className='flex gap-4 md:gap-2 flex-wrap'>
 
                                                     <Link
                                                         href={`tel:${talentData.personal_information.mobile}`}
