@@ -619,12 +619,12 @@ const ProfessionalInformation = ({
                     >
                         Keep editing
                     </button>
-                    <Link
+                    <a
                         className="primary-btn"
                         href={`/talents/${userId}`}
                     >
                         View Public Profile
-                    </Link>
+                    </a>
                 </div>
             </Modal>
         </div>
