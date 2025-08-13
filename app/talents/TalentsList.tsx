@@ -45,7 +45,7 @@ const TalentsList = ({
                                             {talent.personal_information.first_name}
                                         </p>
                                         <p className='md:text-lg capitalize'>
-                                            {talent.professional_information.industries.map(industry => industry.industry).join(', ')}
+                                            {talent.professional_information.industries.map(industry => industry.industry.replace(/_/g, ' ')).join(', ')}
                                         </p>
 
                                         <div className='flex justify-between mt-2'>
