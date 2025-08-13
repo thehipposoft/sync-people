@@ -172,7 +172,6 @@ export default function ComingSoon () {
                                 type="email"
                                 className="border rounded-3xl py-1 px-5 w-3/4 mt-1"
                                 placeholder="Enter your email"
-                                typeof="email"
                                 name="email"
                                 required
                                 value={formValues.email}

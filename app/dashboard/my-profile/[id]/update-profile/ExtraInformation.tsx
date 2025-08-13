@@ -237,7 +237,11 @@ const ExtraInformation = ({
                                         <td
                                             className={`text-left py-3 text-sm px-4 md:px-2`}
                                         >
-                                            {format(credential.expiry_date, 'dd/MM/yyyy')}
+                                            {
+                                                credential.expiry_date && format(credential.expiry_date, 'dd/MM/yyyy')
+                                                ? format(credential.expiry_date, 'dd/MM/yyyy')
+                                                : '-'
+                                            }
                                         </td>
                                         <td className='text-right pr-4'>
                                             <button

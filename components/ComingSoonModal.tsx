@@ -45,7 +45,6 @@ const ComingSoonModal = ({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    typeof="email"
                 />
                 <div className="flex md:gap-3 gap-5 justify-center flex-wrap md:mt-5 mt-8">
                     <button
