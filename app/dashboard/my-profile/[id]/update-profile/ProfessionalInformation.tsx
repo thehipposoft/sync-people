@@ -145,23 +145,7 @@ const ProfessionalInformation = ({
         });
     };
 
-    const handleIndustryDataChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>, index: number, isNew: boolean) => {
-        if (isNew) {
-            const newInd = industriesToUpdate.map((industry, i) => {
-                if (i === index) {
-                    industry = {
-                        ...industry,
-                        [e.target.name]: e.target.value,
-                    }
-                }
-
-                return industry;
-            });
-
-            setIndustriesToUpdate(newInd);
-            return;
-        }
-
+    const handleIndustryDataChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>, index: number) => {
         const newInd = formValues.industries.map((industry, i) => {
             if (i === index) {
                 industry = {
@@ -291,7 +275,7 @@ const ProfessionalInformation = ({
                                     name={`other_industry`}
                                     id={'other_industry'}
                                     className="w-full"
-                                    onChange={(e) => handleIndustryDataChange(e, index, isNew)}
+                                    onChange={(e) => handleIndustryDataChange(e, index)}
                                     value={industry.other_industry}
                                     required
                                 />
