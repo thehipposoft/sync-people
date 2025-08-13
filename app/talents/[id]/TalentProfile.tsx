@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf, IndustryType } from '@/types';
 import { INDUSTRIES_BANNER, ROUTES } from '@/app/constants';
-import { renderSocialMediaIcon, handleRenderTimeInJobs, isYouTubeUrl, extractYouTubeVideoId } from '@/lib/utils';
+import { renderSocialMediaIcon, handleRenderTimeInJobs } from '@/lib/utils';
 import { pdf, PDFViewer } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 import TalentPDFDocument from './TalentPDFDocument';
@@ -66,7 +66,7 @@ const TalentProfile = ({
             </p>
         </div>
         : <div className='flex flex-col md:w-full'>
-            <div className='md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
+            <div className='md:w-full w-[90vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
                 <div className='border rounded-2xl bg-white'>
                     <div className='relative flex flex-col mx-auto md:w-[900px] bg-white'>
                         {
@@ -75,7 +75,7 @@ const TalentProfile = ({
                                 <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-20 w-12 md:mr-12 mr-8'/>
                             </div>
                             :
-                            <div className='relative h-[7rem] md:h-[10rem] md:w-[900px] w-[80vw]'>
+                            <div className='relative h-[7rem] md:h-[10rem] md:w-[900px]'>
                                 <Image
                                     src={INDUSTRIES_BANNER[selectedIndustry.industry]}
                                     alt={`Banner for ${talentData.personal_information.first_name}`}
@@ -150,18 +150,17 @@ const TalentProfile = ({
                                                 {talentData.professional_information.work_preference ? talentData.professional_information.work_preference : '-'}
                                             </p>
                                         </div>
-                                        <div className='flex justify-between mt-1 flex-col'>
-                                            <h4 className='text-lg'>
-                                                Licenses or Certificates
-                                            </h4>
-                                            {
-                                                selectedIndustry.certificates?.length > 0
-                                                ? <p>
+                                        {
+                                            selectedIndustry.certificates?.length > 0 &&
+                                            <div className='flex justify-between mt-1 flex-col'>
+                                                <h4 className='text-lg'>
+                                                    Licenses or Certificates
+                                                </h4>
+                                                <p>
                                                     {selectedIndustry.certificates.map(certificate => certificate.name).join(', ')}
                                                 </p>
-                                                : '-'
-                                            }
-                                        </div>
+                                            </div>
+                                        }
 
                                         <div className='flex flex-col justify-between mt-8 flex-wrap '>
                                             <div className='flex flex-col'>
@@ -206,7 +205,7 @@ const TalentProfile = ({
                                                     <video
                                                         ref={videoRef}
                                                         controls
-                                                        className='w-full h-auto rounded-3xl'
+                                                        className='w-full h-auto rounded-3xl max-h-[15rem] lg:max-h-[20rem]'
                                                         src={talentData.personal_information.presentation_video}
                                                     />
                                                     <div className={`${isPlaying ? '-z-10 !opacity-0 ' : ''} opacity-100 absolute inset-0 flex items-center justify-center`}>
@@ -337,20 +336,27 @@ const TalentProfile = ({
                                 </div>
                             ))
                         }
-                        <h4 className='text-lg my-2'>
-                            Other URLs
-                        </h4>
-                        <div className='flex gap-2 flex-wrap'>
-                            {
-                                talentData.extras.other_urls ?
-                                talentData.extras.other_urls && talentData.extras.other_urls.map((item, index) => (
-                                    <div key={index}>
-                                        <Link href={item.url} target='_blank' rel='noreferrer' className='hover:underline'>{item.name}</Link>
-                                    </div>
-                                ))
-                                : '-'
-                            }
-                        </div>
+                        {
+                            talentData.extras.other_urls && talentData.extras.other_urls.length > 0
+                            ? <>
+                                <h4 className='text-lg my-2'>
+                                    Other URLs
+                                </h4>
+                                <div className='flex gap-2 flex-wrap'>
+                                    {
+                                        talentData.extras.other_urls ?
+                                        talentData.extras.other_urls && talentData.extras.other_urls.map((item, index) => (
+                                            <div key={index}>
+                                                <Link href={item.url} target='_blank' rel='noreferrer' className='hover:underline'>{item.name}</Link>
+                                            </div>
+                                        ))
+                                        : '-'
+                                    }
+                                </div>
+                            </>
+                            : null
+                        }
+
                         <h4 className='text-lg my-2'>
                             Social Media Links
                         </h4>

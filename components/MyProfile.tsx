@@ -54,7 +54,7 @@ const MyProfile = ({
                         </div>
                     </div>
                 }
-                <div className='bg-white md:w-full w-[80vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
+                <div className='bg-white md:w-full w-[85vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
                     <div className='border rounded-2xl'>
                         <div className='relative flex flex-col mx-auto md:w-[900px]  bg-white'>
                             <div className='relative md:h-[300px] h-[200px] md:w-[900px] w-[80vw]'>
