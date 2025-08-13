@@ -4,10 +4,8 @@ import { INDUSTRIES } from "@/app/constants";
 import { IndustriesAvailable, IndustryType, professional_information } from "@/types";
 import { Link } from "next-view-transitions";
 import Modal from "@/components/Modal";
-import { Tooltip } from "@heroui/tooltip";
 import { format } from "date-fns";
 import { Select, SelectItem } from "@heroui/select";
-
 
 type ProfessionalPropsType = {
     initialValues: professional_information;
@@ -31,8 +29,6 @@ const ProfessionalInformation = ({
     const [certificateExpiryDate, setCertificateExpiryDate] = useState<string>('');
     const [industriesToUpdate, setIndustriesToUpdate] = useState<professional_information['industries']>([]);
     const [selectedIndustryIndex, setSelectedIndustryIndex] = useState<number>(0);
-    const [industriesOptions, setIndustriesOptions] = useState(INDUSTRIES);
-
     //Modal
     const [openRemoveCertificateModal, setOpenRemoveCertificateModal] = useState<boolean>(false);
     const [openNewCertificateModal, setOpenNewCertificateModal] = useState<boolean>(false);
@@ -123,8 +119,11 @@ const ProfessionalInformation = ({
 
     const handleMultiSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target;
-
         const industriesArray = value ? value.split(',') : [];
+
+        if(industriesArray.length === 0) {
+            return;
+        }
 
         const newIndustriesArray: IndustryType[] = industriesArray.map((industry) => {
             const existing = formValues.industries.find((item) => item.industry === industry);
@@ -134,6 +133,7 @@ const ProfessionalInformation = ({
                 position: '',
                 certificates: [],
                 industry_description: '',
+                is_new: true,
             };
         });
 
@@ -183,8 +183,6 @@ const ProfessionalInformation = ({
         e.preventDefault();
         setIsAPILoading(true);
 
-        console.log('Submitting to API with skills_set:', formValues.skills_set);
-
         const response = await updateProfile(userId, {
             professional_information: {
                 ...formValues,
@@ -195,7 +193,6 @@ const ProfessionalInformation = ({
             },
         });
 
-        console.log('Submitting form with skills_set:', formValues.skills_set);
         setFormValues({
             ...formValues,
             industries: [
@@ -209,9 +206,10 @@ const ProfessionalInformation = ({
         setOpenUpdatedDataModal(true);
     };
 
-    const renderIndustriesFields = (listOfIndustries: professional_information['industries'], isNew: boolean) => {
+    const renderIndustriesFields = (listOfIndustries: professional_information['industries']) => {
         return (
-            listOfIndustries && listOfIndustries.map((industry, index) => (
+            listOfIndustries && listOfIndustries.map((industry, index) => {
+                return (
                 <div key={index} className='border border-[#FF8149] rounded-3xl p-4 mt-4'>
                     <div className="w-full flex justify-between col-span-2 flex-wrap">
                         <h3 className='font-bold py-4 text-xl capitalize'>
@@ -246,10 +244,12 @@ const ProfessionalInformation = ({
                                     </g>
                                 </svg>
                             </button>
-                            :
-                            <div className="flex gap-2 items-center">
-                                <p className="opacity-50">Not saved</p>
-                                <button
+                            : <div className="flex gap-2 items-center">
+                                {
+                                    industry.is_new && <p className="opacity-50">Not saved</p>
+                                }
+                                {
+                                    listOfIndustries.length > 1 && <button
                                     onClick={(e) => {
                                         e.preventDefault();
                                         const newInd = formValues.industries.filter((ind, i) => i !== index);
@@ -276,6 +276,7 @@ const ProfessionalInformation = ({
                                         </g>
                                     </svg>
                                 </button>
+                                }
                             </div>
                         }
                     </div>
@@ -298,146 +299,92 @@ const ProfessionalInformation = ({
                             :
                             <></>
                     }
-{/*                     <div className="grid grid-cols-2 gap-4 pt-2">
-                        <div className="col-span-2 md:col-span-1">
-                            <label htmlFor={`position`} className="block pb-2">
-                                Position
-                            </label>
-                            <input
-                                type="text"
-                                id={'position'}
-                                name={'position'}
-                                required
-                                value={industry.position}
-                                onChange={(e) => handleIndustryDataChange(e, index, isNew)}
-                            />
-                        </div>
-                        <div className="col-span-2 md:col-span-1">
-                            <label htmlFor={`preferred_salary`} className="flex pb-2 items-center gap-2">
-                                Preferred salary per hour (AUD)
-                                <Tooltip
-                                    className="bg-primary-text text-white rounded-md"
-                                    content={
-                                        <div className="px-1 py-2">
-                                            <Link target="_blank" href={`/categories/${industry.industry}`} className="text-sm">
-                                                Link to category / Money converter
-                                            </Link>
-                                        </div>
-                                    }
-                                >
-                                    <svg
-                                        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                        width={15}
-                                        height={15}
-                                    >
-                                        <g id="SVGRepo_iconCarrier">
-                                            <path fillRule="evenodd" clipRule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM12 17.75C12.4142 17.75 12.75 17.4142 12.75 17V11C12.75 10.5858 12.4142 10.25 12 10.25C11.5858 10.25 11.25 10.5858 11.25 11V17C11.25 17.4142 11.5858 17.75 12 17.75ZM12 7C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8C11 7.44772 11.4477 7 12 7Z" fill="#1C274C">
-                                            </path>
-                                        </g>
-                                    </svg>
-                                </Tooltip>
-                            </label>
-                            <input
-                                type="text"
-                                id={'preferred_salary'}
-                                name={'preferred_salary'}
-                                required
-                                value={industry.preferred_salary}
-                                onChange={(e) => handleIndustryDataChange(e, index, isNew)}
-                            />
-                        </div>
-                    </div> */}
-                    {
-                        !isNew && <div className="col-span-2 mt-4">
-                            <label className="block mt-2">
-                               Certificates <span className='text-xs'>(optional)</span>
-                            </label>
-                            {
-                                industry.certificates.length > 0
-                                ? <table className="w-full p-3 my-3">
-                                    <thead>
-                                        <tr>
-                                            <th
-                                                className={`text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tl-lg`}
+                    <div className="col-span-2">
+                        <label className="block mt-2">
+                            Certificates <span className='text-xs'>(optional)</span>
+                        </label>
+                        {
+                            industry.certificates.length > 0
+                            ? <table className="w-full p-3 my-3">
+                                <thead>
+                                    <tr>
+                                        <th
+                                            className={`text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tl-lg`}
+                                        >
+                                            Name
+                                        </th>
+                                        <th
+                                            className={`text-left py-2 px-4 md:px-2 bg-gray-300`}
+                                        >
+                                            Expiry date
+                                        </th>
+                                        <th  className={`text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tr-lg`}>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {industry.certificates.map((certificate, certificateIndex) => (
+                                        <tr key={certificateIndex} className='py-4 border'>
+                                            <td
+                                                className={`text-left py-3 text-sm px-4 md:px-2`}
                                             >
-                                                Name
-                                            </th>
-                                            <th
-                                                className={`text-left py-2 px-4 md:px-2 bg-gray-300`}
+                                                {certificate.name}
+                                            </td>
+                                            <td
+                                                className={`text-left py-3 text-sm px-4 md:px-2`}
                                             >
-                                                Expiry date
-                                            </th>
-                                            <th  className={`text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tr-lg`}>
-
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {industry.certificates.map((certificate, certificateIndex) => (
-                                            <tr key={certificateIndex} className='py-4 border'>
-                                                <td
-                                                    className={`text-left py-3 text-sm px-4 md:px-2`}
+                                                {
+                                                    certificate.expiry_date && format(certificate.expiry_date, 'dd/MM/yyyy')
+                                                        ? format(certificate.expiry_date, 'dd/MM/yyyy')
+                                                        : '-'
+                                                }
+                                            </td>
+                                            <td className='text-right pr-4'>
+                                                <button
+                                                    className="bg-red-500 p-1 rounded-md h-fit"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        setSelectedCertificateToRemoveIndex(index);
+                                                        setOpenRemoveCertificateModal(true);
+                                                    }}
                                                 >
-                                                    {certificate.name}
-                                                </td>
-                                                <td
-                                                    className={`text-left py-3 text-sm px-4 md:px-2`}
-                                                >
-                                                    {
-                                                     certificate.expiry_date && format(certificate.expiry_date, 'dd/MM/yyyy')
-                                                            ? format(certificate.expiry_date, 'dd/MM/yyyy')
-                                                            : '-'
-                                                    }
-                                                </td>
-                                                <td className='text-right pr-4'>
-                                                    <button
-                                                        className="bg-red-500 p-1 rounded-md h-fit"
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            setSelectedCertificateToRemoveIndex(index);
-                                                            setOpenRemoveCertificateModal(true);
-                                                        }}
+                                                    <svg
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width={20}
+                                                        height={20}
                                                     >
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            width={20}
-                                                            height={20}
-                                                        >
-                                                            <g id="SVGRepo_iconCarrier">
-                                                                <path d="M5.73708 6.54391V18.9857C5.73708 19.7449 6.35257 20.3604 7.11182 20.3604H16.8893C17.6485 20.3604 18.264 19.7449 18.264 18.9857V6.54391M2.90906 6.54391H21.0909" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
-                                                                </path>
-                                                                <path d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
-                                                                </path>
-                                                            </g>
-                                                        </svg>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                                : null
-                            }
-                            <button
-                                className='primary-btn text-sm ml-0 my-3'
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setSelectedIndustryIndex(index);
-                                    setOpenNewCertificateModal(true);
-                                }}
-                            >
-                                Add certificate
-                            </button>
-                        </div>
-                    }
+                                                        <g id="SVGRepo_iconCarrier">
+                                                            <path d="M5.73708 6.54391V18.9857C5.73708 19.7449 6.35257 20.3604 7.11182 20.3604H16.8893C17.6485 20.3604 18.264 19.7449 18.264 18.9857V6.54391M2.90906 6.54391H21.0909" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
+                                                            </path>
+                                                            <path d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
+                                                            </path>
+                                                        </g>
+                                                    </svg>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            : null
+                        }
+                        <button
+                            className='primary-btn text-sm ml-0 my-3'
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setSelectedIndustryIndex(index);
+                                setOpenNewCertificateModal(true);
+                            }}
+                        >
+                            Add certificate
+                        </button>
+                    </div>
                 </div>
-            ))
+            )})
         )
     };
-
-    console.log('formValues', formValues);
 
     return (
         <div>
@@ -475,7 +422,6 @@ const ProfessionalInformation = ({
                 </div>
 
                 <div className='col-span-2'>
-
                     <h4 className='font-bold pb-4 pt-2'>
                         Industries
                     </h4>
@@ -497,10 +443,7 @@ const ProfessionalInformation = ({
                         }
                     </Select>
                     {
-                        renderIndustriesFields(formValues.industries, false)
-                    }
-                    {
-                        renderIndustriesFields(industriesToUpdate, true)
+                        renderIndustriesFields(formValues.industries)
                     }
                 </div>
                 <div className="col-span-2 pt-4">

@@ -34,20 +34,33 @@ const MyProfile = ({
                     <div className='border rounded-2xl bg-white'>
                         <div className='relative flex flex-col'>
                             {
-                                INDUSTRIES_BANNER[user.professional_information.industries[0].industry] ?
-                                <div className='rounded-t-2xl max-h-[120px] bg-[#1A335D] h-[300px] flex justify-end'>
-                                    <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-16 w-20 md:mr-12 mr-8'/>
-                                </div>
-                                :
-                                <Image
-                                    src={INDUSTRIES_BANNER[user.professional_information.industries[0].industry]}
-                                    alt={`Banner picture of ${user.personal_information.first_name}`}
-                                    width={900}
-                                    height={300}
-                                    className='object-cover rounded-t-2xl max-h-[200px]'
-                                />
-                            }
 
+                                user.professional_information.industries.length === 0 || !user.professional_information.industries
+                                ? <div className='rounded-t-2xl max-h-[120px] bg-[#1A335D] h-[300px] flex justify-end'>
+                                    <Image
+                                        src={'/assets/images/vectors/hero-pic.svg'} alt='Insyncx hero pic'
+                                        width={45}
+                                        height={30}
+                                        className='md:w-16 w-20 md:mr-12 mr-8'
+                                    />
+                                </div>
+                                : INDUSTRIES_BANNER[user.professional_information.industries[0].industry]
+                                    ? <div className='rounded-t-2xl max-h-[120px] bg-[#1A335D] h-[300px] flex justify-end'>
+                                        <Image
+                                            src={'/assets/images/vectors/hero-pic.svg'} alt='Insyncx hero pic'
+                                            width={45}
+                                            height={30}
+                                            className='md:w-16 w-20 md:mr-12 mr-8'
+                                        />
+                                    </div>
+                                    : <Image
+                                        src={INDUSTRIES_BANNER[user.professional_information.industries[0].industry]}
+                                        alt={`Banner picture of ${user.personal_information.first_name}`}
+                                        width={900}
+                                        height={300}
+                                        className='object-cover rounded-t-2xl max-h-[200px]'
+                                    />
+                            }
                             <div className='relative flex flex-col justify-between md:px-12 px-6 py-6'>
                                 <Image
                                     src={user.personal_information.profile_pic ? user.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
@@ -55,7 +68,7 @@ const MyProfile = ({
                                     height={140}
                                     width={140}
                                     className='w-36 h-36 rounded-full border-[6px] border-white absolute -top-20 object-cover'
-                                    />
+                                />
                                 <div className='flex flex-col gap-2 mt-20'>
                                     <h2 className='text-2xl pb-3'>
                                         {user.personal_information.first_name} <span className='h-bold'>{`${user.personal_information.last_name}, ${getAge(user.personal_information.date_of_birth)}`}</span>

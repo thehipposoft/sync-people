@@ -11,6 +11,7 @@ export type IndustryType = {
         file_url: string;
         expiry_date: string;
     }[];
+    is_new?: boolean;
 };
 
 export type IndustriesAvailable = 'construction' | 'cleaning' | 'warehousing' | 'logistics' | 'farming' | 'hospitality' | 'retail' | 'age_care' | 'other';
