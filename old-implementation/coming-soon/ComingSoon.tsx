@@ -99,7 +99,7 @@ export default function ComingSoon () {
                     <h2 className="text-[40px] h-bold mb-4">
                         Be Part of Insyncx Now
                     </h2>
-                    <p className="text-[#1A335D] w-5/6 text-sm">
+                    <p className="text-primary w-5/6 text-sm">
                         Exciting things are on the way! Want to be among the first to experience Insyncx?<br/>
                         Sign up now for early access, exclusive updates, and a chance to be ahead of the curve when we launch.
                     </p>
@@ -107,7 +107,7 @@ export default function ComingSoon () {
                         <div className="pt-6">
                             <label className="">Looking for:</label>
                             <div className="flex gap-4 pt-2">
-                                <div className={`flex gap-4 border rounded-3xl cursor-pointer py-2 px-3 transition-all border-purple ${formValues.lookingFor === 'job' ? 'bg-purple text-white' : ''} `}>
+                                <div className={`flex gap-4 border rounded-3xl cursor-pointer py-2 px-3 transition-all border-secondary ${formValues.lookingFor === 'job' ? 'bg-secondary text-white' : ''} `}>
                                     <input
                                         type="radio"
                                         id="job"
@@ -123,7 +123,7 @@ export default function ComingSoon () {
                                         Job
                                     </label>
                                 </div>
-                                <div className={`flex gap-4 border rounded-3xl cursor-pointer py-2 px-3 transition-all border-purple ${formValues.lookingFor === 'talents' ? 'bg-purple text-white' : ''} `}>
+                                <div className={`flex gap-4 border rounded-3xl cursor-pointer py-2 px-3 transition-all border-secondary ${formValues.lookingFor === 'talents' ? 'bg-secondary text-white' : ''} `}>
                                     <input
                                         type="radio"
                                         id="talents"

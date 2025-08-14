@@ -132,13 +132,13 @@ const LoginMenu = () => {
                     </div>
                 </form>
                 <p className='text-center pt-6'>
-                    Don't have an account? <Link href={ROUTES.SIGN_UP} className='font-semibold text-purple hover:underline'>Register</Link>
+                    Don't have an account? <Link href={ROUTES.SIGN_UP} className='font-semibold text-secondary hover:underline'>Register</Link>
                 </p>
                 <p className='text-center pt-2'>
                     <Link
                         target={'_blank'}
                         href={'https://admin.insyncx.com/wp-login.php?action=lostpassword'}
-                        className='font-semibold text-purple hover:underline'
+                        className='font-semibold text-secondary hover:underline'
                     >Forgot your password?
                     </Link>
                 </p>

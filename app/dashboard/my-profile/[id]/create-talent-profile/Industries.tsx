@@ -169,10 +169,10 @@ const Industries = ({
                         {`${currentIndex + 1}. Shape Your Future Opportunities`}
                     </h4>
                 </div>
-                <p className='mb-2 text-[#1A335D] font-bold'>
+                <p className='mb-2 text-primary font-bold'>
                     Help us understand what you're looking for
                 </p>
-                <p className='mb-6 text-[#1A335D] text-sm'>
+                <p className='mb-6 text-primary text-sm'>
                     Let us know which industries you're most interested in, the type of roles you're after, and how you'd like to work.
                 </p>
                 <div className={`md:grid flex flex-col grid-cols-2 md:gap-4 gap-8`}>
@@ -226,7 +226,7 @@ const Industries = ({
                         </p>
                     </div>
 
-                    <p className="mt-2 text-[#1A335D] col-span-2">
+                    <p className="mt-2 text-primary col-span-2">
                         Industries of choice (you can choose more than one option)*
                     </p>
                     <Select
@@ -323,7 +323,7 @@ const Industries = ({
                                     <label htmlFor={`preferred_salary`} className="flex pb-2 items-center gap-2">
                                         Preferred salary per hour (AUD)
                                         <Tooltip
-                                            className="bg-primary-text text-white rounded-md"
+                                            className="bg-primary text-white rounded-md"
                                             content={
                                                 <div className="px-1 py-2">
                                                     <Link

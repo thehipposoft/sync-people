@@ -164,7 +164,7 @@ const TalentForm = ({
                             src={profileImage ? profileImage : '/assets/images/profile-avatar.png'}
                             alt={`${formValues.personal_information.first_name} ${formValues.personal_information.last_name}`}
                             width={150} height={150}
-                            className='h-[150px] rounded-full border-2 border-primary-text object-cover'
+                            className='h-[150px] rounded-full border-2 border-primary object-cover'
                         />
 
                         <div className={`absolute top-0 left-0 rounded-full w-full h-full bg-[#000000b3] ${profileImage ? 'opacity-0' : 'opacity-100'} duration-500 flex justify-center items-center cursor-pointer p-2`}>

@@ -17,8 +17,8 @@ const config: Config = {
         },
         colors: {
             'bg-primary': '#FAFAFB',
-            'primary-text': '#1A335D',
-            'purple': '#7052E5',
+            'primary': '#1A335D',
+            'secondary': '#7052E5',
             'green' : '#0095A9',
         },
         fontFamily: {

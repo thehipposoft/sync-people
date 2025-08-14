@@ -423,7 +423,7 @@ const CreateProfile = () => {
                     <div className='flex justify-end'>
                         <button
                             type="submit"
-                            className="bg-[#1A335D] text-white p-2 rounded hover:bg-white hover:text-[#1A335D] duration-500 cursor-pointer my-8 relative right-0"
+                            className="bg-primary text-white p-2 rounded hover:bg-white hover:text-primary duration-500 cursor-pointer my-8 relative right-0"
                             >
                             Save
                         </button>

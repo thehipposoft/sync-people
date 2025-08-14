@@ -108,7 +108,7 @@ const FORM_SLIDES = [
         description: 'Come on, this is just the beginning',
         content: <div className='md:pt-2 md:px-6 flex md:flex-row flex-col md:gap-16 gap-4'>
                     <div className='md:w-3/4'>
-                        <p className="mb-4 text-[#1A335D]">Industries of choice *you can choose more than one option</p>
+                        <p className="mb-4 text-primary">Industries of choice *you can choose more than one option</p>
                         <div className='flex flex-col md:gap-1 gap-4'>
                                 <label className='flex items-center gap-2' htmlFor="construction">
                                     <input
@@ -278,7 +278,7 @@ const FORM_SLIDES = [
                         <div className="md:w-1/2 hidden md:block"></div>
                     </section>
                     <section className="my-8">
-                        <p className="text-[#1A335D]">Academic Credentials:</p>
+                        <p className="text-primary">Academic Credentials:</p>
                         <div className="flex flex-col items-center md:items-start md:flex-row gap-6 mt-12 mx-auto md:mx-0">
                             <label htmlFor="file-upload" className="h-40 w-56 rounded-2xl shadow-xl flex flex-col gap-4 cursor-pointer justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
                                 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -333,7 +333,7 @@ const FORM_SLIDES = [
                             referrerPolicy="strict-origin-when-cross-origin"
                             allowFullScreen
                         />
-                        <p className="text-xl mt-3 text-[#1A335D]">
+                        <p className="text-xl mt-3 text-primary">
                             Why Create a "presentation" Video?
                         </p>
                         <p className="text-sm">
@@ -343,7 +343,7 @@ const FORM_SLIDES = [
                         </p>
                     </section>
                     <section className="mt-6 flex flex-col md:gap-4 gap-8">
-                        <p className="text-lg mt-3 text-[#1A335D]">Social Media:</p>
+                        <p className="text-lg mt-3 text-primary">Social Media:</p>
                         <div className="flex md:flex-row flex-col md:gap-16 gap-8">
                             <input type="text" name="social-media-1" id="social-media-1" placeholder="Profile URL *Optional" />
                             <input type="text" name="social-media-2" id="social-media-2" placeholder="Profile URL *Optional" />
@@ -354,13 +354,13 @@ const FORM_SLIDES = [
                         </div>
                     </section>
                     <section className="mt-6 flex flex-col gap-4">
-                        <p className="text-lg mt-3 text-[#1A335D]">More about myself:</p>
+                        <p className="text-lg mt-3 text-primary">More about myself:</p>
                         <textarea rows={5} className="resize-none border border-[#656ED3] rounded-[2em] p-4">
                         </textarea>
                     </section>
                     <section className="my-8 flex flex-col gap-4">
-                        <p className="text-lg mt-3 text-[#1A335D]">Profile Header:</p>
-                        <p className="mt-1 text-[#1A335D]">size: 2560 x 1440 px</p>
+                        <p className="text-lg mt-3 text-primary">Profile Header:</p>
+                        <p className="mt-1 text-primary">size: 2560 x 1440 px</p>
                         <label htmlFor="profile-header" className="h-40 w-56 rounded-2xl shadow-xl flex flex-col gap-4 mx-auto md:mx-0 cursor-pointer justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
                             <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
@@ -428,7 +428,7 @@ const BUSINESS_FORMSLIDES = [
                             <div className='md:w-1/2'>
                             </div>
                         </section>
-                        <p className="p-bold text-[#1A335D] mt-12">Branch #1</p>
+                        <p className="p-bold text-primary mt-12">Branch #1</p>
                         <section className='flex flex-col md:flex-row gap-2 md:gap-16'>
                             <div className='md:w-1/2'>
                                 <label htmlFor="state" className="block pb-2">Location - State:</label>
@@ -480,7 +480,7 @@ const BUSINESS_FORMSLIDES = [
                             <div className='md:w-1/2'>
                             </div>
                         </section>
-                        <p className="text-[#1A335D] mt-12">Upload Branch #1 profile picture</p>
+                        <p className="text-primary mt-12">Upload Branch #1 profile picture</p>
                         <label htmlFor="branch-one-profile-pic" className="h-40 w-56 my-8 rounded-2xl shadow-xl flex flex-col gap-4 cursor-pointer mx-auto md:mx-0 justify-center items-center duration-300 hover:-translate-y-2 hover:shadow-2xl">
                             <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.6663 28.3333V9.31658L10.5997 15.3833L7.33301 11.9999L18.9997 0.333252L30.6663 11.9999L27.3997 15.3833L21.333 9.31658V28.3333H16.6663ZM4.99968 37.6666C3.71634 37.6666 2.61734 37.2093 1.70268 36.2946C0.788011 35.3799 0.331456 34.2817 0.333012 32.9999V25.9999H4.99968V32.9999H32.9997V25.9999H37.6663V32.9999C37.6663 34.2833 37.209 35.3823 36.2943 36.2969C35.3797 37.2116 34.2815 37.6681 32.9997 37.6666H4.99968Z" fill="#9747FF"/>
@@ -499,13 +499,13 @@ const BUSINESS_FORMSLIDES = [
                             <div className='relative w-[180px] h-[180px]'>
                                 <Image src={'/assets/images/business/avatar.png'} alt='profile picture' fill />
                             </div>
-                            <h4 className="h-bold text-xl text-[#1A335D] mt-6">Contact Person</h4>
+                            <h4 className="h-bold text-xl text-primary mt-6">Contact Person</h4>
                         </div>
                         <div className="flex flex-col">
                             <div className='relative w-[180px] h-[180px]'>
                                 <Image src={'/assets/images/business/mylk-logo.png'} alt='profile picture' fill />
                             </div>
-                            <h4 className="h-bold text-xl text-[#1A335D] mt-6">Company Logo</h4>
+                            <h4 className="h-bold text-xl text-primary mt-6">Company Logo</h4>
                         </div>
                     </div>
                     <div className='md:pt-12 px-6'>
@@ -561,16 +561,16 @@ const BUSINESS_FORMSLIDES = [
     {
         id: 3,
         content: <div>
-                    <h4 className="h-bold text-xl text-[#1A335D] mt-6 px-6">Mylk Cafe</h4>
+                    <h4 className="h-bold text-xl text-primary mt-6 px-6">Mylk Cafe</h4>
                     <div className='md:pt-12 px-6'>
-                        <h4 className="h-bold text-lg text-[#1A335D]">Extras</h4>
+                        <h4 className="h-bold text-lg text-primary">Extras</h4>
                         <section className="mt-6 flex flex-col gap-4">
-                            <p className="text-lg mt-3 text-[#1A335D]">Company Description:</p>
+                            <p className="text-lg mt-3 text-primary">Company Description:</p>
                             <textarea rows={5} className="resize-none border border-[#656ED3] rounded-[1em] p-4">
                             </textarea>
                         </section>
                         <section className='flex flex-col gap-2 md:gap-4'>
-                            <p className="text-lg mt-3 text-[#1A335D]">Social Media Links:</p>
+                            <p className="text-lg mt-3 text-primary">Social Media Links:</p>
                             <input
                                 className="md:w-1/2"
                                 placeholder="Social Media Profile #1"

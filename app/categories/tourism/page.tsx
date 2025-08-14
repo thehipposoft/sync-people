@@ -79,7 +79,7 @@ export default function TourismPage() {
                         <div className="hidden md:block relative w-[285px] h-[280px]">
                             <Image src={'/assets/images/categories/tourism-1.webp'} alt="" fill className="rounded-full rounded-bl-none object-none object-left-bottom" />
                         </div>
-                        <div className="md:absolute relative md:w-[285px] w-[240px] md:h-[280px] h-[240px] right-0 rounded-full rounded-tr-none flex items-end bg-[#7052E5] self-end">
+                        <div className="md:absolute relative md:w-[285px] w-[240px] md:h-[280px] h-[240px] right-0 rounded-full rounded-tr-none flex items-end bg-secondary self-end">
                             <div className='relative left-16 bottom-12'>
                                 <Image src={'/assets/images/vectors/tourism.svg'} alt='' height={50} width={50} className='' />
                                 <p className='text-white font-semibold text-xl pt-2'>Tourism</p>

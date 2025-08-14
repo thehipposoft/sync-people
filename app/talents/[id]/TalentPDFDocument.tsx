@@ -51,7 +51,7 @@ const TalentPDFDocument = ({
             <Page size="A4" style={tw('bg-white px-6 py-8 font-sans')}>
                 {
                     selectedIndustry.industry === 'other' ?
-                    <View style={tw('relative bg-[#1A335D] h-24 rounded-t-2xl  w-full flex justify-center')}>
+                    <View style={tw('relative bg-primary h-24 rounded-t-2xl  w-full flex justify-center')}>
                     </View>
                     :
                     <View style={tw('rounded-t-2xl overflow-hidden h-24')}>

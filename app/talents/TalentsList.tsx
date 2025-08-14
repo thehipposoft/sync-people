@@ -28,7 +28,7 @@ const TalentsList = ({
                                 <Link
                                     key={`${talent.id}-${talent.personal_information.first_name}-${index}`}
                                     href={`/talents/${talent.id}`}
-                                    className='hover:cursor-pointer group hover:bg-[#efefef] transition-all hover:border-primary-text'
+                                    className='hover:cursor-pointer group hover:bg-[#efefef] transition-all hover:border-primary'
                                 >
                                     <div
                                         className='flex flex-col gap-1 my-4 md:my-0 border-2 rounded-lg p-4'
@@ -39,7 +39,7 @@ const TalentsList = ({
                                             alt={talent.personal_information.first_name}
                                             width={200}
                                             height={200}
-                                            className={'rounded-full w-40 h-40 border m-auto mb-2 border-primary-text object-cover'}
+                                            className={'rounded-full w-40 h-40 border m-auto mb-2 border-primary object-cover'}
                                         />
                                         <p className='md:text-lg text-black h-bold'>
                                             {talent.personal_information.first_name}

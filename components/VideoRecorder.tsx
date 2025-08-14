@@ -206,9 +206,9 @@ const VideoRecorder = ({
                     recorderStep === 'presentation' && (
                          <button
                             onClick={startRecording}
-                            className="group cursor-pointer bg-primary-text hover:bg-white border-2 border-primary-text duration-500 flex gap-2 items-center text-white hover:text-primary-text px-4 py-2 rounded-3xl"
+                            className="group cursor-pointer bg-primary hover:bg-white border-2 border-primary duration-500 flex gap-2 items-center text-white hover:text-primary px-4 py-2 rounded-3xl"
                         >
-                            <div className='p-1 bg-white w-fit rounded-full border-white border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-500'>
+                            <div className='p-1 bg-white w-fit rounded-full border-white border-2 group-hover:bg-white group-hover:border-primary transition-all duration-500'>
                                 <svg viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -217,7 +217,7 @@ const VideoRecorder = ({
                                 >
                                     <g id="SVGRepo_iconCarrier">
                                         <path
-                                            className='fill-primary-text transition-all duration-500'
+                                            className='fill-primary transition-all duration-500'
                                             d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
                                         </path>
                                     </g>

@@ -494,11 +494,11 @@ const SearchComponent = ({ data, user }:any) => {
                                             </svg>
                                             {
                                                 value.price ?
-                                                <p className='p-2 bg-[#7052E5]/70 rounded-3xl text-white mb-4'>
+                                                <p className='p-2 bg-secondary/70 rounded-3xl text-white mb-4'>
                                                     {value.price}
                                                 </p>
                                                 :
-                                                <p className='p-2 bg-[#7052E5]/70 rounded-3xl text-white mb-4'>
+                                                <p className='p-2 bg-secondary/70 rounded-3xl text-white mb-4'>
                                                     Match rate {value.rate}%
                                                 </p>
                                             }

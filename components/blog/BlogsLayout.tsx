@@ -20,7 +20,7 @@ const BlogsLayout = () => {
                     <div className='flex w-full justify-end'>
                         <p>BY: Author</p>
                     </div>
-                    <Link className='bg-purple rounded-xl py-2 px-4 text-white w-fit' href={ROUTES.ENTRY}>
+                    <Link className='bg-secondary rounded-xl py-2 px-4 text-white w-fit' href={ROUTES.ENTRY}>
                         Read More
                     </Link>
                 </div>
@@ -39,7 +39,7 @@ const BlogsLayout = () => {
                     <div className='flex w-full justify-end'>
                         <p>BY: Author</p>
                     </div>
-                    <Link className='bg-purple rounded-xl py-2 px-4 text-white w-fit' href={ROUTES.ENTRY}>
+                    <Link className='bg-secondary rounded-xl py-2 px-4 text-white w-fit' href={ROUTES.ENTRY}>
                         Read More
                     </Link>
                 </div>
@@ -49,7 +49,7 @@ const BlogsLayout = () => {
                     <h4 className='text-orange-400 font-semibold text-base'>Topic</h4>
                     <h2 className='h-bold uppercase text-3xl'>New cinema in sydney</h2>
                     <p className='text-[#161722]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-purple text-purple border w-fit px-4 py-2'>
+                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-secondary text-secondary border w-fit px-4 py-2'>
                         Read More
                     </Link>
                 </div>
@@ -57,7 +57,7 @@ const BlogsLayout = () => {
                     <h4 className='text-orange-400 font-semibold text-base'>Topic</h4>
                     <h2 className='h-bold uppercase text-3xl'>New cinema in sydney</h2>
                     <p className='text-[#161722]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-purple text-purple border w-fit px-4 py-2'>
+                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-secondary text-secondary border w-fit px-4 py-2'>
                         Read More
                     </Link>
                 </div>
@@ -65,7 +65,7 @@ const BlogsLayout = () => {
                     <h4 className='text-orange-400 font-semibold text-base'>Topic</h4>
                     <h2 className='h-bold uppercase text-3xl'>New cinema in sydney</h2>
                     <p className='text-[#161722]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-purple text-purple border w-fit px-4 py-2'>
+                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-secondary text-secondary border w-fit px-4 py-2'>
                         Read More
                     </Link>
                 </div>
@@ -73,7 +73,7 @@ const BlogsLayout = () => {
                     <h4 className='text-orange-400 font-semibold text-base'>Topic</h4>
                     <h2 className='h-bold uppercase text-3xl'>New cinema in sydney</h2>
                     <p className='text-[#161722]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-purple text-purple border w-fit px-4 py-2'>
+                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-secondary text-secondary border w-fit px-4 py-2'>
                         Read More
                     </Link>
                 </div>
@@ -81,7 +81,7 @@ const BlogsLayout = () => {
                     <h4 className='text-orange-400 font-semibold text-base'>Topic</h4>
                     <h2 className='h-bold uppercase text-3xl'>New cinema in sydney</h2>
                     <p className='text-[#161722]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-purple text-purple border w-fit px-4 py-2'>
+                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-secondary text-secondary border w-fit px-4 py-2'>
                         Read More
                     </Link>
                 </div>
@@ -89,7 +89,7 @@ const BlogsLayout = () => {
                     <h4 className='text-orange-400 font-semibold text-base'>Topic</h4>
                     <h2 className='h-bold uppercase text-3xl'>New cinema in sydney</h2>
                     <p className='text-[#161722]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-purple text-purple border w-fit px-4 py-2'>
+                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-secondary text-secondary border w-fit px-4 py-2'>
                         Read More
                     </Link>
                 </div>
@@ -97,7 +97,7 @@ const BlogsLayout = () => {
                     <h4 className='text-orange-400 font-semibold text-base'>Topic</h4>
                     <h2 className='h-bold uppercase text-3xl'>New cinema in sydney</h2>
                     <p className='text-[#161722]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-purple text-purple border w-fit px-4 py-2'>
+                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-secondary text-secondary border w-fit px-4 py-2'>
                         Read More
                     </Link>
                 </div>
@@ -105,7 +105,7 @@ const BlogsLayout = () => {
                     <h4 className='text-orange-400 font-semibold text-base'>Topic</h4>
                     <h2 className='h-bold uppercase text-3xl'>New cinema in sydney</h2>
                     <p className='text-[#161722]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-purple text-purple border w-fit px-4 py-2'>
+                    <Link href={ROUTES.ENTRY} className='rounded-3xl border-secondary text-secondary border w-fit px-4 py-2'>
                         Read More
                     </Link>
                 </div>

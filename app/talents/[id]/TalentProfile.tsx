@@ -71,7 +71,7 @@ const TalentProfile = ({
                     <div className='relative flex flex-col mx-auto md:w-[900px] bg-white'>
                         {
                             selectedIndustry.industry === 'other' ?
-                            <div className='relative bg-[#1A335D] h-[7rem] rounded-t-2xl md:h-[10rem] md:w-[900px] w-[80vw] flex justify-end'>
+                            <div className='relative bg-primary h-[7rem] rounded-t-2xl md:h-[10rem] md:w-[900px] w-[80vw] flex justify-end'>
                                 <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-20 w-12 md:mr-12 mr-8'/>
                             </div>
                             :
@@ -108,7 +108,7 @@ const TalentProfile = ({
                                     {
                                         !queryIndustry && (
                                             <select
-                                                className='bg-[#f3f4f6] rounded-lg p-2 w-full md:w-[200px] text-[#1A335D] text-center ml-auto flex'
+                                                className='bg-[#f3f4f6] rounded-lg p-2 w-full md:w-[200px] text-primary text-center ml-auto flex'
                                                 onChange={(e) => {
                                                     const selected = talentData.professional_information.industries.find((industry) => industry.industry === e.target.value);
                                                     if (selected) {
@@ -134,7 +134,7 @@ const TalentProfile = ({
                                             <h4 className='text-lg'>
                                                 Current Location
                                             </h4>
-                                            <p className='text-[#1A335D]'>
+                                            <p className='text-primary'>
                                                     {talentData.personal_information.current_location.state && talentData.personal_information.current_location.suburb
                                                     ? `${talentData.personal_information.current_location.suburb}, ${talentData.personal_information.current_location.state}`
                                                     : `-`
@@ -211,10 +211,10 @@ const TalentProfile = ({
                                                     <div className={`${isPlaying ? '-z-10 !opacity-0 ' : ''} opacity-100 absolute inset-0 flex items-center justify-center`}>
                                                         <button
                                                             onClick={handlePlay}
-                                                            className={`group cursor-pointer text-xl w-full h-full bg-primary-text hover:bg-[#c2bfbf] border-2 border-primary-text duration-500 flex gap-4 items-center text-white hover:text-primary-text rounded-3xl flex-col justify-center`}
+                                                            className={`group cursor-pointer text-xl w-full h-full bg-primary hover:bg-[#c2bfbf] border-2 border-primary duration-500 flex gap-4 items-center text-white hover:text-primary rounded-3xl flex-col justify-center`}
                                                         >
                                                             {`Play video`}
-                                                            <div className='p-2 bg-white w-fit rounded-full border-white border-2 group-hover:bg-white group-hover:border-primary-text transition-all duration-500'>
+                                                            <div className='p-2 bg-white w-fit rounded-full border-white border-2 group-hover:bg-white group-hover:border-primary transition-all duration-500'>
                                                                 <svg viewBox="0 0 24 24"
                                                                     fill="none"
                                                                     xmlns="http://www.w3.org/2000/svg"
@@ -223,7 +223,7 @@ const TalentProfile = ({
                                                                 >
                                                                     <g id="SVGRepo_iconCarrier">
                                                                         <path
-                                                                            className='fill-primary-text transition-all duration-500'
+                                                                            className='fill-primary transition-all duration-500'
                                                                             d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#fff">
                                                                         </path>
                                                                     </g>

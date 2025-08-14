@@ -80,10 +80,10 @@ const WorkingRights = ({
                    {`${currentIndex + 1}. Work Experience`}
                 </h4>
             </div>
-            <p className='pb-4 text-[#1A335D] text-lg font-bold'>
+            <p className='pb-4 text-primary text-lg font-bold'>
                 Tell us about your past work experience
             </p>
-            <p className='pb-4 text-[#1A335D] text-sm'>
+            <p className='pb-4 text-primary text-sm'>
                 This is your chance to showcase what you've done before! Let us know the position you held, the company you worked for, when you started (and ended, if applicable), and the industry you were in. If you're currently working there, just tick the box.
                 You can also use the description to highlight your key responsibilities, achievements, or anything you're proud of in that role.
             </p>

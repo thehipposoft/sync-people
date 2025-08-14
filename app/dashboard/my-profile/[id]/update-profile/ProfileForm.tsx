@@ -139,7 +139,7 @@ const ProfileForm = ({
                         src={formValues.personal_information.profile_pic ? formValues.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
                         alt={`${formValues.personal_information.first_name} ${formValues.personal_information.last_name}`}
                         width={140} height={140}
-                        className='h-[140px] lg:h-28 rounded-full border-2 border-primary-text object-cover'
+                        className='h-[140px] lg:h-28 rounded-full border-2 border-primary object-cover'
                     />
                     <div className='absolute top-0 left-0 rounded-full opacity-0 w-[140px] h-[140px] lg:h-28 lg:w-full   bg-[#000000b3] group-hover:opacity-100 duration-500 flex justify-center items-center cursor-pointer p-2'>
                         <span className='text-sm text-center text-white'>
@@ -190,25 +190,25 @@ const ProfileForm = ({
             <div>
                 <ul className='flex justify-between my-6 overflow-x-auto'>
                     <li
-                        className={`px-4 pb-3 cursor-pointer transition-all ${selectedTab === 'personal' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
+                        className={`px-4 pb-3 cursor-pointer transition-all ${selectedTab === 'personal' ? 'text-primary border-b-4 font-bold border-primary' : ''}`}
                         onClick={() => handleTabChange('personal')}
                     >
                         Personal Information
                     </li>
                     <li
-                        className={`px-4 cursor-pointer transition-all ${selectedTab === 'experience' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
+                        className={`px-4 cursor-pointer transition-all ${selectedTab === 'experience' ? 'text-primary border-b-4 font-bold border-primary' : ''}`}
                         onClick={() => handleTabChange('experience')}
                     >
                         Work Experience
                     </li>
                     <li
-                        className={`px-4 cursor-pointer transition-all ${selectedTab === 'professional' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
+                        className={`px-4 cursor-pointer transition-all ${selectedTab === 'professional' ? 'text-primary border-b-4 font-bold border-primary' : ''}`}
                         onClick={() => handleTabChange('professional')}
                     >
                         Professional Information
                     </li>
                     <li
-                        className={`px-4 cursor-pointer transition-all ${selectedTab === 'extras' ? 'text-primary-text border-b-4 font-bold border-primary-text' : ''}`}
+                        className={`px-4 cursor-pointer transition-all ${selectedTab === 'extras' ? 'text-primary border-b-4 font-bold border-primary' : ''}`}
                         onClick={() => handleTabChange('extras')}
                     >
                         More about me

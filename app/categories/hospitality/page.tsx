@@ -34,16 +34,16 @@ export default function HospitalityPage() {
                     </p>
                     <ul className="list-disc pl-8 mt-4 mb-4">
                         <li className="text-[#798196] mb-2">
-                            <span className="font-bold text-primary-text underline">Sydney and Melbourne:</span> Australia’s largest cities are bustling with cafes, restaurants, hotels, and bars.
+                            <span className="font-bold text-primary underline">Sydney and Melbourne:</span> Australia’s largest cities are bustling with cafes, restaurants, hotels, and bars.
                         </li>
                         <li className="text-[#798196] mb-2">
-                            <span className="font-bold text-primary-text underline">Gold Coast and Cairns:</span> Known for tourism, these regions have high seasonal demand for workers in hotels, resorts, and tourism services.
+                            <span className="font-bold text-primary underline">Gold Coast and Cairns:</span> Known for tourism, these regions have high seasonal demand for workers in hotels, resorts, and tourism services.
                         </li>
                         <li className="text-[#798196] mb-2">
-                            <span className="font-bold text-primary-text underline">Perth and Brisbane:</span> Growing cities with expanding hospitality sectors that offer both urban and outdoor work environments.
+                            <span className="font-bold text-primary underline">Perth and Brisbane:</span> Growing cities with expanding hospitality sectors that offer both urban and outdoor work environments.
                         </li>
                         <li className="text-[#798196]">
-                            <span className="font-bold text-primary-text underline">Regional Areas:</span> Backpackers can also explore visa-friendly work in regional locations, often in eco-lodges or farm stays.
+                            <span className="font-bold text-primary underline">Regional Areas:</span> Backpackers can also explore visa-friendly work in regional locations, often in eco-lodges or farm stays.
                         </li>
                     </ul>
 
@@ -93,7 +93,7 @@ export default function HospitalityPage() {
                         <div className="hidden md:block relative w-[285px] h-[280px]">
                             <Image src={'/assets/images/categories/tourism-1.webp'} alt="" fill className="rounded-full rounded-bl-none object-none object-left-bottom" />
                         </div>
-                        <div className="md:absolute relative md:w-[285px] w-[240px] md:h-[280px] h-[240px] right-0 rounded-full rounded-tr-none flex items-end bg-[#7052E5] self-end">
+                        <div className="md:absolute relative md:w-[285px] w-[240px] md:h-[280px] h-[240px] right-0 rounded-full rounded-tr-none flex items-end bg-secondary self-end">
                             <div className='relative left-16 bottom-12'>
                                 <Image src={'/assets/images/vectors/tourism.svg'} alt='' height={50} width={50} className='' />
                                 <p className='text-white font-semibold text-xl pt-2'>Hospitality</p>

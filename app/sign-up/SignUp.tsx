@@ -133,7 +133,7 @@ const SignUpMenu = () => {
                             required
                         />
                         <label htmlFor="terms">
-                            By signing up, I agree with the <Link href={ROUTES.TERMS} className='text-purple'>Terms of Use</Link> & <Link href={ROUTES.PRIVACY_POLICY} className='text-purple'>Privacy Policy</Link>
+                            By signing up, I agree with the <Link href={ROUTES.TERMS} className='text-secondary'>Terms of Use</Link> & <Link href={ROUTES.PRIVACY_POLICY} className='text-secondary'>Privacy Policy</Link>
                         </label>
                     </section>
                     {
@@ -151,7 +151,7 @@ const SignUpMenu = () => {
                     </button>
                 </form>
                 <p className='text-center pt-6'>
-                    Already have an account? <Link href={ROUTES.LOGIN} className='font-semibold text-purple hover:underline'>Login</Link>
+                    Already have an account? <Link href={ROUTES.LOGIN} className='font-semibold text-secondary hover:underline'>Login</Link>
                 </p>
             </div>
             <Modal

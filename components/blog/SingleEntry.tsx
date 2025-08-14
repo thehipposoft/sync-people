@@ -49,7 +49,7 @@ const SingleEntry = () => {
                 <p className='poppins text-[#798196]'>Applying for a job on a Working Holiday Visa can be an exciting step in your travel journey. By preparing in advance, being flexible with the types of jobs you consider, and actively networking, you’ll have a much higher chance of landing a role that suits both your visa conditions and your lifestyle. Good luck!</p>
             </div>
             <div className='w-full flex justify-end'>
-                <button className='px-5 py-2 border rounded-3xl border-[#7052E5] text-[#7052E5]'>Share</button>
+                <button className='px-5 py-2 border rounded-3xl border-secondary text-secondary'>Share</button>
             </div>
         </div>
     );
