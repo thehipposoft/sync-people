@@ -350,6 +350,13 @@ dialog::backdrop {
     input[disabled] {
         @apply cursor-not-allowed opacity-50;
     }
+    .chip {
+        @apply inline-block transition-all bg-white text-primary border-primary border-2 rounded-full px-3 py-1 text-sm font-semibold cursor-pointer hover:opacity-70;
+    }
+
+    .chip-selected {
+        @apply bg-primary text-white border-primary border-2;
+    }
 
     //FAQs
     .faq-container {

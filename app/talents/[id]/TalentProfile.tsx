@@ -205,7 +205,7 @@ const TalentProfile = ({
                                                     <video
                                                         ref={videoRef}
                                                         controls
-                                                        className='w-full h-auto rounded-3xl max-h-[15rem] lg:max-h-[20rem]'
+                                                        className='w-full rounded-3xl h-[15rem] lg:h-[19rem]'
                                                         src={talentData.personal_information.presentation_video}
                                                     />
                                                     <div className={`${isPlaying ? '-z-10 !opacity-0 ' : ''} opacity-100 absolute inset-0 flex items-center justify-center`}>

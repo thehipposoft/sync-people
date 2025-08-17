@@ -172,9 +172,6 @@ const Industries = ({
                 <p className='mb-2 text-primary font-bold'>
                     Help us understand what you're looking for
                 </p>
-                <p className='mb-6 text-primary text-sm'>
-                    Let us know which industries you're most interested in, the type of roles you're after, and how you'd like to work.
-                </p>
                 <div className={`md:grid flex flex-col grid-cols-2 md:gap-4 gap-8`}>
                     <div className='col-span-2 lg:col-span-1'>
                         <label htmlFor="current_status" className="block pb-2">
@@ -221,8 +218,8 @@ const Industries = ({
                         <p className='font-bold mb-2'>
                             Tell us which industries you're most interested in working in.
                         </p>
-                        <p className='text-sm p-4 border-l-2 italic'>
-                            Tip: Your selected industries will affect how your skills are displayed—each one has a unique layout to highlight what matters most!
+                        <p className='text-sm'>
+                            We’ll build you an industry-specific portfolio to match you with the right opportunities.
                         </p>
                     </div>
 
@@ -304,60 +301,6 @@ const Industries = ({
                                         :
                                         <></>
                                 }
-                               {/*  <div className='col-span-2 lg:col-span-1'>
-                                    <label htmlFor="position" className="block pb-2">
-                                        Position*
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name={`position`}
-                                        id="position"
-                                        className="w-full"
-                                        onChange={(e) => handleIndustryInputChange(e, index)}
-                                        value={industry.position}
-                                        required
-                                        placeholder='You can add multiple comma separated'
-                                    />
-                                </div>
-                                <div className='col-span-2 lg:col-span-1'>
-                                    <label htmlFor={`preferred_salary`} className="flex pb-2 items-center gap-2">
-                                        Preferred salary per hour (AUD)
-                                        <Tooltip
-                                            className="bg-primary text-white rounded-md"
-                                            content={
-                                                <div className="px-1 py-2">
-                                                    <Link
-                                                        href={`/categories/${industry.industry}`}
-                                                        className="text-sm underline"
-                                                        target='_blank'
-                                                    >
-                                                        Learn more about {industry.industry}
-                                                    </Link>
-                                                </div>
-                                            }
-                                        >
-                                            <svg
-                                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                                width={15}
-                                                height={15}
-                                            >
-                                                <g id="SVGRepo_iconCarrier">
-                                                    <path fillRule="evenodd" clipRule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM12 17.75C12.4142 17.75 12.75 17.4142 12.75 17V11C12.75 10.5858 12.4142 10.25 12 10.25C11.5858 10.25 11.25 10.5858 11.25 11V17C11.25 17.4142 11.5858 17.75 12 17.75ZM12 7C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8C11 7.44772 11.4477 7 12 7Z" fill="#1C274C">
-                                                    </path>
-                                                </g>
-                                            </svg>
-                                        </Tooltip>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name={`preferred_salary`}
-                                        id="preferred_salary"
-                                        className="w-full"
-                                        onChange={(e) => handleIndustryInputChange(e, index)}
-                                        value={industry.preferred_salary}
-                                        placeholder='Will not be displayed publicly'
-                                    />
-                                </div> */}
                             </div>
                             <div className='mt-4'>
                                 <label htmlFor={`industry_description`} className="block pb-2">

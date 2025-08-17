@@ -28,7 +28,7 @@ const Modal = ({
     return (
         <dialog
             ref={modalRef}
-            className="border-2 md:px-20 px-8 md:py-24 py-8 fixed z-10 overflow-hidden rounded-xl border-transparent"
+            className="border-2 lg:px-12 px-8 lg:py-12 py-8 fixed z-10 overflow-hidden rounded-xl border-transparent"
         >
             <svg
                 viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,9 @@ const Modal = ({
                     </path>
                 </g>
             </svg>
-            {children}
+            <div className="pt-4">
+                {children}
+            </div>
         </dialog>
     )
 };

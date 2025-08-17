@@ -35,6 +35,15 @@ export type PersonalInformationType = {
     };
 };
 
+export type CertificateType = {
+    partialFile?: File;
+    certificate?: string;
+    name: string;
+    file_url: string;
+    expiry_date: string;
+    visible_for: IndustriesAvailable[];
+};
+
 export type professional_information = {
     industries: IndustryType[];
     current_status: 'available' | 'working' | 'offline';
@@ -42,6 +51,7 @@ export type professional_information = {
     skills_set: {
         skill: string;
     }[];
+    certificates: CertificateType[];
 };
 
 export type WorkExperienceType = {
