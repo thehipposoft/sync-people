@@ -113,7 +113,11 @@ const ProfileForm = ({
                 );
             case 'experience':
                 return (
-                    <WorkExperience initialValues={userData.work_experience} userId={userId} />
+                    <WorkExperience
+                        initialValues={userData.work_experience}
+                        userId={userId}
+                        availableIndustries={userData.professional_information.industries}
+                    />
                 );
             case 'extras':
                 return (

@@ -23,10 +23,12 @@ const PersonalInformation = ({
     const [recordVideoModalOpen, setRecordVideoModalOpen] = useState<boolean>(false);
     const [removeVideoModalOpen, setRemoveVideoModalOpen] = useState<boolean>(false);
     const [uploadVideoError, setUploadVideoError] = useState<string | null>(null);
+    const [apiError, setApiError] = useState<string | null>(null);
 
     const handleUpdatePersonalInformationClick = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsAPILoading(true);
+        setApiError('');
 
         const body: any = {
             personal_information: {
@@ -38,13 +40,22 @@ const PersonalInformation = ({
 
         const response = await updateProfile(userId, body);
 
+        console.log(">>response", response);
+
         if(response.status === 500) {
             setIsAPILoading(true);
             console.log('Internal Server Error');
-        } else {
-            setIsAPILoading(false);
-            setOpenUpdatedDataModal(true);
+            return;
         }
+
+        if(response.data && response.data.status === 403) {
+            setApiError(response.message);
+            setIsAPILoading(false);
+            return;
+        }
+
+        setIsAPILoading(false);
+        setOpenUpdatedDataModal(true);
     };
 
     const handleRemoveVideoClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -378,6 +389,16 @@ const PersonalInformation = ({
                     />
                 </div>
 
+                {
+                    apiError && (
+                        <div className='col-span-2 p-2 border border-red-600 rounded-lg bg-red-200'>
+                            <p className='text-red-500'>
+                                Error: {apiError}
+                            </p>
+                        </div>
+                    )
+                }
+
                 <div className='w-full col-span-2 flex'>
                     <button
                         className='primary-btn mt-4 mx-auto text-base'
@@ -388,7 +409,10 @@ const PersonalInformation = ({
                     </button>
                 </div>
             </form>
-            <Modal isOpen={openUpdatedDataModal}>
+            <Modal
+                isOpen={openUpdatedDataModal}
+                onClose={() => setOpenUpdatedDataModal(false)}
+            >
                 <h4 className="mb-4">
                     Your data has been updated successfully
                 </h4>

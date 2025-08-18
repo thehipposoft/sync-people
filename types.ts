@@ -64,6 +64,7 @@ export type WorkExperienceType = {
     description: string;
     industry: IndustriesAvailable;
     other_industry: string;
+    visible_for: IndustriesAvailable[];
 };
 
 export type LevelOfEnglishType =  'beginner' | 'elementary' | 'intermediate' | 'upper_intermediate' | 'advanced' | 'proficient' | 'native';

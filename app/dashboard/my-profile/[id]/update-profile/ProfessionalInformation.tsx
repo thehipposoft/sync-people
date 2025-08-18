@@ -203,17 +203,11 @@ const ProfessionalInformation = ({
                     <h4 className='font-bold my-1'>
                         Certificates/Licenses
                     </h4>
-                    {
-                        formValues.certificates.length > 0
-                        ? <CertificateTable
-                            certificates={formValues.certificates}
-                            userId={userId}
-                            industries={formValues.industries}
-                        />
-                        : <div>
-                            Start adding certificates/licenses
-                        </div>
-                    }
+                    <CertificateTable
+                        certificates={formValues.certificates}
+                        userId={userId}
+                        industries={formValues.industries}
+                    />
                 </div>
                 <div className="col-span-2">
                     <label htmlFor="skills_set" className="block pb-2">

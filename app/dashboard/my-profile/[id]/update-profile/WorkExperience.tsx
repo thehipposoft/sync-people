@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'next-view-transitions';
 import { updateProfile } from '@/lib/protected-api';
 import { WorkExperienceType } from '@/types';
 import { INDUSTRIES } from '@/app/constants';
@@ -8,11 +7,13 @@ import Modal from '@/components/Modal';
 type PersonalInformationPropsType = {
     initialValues: WorkExperienceType[];
     userId: string;
+    availableIndustries: any[];
 };
 
 const WorkExperience = ({
     initialValues,
     userId,
+    availableIndustries,
 }:PersonalInformationPropsType) => {
     const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
     const [formValues, setFormValues] = useState<WorkExperienceType[]>(initialValues ? initialValues : []);
@@ -66,6 +67,7 @@ const WorkExperience = ({
             description: '',
             industry: 'construction',
             other_industry: '',
+            visible_for: [],
         });
 
         setFormValues(newFormValues);
@@ -173,43 +175,6 @@ const WorkExperience = ({
                                     Currently working here
                                 </label>
                             </div>
-                            <div className="col-span-2 md:col-span-1">
-                                <label htmlFor={`industry`} className="block pb-2">
-                                    Industry
-                                </label>
-                                <select
-                                    id={`industry`}
-                                    name={`industry`}
-                                    required
-                                    value={experience.industry}
-                                    onChange={(e) => handleChange(e, index)}
-                                >
-                                    {
-                                        INDUSTRIES.map((industry, index) => (
-                                            <option key={index} value={industry.value}>
-                                                {industry.name}
-                                            </option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
-                            {
-                                experience.industry === 'other' && (
-                                    <div className="col-span-2 md:col-span-1">
-                                        <label htmlFor={`other_industry`} className="block pb-2">
-                                            Other Industry name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id={`other_industry`}
-                                            name={`other_industry`}
-                                            required
-                                            value={experience.other_industry}
-                                            onChange={(e) => handleChange(e, index)}
-                                        />
-                                    </div>
-                                )
-                            }
 
                             <div className='col-span-2 w-full'>
                                 <label htmlFor={`description`} className="block pb-2">
@@ -224,6 +189,42 @@ const WorkExperience = ({
                                     onChange={(e) => handleChange(e, index)}
                                     rows={3}
                                 />
+                            </div>
+                            <div className='col-span-2 w-full'>
+                                <label htmlFor={`visible_for`} className="block pb-2">
+                                    Visible for Industries
+                                </label>
+                                <div className="flex gap-2 flex-wrap mb-4">
+                                    {
+                                        availableIndustries.map((industry) => {
+                                            const selectedIndustry = experience.visible_for.find((ind) => ind === industry.industry);
+
+                                            return (
+                                                <div
+                                                    key={industry.industry}
+                                                    className={`chip ${selectedIndustry ? 'chip-selected' : ''}`}
+                                                    onClick={() => {
+                                                        const newFormValues = [...formValues];
+                                                        const currentExperience = newFormValues[index];
+
+                                                        if (selectedIndustry) {
+                                                            currentExperience.visible_for = currentExperience.visible_for.filter((ind) => ind !== industry.industry);
+                                                        } else {
+                                                            currentExperience.visible_for.push(industry.industry);
+                                                        }
+
+                                                        setFormValues(newFormValues);
+                                                    }}
+                                                >
+                                                    {industry.industry === 'other'
+                                                        ? `other: ${industry.other_industry}`
+                                                        : industry.industry.replace(/_/g, ' ')
+                                                    }
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
                             </div>
                         </div>
                     ))
