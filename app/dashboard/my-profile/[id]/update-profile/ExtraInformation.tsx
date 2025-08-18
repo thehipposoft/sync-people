@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'next-view-transitions';
 import { updateProfile } from '@/lib/protected-api';
 import { ExtraInformationType } from '@/types';
 import { LEVEL_OF_ENGLISH, EDUCATION_LEVEL, LANGUAGES } from '@/app/constants';
@@ -550,6 +549,7 @@ const ExtraInformation = ({
             </Modal>
             <Modal
                 isOpen={openUpdatedDataModal}
+                onClose={() => setOpenUpdatedDataModal(false)}
             >
                 <h4 className="mb-4">
                     Your data has been updated successfully

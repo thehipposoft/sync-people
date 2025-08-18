@@ -40,8 +40,6 @@ const PersonalInformation = ({
 
         const response = await updateProfile(userId, body);
 
-        console.log(">>response", response);
-
         if(response.status === 500) {
             setIsAPILoading(true);
             console.log('Internal Server Error');

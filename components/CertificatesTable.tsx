@@ -343,7 +343,7 @@ const CertificateTable = ({
                                     >
                                         {
                                             industry.industry === 'other'
-                                            ? `other: ${industry.other_industry}`
+                                            ? industry.other_industry
                                             : industry.industry.replace(/_/g, ' ')
                                         }
                                     </div>

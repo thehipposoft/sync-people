@@ -217,7 +217,7 @@ const WorkExperience = ({
                                                     }}
                                                 >
                                                     {industry.industry === 'other'
-                                                        ? `other: ${industry.other_industry}`
+                                                        ? industry.other_industry
                                                         : industry.industry.replace(/_/g, ' ')
                                                     }
                                                 </div>
@@ -247,6 +247,7 @@ const WorkExperience = ({
             </form>
             <Modal
                 isOpen={openUpdatedDataModal}
+                onClose={() => setOpenUpdatedDataModal(false)}
             >
                 <h4 className="mb-4">
                     Your data has been updated successfully
