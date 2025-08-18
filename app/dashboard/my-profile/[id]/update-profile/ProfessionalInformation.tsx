@@ -215,7 +215,7 @@ const ProfessionalInformation = ({
                         </div>
                     }
                 </div>
-                <div className="col-span-2 pt-4">
+                <div className="col-span-2">
                     <label htmlFor="skills_set" className="block pb-2">
                         Key Skills
                     </label>

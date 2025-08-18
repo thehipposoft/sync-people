@@ -42,6 +42,7 @@ export type CertificateType = {
     file_url: string;
     expiry_date: string;
     visible_for: IndustriesAvailable[];
+    keep_file_private: boolean;
 };
 
 export type professional_information = {
