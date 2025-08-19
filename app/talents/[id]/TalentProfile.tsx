@@ -30,6 +30,7 @@ const TalentProfile = ({
     const [selectedIndustry, setSelectedIndustry] = useState<IndustryType>(talentData.professional_information.industries[0]);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const videoRef = useRef<HTMLVideoElement | null>(null);
+    const [credentials, setCredentials] = useState<any[]>([]);
 
     useEffect(() => {
         if (queryIndustry) {
@@ -39,6 +40,17 @@ const TalentProfile = ({
             }
         }
     }, []);
+
+    useEffect(() => {
+        if(selectedIndustry) {
+            if(talentData.professional_information.certificates && talentData.professional_information.certificates.length) {
+                const filteredCertificates = talentData.professional_information.certificates.filter((certificate) =>
+                    certificate.visible_for.includes(selectedIndustry.industry)
+                );
+                setCredentials(filteredCertificates);
+            }
+        }
+    }, [selectedIndustry]);
 
     const generatePDF = async () => {
         const blob = await pdf(
@@ -151,17 +163,25 @@ const TalentProfile = ({
                                             </p>
                                         </div>
                                         {
-                                            selectedIndustry.certificates?.length > 0 &&
-                                            <div className='flex justify-between mt-1 flex-col'>
+                                            credentials.length
+                                            ? <div className='flex justify-between mt-1 flex-col'>
                                                 <h4 className='text-lg'>
                                                     Licenses or Certificates
                                                 </h4>
-                                                <p>
-                                                    {selectedIndustry.certificates.map(certificate => certificate.name).join(', ')}
-                                                </p>
+                                                {
+                                                    credentials.map((certificate, index) => {
+                                                        if (certificate.visible_for.includes(selectedIndustry.industry)) {
+                                                            return (
+                                                                <p key={index}>
+                                                                    {certificate.name}
+                                                                </p>
+                                                            )
+                                                        }
+                                                    })
+                                                }
                                             </div>
+                                            : null
                                         }
-
                                         <div className='flex flex-col justify-between mt-8 flex-wrap '>
                                             <div className='flex flex-col'>
                                                 <h4 className='text-lg mb-2'>
@@ -251,6 +271,9 @@ const TalentProfile = ({
                                 .map((experience, index) => {
                                     const startDate = parseISO(experience.start_date);
                                     const endDate = experience.currently_working ? new Date() : parseISO(experience.end_date);
+                                    const isVisibleForIndustry = experience.visible_for.includes(selectedIndustry.industry);
+
+                                    if (!isVisibleForIndustry) return null;
 
                                     return (
                                         <div key={index} className='flex flex-col gap-2 mb-2'>

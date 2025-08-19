@@ -317,7 +317,7 @@ const ProfessionalInformation = ({
                         className="primary-btn"
                         href={`/talents/${userId}`}
                     >
-                        View Public Profile
+                        View Public Portfolio
                     </a>
                 </div>
             </Modal>

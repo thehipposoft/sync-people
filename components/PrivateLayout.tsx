@@ -54,7 +54,7 @@ const PrivateLayout = ({
                     </Link>
                     <div className={`${noTalentProfile ? 'justify-end gap-4' : 'justify-between'} flex md:justify-end items-center md:gap-6 gap-2 py-1 w-[95vw] mx-auto md:mx-0 md:w-auto`}>
                         <Link href={`/talents/${userId}`} className={`${noTalentProfile ? 'hidden' : ''} md:block hidden green-btn lg:px-4 text-sm px-2 py-3 md:py-2`}>
-                            View Public Profile
+                            View Public Portfolio
                         </Link>
                         <button
                             className="primary-btn mx-0 rounded-md text-sm px-3 w-auto lg:px-6 py-3 md:py-2 md:block hidden"
