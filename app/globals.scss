@@ -8,13 +8,16 @@ html {
     scroll-behavior: smooth;
 }
 
-
 a, li, span, button {
     font-family: $poppins;
 }
 
 p {
     font-family: $opensans-regular;
+    @apply text-primary;
+}
+
+a {
     @apply text-primary;
 }
 
@@ -101,7 +104,6 @@ h4 {
     }
 }
 
-
 .orange {
     color: $orange;
 }
@@ -118,15 +120,11 @@ h4 {
 
 .register-menu-open {
     transform: translateX(0);
-  }
-
-//Header
+}
 
 .blue, nav, li {
     color: $title-blue;
 }
-
-//How
 
 .how {
     background-color: $secondary;
@@ -159,9 +157,8 @@ h4 {
 @media (max-width: 475px) {
     .header {
        height: 180px;
-      }
+    }
 }
-
 
 //header glass effect
 .header-glass {
@@ -169,14 +166,14 @@ h4 {
     animation: blur linear both;
     animation-timeline: scroll();
     animation-range: 0 400px;
-  }
+}
 
-  @keyframes blur {
+@keyframes blur {
     to {
       background: #efefff8d;
       backdrop-filter: blur(7px);
     }
-  }
+}
 
 .progress {
     border-radius: 25px;
@@ -201,7 +198,6 @@ h4 {
         width: 33%;
         background-color: #FF8149;
     }
-
 }
 
 //Discover
@@ -253,7 +249,6 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 
 section {
     margin: 1em 0;

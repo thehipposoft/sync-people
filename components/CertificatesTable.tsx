@@ -60,6 +60,7 @@ const CertificateTable = ({
                     name: certificateName,
                     expiry_date: certificateExpiryDate,
                     visible_for: certificateVisibleFor,
+                    keep_file_private: keepFilePrivate,
                 };
 
                 const apiValues = {
