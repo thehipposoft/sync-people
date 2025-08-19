@@ -233,19 +233,21 @@ const TalentForm = ({
                             setRecordedVideoBlob={setRecordedVideoBlob}
                             recordedVideoBlob={recordedVideoBlob}
                         />
-                        <WorkingRights
-                            currentIndex={currentIndex}
-                            setMainFormValues={setFormValues}
-                            initialValues={formValues}
-                            showNext={showNext}
-                            showPrev={showPrev}
-                        />
                         <Industries
                             currentIndex={currentIndex}
                             initialValues={formValues}
                             setMainFormValues={setFormValues}
                             showNext={showNext}
                             showPrev={showPrev}
+                            userId={userId}
+                        />
+                        <WorkingRights
+                            currentIndex={currentIndex}
+                            setMainFormValues={setFormValues}
+                            initialValues={formValues}
+                            showNext={showNext}
+                            showPrev={showPrev}
+                            
                         />
                         <Extras
                             currentIndex={currentIndex}

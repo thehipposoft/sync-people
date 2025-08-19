@@ -30,6 +30,8 @@ const ProfessionalInformation = ({
         const otherIndustry = formValues.industries.find((ind) => ind.industry === 'other');
         if (otherIndustry) {
             setOtherIndustry(otherIndustry);
+        } else {
+            setOtherIndustry(undefined);
         }
     }, [formValues.industries]);
 

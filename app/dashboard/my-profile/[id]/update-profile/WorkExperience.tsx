@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { updateProfile } from '@/lib/protected-api';
 import { WorkExperienceType } from '@/types';
-import { INDUSTRIES } from '@/app/constants';
+import { IndustryType } from '@/types';
 import Modal from '@/components/Modal';
 
 type PersonalInformationPropsType = {
     initialValues: WorkExperienceType[];
     userId: string;
-    availableIndustries: any[];
+    availableIndustries: IndustryType[];
 };
 
 const WorkExperience = ({

@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
-import { TalentTypeAcf, IndustryType } from '@/types';
+import { TalentTypeAcf, IndustryType, CertificateType } from '@/types';
 import { INDUSTRIES_BANNER, ROUTES } from '@/app/constants';
 import { renderSocialMediaIcon, handleRenderTimeInJobs } from '@/lib/utils';
 import { pdf, PDFViewer } from '@react-pdf/renderer';
@@ -30,7 +30,7 @@ const TalentProfile = ({
     const [selectedIndustry, setSelectedIndustry] = useState<IndustryType>(talentData.professional_information.industries[0]);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const videoRef = useRef<HTMLVideoElement | null>(null);
-    const [credentials, setCredentials] = useState<any[]>([]);
+    const [credentials, setCredentials] = useState<CertificateType[]>([]);
 
     useEffect(() => {
         if (queryIndustry) {
@@ -83,7 +83,7 @@ const TalentProfile = ({
                     <div className='relative flex flex-col mx-auto md:w-[900px] bg-white'>
                         {
                             selectedIndustry.industry === 'other' ?
-                            <div className='relative bg-primary h-[7rem] rounded-t-2xl md:h-[10rem] md:w-[900px] w-[80vw] flex justify-end'>
+                            <div className='relative bg-primary h-[7rem] rounded-t-2xl md:h-[10rem] md:w-full w-[80vw] flex justify-end'>
                                 <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-20 w-12 md:mr-12 mr-8'/>
                             </div>
                             :
@@ -171,10 +171,36 @@ const TalentProfile = ({
                                                 {
                                                     credentials.map((certificate, index) => {
                                                         if (certificate.visible_for.includes(selectedIndustry.industry)) {
+
+                                                            if (certificate.keep_file_private) {
+                                                                 return (
+                                                                    <p key={`certificate-${index}`}>
+                                                                        {certificate.name}
+                                                                    </p>
+                                                                )
+                                                            }
+
                                                             return (
-                                                                <p key={index}>
+                                                                <a
+                                                                    key={`certificate-${index}`}
+                                                                    className='underline flex gap-1 items-center w-fit'
+                                                                    target='_blank'
+                                                                    href={certificate.file_url}
+                                                                >
                                                                     {certificate.name}
-                                                                </p>
+                                                                    <svg
+                                                                        fill="currentColor"
+                                                                        viewBox="0 0 52 52"
+                                                                        enableBackground="new 0 0 52 52"
+                                                                        width={12}
+                                                                        height={12}
+                                                                    >
+                                                                        <g>
+                                                                            <path d="M48.7,2H29.6C28.8,2,28,2.5,28,3.3v3C28,7.1,28.7,8,29.6,8h7.9c0.9,0,1.4,1,0.7,1.6l-17,17 c-0.6,0.6-0.6,1.5,0,2.1l2.1,2.1c0.6,0.6,1.5,0.6,2.1,0l17-17c0.6-0.6,1.6-0.2,1.6,0.7v7.9c0,0.8,0.8,1.7,1.6,1.7h2.9 c0.8,0,1.5-0.9,1.5-1.7v-19C50,2.5,49.5,2,48.7,2z"></path>
+                                                                            <path d="M36.3,25.5L32.9,29c-0.6,0.6-0.9,1.3-0.9,2.1v11.4c0,0.8-0.7,1.5-1.5,1.5h-21C8.7,44,8,43.3,8,42.5v-21 C8,20.7,8.7,20,9.5,20H21c0.8,0,1.6-0.3,2.1-0.9l3.4-3.4c0.6-0.6,0.2-1.7-0.7-1.7H6c-2.2,0-4,1.8-4,4v28c0,2.2,1.8,4,4,4h28 c2.2,0,4-1.8,4-4V26.2C38,25.3,36.9,24.9,36.3,25.5z"></path>
+                                                                        </g>
+                                                                    </svg>
+                                                                </a>
                                                             )
                                                         }
                                                     })
@@ -370,7 +396,14 @@ const TalentProfile = ({
                                         talentData.extras.other_urls ?
                                         talentData.extras.other_urls && talentData.extras.other_urls.map((item, index) => (
                                             <div key={index}>
-                                                <Link href={item.url} target='_blank' rel='noreferrer' className='hover:underline'>{item.name}</Link>
+                                                <Link
+                                                    href={item.url}
+                                                    target='_blank' rel='noreferrer'
+                                                    className='underline'
+                                                >
+                                                    {item.name}
+
+                                                </Link>
                                             </div>
                                         ))
                                         : '-'

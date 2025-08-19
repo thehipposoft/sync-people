@@ -44,8 +44,6 @@ const TalentPDFDocument = ({
     talentData,
     selectedIndustry
 }:Props) => {
-    console.log(">>talentData", talentData);
-    console.log(">>selectedIndustry", INDUSTRIES_BANNER[selectedIndustry.industry]);
     return (
         <Document>
             <Page size="A4" style={tw('bg-white px-6 py-8 font-sans')}>

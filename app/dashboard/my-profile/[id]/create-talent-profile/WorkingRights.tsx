@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { TalentTypeAcf } from '@/types';
-import { INDUSTRIES } from '@/app/constants';
-import { renderDescriptionPlaceholderByIndustry } from '@/lib/utils';
 
 type WorkingRightsPropsType = {
     currentIndex: number;
@@ -51,6 +49,7 @@ const WorkingRights = ({
             description: '',
             industry: 'construction',
             other_industry: '',
+            visible_for: [],
         });
 
         setFormValues(newFormValues);
@@ -84,7 +83,7 @@ const WorkingRights = ({
                 Tell us about your past work experience
             </p>
             <p className='pb-4 text-primary text-sm'>
-                This is your chance to showcase what you've done before! Let us know the position you held, the company you worked for, when you started (and ended, if applicable), and the industry you were in. If you're currently working there, just tick the box.
+                This is your chance to showcase what you've done before! Let us know the position you held, the company you worked for and when you started (and ended, if applicable). If you're currently working there, just tick the box.
                 You can also use the description to highlight your key responsibilities, achievements, or anything you're proud of in that role.
             </p>
             {
@@ -186,43 +185,7 @@ const WorkingRights = ({
                                 Currently working here
                             </label>
                         </div>
-                        <div className="col-span-2 md:col-span-1">
-                            <label htmlFor={`industry`} className="block pb-2">
-                                Industry
-                            </label>
-                            <select
-                                id={`industry`}
-                                name={`industry`}
-                                required
-                                value={experience.industry}
-                                onChange={(e) => handleChange(e, index)}
-                            >
-                                {
-                                    INDUSTRIES.map((industry, index) => (
-                                        <option key={index} value={industry.value}>
-                                            {industry.name}
-                                        </option>
-                                    ))
-                                }
-                            </select>
-                        </div>
-                        {
-                            experience.industry === 'other' && (
-                                <div className="col-span-2 md:col-span-1">
-                                    <label htmlFor={`other_industry`} className="block pb-2">
-                                        Other Industry name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id={`other_industry`}
-                                        name={`other_industry`}
-                                        required
-                                        value={experience.other_industry}
-                                        onChange={(e) => handleChange(e, index)}
-                                    />
-                                </div>
-                            )
-                        }
+
                         <div className='col-span-2 w-full'>
                             <label htmlFor={`description`} className="block pb-2">
                                 Description*
@@ -235,8 +198,47 @@ const WorkingRights = ({
                                 value={experience.description}
                                 onChange={(e) => handleChange(e, index)}
                                 rows={3}
-                                placeholder={renderDescriptionPlaceholderByIndustry(experience.industry)}
                             />
+                        </div>
+
+                        <div className='col-span-2 w-full'>
+                            <label htmlFor={`visible_for`} className="block">
+                                Visible for Industries
+                            </label>
+                            <p className='mb-3'>
+                                Your experience will be visible for the following industries.
+                            </p>
+                            <div className="flex gap-2 flex-wrap mb-4">
+                                {
+                                    initialValues.professional_information.industries.map((industry) => {
+                                        const selectedIndustry = experience.visible_for.find((ind) => ind === industry.industry);
+
+                                        return (
+                                            <div
+                                                key={industry.industry}
+                                                className={`chip ${selectedIndustry ? 'chip-selected' : ''}`}
+                                                onClick={() => {
+                                                    const newFormValues = [...formValues];
+                                                    const currentExperience = newFormValues[index];
+
+                                                    if (selectedIndustry) {
+                                                        currentExperience.visible_for = currentExperience.visible_for.filter((ind) => ind !== industry.industry);
+                                                    } else {
+                                                        currentExperience.visible_for.push(industry.industry);
+                                                    }
+
+                                                    setFormValues(newFormValues);
+                                                }}
+                                            >
+                                                {industry.industry === 'other'
+                                                    ? industry.other_industry
+                                                    : industry.industry.replace(/_/g, ' ')
+                                                }
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
                     </div>
                 ))

@@ -1,9 +1,8 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { TalentTypeAcf, IndustryType, IndustriesAvailable } from '@/types';
 import { TALENT_CURRENT_STATUS_DROPDOWN, TALENT_WORK_PREFERENCE_DROPDOWN, INDUSTRIES } from '@/app/constants';
-import { Select, SelectItem } from "@heroui/select";
 import Modal from '@/components/Modal';
-import { format } from 'date-fns';
+import CertificateTable from '@/components/CertificatesTable';
 
 type IndustriesPropsType = {
     currentIndex: number;
@@ -11,6 +10,7 @@ type IndustriesPropsType = {
     showNext: () => void;
     showPrev: () => void;
     setMainFormValues: (values: TalentTypeAcf) => void;
+    userId: string;
 };
 
 const Industries = ({
@@ -19,6 +19,7 @@ const Industries = ({
     showNext,
     showPrev,
     setMainFormValues,
+    userId,
 }:IndustriesPropsType) => {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [formValues, setFormValues] = useState<TalentTypeAcf['professional_information']>({
@@ -30,12 +31,25 @@ const Industries = ({
     });
     const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
     const [industriesError, setIndustriesError] = useState<string>('');
+    const [industryError, setIndustryError] = useState<string>('');
+    const [otherIndustry, setOtherIndustry] = useState<IndustryType>();
     //Certificates upload
     const [certificateToUpload, setCertificateToUpload] = useState<File | null>(null);
     const [selectedIndustryIndex, setSelectedIndustryIndex] = useState<number>(0);
     const [openNewCertificateModal, setOpenNewCertificateModal] = useState<boolean>(false);
     const [certificateName, setCertificateName] = useState<string>('');
     const [certificateExpiryDate, setCertificateExpiryDate] = useState<string>('');
+
+     useEffect(() => {
+        const otherIndustry = formValues.industries.find((ind) => ind.industry === 'other');
+
+        if (otherIndustry) {
+            setOtherIndustry(otherIndustry);
+        } else {
+            setOtherIndustry(undefined);
+        }
+
+    }, [formValues.industries]);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -82,43 +96,6 @@ const Industries = ({
 
     };
 
-    const handleMultiSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const { value } = e.target;
-        const industriesArray = value ? value.split(',') : [];
-
-        const newIndustriesArray: IndustryType[] = industriesArray.map((industry) => {
-            const existing = formValues.industries.find((item) => item.industry === industry);
-            return existing || {
-                industry: industry as IndustriesAvailable,
-                preferred_salary: '',
-                position: '',
-                certificates: [],
-                industry_description: '',
-            };
-        });
-
-        setFormValues((prevValues) => {
-            return {
-                ...prevValues,
-                industries: newIndustriesArray,
-            };
-        });
-    };
-
-    const handleIndustryInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>, index: number) => {
-        const { name, value } = e.target;
-
-        setFormValues((prevValues) => {
-            let updatedValues = { ...prevValues };
-            updatedValues.industries[index] = {
-                ...updatedValues.industries[index],
-                [name]: value,
-            };
-
-            return updatedValues;
-        });
-    };
-
     const handleUploadCertificate = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsAPILoading(true);
@@ -155,6 +132,56 @@ const Industries = ({
         setIsAPILoading(false);
         setOpenNewCertificateModal(false);
     };
+
+    const handleChipSelection = (industry: IndustriesAvailable) => {
+        const existingIndustry = formValues.industries.find((ind) => ind.industry === industry);
+        setIndustryError('');
+
+        if (existingIndustry) {
+            //Only remove if more than 1
+            if (formValues.industries.length > 1) {
+                setFormValues({
+                    ...formValues,
+                    industries: formValues.industries.filter((ind) => ind.industry !== industry),
+                });
+            } else {
+                setIndustryError('You must select at least one industry.');
+            }
+        } else {
+            // If the industry is not selected, add it
+            setFormValues({
+                ...formValues,
+                industries: [
+                    ...formValues.industries,
+                    {
+                        industry,
+                        preferred_salary: '',
+                        position: '',
+                        certificates: [],
+                        industry_description: '',
+                        is_new: true,
+                    },
+                ],
+            });
+        }
+    };
+
+    const handleOtherIndustryNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const updatedIndustries = formValues.industries.map((industry) => {
+            if (industry.industry === 'other') {
+                return {
+                    ...industry,
+                    other_industry: e.target.value,
+                };
+            }
+            return industry;
+        });
+        setFormValues({
+            ...formValues,
+            industries: updatedIndustries,
+        });
+    };
+
     return (
         <>
             <form
@@ -215,196 +242,70 @@ const Industries = ({
                         </select>
                     </div>
                     <div className='col-span-2 mt-4'>
-                        <p className='font-bold mb-2'>
+                        <p className='font-bold'>
                             Tell us which industries you're most interested in working in.
-                        </p>
-                        <p className='text-sm'>
-                            We’ll build you an industry-specific portfolio to match you with the right opportunities.
                         </p>
                     </div>
 
-                    <p className="mt-2 text-primary col-span-2">
-                        Industries of choice (you can choose more than one option)*
+                    <p className="text-primary col-span-2">
+                        Select one or more industries
                     </p>
-                    <Select
-                        className="col-span-2 mb-3"
-                        placeholder="Select one or more industries"
-                        selectionMode="multiple"
-                        onChange={handleMultiSelectChange}
-                        required
-                        items={INDUSTRIES}
-                        selectedKeys={formValues.industries.map((industry) => industry.industry)}
-                    >
+                    {
+                        industryError && (
+                            <p className="text-red-500 my-3 col-span-2">
+                                {industryError}
+                            </p>
+                        )
+                    }
+                    <div className="flex gap-2 flex-wrap col-span-2">
                         {
-                        INDUSTRIES.map((industry) => (
-                            <SelectItem key={industry.value}>
-                                {industry.name}
-                            </SelectItem>
-                        ))
-                        }
-                    </Select>
-                </div>
-                {
-                    formValues.industries.map((industry, index) => (
-                        <div key={index} className='border border-[#FF8149] rounded-3xl p-4 mt-4'>
-                            <div className='flex items-center justify-between'>
-                                <h4 className='font-bold py-4 text-xl capitalize'>
-                                    {index + 1}. {industry.industry.replace(/_/g, ' ')}
-                                </h4>
-                                <button
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        const newInd = formValues.industries.filter((ind, i) => i !== index);
+                            INDUSTRIES.map((industry) => {
+                                const selectedIndustry = formValues.industries.find((ind) => ind.industry === industry.value);
 
-                                        setIndustriesError('');
-                                        setFormValues({
-                                            ...formValues,
-                                            industries: newInd,
-                                        });
-                                    }}
-                                    className="bg-red-500 p-1 rounded-md h-fit"
-                                >
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width={20}
-                                        height={20}
+                                return (
+                                    <div
+                                        key={industry.name}
+                                        className={`chip ${selectedIndustry ? 'chip-selected' : ''}`}
+                                        onClick={() => handleChipSelection(industry.value)}
                                     >
-                                        <g id="SVGRepo_iconCarrier">
-                                            <path d="M5.73708 6.54391V18.9857C5.73708 19.7449 6.35257 20.3604 7.11182 20.3604H16.8893C17.6485 20.3604 18.264 19.7449 18.264 18.9857V6.54391M2.90906 6.54391H21.0909" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
-                                            </path>
-                                            <path d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
-                                            </path>
-                                        </g>
-                                    </svg>
-                                </button>
-                            </div>
-                            <div className='md:grid flex flex-col grid-cols-2 gap-4'>
-                                {
-                                    industry.industry === 'other' ?
-                                        <div className='col-span-2 lg:col-span-1'>
-                                            <label htmlFor="position" className="block pb-2">
-                                                Other Industry name
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name={`other_industry`}
-                                                id="other_industry"
-                                                className="w-full"
-                                                onChange={(e) => handleIndustryInputChange(e, index)}
-                                                value={industry.other_industry}
-                                                required
-                                                placeholder='You can add multiple comma separated'
-                                            />
-                                        </div>
-                                        :
-                                        <></>
-                                }
-                            </div>
-                            <div className='mt-4'>
-                                <label htmlFor={`industry_description`} className="block pb-2">
-                                    Certificates <span className='text-xs'>(optional)</span>
-                                </label>
-                                <p className='text-sm mb-2'>
-                                    These certificates will always stay safely attached to your profile and will be easy to download whenever you need them.
-                                </p>
-                                {
-                                    industry.certificates.length > 0
-                                    ? <table className="w-full p-3">
-                                        <thead>
-                                            <tr>
-                                                <th
-                                                    className={`text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tl-lg`}
-                                                >
-                                                    Name
-                                                </th>
-                                                <th
-                                                    className={`text-left py-2 px-4 md:px-2 bg-gray-300`}
-                                                >
-                                                    Expiry date
-                                                </th>
-                                                <th  className={`text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tr-lg`}>
-
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {industry.certificates.map((certificate, certificateIndex) => (
-                                                <tr key={certificateIndex} className='py-4 border'>
-                                                    <td
-                                                        className={`text-left py-3 text-sm px-4 md:px-2`}
-                                                    >
-                                                        {certificate.name}
-                                                    </td>
-                                                    <td
-                                                        className={`text-left py-3 text-sm px-4 md:px-2`}
-                                                    >
-                                                        {
-                                                        certificate.expiry_date && format(certificate.expiry_date, 'dd/MM/yyyy')
-                                                            ? format(certificate.expiry_date, 'dd/MM/yyyy')
-                                                            : '-'
-                                                        }
-                                                    </td>
-                                                    <td className='text-right pr-4'>
-                                                        <button
-                                                            className="bg-red-500 p-1 rounded-md h-fit"
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-
-                                                                const newCertificates = industry.certificates.filter((cert, i) => i !== index);
-
-                                                                setFormValues({
-                                                                    ...formValues,
-                                                                    industries: formValues.industries.map((ind, i) => {
-                                                                        if (i === index) {
-                                                                            return {
-                                                                                ...ind,
-                                                                                certificates: newCertificates,
-                                                                            };
-                                                                        }
-
-                                                                        return ind;
-                                                                    }),
-                                                                });
-                                                            }}
-                                                        >
-                                                            <svg
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                width={20}
-                                                                height={20}
-                                                            >
-                                                                <g id="SVGRepo_iconCarrier">
-                                                                    <path d="M5.73708 6.54391V18.9857C5.73708 19.7449 6.35257 20.3604 7.11182 20.3604H16.8893C17.6485 20.3604 18.264 19.7449 18.264 18.9857V6.54391M2.90906 6.54391H21.0909" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
-                                                                    </path>
-                                                                    <path d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
-                                                                    </path>
-                                                                </g>
-                                                            </svg>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                    : null
-                                }
-                                <button
-                                    className='primary-btn text-sm ml-0 mt-3'
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        setSelectedIndustryIndex(index);
-                                        setOpenNewCertificateModal(true);
-                                    }}
-                                >
-                                    Add certificate
-                                </button>
-                            </div>
+                                        {industry.name}
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                    {
+                        otherIndustry && <div className="col-span-2">
+                            <label htmlFor="other_industry" className="block pb-2">
+                                Other Industry name
+                            </label>
+                            <input
+                                type="text"
+                                name={`other_industry`}
+                                id="other_industry"
+                                className="w-full"
+                                onChange={handleOtherIndustryNameChange}
+                                value={otherIndustry.other_industry || ''}
+                                required
+                            />
                         </div>
-                    ))
-                }
+                    }
+                    <p className='text-sm col-span-2 mb-4 '>
+                        <i>Note: We’ll build you an industry-specific portfolio to match you with the right opportunities.</i>
+                    </p>
+                </div>
+
+                <div className='col-span-2'>
+                    <h4 className='font-bold my-1'>
+                        Certificates/Licenses
+                    </h4>
+                    <CertificateTable
+                        certificates={formValues.certificates}
+                        userId={userId}
+                        industries={formValues.industries}
+                    />
+                </div>
+
                 <div className="col-span-2 pt-4">
                         <label htmlFor="skills_set" className="block pb-2">
                             Key Skills
