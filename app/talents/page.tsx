@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const TalentsListPage = async () => {
     const talents:TalentTypeAcf[] = await getTalents();
-    const filterTalentsWithIndustries = talents.filter((talent) => talent.professional_information.industries);
+    const filterTalentsWithIndustries = talents.filter((talent) => talent.professional_information.industries && talent.professional_information.current_status !== 'offline');
 
 	return (
 		<PublicLayout>

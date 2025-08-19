@@ -226,7 +226,7 @@ export const getTalent = async (id: string) => {
 
 export const getTalents = async () => {
     const apiURL = process.env.NEXT_PUBLIC_WP_URL;
-    const response = await fetch(`${apiURL}/talents/?acf_format=standard`)
+    const response = await fetch(`${apiURL}/talents/?acf_format=standard&per_page=100`)
     if (!response.ok) {
         throw new Error('failed to fetch talents')
     }

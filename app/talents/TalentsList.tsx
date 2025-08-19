@@ -18,7 +18,7 @@ const TalentsList = ({
                 <Filters />
             </div>
             <div className='flex flex-col bg-white rounded-2xl border py-4 col-span-12 lg:col-span-9'>
-                <h2 className='h-bold text-black text-3xl font-semibold pb-4 pl-8 border-b mb-6'>
+                <h2 className='h-bold text-3xl font-semibold pb-4 pl-8 border-b mb-6'>
                     Talents
                 </h2>
                 <div className='grid md:grid-cols-3 grid-cols-1 md:gap-6 gap-2 md:px-8 px-2'>
