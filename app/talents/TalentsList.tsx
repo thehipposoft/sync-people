@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
@@ -12,10 +12,15 @@ type TalentsListProps = {
 const TalentsList = ({
     talentsList
 }:TalentsListProps) => {
+    const [filteredTalents, setFilteredTalents] = useState<TalentTypeAcf[]>(talentsList);
+
     return (
         <div className='pb-8 grid grid-cols-12 justify-around gap-6 pt-6 md:px-0 px-2 my-4 w-full relative'>
             <div className='grid sticky top-0 h-fit rounded-2xl border md:flex-col bg-white col-span-3'>
-                <Filters />
+                <Filters
+                    talents={talentsList}
+                    setFilteredTalents={setFilteredTalents}
+                />
             </div>
             <div className='flex flex-col bg-white rounded-2xl border py-4 col-span-12 lg:col-span-9'>
                 <h2 className='h-bold text-3xl font-semibold pb-4 pl-8 border-b mb-6'>
@@ -23,7 +28,7 @@ const TalentsList = ({
                 </h2>
                 <div className='grid md:grid-cols-3 grid-cols-1 md:gap-6 gap-2 md:px-8 px-2'>
                     {
-                        talentsList.map((talent, index) => {
+                        filteredTalents.map((talent, index) => {
                             return(
                                 <Link
                                     key={`${talent.id}-${talent.personal_information.first_name}-${index}`}

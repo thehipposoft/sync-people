@@ -196,7 +196,7 @@ const WorkExperience = ({
                                 </label>
                                 <div className="flex gap-2 flex-wrap mb-4">
                                     {
-                                        availableIndustries.map((industry) => {
+                                        availableIndustries && availableIndustries.map((industry) => {
                                             const selectedIndustry = experience.visible_for.find((ind) => ind === industry.industry);
 
                                             return (

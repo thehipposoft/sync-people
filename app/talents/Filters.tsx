@@ -1,6 +1,49 @@
+import { useEffect, useState } from "react";
 import { INDUSTRIES } from "../constants";
+import { TalentTypeAcf } from '@/types';
 
-const Filters = () => {
+type Props = {
+    talents: TalentTypeAcf[];
+    setFilteredTalents: (talents: TalentTypeAcf[]) => void;
+};
+
+const Filters = ({
+    talents,
+    setFilteredTalents
+}: Props) => {
+    const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value, checked } = event.target;
+
+        if (value === "all") {
+            setFilteredTalents(checked ? talents : []);
+        } else {
+            setFilteredTalents((prev) => {
+                if (checked) {
+
+                    // Add talents with the selected industry
+                    const newTalents = talents.filter(
+                        (talent) =>
+                            talent.professional_information?.industries?.filter(
+                                (industry) => industry.industry === value
+                            ).length > 0
+                    );
+
+                    console.log(">>prev", prev);
+                    console.log(">>newTalents", newTalents);
+
+                    return newTalents;
+                } else {
+                    // Remove talents with the unselected industry
+                    const newTalents = prev.filter(
+                        (talent) =>
+                            !talent.professional_information?.industries?.includes(value)
+                    );
+                    return newTalents;
+                }
+            });
+        }
+    };
+
     return (
         <div className="">
             <div className='flex justify-between py-4 border-b mx-4'>
@@ -29,6 +72,7 @@ const Filters = () => {
                                         name="industry"
                                         value={industry.value}
                                         className='mr-2'
+                                        onChange={handleFilterChange}
                                     />
                                     {industry.name}
                                 </label>
