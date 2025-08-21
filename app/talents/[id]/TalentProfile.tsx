@@ -118,7 +118,7 @@ const TalentProfile = ({
                                         {talentData.personal_information.first_name} {talentData.personal_information.last_name} <span className='h-bold capitalize'> - {talentData.personal_information.country_of_birth}</span>
                                     </h4>
                                     {
-                                        !queryIndustry && (
+                                        !queryIndustry && talentData.professional_information.industries.length > 1 && (
                                             <select
                                                 className='bg-[#f3f4f6] rounded-lg p-2 w-full md:w-[200px] text-primary text-center ml-auto flex'
                                                 onChange={(e) => {

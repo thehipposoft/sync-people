@@ -60,7 +60,7 @@ const MyProfile = ({
                                 width={140}
                                 className='w-36 h-36 rounded-full border-[6px] border-white absolute -top-20 object-cover'
                             />
-                            <div className='mt-20 flex justify-between'>
+                            <div className='mt-20 flex justify-between flex-col-reverse gap-6 lg:flex-row'>
                                 <div className='flex flex-col gap-2'>
                                     <h2 className='text-2xl pb-3'>
                                         {user.personal_information.first_name} <span className='h-bold'>{`${user.personal_information.last_name}, ${getAge(user.personal_information.date_of_birth)}`}</span>

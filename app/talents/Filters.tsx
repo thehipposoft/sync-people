@@ -7,50 +7,64 @@ type Props = {
     setFilteredTalents: (talents: TalentTypeAcf[]) => void;
 };
 
+type FiltersType = {
+    industries: string[];
+    workTypes: string[];
+}
+
 const Filters = ({
     talents,
     setFilteredTalents
 }: Props) => {
-    const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const [selectedFilters, setSelectedFilters] = useState<FiltersType>({
+        industries: [],
+        workTypes: []
+    });
+
+    useEffect(() => {
+        const filteredTalents = talents.filter((talent) => {
+            let matches = true;
+
+            if (selectedFilters.industries.length > 0) {
+                matches = talent.professional_information?.industries?.some((industry) =>
+                    selectedFilters.industries.includes(industry.industry)
+                );
+            }
+
+            return matches;
+        });
+
+        setFilteredTalents(filteredTalents);
+    }, [selectedFilters]);
+
+    const handleIndustryFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value, checked } = event.target;
 
-        if (value === "all") {
-            setFilteredTalents(checked ? talents : []);
-        } else {
-            /*
-            setFilteredTalents((prev:any) => {
-                if (checked) {
+        const newFilters = {
+            ...selectedFilters,
+            industries: checked
+                ? [...selectedFilters.industries, value]
+                : selectedFilters.industries.filter((industry) => industry !== value)
+        };
 
-                    // Add talents with the selected industry
-                    const newTalents = talents.filter(
-                        (talent) =>
-                            talent.professional_information?.industries?.filter(
-                                (industry) => industry.industry === value
-                            ).length > 0
-                    );
+        setSelectedFilters(newFilters);
+    };
 
-                    console.log(">>prev", prev);
-                    console.log(">>newTalents", newTalents);
-
-                    return newTalents;
-                } else {
-                    // Remove talents with the unselected industry
-                    const newTalents = prev.filter(
-                        (talent) =>
-                            !talent.professional_information?.industries?.includes(value)
-                    );
-                    return newTalents;
-                }
-            });
-            */
-        }
+    const handleClearFilters = () => {
+        setSelectedFilters({
+            industries: [],
+            workTypes: []
+        });
+        setFilteredTalents(talents);
     };
 
     return (
         <div className="">
             <div className='flex justify-between py-4 border-b mx-4'>
                 <p>Filters</p>
-                <p className='text-[#0095A9] cursor-pointer hover:underline'>Clear all</p>
+                <button className='text-[#0095A9] cursor-pointer hover:underline' onClick={handleClearFilters}>
+                    Clear all
+                </button>
             </div>
             <div className='py-4 border-b mx-4'>
                 <div className='flex justify-between items-center'>
@@ -74,7 +88,8 @@ const Filters = ({
                                         name="industry"
                                         value={industry.value}
                                         className='mr-2'
-                                        onChange={handleFilterChange}
+                                        onChange={handleIndustryFilterChange}
+                                        checked={selectedFilters.industries.includes(industry.value)}
                                     />
                                     {industry.name}
                                 </label>
@@ -84,7 +99,7 @@ const Filters = ({
                 </div>
             </div>
 
-            <div className='py-4 border-b mx-4'>
+            <div className='py-4 border-b mx-4 hidden'>
                 <div className='flex justify-between items-center'>
                     <p className='h-bold text-xl'>Work Type</p>
                     <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">

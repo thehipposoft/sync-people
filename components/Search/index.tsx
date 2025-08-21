@@ -507,9 +507,9 @@ const SearchComponent = ({ data, user }:any) => {
                                     </a>
                                     {
                                         value.age ?
-                                        <p className='md:text-lg text-black h-bold search-name'>{value.name}, {value.age} - {value.rol}</p>
+                                        <p className='md:text-lg h-bold search-name'>{value.name}, {value.age} - {value.rol}</p>
                                         :
-                                        <p className='md:text-lg text-black h-bold search-name'>{value.name}</p>
+                                        <p className='md:text-lg h-bold search-name'>{value.name}</p>
                                     }
                                     {
                                         value.institution ?

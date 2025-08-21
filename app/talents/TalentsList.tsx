@@ -46,7 +46,7 @@ const TalentsList = ({
                                             height={200}
                                             className={'rounded-full w-40 h-40 border m-auto mb-2 border-primary object-cover'}
                                         />
-                                        <p className='md:text-lg text-black h-bold'>
+                                        <p className='md:text-lg h-bold'>
                                             {talent.personal_information.first_name}
                                         </p>
                                         <p className='md:text-lg capitalize'>
