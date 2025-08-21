@@ -103,7 +103,7 @@ function ContactForm() {
             type="date"
             id="date_of_birth"
             name="date_of_birth"
-            value={formData.date_of_birth}
+            value={formData.date_of_birth || ''}
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded"
             required

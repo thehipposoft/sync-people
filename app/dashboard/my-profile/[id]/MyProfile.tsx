@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
@@ -16,12 +16,22 @@ const MyProfile = ({
     user,
     userId,
 }:MyProfileProps) => {
-    const handleCopyLink = () => {
-        navigator.clipboard.writeText(`${window.location.origin}/talents/${userId}`);
+    const [urlCopied, setUrlCopied] = useState<boolean>(false);
+
+    const handleCopyLink = (url: string) => {
+        navigator.clipboard.writeText(url);
+        setUrlCopied(true);
+
+        setTimeout(() => {
+            setUrlCopied(false);
+        }, 2000);
     }
 
     return (
         <div className='px-6 lg:px-16 mt-24 md:mt-0 max-w-6xl'>
+            <div className={`bg-secondary text-white border-secondary p-2 rounded-xl text-xs border-2 w-fit fixed transition-all z-20 right-[5%] top-[5%] ${urlCopied ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                Link copied to clipboard
+            </div>
             <div>
                 <h1 className='text-3xl font-bold text-center mb-8'>
                     Skills Portfolio
@@ -95,8 +105,8 @@ const MyProfile = ({
                                         className='w-36 h-36 object-cover mx-auto'
                                     />
                                     <p
-                                        className='text-center cursor-pointer'
-                                        onClick={handleCopyLink}
+                                        className='text-center cursor-pointer underline'
+                                        onClick={() => handleCopyLink(`${ROUTES.TALENTS}/${userId}`)}
                                     >
                                         Copy public profile URL
                                     </p>
@@ -160,42 +170,56 @@ const MyProfile = ({
                         <h2 className='text-2xl pb-4 font-bold'>
                             My Industries
                         </h2>
-                        <div className='flex flex-col gap-4'>
+                        <div className='grid grid-cols-1 lg:grid-cols-4 gap-4'>
                             {
-                                user.professional_information.industries[0] && user.professional_information.industries.map((industry, index) => (
+                                user.professional_information.industries.map((industry, index) => (
                                     <div
                                         key={index}
-                                        className={`pb-4 mb-3 ${index === user.professional_information.industries.length - 1 ? '' : 'border-b'}`}
+                                        className={`pb-4 mb-3 border-2 rounded-md p-3 flex flex-col items-center`}
                                     >
-                                        <div className='flex'>
-                                            <Link
-                                                className='underline text-primary flex gap-1 items-center'
-                                                href={`${ROUTES.TALENTS}/${userId}?industry=${industry.industry}`}
-                                                target='_blank'
+                                        <h4 className='capitalize'>
+                                            {
+                                                industry.industry === 'other'
+                                                    ? industry.other_industry
+                                                    : industry.industry.replace(/_/g, ' ')
+                                            }
+                                        </h4>
+                                        <Image
+                                            src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://insyncx.com${ROUTES.TALENTS}/${userId}?industry=${industry.industry}&margin=30`}
+                                            alt={`Profile picture of ${user.personal_information.first_name}`}
+                                            width={150}
+                                            height={150}
+                                            className='w-36 h-36 object-cover mx-auto'
+                                        />
+                                        <a
+                                            href={`${ROUTES.TALENTS}/${userId}?industry=${industry.industry}`}
+                                            target='_blank'
+                                            className='primary-btn text-center'
+                                        >
+                                            View Portfolio
+                                        </a>
+                                        <span
+                                            className='mt-3 flex items-center gap-1 text-sm underline cursor-pointer'
+                                            onClick={() => handleCopyLink(`${ROUTES.TALENTS}/${userId}?industry=${industry.industry}`)}
+                                        >
+                                            Copy Portfolio URL
+                                            <svg viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width={12}
+                                                height={12}
                                             >
-                                                <h2 className='capitalize mb-1 text-xl underline'>
-                                                    {industry.industry === 'other' ? industry.other_industry : industry.industry.replace(/_/g, ' ')}
-                                                </h2>
-
-                                                <svg
-                                                    fill="#000000"
-                                                    viewBox="0 0 52 52"
-                                                    enableBackground="new 0 0 52 52"
-                                                    width={12}
-                                                    height={12}
-                                                >
-                                                    <g>
-                                                        <path d="M48.7,2H29.6C28.8,2,28,2.5,28,3.3v3C28,7.1,28.7,8,29.6,8h7.9c0.9,0,1.4,1,0.7,1.6l-17,17 c-0.6,0.6-0.6,1.5,0,2.1l2.1,2.1c0.6,0.6,1.5,0.6,2.1,0l17-17c0.6-0.6,1.6-0.2,1.6,0.7v7.9c0,0.8,0.8,1.7,1.6,1.7h2.9 c0.8,0,1.5-0.9,1.5-1.7v-19C50,2.5,49.5,2,48.7,2z"></path>
-                                                        <path d="M36.3,25.5L32.9,29c-0.6,0.6-0.9,1.3-0.9,2.1v11.4c0,0.8-0.7,1.5-1.5,1.5h-21C8.7,44,8,43.3,8,42.5v-21 C8,20.7,8.7,20,9.5,20H21c0.8,0,1.6-0.3,2.1-0.9l3.4-3.4c0.6-0.6,0.2-1.7-0.7-1.7H6c-2.2,0-4,1.8-4,4v28c0,2.2,1.8,4,4,4h28 c2.2,0,4-1.8,4-4V26.2C38,25.3,36.9,24.9,36.3,25.5z"></path>
-                                                    </g>
-                                                </svg>
-                                            </Link>
-                                        </div>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path d="M6 11C6 8.17157 6 6.75736 6.87868 5.87868C7.75736 5 9.17157 5 12 5H15C17.8284 5 19.2426 5 20.1213 5.87868C21 6.75736 21 8.17157 21 11V16C21 18.8284 21 20.2426 20.1213 21.1213C19.2426 22 17.8284 22 15 22H12C9.17157 22 7.75736 22 6.87868 21.1213C6 20.2426 6 18.8284 6 16V11Z" stroke="#1C274C" strokeWidth="1.5"></path>
+                                                    <path d="M6 19C4.34315 19 3 17.6569 3 16V10C3 6.22876 3 4.34315 4.17157 3.17157C5.34315 2 7.22876 2 11 2H15C16.6569 2 18 3.34315 18 5" stroke="#1C274C" strokeWidth="1.5"></path>
+                                                </g>
+                                            </svg>
+                                        </span>
                                     </div>
                                 ))
                             }
                         </div>
-                        <div className='flex justify-between mt-1 flex-col'>
+                        <div className='flex justify-between mt-1 flex-col mb-4'>
                             <h2 className='text-2xl pb-4 font-bold'>
                                 Licenses or Certificates
                             </h2>
@@ -237,7 +261,7 @@ const MyProfile = ({
                                 }
                             </div>
                         </div>
-                        <h2 className='text-2xl pb-4 font-bold'>
+                        <h2 className='text-2xl mb-4 font-bold'>
                             Key Skills
                         </h2>
                         <ul className='list-inside list-disc'>

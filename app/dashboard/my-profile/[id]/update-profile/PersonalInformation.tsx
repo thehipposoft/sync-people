@@ -189,7 +189,7 @@ const PersonalInformation = ({
                         id="date_of_birth"
                         name="date_of_birth"
                         required
-                        value={formValues.date_of_birth}
+                        value={formValues.date_of_birth || ''}
                         onChange={handleInputChange}
                     />
                 </div>
