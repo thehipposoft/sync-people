@@ -26,25 +26,22 @@ const TalentsList = ({
                 <h2 className='h-bold text-3xl font-semibold pb-4 pl-8 border-b mb-6'>
                     Talents
                 </h2>
-                <div className='grid md:grid-cols-3 grid-cols-1 md:gap-6 gap-2 md:px-8 px-2'>
+                <div className='grid md:grid-cols-3 grid-cols-1 gap-6 md:px-8 px-2'>
                     {
                         filteredTalents.map((talent, index) => {
                             return(
                                 <Link
                                     key={`${talent.id}-${talent.personal_information.first_name}-${index}`}
                                     href={`/talents/${talent.id}`}
-                                    className='hover:cursor-pointer group hover:bg-[#efefef] transition-all hover:border-primary'
+                                    className='hover:cursor-pointer group hover:bg-[#efefef] rounded-lg border-2 transition-all hover:border-primary'
                                 >
-                                    <div
-                                        className='flex flex-col gap-1 my-4 md:my-0 border-2 rounded-lg p-4'
-                                        key={`${talent.id}-${talent.personal_information.first_name}-${index}`}
-                                    >
+                                    <div className='flex flex-col gap-1 p-4 lg:p-3 h-full justify-between'>
                                         <Image
                                             src={talent.personal_information.profile_pic ? talent.personal_information.profile_pic: '/assets/images/profile-avatar.png'}
                                             alt={talent.personal_information.first_name}
                                             width={200}
                                             height={200}
-                                            className={'rounded-full w-40 h-40 border m-auto mb-2 border-primary object-cover'}
+                                            className={'rounded-full w-40 h-40 border mx-auto mb-2 border-primary object-cover group-hover:border-2 group-hover:scale-105 transition-all'}
                                         />
                                         <p className='md:text-lg h-bold'>
                                             {talent.personal_information.first_name}

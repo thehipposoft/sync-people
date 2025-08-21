@@ -353,6 +353,14 @@ dialog::backdrop {
         @apply bg-primary text-white border-primary border-2;
     }
 
+     /* filters */
+    .aside {
+        @apply self-start !fixed !top-full inset-x-0 z-30 bg-white drop-shadow-2xl transition-transform lg:absolute lg:top-8 before:fixed before:pointer-events-none before:block before:inset-x-0 before:bottom-full before:h-screen before:bg-[#000] before:opacity-0 before:-z-10 before:transition-opacity;
+    }
+    .aside.open {
+        @apply -translate-y-full lg:translate-y-0 before:opacity-50;
+    }
+
     //FAQs
     .faq-container {
         a {
