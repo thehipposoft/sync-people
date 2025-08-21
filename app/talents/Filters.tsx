@@ -17,7 +17,8 @@ const Filters = ({
         if (value === "all") {
             setFilteredTalents(checked ? talents : []);
         } else {
-            setFilteredTalents((prev) => {
+            /*
+            setFilteredTalents((prev:any) => {
                 if (checked) {
 
                     // Add talents with the selected industry
@@ -41,6 +42,7 @@ const Filters = ({
                     return newTalents;
                 }
             });
+            */
         }
     };
 
