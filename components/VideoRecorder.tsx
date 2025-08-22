@@ -26,6 +26,7 @@ const VideoRecorder = ({
     const [recorderStep, setRecorderStep] = useState<'presentation' | 'recording' | 'confirmation'>('presentation');
     const scrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
     const estimatedSeconds = estimateSecondsFromScript(script);
+    const [countdown, setCountdown] = useState<number | null>(null);
 
     const startRecording = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -35,37 +36,53 @@ const VideoRecorder = ({
             videoRef.current.srcObject = mediaStream;
             videoRef.current.muted = true;
             videoRef.current.play();
-        }
-
-        const recorder = new MediaRecorder(mediaStream);
-        const localChunks: Blob[] = [];
-
-        recorder.ondataavailable = (e) => {
-            if (e.data.size > 0) localChunks.push(e.data);
         };
 
-        recorder.onstop = () => {
-            const completeBlob = new Blob(localChunks, { type: 'video/mp4' });
-            setRecordedBlob(completeBlob);
+        let counter = 5; // countdown seconds
+        setCountdown(counter);
 
-            if (videoRef.current) {
-                videoRef.current.srcObject = null;
-                videoRef.current.src = URL.createObjectURL(completeBlob);
-                videoRef.current.controls = true;
-                videoRef.current.muted = false;
+        setRecorderStep("recording");
+
+        const countdownInterval = setInterval(() => {
+            counter -= 1;
+            if (counter > 0) {
+                setCountdown(counter);
+            } else {
+                clearInterval(countdownInterval);
+                setCountdown(null);
+
+                // Start recording after countdown
+                const recorder = new MediaRecorder(mediaStream);
+                const localChunks: Blob[] = [];
+
+                recorder.ondataavailable = (e) => {
+                    if (e.data.size > 0) localChunks.push(e.data);
+                };
+
+                recorder.onstop = () => {
+                    const completeBlob = new Blob(localChunks, { type: "video/mp4" });
+                    setRecordedBlob(completeBlob);
+
+                    if (videoRef.current) {
+                        videoRef.current.srcObject = null;
+                        videoRef.current.src = URL.createObjectURL(completeBlob);
+                        videoRef.current.controls = true;
+                        videoRef.current.muted = false;
+                    }
+
+                    mediaStream.getTracks().forEach((t) => t.stop());
+                };
+
+                recorder.start();
+                setMediaRecorder(recorder);
+
+
+                // Start scrolling
+                scrollIntervalRef.current = setInterval(() => {
+                    setScrollY((prev) => prev + 1);
+                }, 100);
             }
-
-            mediaStream.getTracks().forEach((t) => t.stop());
-        };
-
-        recorder.start();
-        setMediaRecorder(recorder);
-        setRecorderStep('recording');
-
-        // Start scrolling
-        scrollIntervalRef.current = setInterval(() => {
-            setScrollY((prev) => prev + 1);
-        }, 100); // Adjust speed here
+        }, 1000);
     };
 
     const stopRecording = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -118,6 +135,15 @@ const VideoRecorder = ({
                     autoPlay
                     playsInline
                 />
+
+                {countdown !== null && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60">
+                        <span className="flex items-center justify-center w-24 h-24 rounded-full border-4 border-white text-white text-5xl font-bold animate-pulse shadow-lg">
+                            {countdown}
+                        </span>
+                    </div>
+                )}
+
                 {recorderStep === 'recording' && (
                     <div className="absolute inset-0 bg-black bg-opacity-40 pointer-events-none">
                         <div
@@ -229,7 +255,7 @@ const VideoRecorder = ({
                 }
 
                 {
-                    recorderStep === 'recording' && (
+                    recorderStep === 'recording' && !countdown && (
                         <button
                             onClick={stopRecording}
                             className="bg-red-600 text-white px-4 py-2 rounded-3xl"
