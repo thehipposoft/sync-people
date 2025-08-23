@@ -199,7 +199,7 @@ const MyProfile = ({
                                             View Portfolio
                                         </a>
                                         <span
-                                            className='mt-6 lg:mt-3 flex items-center gap-1 text-sm underline cursor-pointer'
+                                            className='mt-6 mb-2 lg:mb-0 lg:mt-3 flex items-center gap-1 text-sm underline cursor-pointer'
                                             onClick={() => handleCopyLink(`${window.location.origin}/${ROUTES.TALENTS}/${userId}?industry=${industry.industry}`)}
                                         >
                                             Copy Portfolio URL
