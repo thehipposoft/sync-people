@@ -284,7 +284,7 @@ const MyProfile = ({
                                         return (
                                             <div key={index} className='flex flex-col gap-2 mb-2'>
                                                 <h2 className='text-xl font-bold'>
-                                                    {experience.position} - <span className='text-lg'>{experience.company_name}</span> <span className='opacity-70 text-base'>({experience.industry === 'other' ? experience.other_industry : experience.industry.charAt(0).toUpperCase()+experience.industry.slice(1)})</span>
+                                                    {experience.position} - <span className='text-lg'>{experience.company_name}</span>
                                                 </h2>
                                                 <p>
                                                     {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(experience.end_date, 'dd/MM/yyyy')}
