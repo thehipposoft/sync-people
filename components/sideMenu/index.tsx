@@ -58,17 +58,17 @@ const SideMenu = ({sideMenu, closeSideMenu, userId}:SideMenuTypes) => {
                     </div>
                     :
                     <div className='mx-4'>
-                        <li className="my-5 text-white text-lg cursor-pointer duration-500 rounded-xl py-2 px-8 hover:underline">
-                            <Link href="/" onClick={closeSideMenu}>Home</Link>
+                        <li className="my-5 text-lg cursor-pointer duration-500 rounded-xl py-2 px-8 hover:underline">
+                            <Link className="text-white" href="/" onClick={closeSideMenu}>Home</Link>
                         </li>
-                        <li className="my-5 text-white text-lg cursor-pointer duration-500 rounded-xl py-2 px-8 hover:underline">
-                            <Link href="/#about" onClick={closeSideMenu}>About</Link>
+                        <li className="my-5 text-lg cursor-pointer duration-500 rounded-xl py-2 px-8 hover:underline">
+                            <Link className="text-white" href="/#about" onClick={closeSideMenu}>About</Link>
                         </li>
-                        <li className="my-5 text-white text-lg cursor-pointer duration-500 rounded-xl py-2 px-8 hover:underline">
-                            <Link href="/#contact" onClick={closeSideMenu}>Contact</Link>
+                        <li className="my-5 text-lg cursor-pointer duration-500 rounded-xl py-2 px-8 hover:underline">
+                            <Link className="text-white" href="/#contact" onClick={closeSideMenu}>Contact</Link>
                         </li>
-                        <li className="my-5 text-white text-lg cursor-pointer duration-500 rounded-xl py-2 px-8 hover:underline">
-                            <Link href={ROUTES.FAQS} onClick={closeSideMenu}>FAQs</Link>
+                        <li className="my-5 text-lg cursor-pointer duration-500 rounded-xl py-2 px-8 hover:underline">
+                            <Link className="text-white" href={ROUTES.FAQS} onClick={closeSideMenu}>FAQs</Link>
                         </li>
                         <Link href={ROUTES.LOGIN} className='primary-btn text-base flex justify-center w-full'>
                             Log In
