@@ -247,7 +247,7 @@ const TalentForm = ({
                             initialValues={formValues}
                             showNext={showNext}
                             showPrev={showPrev}
-                            
+
                         />
                         <Extras
                             currentIndex={currentIndex}
@@ -308,8 +308,8 @@ const TalentForm = ({
                         Your profile has been successfully updated
                     </p>
                     <div className='flex justify-center primary-btn mx-auto'>
-                        <a href={`${ROUTES.MY_PROFILE}/${userId}`}>
-                            Go to my profile
+                        <a className='text-white' href={`${ROUTES.MY_PROFILE}/${userId}`}>
+                            Go to my dashboard
                         </a>
                     </div>
                 </div>

@@ -155,18 +155,18 @@ const SignUpMenu = () => {
                 </p>
             </div>
             <Modal
-                isOpen={openSuccessModal}
+                isOpen={true}
             >
-                <h1 className='text-4xl'>
+                <h1 className='text-4xl text-center'>
                     Almost done!
                 </h1>
-                <p className='text-center my-4'>
+                <p className='my-4'>
                     We have sent you an email to verify your account.
                 </p>
                 <p className='mb-4'>
                     Please check in your spam folder if you don't see it in your inbox.
                 </p>
-                <Link href={ROUTES.LOGIN} className='primary-btn'>
+                <Link href={ROUTES.LOGIN} className='primary-btn lg:w-fit w-full mx-auto flex justify-center mt-4'>
                     Login
                 </Link>
             </Modal>
