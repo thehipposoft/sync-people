@@ -224,6 +224,7 @@ const ProfileForm = ({
             </div>
             <Modal
                 isOpen={openUpdatedModal}
+                onClose={() => setOpenUpdatedModal(false)}
             >
                 <div className='flex justify-center items-center flex-col'>
                     <h1 className='text-2xl'>

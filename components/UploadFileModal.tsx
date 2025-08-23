@@ -46,6 +46,7 @@ const UploadFileModal = ({
     return (
         <Modal
             isOpen={isOpen}
+            onClose={handleCancelClick}
         >
             <h4 className="mb-3">
                 {modalTitle}

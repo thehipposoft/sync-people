@@ -545,6 +545,7 @@ type ExtrasPropsType = {
             </form>
             <Modal
                 isOpen={openNewCertificateModal}
+                onClose={() => setOpenNewCertificateModal(false)}
             >
                 <form onSubmit={handleUploadCertificate}>
                     <h4 className="mb-5 text-center">

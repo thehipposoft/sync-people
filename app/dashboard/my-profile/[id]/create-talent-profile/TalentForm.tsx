@@ -289,7 +289,10 @@ const TalentForm = ({
                     }
                 </div>
             </div>
-            <Modal isOpen={openLoadingModal}>
+            <Modal
+                isOpen={openLoadingModal}
+                onClose={() => setOpenLoadingModal(false)}
+            >
                 <div>
                     <h1 className='text-3xl h-bold text-center mb-3'>
                         Updating Profile
@@ -299,7 +302,10 @@ const TalentForm = ({
                     </p>
                 </div>
             </Modal>
-            <Modal isOpen={openSuccessModal}>
+            <Modal
+                isOpen={openSuccessModal}
+                onClose={() => setOpenSuccessModal(false)}
+            >
                 <div>
                     <h1 className='text-3xl h-bold text-center mb-3'>
                         Profile Updated

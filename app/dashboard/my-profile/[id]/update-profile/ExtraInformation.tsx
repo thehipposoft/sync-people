@@ -523,6 +523,7 @@ const ExtraInformation = ({
             />
             <Modal
                 isOpen={openRemoveCredentialModal}
+                onClose={() => setOpenRemoveCredentialModal(false)}
             >
                 <h4 className="mb-2 text-xl">
                     Are you sure you can remove the credential?

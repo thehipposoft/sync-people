@@ -155,7 +155,8 @@ const SignUpMenu = () => {
                 </p>
             </div>
             <Modal
-                isOpen={true}
+                isOpen={openSuccessModal}
+                onClose={() => setOpenSuccessModal(false)}
             >
                 <h1 className='text-4xl text-center'>
                     Almost done!
