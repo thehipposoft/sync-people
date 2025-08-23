@@ -225,7 +225,7 @@ const MyProfile = ({
                             </h2>
                             <div className='flex flex-col gap-1 mt-1'>
                                 {
-                                    user.professional_information && user.professional_information.certificates.map((certificate, index) => {
+                                    user.professional_information.certificates && user.professional_information.certificates.map((certificate, index) => {
                                         if (certificate.keep_file_private) {
                                             return (
                                                 <p key={`certificate-${index}`}>
