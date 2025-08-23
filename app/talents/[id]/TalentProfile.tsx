@@ -83,7 +83,7 @@ const TalentProfile = ({
                     <div className='relative flex flex-col mx-auto md:w-[900px] bg-white'>
                         {
                             selectedIndustry.industry === 'other' ?
-                            <div className='relative bg-primary h-[7rem] rounded-t-2xl md:h-[10rem] md:w-full w-[80vw] flex justify-end'>
+                            <div className='relative bg-primary h-[7rem] rounded-t-2xl md:h-[10rem] w-full flex justify-end'>
                                 <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-20 w-12 md:mr-12 mr-8'/>
                             </div>
                             :
@@ -143,7 +143,7 @@ const TalentProfile = ({
                                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                                     <div className='order-2 md:order-1'>
                                         <div className='flex justify-between flex-col mb-5'>
-                                            <h4 className='text-lg'>
+                                            <h4 className='text-lg font-bold'>
                                                 Current Location
                                             </h4>
                                             <p className='text-primary'>
@@ -155,7 +155,7 @@ const TalentProfile = ({
                                         </div>
 
                                         <div className='flex flex-col mb-5'>
-                                            <h4 className='text-lg'>
+                                            <h4 className='text-lg font-bold'>
                                                 Work Preference
                                             </h4>
                                             <p className={`capitalize`}>
@@ -212,7 +212,7 @@ const TalentProfile = ({
                                         }
                                         <div className='flex flex-col justify-between mt-8 flex-wrap '>
                                             <div className='flex flex-col'>
-                                                <h4 className='text-lg mb-2'>
+                                                <h4 className='text-lg mb-2 font-bold'>
                                                     Contact me
                                                 </h4>
                                                 <div className='flex gap-4 md:gap-2 flex-wrap'>
@@ -246,7 +246,7 @@ const TalentProfile = ({
                                     {
                                         talentData.personal_information.presentation_video && (
                                             <div className='flex flex-col order-1 md:order-2'>
-                                                <h4 className='text-lg mb-2 block md:hidden'>
+                                                <h4 className='text-lg mb-2 block md:hidden font-bold'>
                                                     Presentation Video
                                                 </h4>
                                                 <div className='relative'>
@@ -326,7 +326,7 @@ const TalentProfile = ({
                         <h4 className={`${talentData.professional_information.skills_set.length > 0 ? '' : 'hidden'} text-xl pb-4 font-bold`}>
                             Key Skills:
                         </h4>
-                        <ul className='list-inside list-disc pb-4'>
+                        <ul className={`list-inside list-disc pb-4 ${talentData.professional_information.skills_set.length > 0 ? '' : 'hidden'}`}>
                             {
                                 talentData.professional_information.skills_set && talentData.professional_information.skills_set.length > 0
                                     ? talentData.professional_information.skills_set.map((skill, index) => (
@@ -340,7 +340,7 @@ const TalentProfile = ({
                         <h4 className='text-xl pb-4 font-bold'>
                             Extras
                         </h4>
-                        <h4 className='text-lg'>
+                        <h4 className='text-lg font-bold'>
                             Level of English
                         </h4>
                         <p className='capitalize'>
@@ -351,7 +351,7 @@ const TalentProfile = ({
                         {
                             talentData.extras.transport && (
                                 <div>
-                                    <h4 className='text-lg mt-2'>
+                                    <h4 className='text-lg mt-2 font-bold'>
                                         Own Transport
                                     </h4>
                                     <p className='capitalize'>
@@ -360,19 +360,19 @@ const TalentProfile = ({
                                 </div>
                             )
                         }
-                        <h4 className='text-lg mt-2'>
+                        <h4 className='text-lg mt-2 font-bold'>
                             Languages
                         </h4>
                         {
                             talentData.extras.languages.length === 0 ? '-' : talentData.extras.languages.join(', ')
                         }
-                        <h4 className='text-lg mt-3'>
+                        <h4 className='text-lg mt-3 font-bold'>
                             Education Level
                         </h4>
                         <p className='capitalize mb-3'>
                             {!talentData.extras.education_level ? '-' : talentData.extras.education_level}
                         </p>
-                        <h4 className={`${!talentData.extras.other_credentials ? 'hidden' : ''} text-lg mt-2`}>
+                        <h4 className={`${!talentData.extras.other_credentials ? 'hidden' : ''} text-lg mt-2 font-bold`}>
                             Other Credentials
                         </h4>
                         {
@@ -390,7 +390,7 @@ const TalentProfile = ({
                         {
                             talentData.extras.other_urls && talentData.extras.other_urls.length > 0
                             ? <>
-                                <h4 className='text-lg my-2'>
+                                <h4 className='text-lg my-2 font-bold'>
                                     Other URLs
                                 </h4>
                                 <div className='flex gap-2 flex-wrap'>
@@ -404,7 +404,6 @@ const TalentProfile = ({
                                                     className='underline'
                                                 >
                                                     {item.name}
-
                                                 </Link>
                                             </div>
                                         ))
@@ -415,7 +414,7 @@ const TalentProfile = ({
                             : null
                         }
 
-                        <h4 className='text-lg my-2'>
+                        <h4 className='text-lg my-2 font-bold'>
                             Social Media Links
                         </h4>
                         <div className='flex gap-3 flex-wrap mb-3'>

@@ -29,7 +29,7 @@ const MyProfile = ({
 
     return (
         <div className='px-6 lg:px-16 mt-24 md:mt-0 max-w-6xl'>
-            <div className={`bg-secondary text-white border-secondary p-2 rounded-xl text-xs border-2 w-fit fixed transition-all z-20 right-[5%] top-[5%] ${urlCopied ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+            <div className={`bg-secondary text-white border-secondary p-2 rounded-xl text-xs border-2 w-fit fixed transition-all z-20 right-[5%] top-[12%] lg:top-[5%] ${urlCopied ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 Link copied to clipboard
             </div>
             <div>
@@ -199,7 +199,7 @@ const MyProfile = ({
                                             View Portfolio
                                         </a>
                                         <span
-                                            className='mt-3 flex items-center gap-1 text-sm underline cursor-pointer'
+                                            className='mt-6 lg:mt-3 flex items-center gap-1 text-sm underline cursor-pointer'
                                             onClick={() => handleCopyLink(`${ROUTES.TALENTS}/${userId}?industry=${industry.industry}`)}
                                         >
                                             Copy Portfolio URL
@@ -225,7 +225,7 @@ const MyProfile = ({
                             </h2>
                             <div className='flex flex-col gap-1 mt-1'>
                                 {
-                                    user.professional_information.certificates && user.professional_information.certificates.map((certificate, index) => {
+                                    user.professional_information.certificates && user.professional_information.certificates.length ? user.professional_information.certificates.map((certificate, index) => {
                                         if (certificate.keep_file_private) {
                                             return (
                                                 <p key={`certificate-${index}`}>
@@ -258,6 +258,7 @@ const MyProfile = ({
                                         )
 
                                     })
+                                    : <div>No certificates added yet. You can add your certificates <Link className='underline' href={`${ROUTES.MY_PROFILE}/${userId}/update-profile`}>here</Link></div>
                                 }
                             </div>
                         </div>

@@ -191,35 +191,34 @@ const ProfileForm = ({
 
             </div>
 
-            <div>
-                <ul className='flex justify-between my-6 overflow-x-auto'>
-                    <li
-                        className={`px-4 pb-3 cursor-pointer transition-all ${selectedTab === 'personal' ? 'text-primary border-b-4 font-bold border-primary' : ''}`}
-                        onClick={() => handleTabChange('personal')}
-                    >
-                        Personal Information
-                    </li>
-                    <li
-                        className={`px-4 cursor-pointer transition-all ${selectedTab === 'professional' ? 'text-primary border-b-4 font-bold border-primary' : ''}`}
-                        onClick={() => handleTabChange('professional')}
-                    >
-                        Professional Preferences
-                    </li>
-                    <li
-                        className={`px-4 cursor-pointer transition-all ${selectedTab === 'experience' ? 'text-primary border-b-4 font-bold border-primary' : ''}`}
-                        onClick={() => handleTabChange('experience')}
-                    >
-                        Work Experience
-                    </li>
+            <ul className='flex justify-between my-6 overflow-x-auto scrollbar-always'>
+                <li
+                    className={`px-4 pb-3 cursor-pointer transition-all ${selectedTab === 'personal' ? 'text-primary border-b-4 font-bold border-primary' : ''}`}
+                    onClick={() => handleTabChange('personal')}
+                >
+                    Personal Information
+                </li>
+                <li
+                    className={`px-4 cursor-pointer transition-all ${selectedTab === 'professional' ? 'text-primary border-b-4 font-bold border-primary' : ''}`}
+                    onClick={() => handleTabChange('professional')}
+                >
+                    Professional Preferences
+                </li>
+                <li
+                    className={`px-4 cursor-pointer transition-all ${selectedTab === 'experience' ? 'text-primary border-b-4 font-bold border-primary' : ''}`}
+                    onClick={() => handleTabChange('experience')}
+                >
+                    Work Experience
+                </li>
 
-                    <li
-                        className={`px-4 cursor-pointer transition-all ${selectedTab === 'extras' ? 'text-primary border-b-4 font-bold border-primary' : ''}`}
-                        onClick={() => handleTabChange('extras')}
-                    >
-                        More about me
-                    </li>
-                </ul>
-            </div>
+                <li
+                    className={`px-4 cursor-pointer transition-all min-w-[7rem] lg:min-w-fit ${selectedTab === 'extras' ? 'text-primary border-b-4 font-bold border-primary' : ''}`}
+                    onClick={() => handleTabChange('extras')}
+                >
+                    More about me
+                </li>
+            </ul>
+
             <div>
                 {renderTabContent()}
             </div>
