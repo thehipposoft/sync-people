@@ -220,20 +220,12 @@ const MyProfile = ({
                             }
                         </div>
                         <div className='flex justify-between mt-1 flex-col mb-4'>
-                            <h2 className='text-2xl pb-4 font-bold'>
+                            <h2 className='text-2xl mt-4 mb-2 font-bold'>
                                 Licenses or Certificates
                             </h2>
                             <div className='flex flex-col gap-1 mt-1'>
                                 {
                                     user.professional_information.certificates && user.professional_information.certificates.length ? user.professional_information.certificates.map((certificate, index) => {
-                                        if (certificate.keep_file_private) {
-                                            return (
-                                                <p key={`certificate-${index}`}>
-                                                    {certificate.name}
-                                                </p>
-                                            )
-                                        }
-
                                         return (
                                             <a
                                                 key={`certificate-${index}`}

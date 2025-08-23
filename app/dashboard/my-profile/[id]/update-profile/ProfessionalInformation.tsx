@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { updateProfile } from "@/lib/protected-api";
 import { INDUSTRIES } from "@/app/constants";
-import { IndustriesAvailable, professional_information, IndustryType } from "@/types";
+import { IndustriesAvailable, professional_information, IndustryType, CertificateType } from "@/types";
 import Modal from "@/components/Modal";
 import CertificateTable from "@/components/CertificatesTable";
+import { set } from "date-fns";
 
 type ProfessionalPropsType = {
     initialValues: professional_information;
@@ -118,6 +119,13 @@ const ProfessionalInformation = ({
         });
     };
 
+    const handleCertificateLoaded = (certificates: CertificateType[]) => {
+        setFormValues({
+            ...formValues,
+            certificates: certificates,
+        });
+    };
+
     return (
         <div>
             <form onSubmit={handleFormSubmit} className='grid grid-cols-2 gap-4'>
@@ -209,6 +217,7 @@ const ProfessionalInformation = ({
                         certificates={formValues.certificates}
                         userId={userId}
                         industries={formValues.industries}
+                        onLoadCompleted={handleCertificateLoaded}
                     />
                 </div>
                 <div className="col-span-2">

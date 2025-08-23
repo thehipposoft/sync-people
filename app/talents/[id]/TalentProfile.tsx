@@ -165,7 +165,7 @@ const TalentProfile = ({
                                         {
                                             credentials.length
                                             ? <div className='flex justify-between mt-1 flex-col'>
-                                                <h4 className='text-lg'>
+                                                <h4 className='text-lg font-bold'>
                                                     Licenses or Certificates
                                                 </h4>
                                                 <div className='flex flex-col gap-1 mt-1'>

@@ -1,7 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
-import { TalentTypeAcf, IndustryType, IndustriesAvailable } from '@/types';
+import { useState, useEffect } from 'react';
+import { TalentTypeAcf, IndustryType, IndustriesAvailable, CertificateType } from '@/types';
 import { TALENT_CURRENT_STATUS_DROPDOWN, TALENT_WORK_PREFERENCE_DROPDOWN, INDUSTRIES } from '@/app/constants';
-import Modal from '@/components/Modal';
 import CertificateTable from '@/components/CertificatesTable';
 
 type IndustriesPropsType = {
@@ -21,24 +20,16 @@ const Industries = ({
     setMainFormValues,
     userId,
 }:IndustriesPropsType) => {
-    const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [formValues, setFormValues] = useState<TalentTypeAcf['professional_information']>({
         ...initialValues.professional_information,
         work_preference: 'full-time',
         industries: [],
         skills_set: initialValues.professional_information.skills_set || [],
-
+        certificates: initialValues.professional_information.certificates || [],
     });
-    const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
     const [industriesError, setIndustriesError] = useState<string>('');
     const [industryError, setIndustryError] = useState<string>('');
     const [otherIndustry, setOtherIndustry] = useState<IndustryType>();
-    //Certificates upload
-    const [certificateToUpload, setCertificateToUpload] = useState<File | null>(null);
-    const [selectedIndustryIndex, setSelectedIndustryIndex] = useState<number>(0);
-    const [openNewCertificateModal, setOpenNewCertificateModal] = useState<boolean>(false);
-    const [certificateName, setCertificateName] = useState<string>('');
-    const [certificateExpiryDate, setCertificateExpiryDate] = useState<string>('');
 
      useEffect(() => {
         const otherIndustry = formValues.industries.find((ind) => ind.industry === 'other');
@@ -96,43 +87,6 @@ const Industries = ({
 
     };
 
-    const handleUploadCertificate = async (e:React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setIsAPILoading(true);
-        const newCertificate = {
-            partialFile: certificateToUpload as File,
-            file_url: '',
-            name: certificateName,
-            expiry_date: certificateExpiryDate,
-        };
-
-        const newIndustries = formValues.industries.map((industry, index) => {
-            if (index === selectedIndustryIndex) {
-                return {
-                    ...industry,
-                    certificates: [...industry.certificates, newCertificate],
-                };
-            }
-
-            return industry;
-        });
-
-        setFormValues({
-            ...formValues,
-            industries: newIndustries,
-        });
-
-        setCertificateExpiryDate('');
-        setCertificateName('');
-        setCertificateToUpload(null);
-
-        if (fileInputRef.current) {
-            fileInputRef.current.value = '';
-        }
-        setIsAPILoading(false);
-        setOpenNewCertificateModal(false);
-    };
-
     const handleChipSelection = (industry: IndustriesAvailable) => {
         const existingIndustry = formValues.industries.find((ind) => ind.industry === industry);
         setIndustryError('');
@@ -179,6 +133,13 @@ const Industries = ({
         setFormValues({
             ...formValues,
             industries: updatedIndustries,
+        });
+    };
+
+    const handleCertificateLoaded = (certificates: CertificateType[]) => {
+        setFormValues({
+            ...formValues,
+            certificates: certificates,
         });
     };
 
@@ -303,6 +264,7 @@ const Industries = ({
                         certificates={formValues.certificates}
                         userId={userId}
                         industries={formValues.industries}
+                        onLoadCompleted={handleCertificateLoaded}
                     />
                 </div>
 
@@ -414,73 +376,6 @@ const Industries = ({
                     </button>
                 </div>
             </form>
-            <Modal
-                isOpen={openNewCertificateModal}
-                onClose={() => setOpenNewCertificateModal(false)}
-            >
-                <form onSubmit={handleUploadCertificate}>
-                    <h4 className="mb-5 text-center">
-                        Upload new certificate
-                    </h4>
-                    <input
-                        type='text'
-                        placeholder='Certificate name'
-                        value={certificateName}
-                        onChange={(e) => setCertificateName(e.target.value)}
-                        className="mb-3"
-                        required
-                    />
-                    <div className='w-full my-3'>
-                        <label htmlFor={`certificate_expiry_date`} className="block pb-2">
-                            Expiry date
-                        </label>
-                        <input
-                            name='certificate_expiry_date'
-                            type='date'
-                            value={certificateExpiryDate}
-                            onChange={(e) => setCertificateExpiryDate(e.target.value)}
-                            className="mb-3"
-                        />
-                    </div>
-
-                    <input
-                        type='file'
-                        ref={fileInputRef}
-                        className="border-none w-full"
-                        accept='.pdf, .doc, .docx, .jpg, .jpeg, .png'
-                        required
-                        onChange={(e) => {
-                            if (!e.target.files) return;
-
-                            setCertificateToUpload(e.target.files[0]);
-                        }}
-                    />
-                    <div className="flex gap-4 mt-4 justify-center">
-                        <button
-                            className="secondary-btn"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setCertificateToUpload(null);
-                                setCertificateName('');
-                                setOpenNewCertificateModal(false);
-                                if (fileInputRef.current) {
-                                    fileInputRef.current.value = '';
-                                }
-                            }}
-                            disabled={isAPILoading}
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            className="primary-btn"
-                            type='submit'
-                            disabled={isAPILoading}
-                        >
-                            Upload
-                        </button>
-                    </div>
-                </form>
-            </Modal>
         </>
     );
 };

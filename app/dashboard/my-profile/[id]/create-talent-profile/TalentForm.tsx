@@ -298,7 +298,7 @@ const TalentForm = ({
                         Updating Profile
                     </h1>
                     <p className='text-center mb-4'>
-                        Please wait while we creating your Skills Portfolio
+                        Please wait while we are creating your Skills Portfolio
                     </p>
                 </div>
             </Modal>

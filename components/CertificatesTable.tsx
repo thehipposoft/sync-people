@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { updateProfile, uploadMedia } from "@/lib/protected-api";
-import { CertificateType, IndustriesAvailable, professional_information } from "@/types";
+import { CertificateType, IndustriesAvailable, professional_information, TalentTypeAcf } from "@/types";
 import { format } from "date-fns";
 import Modal from "@/components/Modal";
 
@@ -8,12 +8,14 @@ type PropsType = {
     certificates: CertificateType[];
     userId: string;
     industries: professional_information['industries'];
+    onLoadCompleted: (certificates: CertificateType[]) => void;
 }
 
 const CertificateTable = ({
     certificates,
     userId,
     industries,
+    onLoadCompleted,
 }: PropsType) => {
     const [talentCertificates, setTalentCertificates] = useState<CertificateType[]>(certificates || []);
     const [selectedCertificateToRemoveIndex, setSelectedCertificateToRemoveIndex] = useState<number | null>(null);
@@ -47,6 +49,7 @@ const CertificateTable = ({
             setIsAPILoading(false);
 
             setOpenRemoveCertificateModal(false);
+            setTalentCertificates(newCertificates);
         }
     };
 
@@ -72,6 +75,7 @@ const CertificateTable = ({
                 const response = await updateProfile(userId, apiValues);
                 setIsAPILoading(false);
                 setTalentCertificates(currentCertificates);
+                onLoadCompleted(currentCertificates);
                 setOpenAddEditCertificateModal(false);
             }
         } else {
@@ -105,6 +109,7 @@ const CertificateTable = ({
                 const response = await updateProfile(userId, apiValues);
 
                 setTalentCertificates(currentCertificates);
+                onLoadCompleted(currentCertificates);
 
                 setCertificateToUpload(null);
                 setCertificateExpiryDate('');
@@ -157,19 +162,19 @@ const CertificateTable = ({
                         <thead>
                             <tr>
                                 <th
-                                    className={`text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tl-lg`}
+                                    className={`text-center lg:text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tl-lg min-w-[6rem]`}
                                 >
                                     Name
                                 </th>
                                 <th
-                                    className={`text-left py-2 px-4 md:px-2 bg-gray-300`}
+                                    className={`text-left py-2 px-4 md:px-2 bg-gray-300 min-w-[8rem]`}
                                 >
                                     Expiry date
                                 </th>
                                 <th
-                                    className={`text-left py-2 px-4 md:px-2 bg-gray-300`}
+                                    className={`text-left py-2 px-4 md:px-2 bg-gray-300 min-w-[8rem]`}
                                 >
-                                    Visible for Industries
+                                    Visible for
                                 </th>
                                 <th  className={`text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tr-lg`}>
                                     Actions
@@ -179,7 +184,7 @@ const CertificateTable = ({
                         <tbody>
                             {talentCertificates.map((certificate, certificateIndex) => (
                                 <tr key={certificateIndex} className='py-4 border'>
-                                    <td className={`text-left py-3 text-sm px-4 md:px-2`}>
+                                    <td className={`text-left py-3 text-sm px-4 md:px-2 min-w-[6rem]`}>
                                         <div className="flex flex-col lg:flex-row items-center gap-1">
                                             {
                                                 certificate.keep_file_private
@@ -194,7 +199,13 @@ const CertificateTable = ({
                                                 </svg>
                                                 : null
                                             }
-                                            {certificate.name}
+                                            <a
+                                                href={certificate.file_url}
+                                                className="underline"
+                                                target="_blank"
+                                            >
+                                                {certificate.name}
+                                            </a>
                                         </div>
                                     </td>
                                     <td className={`text-left py-3 text-sm px-4 md:px-2`}>
@@ -204,10 +215,10 @@ const CertificateTable = ({
                                                 : '-'
                                         }
                                     </td>
-                                    <td>
+                                    <td className="capitalize">
                                         {certificate.visible_for.join(', ').replace(/_/g, ' ') || '-'}
                                     </td>
-                                    <td className='text-right flex gap-3 pt-1'>
+                                    <td className='text-right flex gap-3 pt-4 lg:pt-1 px-4 md:px-2'>
                                         <button>
                                             <svg
                                                 onClick={(e) => {
@@ -276,7 +287,7 @@ const CertificateTable = ({
                 </p>
                 <div className="flex gap-4">
                     <button
-                        className="secondary-btn"
+                        className="secondary-btn w-full"
                         onClick={(e) => {
                             e.preventDefault();
                             setOpenRemoveCertificateModal(false)
@@ -286,7 +297,7 @@ const CertificateTable = ({
                         Cancel
                     </button>
                     <button
-                        className="primary-btn"
+                        className="primary-btn w-full"
                         disabled={isAPILoading}
                         onClick={(e) => {
                             e.preventDefault();
@@ -304,153 +315,155 @@ const CertificateTable = ({
                 <h4 className="mb-3">
                     {`${editCertificateEnabled ? 'Edit certificate/credential' : 'Upload new certificate/credential'}`}
                 </h4>
-                <label htmlFor={`certificate_name`} className="block pb-2">
-                    Certificate name
-                </label>
-                <input
-                    type='text'
-                    id={`certificate_name`}
-                    placeholder='Certificate name'
-                    value={certificateName}
-                    onChange={(e) => setCertificateName(e.target.value)}
-                    className="mb-3"
-                />
-                <div className='w-full my-3'>
-                    <label htmlFor={`certificate_expiry_date`} className="block pb-2">
-                        Expiry date
+                <div className="overflow-auto max-h-[70vh]">
+                    <label htmlFor={`certificate_name`} className="block pb-2">
+                        Certificate name
                     </label>
                     <input
-                        name='certificate_expiry_date'
-                        type='date'
-                        value={certificateExpiryDate}
-                        onChange={(e) => setCertificateExpiryDate(e.target.value)}
+                        type='text'
+                        id={`certificate_name`}
+                        placeholder='Certificate name'
+                        value={certificateName}
+                        onChange={(e) => setCertificateName(e.target.value)}
                         className="mb-3"
                     />
-                </div>
-                <div>
-                    <label htmlFor={`visible_for`} className="block pb-2">
-                        Visible for Industries
-                    </label>
-                    <div className="flex gap-2 flex-wrap mb-4">
-                        {
-                            industries.map((industry) => {
-                                const selectedIndustry = certificateVisibleFor.find((ind) => ind === industry.industry);
-
-                                return (
-                                    <div
-                                        key={industry.industry}
-                                        className={`chip ${selectedIndustry ? 'chip-selected' : ''}`}
-                                        onClick={() => handleChipSelection(industry.industry)}
-                                    >
-                                        {
-                                            industry.industry === 'other'
-                                            ? industry.other_industry
-                                            : industry.industry.replace(/_/g, ' ')
-                                        }
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                </div>
-                {!editCertificateEnabled && (
-                    <div className="flex flex-col items-center space-y-3 justify-center my-6">
-                        <label
-                            htmlFor="certificateUpload"
-                            className="cursor-pointer flex gap-2 text-primary px-4 py-2 rounded-xl shadow-md hover:bg-primary hover:text-white transition-colors group"
-                        >
-                            <svg
-                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                height={24}
-                                width={24}
-                                className="group-hover:text-white transition-all"
-                            >
-                                <g id="SVGRepo_iconCarrier">
-                                    <path d="M12.5535 2.49392C12.4114 2.33852 12.2106 2.25 12 2.25C11.7894 2.25 11.5886 2.33852 11.4465 2.49392L7.44648 6.86892C7.16698 7.17462 7.18822 7.64902 7.49392 7.92852C7.79963 8.20802 8.27402 8.18678 8.55352 7.88108L11.25 4.9318V16C11.25 16.4142 11.5858 16.75 12 16.75C12.4142 16.75 12.75 16.4142 12.75 16V4.9318L15.4465 7.88108C15.726 8.18678 16.2004 8.20802 16.5061 7.92852C16.8118 7.64902 16.833 7.17462 16.5535 6.86892L12.5535 2.49392Z" fill="currentColor"></path>
-                                    <path d="M3.75 15C3.75 14.5858 3.41422 14.25 3 14.25C2.58579 14.25 2.25 14.5858 2.25 15V15.0549C2.24998 16.4225 2.24996 17.5248 2.36652 18.3918C2.48754 19.2919 2.74643 20.0497 3.34835 20.6516C3.95027 21.2536 4.70814 21.5125 5.60825 21.6335C6.47522 21.75 7.57754 21.75 8.94513 21.75H15.0549C16.4225 21.75 17.5248 21.75 18.3918 21.6335C19.2919 21.5125 20.0497 21.2536 20.6517 20.6516C21.2536 20.0497 21.5125 19.2919 21.6335 18.3918C21.75 17.5248 21.75 16.4225 21.75 15.0549V15C21.75 14.5858 21.4142 14.25 21 14.25C20.5858 14.25 20.25 14.5858 20.25 15C20.25 16.4354 20.2484 17.4365 20.1469 18.1919C20.0482 18.9257 19.8678 19.3142 19.591 19.591C19.3142 19.8678 18.9257 20.0482 18.1919 20.1469C17.4365 20.2484 16.4354 20.25 15 20.25H9C7.56459 20.25 6.56347 20.2484 5.80812 20.1469C5.07435 20.0482 4.68577 19.8678 4.40901 19.591C4.13225 19.3142 3.9518 18.9257 3.85315 18.1919C3.75159 17.4365 3.75 16.4354 3.75 15Z" fill="currentColor">
-                                    </path>
-                                </g>
-                            </svg>
-                            Upload Certificate
+                    <div className='w-full my-3'>
+                        <label htmlFor={`certificate_expiry_date`} className="block pb-2">
+                            Expiry date
                         </label>
                         <input
-                            id="certificateUpload"
-                            type="file"
-                            ref={fileInputRef}
-                            className="hidden"
-                            accept=".pdf,.doc,.docx"
-                            onChange={(e) => {
-                                if (!e.target.files) return;
-                                setCertificateToUpload(e.target.files[0]);
-                            }}
+                            name='certificate_expiry_date'
+                            type='date'
+                            value={certificateExpiryDate}
+                            onChange={(e) => setCertificateExpiryDate(e.target.value)}
+                            className="mb-3"
                         />
-                        {certificateToUpload && (
-                            <span className="text-sm text-gray-600">
-                                Selected: {certificateToUpload.name}
-                            </span>
-                        )}
                     </div>
-                )}
+                    <div>
+                        <label htmlFor={`visible_for`} className="block pb-2">
+                            Visible for Industries
+                        </label>
+                        <div className="flex gap-2 flex-wrap mb-4">
+                            {
+                                industries.map((industry) => {
+                                    const selectedIndustry = certificateVisibleFor.find((ind) => ind === industry.industry);
 
-                <div className="flex gap-2 items-center mt-2 mb-4">
-                    <input
-                        type='checkbox'
-                        id={`keep_file_private`}
-                        checked={keepFilePrivate}
-                        onChange={(e) => setKeepFilePrivate(e.target.checked)}
-                    />
-                    <label htmlFor={`keep_file_private`} className="block">
-                        Keep File Private
-                    </label>
-                </div>
-                {
-                    keepFilePrivate ? (
-                        <div className="flex items-start gap-2 p-3 rounded-lg border border-blue-300 bg-blue-50 text-blue-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mt-0.5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M12 18h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <p className="text-sm">
-                                <span className="font-semibold">Note:</span> Only the certificate/credential <span className="font-bold">name</span> will be visible in the selected industries.
-                            </p>
-                        </div>
-                    ) : (
-                        <div className="flex items-start gap-2 p-3 rounded-lg border border-red-300 bg-red-50 text-red-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mt-0.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01M12 5a7 7 0 100 14 7 7 0 000-14z" />
-                            </svg>
-                            <p className="text-sm">
-                                <span className="font-semibold">Warning:</span> The actual <span className="font-bold">document/file</span> will be accessible to anyone browsing those industries.
-                            </p>
-                        </div>
-                    )
-                }
-                <div className="flex gap-4 mt-8">
-                    <button
-                        className="secondary-btn w-full"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setCertificateToUpload(null);
-                            setCertificateName('');
-                            setOpenAddEditCertificateModal(false);
-
-                            if (fileInputRef.current) {
-                                fileInputRef.current.value = '';
+                                    return (
+                                        <div
+                                            key={industry.industry}
+                                            className={`chip ${selectedIndustry ? 'chip-selected' : ''}`}
+                                            onClick={() => handleChipSelection(industry.industry)}
+                                        >
+                                            {
+                                                industry.industry === 'other'
+                                                ? industry.other_industry
+                                                : industry.industry.replace(/_/g, ' ')
+                                            }
+                                        </div>
+                                    )
+                                })
                             }
-                        }}
-                        disabled={isAPILoading}
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        className="primary-btn w-full"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            handleUploadCertificate();
-                        }}
-                        disabled={isAPILoading}
-                    >
-                        Upload
-                    </button>
+                        </div>
+                    </div>
+                    {!editCertificateEnabled && (
+                        <div className="flex flex-col items-center space-y-3 justify-center my-6">
+                            <label
+                                htmlFor="certificateUpload"
+                                className="cursor-pointer flex gap-2 text-primary px-4 py-2 rounded-xl shadow-md hover:bg-primary hover:text-white transition-colors group"
+                            >
+                                <svg
+                                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                    height={24}
+                                    width={24}
+                                    className="group-hover:text-white transition-all"
+                                >
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path d="M12.5535 2.49392C12.4114 2.33852 12.2106 2.25 12 2.25C11.7894 2.25 11.5886 2.33852 11.4465 2.49392L7.44648 6.86892C7.16698 7.17462 7.18822 7.64902 7.49392 7.92852C7.79963 8.20802 8.27402 8.18678 8.55352 7.88108L11.25 4.9318V16C11.25 16.4142 11.5858 16.75 12 16.75C12.4142 16.75 12.75 16.4142 12.75 16V4.9318L15.4465 7.88108C15.726 8.18678 16.2004 8.20802 16.5061 7.92852C16.8118 7.64902 16.833 7.17462 16.5535 6.86892L12.5535 2.49392Z" fill="currentColor"></path>
+                                        <path d="M3.75 15C3.75 14.5858 3.41422 14.25 3 14.25C2.58579 14.25 2.25 14.5858 2.25 15V15.0549C2.24998 16.4225 2.24996 17.5248 2.36652 18.3918C2.48754 19.2919 2.74643 20.0497 3.34835 20.6516C3.95027 21.2536 4.70814 21.5125 5.60825 21.6335C6.47522 21.75 7.57754 21.75 8.94513 21.75H15.0549C16.4225 21.75 17.5248 21.75 18.3918 21.6335C19.2919 21.5125 20.0497 21.2536 20.6517 20.6516C21.2536 20.0497 21.5125 19.2919 21.6335 18.3918C21.75 17.5248 21.75 16.4225 21.75 15.0549V15C21.75 14.5858 21.4142 14.25 21 14.25C20.5858 14.25 20.25 14.5858 20.25 15C20.25 16.4354 20.2484 17.4365 20.1469 18.1919C20.0482 18.9257 19.8678 19.3142 19.591 19.591C19.3142 19.8678 18.9257 20.0482 18.1919 20.1469C17.4365 20.2484 16.4354 20.25 15 20.25H9C7.56459 20.25 6.56347 20.2484 5.80812 20.1469C5.07435 20.0482 4.68577 19.8678 4.40901 19.591C4.13225 19.3142 3.9518 18.9257 3.85315 18.1919C3.75159 17.4365 3.75 16.4354 3.75 15Z" fill="currentColor">
+                                        </path>
+                                    </g>
+                                </svg>
+                                Upload Certificate
+                            </label>
+                            <input
+                                id="certificateUpload"
+                                type="file"
+                                ref={fileInputRef}
+                                className="hidden"
+                                accept=".pdf,.doc,.docx"
+                                onChange={(e) => {
+                                    if (!e.target.files) return;
+                                    setCertificateToUpload(e.target.files[0]);
+                                }}
+                            />
+                            {certificateToUpload && (
+                                <span className="text-sm text-gray-600">
+                                    Selected: {certificateToUpload.name}
+                                </span>
+                            )}
+                        </div>
+                    )}
+
+                    <div className="flex gap-2 items-center mt-2 mb-4">
+                        <input
+                            type='checkbox'
+                            id={`keep_file_private`}
+                            checked={keepFilePrivate}
+                            onChange={(e) => setKeepFilePrivate(e.target.checked)}
+                        />
+                        <label htmlFor={`keep_file_private`} className="block">
+                            Keep File Private
+                        </label>
+                    </div>
+                    {
+                        keepFilePrivate ? (
+                            <div className="flex items-start gap-2 p-3 rounded-lg border border-blue-300 bg-blue-50 text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mt-0.5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M12 18h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p className="text-sm">
+                                    <span className="font-semibold">Note:</span> Only the certificate/credential <span className="font-bold">name</span> will be visible in the selected industries.
+                                </p>
+                            </div>
+                        ) : (
+                            <div className="flex items-start gap-2 p-3 rounded-lg border border-red-300 bg-red-50 text-red-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mt-0.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01M12 5a7 7 0 100 14 7 7 0 000-14z" />
+                                </svg>
+                                <p className="text-sm">
+                                    <span className="font-semibold">Warning:</span> The actual <span className="font-bold">document/file</span> will be accessible to anyone browsing those industries.
+                                </p>
+                            </div>
+                        )
+                    }
+                    <div className="flex gap-4 mt-8">
+                        <button
+                            className="secondary-btn w-full"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setCertificateToUpload(null);
+                                setCertificateName('');
+                                setOpenAddEditCertificateModal(false);
+
+                                if (fileInputRef.current) {
+                                    fileInputRef.current.value = '';
+                                }
+                            }}
+                            disabled={isAPILoading}
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            className="primary-btn w-full"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                handleUploadCertificate();
+                            }}
+                            disabled={isAPILoading}
+                        >
+                            Upload
+                        </button>
+                    </div>
                 </div>
             </Modal>
         </>
