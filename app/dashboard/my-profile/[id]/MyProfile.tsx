@@ -106,7 +106,7 @@ const MyProfile = ({
                                     />
                                     <p
                                         className='text-center cursor-pointer underline'
-                                        onClick={() => handleCopyLink(`${window.location.origin}/${ROUTES.TALENTS}/${userId}`)}
+                                        onClick={() => handleCopyLink(`${window.location.origin}${ROUTES.TALENTS}/${userId}`)}
                                     >
                                         Copy public profile URL
                                     </p>
@@ -200,7 +200,7 @@ const MyProfile = ({
                                         </a>
                                         <span
                                             className='mt-6 mb-2 lg:mb-0 lg:mt-3 flex items-center gap-1 text-sm underline cursor-pointer'
-                                            onClick={() => handleCopyLink(`${window.location.origin}/${ROUTES.TALENTS}/${userId}?industry=${industry.industry}`)}
+                                            onClick={() => handleCopyLink(`${window.location.origin}${ROUTES.TALENTS}/${userId}?industry=${industry.industry}`)}
                                         >
                                             Copy Portfolio URL
                                             <svg viewBox="0 0 24 24"
