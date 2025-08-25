@@ -16,7 +16,7 @@ const TalentsList = ({
 
     return (
         <div className='pb-8 grid grid-cols-12 justify-around gap-6 pt-6 md:px-0 px-2 my-4 w-full relative'>
-            <div className='grid sticky top-0 h-fit rounded-2xl border md:flex-col bg-white col-span-3'>
+            <div className='grid sticky top-0 h-fit md:flex-col bg-white col-span-12 lg:col-span-3'>
                 <Filters
                     talents={talentsList}
                     setFilteredTalents={setFilteredTalents}
