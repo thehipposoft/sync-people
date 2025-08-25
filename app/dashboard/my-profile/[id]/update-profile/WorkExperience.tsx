@@ -252,15 +252,15 @@ const WorkExperience = ({
                 <h4 className="mb-4">
                     Your data has been updated successfully
                 </h4>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex gap-4">
                     <button
-                        className="secondary-btn"
+                        className="secondary-btn w-full"
                         onClick={() => setOpenUpdatedDataModal(false)}
                     >
                         Keep editing
                     </button>
                     <a
-                        className="primary-btn"
+                        className="primary-btn w-full"
                         href={`/talents/${userId}`}
                     >
                         View Public Portfolio
