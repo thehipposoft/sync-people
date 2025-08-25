@@ -102,7 +102,6 @@ const TalentForm = ({
             uploadPresentationVideo(recordedVideoBlob)
             .then(response => {
                 if (response.status === 200) {
-                    console.log('Video uploaded successfully');
                     apiFormValues.personal_information.presentation_video = response.data.secure_url;
                 } else {
                     console.error('Failed to upload video:', response.message);

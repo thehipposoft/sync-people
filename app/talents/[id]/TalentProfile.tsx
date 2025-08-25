@@ -99,7 +99,7 @@ const TalentProfile = ({
                         }
 
                         <div className='relative flex flex-col justify-between md:px-12 px-6 py-6'>
-                            <div className='flex md:gap-4 flex-col md:flex-row relative mb-0 lg:mb-4 pb-0 md:pb-14'>
+                            <div className='flex md:gap-4 flex-col md:flex-row relative mb-0 lg:mb-10'>
                                 <Image
                                     src={talentData.personal_information.profile_pic ? talentData.personal_information.profile_pic : '/assets/images/profile-avatar.png'}
                                     alt={`Profile picture for ${talentData.personal_information.first_name}`}
@@ -212,7 +212,7 @@ const TalentProfile = ({
                                         }
                                         <div className='flex flex-col justify-between mt-8 flex-wrap '>
                                             <div className='flex flex-col'>
-                                                <h4 className='text-lg mb-2 font-bold'>
+                                                <h4 className='text-2xl mb-2 font-bold'>
                                                     Contact me
                                                 </h4>
                                                 <div className='flex gap-4 md:gap-2 flex-wrap'>
@@ -289,42 +289,44 @@ const TalentProfile = ({
                         </div>
                     </div>
                     {
-                        talentData.work_experience && <div className='flex flex-col my-4 mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>
-                            <h4 className='text-xl pb-4 font-bold'>
+                        talentData.work_experience && <div className='flex flex-col mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>
+                            <h4 className='text-2xl pb-4 font-bold'>
                                 Work Experience
                             </h4>
-                            {
-                            [...talentData.work_experience]
-                                .sort((a, b) => parseISO(b.start_date).getTime() - parseISO(a.start_date).getTime())
-                                .map((experience, index) => {
-                                    const startDate = parseISO(experience.start_date);
-                                    const endDate = experience.currently_working ? new Date() : parseISO(experience.end_date);
-                                    const isVisibleForIndustry = experience.visible_for.includes(selectedIndustry.industry);
+                            <div className='flex flex-col gap-2'>
+                                {
+                                [...talentData.work_experience]
+                                    .sort((a, b) => parseISO(b.start_date).getTime() - parseISO(a.start_date).getTime())
+                                    .map((experience, index) => {
+                                        const startDate = parseISO(experience.start_date);
+                                        const endDate = experience.currently_working ? new Date() : parseISO(experience.end_date);
+                                        const isVisibleForIndustry = experience.visible_for.includes(selectedIndustry.industry);
 
-                                    if (!isVisibleForIndustry) return null;
+                                        if (!isVisibleForIndustry) return null;
 
-                                    return (
-                                        <div key={index} className='flex flex-col gap-2 mb-2'>
-                                            <h2 className='text-xl font-bold'>
-                                                {experience.position} - <span className='text-lg'>{experience.company_name}</span>
-                                            </h2>
-                                            <p>
-                                                {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(experience.end_date, 'dd/MM/yyyy')}
-                                                <span className='ml-1 text-sm'>
-                                                    ({handleRenderTimeInJobs(startDate, endDate)})
-                                                </span>
-                                            </p>
-                                            <p>{experience.description}</p>
-                                        </div>
-                                    );
-                                })
-                            }
+                                        return (
+                                            <div key={index} className='flex flex-col gap-2'>
+                                                <h2 className='text-xl font-bold'>
+                                                    {experience.position} - <span className='text-lg'>{experience.company_name}</span>
+                                                </h2>
+                                                <p>
+                                                    {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(experience.end_date, 'dd/MM/yyyy')}
+                                                    <span className='ml-1 text-sm'>
+                                                        ({handleRenderTimeInJobs(startDate, endDate)})
+                                                    </span>
+                                                </p>
+                                                <p>{experience.description}</p>
+                                            </div>
+                                        );
+                                    })
+                                }
+                            </div>
                         </div>
                     }
 
-                    <div className='flex flex-col my-4 mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>
-                        <h4 className={`${talentData.professional_information.skills_set.length > 0 ? '' : 'hidden'} text-xl pb-4 font-bold`}>
-                            Key Skills:
+                    <div className='flex flex-col mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>
+                        <h4 className={`${talentData.professional_information.skills_set.length > 0 ? '' : 'hidden'} text-2xl mb-4 font-bold`}>
+                            Key Skills
                         </h4>
                         <ul className={`list-inside list-disc pb-4 ${talentData.professional_information.skills_set.length > 0 ? '' : 'hidden'}`}>
                             {
@@ -337,7 +339,7 @@ const TalentProfile = ({
                                     : null
                             }
                         </ul>
-                        <h4 className='text-xl pb-4 font-bold'>
+                        <h4 className='text-2xl pb-4 font-bold'>
                             Extras
                         </h4>
                         <h4 className='text-lg font-bold'>

@@ -16,7 +16,6 @@ const ComingSoonModal = ({
         e.preventDefault();
         if (email) {
             // Handle the subscription logic here (e.g., send email to API)
-            console.log(`Subscribed with email: ${email}`);
             onClose();
         } else {
             alert("Please enter a valid email address.");

@@ -9,7 +9,6 @@ const Discover = () => {
 
   const toggleDiscover = () => {
     setOpenDiscover(!openDiscover)
-    console.log(openDiscover)
   }
 
   return (
