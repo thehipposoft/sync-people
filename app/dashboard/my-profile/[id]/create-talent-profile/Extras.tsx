@@ -1,9 +1,8 @@
-import { useState, useRef } from "react";
-import { TalentTypeAcf } from "@/types";
+import { useState } from "react";
+import { TalentTypeAcf, CertificateType } from "@/types";
 import { LEVEL_OF_ENGLISH, EDUCATION_LEVEL, LANGUAGES, SOCIAL_MEDIA_PLATFORMS } from "@/app/constants";
 import { Select, SelectItem } from "@heroui/select";
-import Modal from "@/components/Modal";
-import { format } from "date-fns";
+import CertificateTable from "@/components/CertificatesTable";
 
 type ExtrasPropsType = {
     currentIndex: number;
@@ -11,6 +10,7 @@ type ExtrasPropsType = {
     showNext: (values: TalentTypeAcf) => void;
     showPrev: () => void;
     setMainFormValues: (values: TalentTypeAcf) => void;
+    userId: string;
 }
 
  const Extras = ({
@@ -19,23 +19,18 @@ type ExtrasPropsType = {
     showNext,
     showPrev,
     setMainFormValues,
+    userId,
 }:ExtrasPropsType) => {
-    const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
     const [formValues, setFormValues] = useState<TalentTypeAcf['extras']>({
         ...initialValues.extras,
-        other_credentials: initialValues.extras.other_credentials || [],
+        certificates: initialValues.extras.certificates || [],
         social_media_links: initialValues.extras.social_media_links || [],
         other_urls: initialValues.extras.other_urls || [],
-        level_of_english: 'beginner',
-        transport: 'no',
-        education_level: 'No Formal Education'
+        level_of_english: initialValues.extras.level_of_english || 'beginner',
+        transport: initialValues.extras.transport || 'no',
+        education_level: initialValues.extras.education_level || 'No Formal Education'
     });
-    //Certificates upload
-    const [certificateToUpload, setCertificateToUpload] = useState<File | null>(null);
-    const [openNewCertificateModal, setOpenNewCertificateModal] = useState<boolean>(false);
-    const [certificateName, setCertificateName] = useState<string>('');
-    const [certificateExpiryDate, setCertificateExpiryDate] = useState<string>('');
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -63,6 +58,7 @@ type ExtrasPropsType = {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsAPILoading(true);
 
         setMainFormValues({
             ...initialValues,
@@ -73,6 +69,7 @@ type ExtrasPropsType = {
             ...initialValues,
             extras: formValues,
         });
+        setIsAPILoading(false);
     };
 
     const handleMultiSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -85,34 +82,11 @@ type ExtrasPropsType = {
         });
     };
 
-    const handleUploadCertificate = async (e:React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setIsAPILoading(true);
-        const newCertificate = {
-            partialFile: certificateToUpload as File,
-            file_url: '',
-            name: certificateName,
-            expiry_date: certificateExpiryDate,
-            certificate: '',
-        };
-
+    const handleCertificateLoaded = (certificates: CertificateType[]) => {
         setFormValues({
             ...formValues,
-            other_credentials: [
-                ...formValues.other_credentials,
-                newCertificate,
-            ],
+            certificates: certificates,
         });
-
-        setCertificateExpiryDate('');
-        setCertificateName('');
-        setCertificateToUpload(null);
-
-        if (fileInputRef.current) {
-            fileInputRef.current.value = '';
-        }
-        setIsAPILoading(false);
-        setOpenNewCertificateModal(false);
     };
 
     return (
@@ -220,87 +194,13 @@ type ExtrasPropsType = {
                         <p className="mb-2 text-sm">
                             You can upload any other credentials or referrals that you think might be relevant to your profile.
                         </p>
-                        {
-                            formValues.other_credentials.length
-                            ? <table className="w-full p-3">
-                                <thead>
-                                    <tr>
-                                        <th
-                                            className={`text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tl-lg`}
-                                        >
-                                            Name
-                                        </th>
-                                        <th
-                                            className={`text-left py-2 px-4 md:px-2 bg-gray-300`}
-                                        >
-                                            Expiry date
-                                        </th>
-                                        <th  className={`text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tr-lg`}>
-
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {formValues.other_credentials.map((credential, index) => (
-                                        <tr key={index} className='py-4 border'>
-                                            <td
-                                                className={`text-left py-3 text-sm px-4 md:px-2`}
-                                            >
-                                                {credential.name}
-                                            </td>
-                                            <td
-                                                className={`text-left py-3 text-sm px-4 md:px-2`}
-                                            >
-                                                {
-                                                    credential.expiry_date && format(credential.expiry_date, 'dd/MM/yyyy')
-                                                    ? format(credential.expiry_date, 'dd/MM/yyyy')
-                                                    : '-'
-                                                }
-                                            </td>
-                                            <td className='text-right pr-4'>
-                                                <button
-                                                    className="bg-red-500 p-1 rounded-md h-fit"
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        const newCredentials = formValues.other_credentials.filter((_, i) => i !== index);
-
-                                                        setFormValues({
-                                                            ...formValues,
-                                                            other_credentials: newCredentials,
-                                                        });
-                                                    }}
-                                                >
-                                                    <svg
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        width={20}
-                                                        height={20}
-                                                    >
-                                                        <g id="SVGRepo_iconCarrier">
-                                                            <path d="M5.73708 6.54391V18.9857C5.73708 19.7449 6.35257 20.3604 7.11182 20.3604H16.8893C17.6485 20.3604 18.264 19.7449 18.264 18.9857V6.54391M2.90906 6.54391H21.0909" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
-                                                            </path>
-                                                            <path d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
-                                                            </path>
-                                                        </g>
-                                                    </svg>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                            : null
-                        }
-                        <button
-                            className='primary-btn text-sm ml-0 mt-4'
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setOpenNewCertificateModal(true);
-                            }}
-                        >
-                            Add File
-                        </button>
+                        <CertificateTable
+                            certificates={formValues.certificates}
+                            industries={initialValues.professional_information.industries}
+                            onLoadCompleted={handleCertificateLoaded}
+                            userId={userId}
+                            certificateParent='extras'
+                        />
                     </div>
 
                     <div className="col-span-2 mb-3">
@@ -529,6 +429,7 @@ type ExtrasPropsType = {
                             e.preventDefault();
                             showPrev();
                         }}
+                        disabled={isAPILoading}
                     >
                         Back
                     </button>
@@ -538,78 +439,12 @@ type ExtrasPropsType = {
                     <button
                         className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
                         type='submit'
+                        disabled={isAPILoading}
                     >
                         Finish
                     </button>
                 </div>
             </form>
-            <Modal
-                isOpen={openNewCertificateModal}
-                onClose={() => setOpenNewCertificateModal(false)}
-            >
-                <form onSubmit={handleUploadCertificate}>
-                    <h4 className="mb-5 text-center">
-                        Upload new Credential
-                    </h4>
-                    <input
-                        type='text'
-                        placeholder='Credential name'
-                        value={certificateName}
-                        onChange={(e) => setCertificateName(e.target.value)}
-                        className="mb-3"
-                        required
-                    />
-                    <div className='w-full my-3'>
-                        <label htmlFor={`certificate_expiry_date`} className="block pb-2">
-                            Expiry date
-                        </label>
-                        <input
-                            name='certificate_expiry_date'
-                            type='date'
-                            value={certificateExpiryDate}
-                            onChange={(e) => setCertificateExpiryDate(e.target.value)}
-                            className="mb-3"
-                        />
-                    </div>
-
-                    <input
-                        type='file'
-                        ref={fileInputRef}
-                        className="border-none w-full"
-                        accept='.pdf, .doc, .docx, .jpg, .jpeg, .png'
-                        required
-                        onChange={(e) => {
-                            if (!e.target.files) return;
-
-                            setCertificateToUpload(e.target.files[0]);
-                        }}
-                    />
-                    <div className="flex gap-4 mt-4 justify-center">
-                        <button
-                            className="secondary-btn"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setCertificateToUpload(null);
-                                setCertificateName('');
-                                setOpenNewCertificateModal(false);
-                                if (fileInputRef.current) {
-                                    fileInputRef.current.value = '';
-                                }
-                            }}
-                            disabled={isAPILoading}
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            className="primary-btn"
-                            type='submit'
-                            disabled={isAPILoading}
-                        >
-                            Upload
-                        </button>
-                    </div>
-                </form>
-            </Modal>
         </>
     );
  };

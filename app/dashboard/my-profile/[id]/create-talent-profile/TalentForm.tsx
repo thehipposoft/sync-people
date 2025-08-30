@@ -27,23 +27,10 @@ const TalentForm = ({
         ...user,
     });
     const [currentIndex, setCurrentIndex] = useState<number>(0);
-    const [profileImage, setProfileImage] = useState<string>('');
-    const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
     const [openSuccessModal, setOpenSuccessModal] = useState<boolean>(false);
     const [openLoadingModal, setOpenLoadingModal] = useState<boolean>(false);
     const [recordedVideoBlob, setRecordedVideoBlob] = useState<Blob | null>(null);
-
-    const getFileUrl = async (file: File, title: string, altText: string) => {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("title", title);
-        formData.append("alt_text", altText);
-        formData.append("status", "publish");
-
-        const response = await uploadMedia(formData);
-
-        return response.url;
-    }
+    const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
 
     const showNext = () => {
         setCurrentIndex((index) => {
@@ -64,39 +51,44 @@ const TalentForm = ({
     }
 
     const handleUploadProfileImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        if ( e.target.files) {
+        if (!e.target.files || e.target.files.length === 0) return;
+
+            setIsAPILoading(true);
+
             const file = e.target.files[0];
-            if (!file) {
-                return;
-            }
-
-            setProfileImageFile(file);
-            const reader = new FileReader();
-
-            reader.onloadend = () => {
-                setProfileImage(reader.result as string);
-            };
-            reader.readAsDataURL(file);
-        }
-    }
-
-    const handleFinishForm = async (apiFormValues: TalentTypeAcf) => {
-        setOpenLoadingModal(true);
-        const uploadPromises = [];
-
-        if (profileImageFile) {
             const formData = new FormData();
-            formData.append("file", profileImageFile);
+            formData.append("file", file);
             formData.append("title", "Profile Picture");
             formData.append("alt_text", "Profile Image");
             formData.append("status", "publish");
 
-            const profileImagePromise = uploadMedia(formData).then(url => {
-                apiFormValues.personal_information.profile_pic = url.id;
-            });
+            const uploadResponse = await uploadMedia(formData);
 
-            uploadPromises.push(profileImagePromise);
-        }
+            if (uploadResponse) {
+                const apiValues = {
+                    ...formValues,
+                    personal_information: {
+                        ...formValues.personal_information,
+                        profile_pic: uploadResponse.id,
+                    },
+                };
+
+                const response = await updateProfile(userId, apiValues);
+
+                setFormValues({
+                    ...formValues,
+                    personal_information: {
+                        ...formValues.personal_information,
+                        profile_pic: uploadResponse.url,
+                    },
+                });
+
+                setIsAPILoading(false);
+            }
+    }
+
+    const handleFinishForm = async (apiFormValues: TalentTypeAcf) => {
+        setOpenLoadingModal(true);
 
         if (recordedVideoBlob) {
             uploadPresentationVideo(recordedVideoBlob)
@@ -112,39 +104,6 @@ const TalentForm = ({
             });
         };
 
-        // Collect promises for industries certificates
-        const certificatePromises = apiFormValues.professional_information.industries
-            .flatMap(industry =>
-                industry.certificates
-                    .filter(certificate => certificate.partialFile)
-                    .map(async (certificate) => {
-                        certificate.file_url = certificate.partialFile
-                        ? await getFileUrl(
-                            certificate.partialFile,
-                            certificate.name,
-                            certificate.name
-                        )
-                        : '';
-                    })
-            );
-
-        // Collect promises for other credentials
-        const credentialPromises = apiFormValues.extras.other_credentials
-            .filter(credential => credential.partialFile)
-            .map(async (credential) => {
-                credential.file_url = credential.partialFile
-                ? await getFileUrl(
-                    credential.partialFile,
-                    credential.name,
-                    credential.name
-                )
-                : '';
-            });
-
-        // Wait for all uploads to complete
-        uploadPromises.push(...certificatePromises, ...credentialPromises);
-        await Promise.all(uploadPromises);
-
         const response = await updateProfile(userId, apiFormValues);
 
         setOpenLoadingModal(false);
@@ -159,31 +118,36 @@ const TalentForm = ({
                 </h1>
                 <div className='flex justify-between items-center mt-6 md:w-11/12 md:mx-auto'>
                     <div className='relative group mx-auto lg:mx-0'>
-                        <Image
-                            src={profileImage ? profileImage : '/assets/images/profile-avatar.png'}
-                            alt={`${formValues.personal_information.first_name} ${formValues.personal_information.last_name}`}
-                            width={150} height={150}
-                            className='h-[150px] rounded-full border-2 border-primary object-cover'
-                        />
+                        <label htmlFor='profile_pic'>
+                            <Image
+                                src={formValues.personal_information.profile_pic
+                                    ? formValues.personal_information.profile_pic
+                                    : '/assets/images/profile-avatar.png'
+                                }
+                                alt={`${formValues.personal_information.first_name} ${formValues.personal_information.last_name}`}
+                                width={150} height={150}
+                                className='h-[150px] rounded-full border-2 border-primary object-cover'
+                            />
 
-                        <div className={`absolute top-0 left-0 rounded-full w-full h-full bg-[#000000b3] ${profileImage ? 'opacity-0' : 'opacity-100'} duration-500 flex justify-center items-center cursor-pointer p-2`}>
-                            <span className='text-sm text-center text-white'>
-                                <input
-                                    id='profile_pic'
-                                    name='profile_pic'
-                                    type='file'
-                                    accept='image/*'
-                                    className='hidden'
-                                    onChange={handleUploadProfileImage}
-                                    multiple={false}
-                                />
-                                <label htmlFor='profile_pic'>
+                            <div className={`absolute top-0 left-0 rounded-full w-full h-full bg-[#000000b3] opacity-70 duration-500 flex justify-center items-center cursor-pointer p-2`}>
+                                <span className='text-sm text-center text-white'>
+                                    <input
+                                        id='profile_pic'
+                                        name='profile_pic'
+                                        type='file'
+                                        accept='image/*'
+                                        className='hidden'
+                                        onChange={handleUploadProfileImage}
+                                        multiple={false}
+                                        disabled={isAPILoading}
+                                    />
+
                                     <span className='text-white cursor-pointer'>
                                         Click to update
                                     </span>
-                                </label>
-                            </span>
-                        </div>
+                                </span>
+                            </div>
+                        </label>
                     </div>
                     <div className='flex-col gap-2 items-end hidden md:block'>
                         {
@@ -231,6 +195,7 @@ const TalentForm = ({
                             showNext={showNext}
                             setRecordedVideoBlob={setRecordedVideoBlob}
                             recordedVideoBlob={recordedVideoBlob}
+                            userId={userId}
                         />
                         <Industries
                             currentIndex={currentIndex}
@@ -246,7 +211,7 @@ const TalentForm = ({
                             initialValues={formValues}
                             showNext={showNext}
                             showPrev={showPrev}
-
+                            userId={userId}
                         />
                         <Extras
                             currentIndex={currentIndex}
@@ -254,6 +219,7 @@ const TalentForm = ({
                             initialValues={formValues}
                             showNext={handleFinishForm}
                             showPrev={showPrev}
+                            userId={userId}
                         />
                     </div>
                 </div>

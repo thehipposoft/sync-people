@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { TalentTypeAcf, IndustryType, IndustriesAvailable, CertificateType } from '@/types';
 import { TALENT_CURRENT_STATUS_DROPDOWN, TALENT_WORK_PREFERENCE_DROPDOWN, INDUSTRIES } from '@/app/constants';
 import CertificateTable from '@/components/CertificatesTable';
+import { updateProfile } from '@/lib/protected-api';
 
 type IndustriesPropsType = {
     currentIndex: number;
@@ -23,15 +24,17 @@ const Industries = ({
     const [formValues, setFormValues] = useState<TalentTypeAcf['professional_information']>({
         ...initialValues.professional_information,
         work_preference: 'full-time',
-        industries: [],
+        industries: initialValues.professional_information.industries || [],
         skills_set: initialValues.professional_information.skills_set || [],
         certificates: initialValues.professional_information.certificates || [],
     });
     const [industriesError, setIndustriesError] = useState<string>('');
     const [industryError, setIndustryError] = useState<string>('');
     const [otherIndustry, setOtherIndustry] = useState<IndustryType>();
+    const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
+    const [apiError, setApiError] = useState<string | null>(null);
 
-     useEffect(() => {
+    useEffect(() => {
         const otherIndustry = formValues.industries.find((ind) => ind.industry === 'other');
 
         if (otherIndustry) {
@@ -42,8 +45,9 @@ const Industries = ({
 
     }, [formValues.industries]);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsAPILoading(true);
 
         if (formValues.industries.length === 0) {
             setIndustriesError('Please select at least one industry');
@@ -58,6 +62,31 @@ const Industries = ({
                 ...formValues,
             },
         });
+
+        const body: any = {
+            professional_information: {
+                ...formValues,
+                industries: [
+                    ...formValues.industries,
+                ],
+            },
+        }
+
+        const response = await updateProfile(userId, body);
+
+        if(response.status === 500) {
+            setIsAPILoading(true);
+            console.log('Internal Server Error');
+            return;
+        }
+
+        if(response.data && response.data.status === 403) {
+            setApiError(response.message);
+            setIsAPILoading(false);
+            return;
+        }
+
+        setIsAPILoading(false);
 
         showNext();
     };
@@ -152,11 +181,9 @@ const Industries = ({
                 }}
                 onSubmit={handleSubmit}
             >
-                <div className='flex items-center justify-between pt-8'>
-                    <h4 className='font-bold py-2 text-xl'>
-                        {`${currentIndex + 1}. Shape Your Future Opportunities`}
-                    </h4>
-                </div>
+                <h4 className='font-bold py-2 text-xl mt-8'>
+                    {`${currentIndex + 1}. Shape Your Future Opportunities`}
+                </h4>
                 <p className='mb-2 text-primary font-bold'>
                     Help us understand what you're looking for
                 </p>
@@ -355,6 +382,15 @@ const Industries = ({
                         </p>
                     ) : null
                 }
+                {
+                    apiError && (
+                        <div className='col-span-2 p-2 border border-red-600 rounded-lg bg-red-200 mt-4'>
+                                <p className='text-red-500'>
+                                    Error: {apiError}
+                                </p>
+                            </div>
+                        )
+                }
                 <div className='flex gap-4 items-center justify-center mt-8 mb-8'>
                     <button
                         className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
@@ -362,6 +398,7 @@ const Industries = ({
                             e.preventDefault();
                             showPrev();
                         }}
+                        disabled={isAPILoading}
                     >
                         Back
                     </button>
@@ -371,6 +408,7 @@ const Industries = ({
                     <button
                         className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
                         type='submit'
+                        disabled={isAPILoading}
                     >
                         Next
                     </button>

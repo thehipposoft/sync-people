@@ -5,6 +5,7 @@ import { Link } from 'next-view-transitions';
 import { ROUTES } from '@/app/constants';
 import VideoRecorder from '@/components/VideoRecorder';
 import Modal from '@/components/Modal';
+import { updateProfile } from '@/lib/protected-api';
 
 type BasicInformationPropsType = {
     currentIndex: number;
@@ -13,6 +14,7 @@ type BasicInformationPropsType = {
     setMainFormValues: (values: TalentTypeAcf) => void;
     setRecordedVideoBlob: (blob: Blob | null) => void;
     recordedVideoBlob: Blob | null;
+    userId: string;
 }
 
 const BasicInformation = ({
@@ -22,17 +24,15 @@ const BasicInformation = ({
     setMainFormValues,
     setRecordedVideoBlob,
     recordedVideoBlob,
+    userId,
 }:BasicInformationPropsType) => {
     const [formValues, setFormValues] = useState<TalentTypeAcf['personal_information']>({
         ...initialValues.personal_information,
-        current_location: {
-            address_1: '',
-            suburb: '',
-            state: 'Victoria',
-            postcode: '',
-        },
     });
+
     const [recordVideoModalOpen, setRecordVideoModalOpen] = useState<boolean>(false);
+    const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
+    const [apiError, setApiError] = useState<string | null>(null);
 
     const videoUrl = useMemo(() => {
         if (!recordedVideoBlob) return null;
@@ -41,7 +41,7 @@ const BasicInformation = ({
         return url;
     }, [recordedVideoBlob]);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         setMainFormValues({
@@ -50,6 +50,33 @@ const BasicInformation = ({
                 ...formValues,
             },
         });
+
+        const body: any = {
+            personal_information: {
+                ...formValues,
+                 current_location: {
+                    ...formValues.current_location,
+                },
+            },
+        }
+
+        delete body.personal_information.profile_pic;
+
+        const response = await updateProfile(userId, body);
+
+        if(response.status === 500) {
+            setIsAPILoading(true);
+            console.log('Internal Server Error');
+            return;
+        }
+
+        if(response.data && response.data.status === 403) {
+            setApiError(response.message);
+            setIsAPILoading(false);
+            return;
+        }
+
+        setIsAPILoading(false);
 
         showNext();
     };
@@ -179,6 +206,7 @@ const BasicInformation = ({
                                 name="gender"
                                 value="Male"
                                 onChange={handleInputChange}
+                                checked={formValues.gender === "Male"}
                             />
                             <p className='pl-1'>Male</p>
                         </label>
@@ -188,6 +216,7 @@ const BasicInformation = ({
                                 name="gender"
                                 value="Female"
                                 onChange={handleInputChange}
+                                checked={formValues.gender === "Female"}
                             />
                             <p className='pl-1'>Female</p>
                         </label>
@@ -197,6 +226,7 @@ const BasicInformation = ({
                                 name="gender"
                                 value="Other"
                                 onChange={handleInputChange}
+                                checked={formValues.gender === "Other"}
                             />
                             <p className='pl-1'>Other</p>
                         </label>
@@ -371,6 +401,15 @@ const BasicInformation = ({
                     />
                 </div>
             </div>
+            {
+                apiError && (
+                   <div className='col-span-2 p-2 border border-red-600 rounded-lg bg-red-200 mt-4'>
+                        <p className='text-red-500'>
+                            Error: {apiError}
+                        </p>
+                    </div>
+                )
+            }
             <div className='flex flex-col gap-4'>
                 <div className='flex justify-center mt-6'>
                     {currentIndex + 1} | 4
@@ -378,6 +417,7 @@ const BasicInformation = ({
                 <button
                     className='text-[#FF8149] py-2 px-4 mx-auto rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
                     type='submit'
+                    disabled={isAPILoading}
                 >
                     Next
                 </button>

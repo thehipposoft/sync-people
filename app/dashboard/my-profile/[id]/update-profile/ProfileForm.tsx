@@ -121,7 +121,11 @@ const ProfileForm = ({
                 );
             case 'extras':
                 return (
-                    <ExtraInformation initialValues={userData.extras} userId={userId} />
+                    <ExtraInformation
+                        initialValues={userData.extras}
+                        userId={userId}
+                        availableIndustries={userData.professional_information.industries}
+                    />
                 );
             default:
                 return (

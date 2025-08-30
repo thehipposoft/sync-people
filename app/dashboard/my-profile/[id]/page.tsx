@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import MyProfile from "./MyProfile";
 import { getTalent } from "@/lib/api";
 import { TalentType } from "@/types";
-import PrivateLayout from "@/components/PrivateLayout";
 import { ROUTES } from "@/app/constants";
 import { redirect } from "next/navigation";
 
@@ -41,6 +40,10 @@ const MyProfilePage = async ({ params }: Props) => {
     if(!userData.acf) {
         redirect(ROUTES.CURRENT_TALENT_NOT_FOUND);
     };
+
+    if(!userData.acf?.professional_information.industries) {
+        redirect(`/dashboard/my-profile/${id}/create-talent-profile`)
+    }
 
     return (
         <div className="flex">

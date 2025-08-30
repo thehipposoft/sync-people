@@ -62,7 +62,7 @@ const MyProfile = ({
                             />
                             <div className='mt-20 flex justify-between flex-col-reverse gap-6 lg:flex-row'>
                                 <div className='flex flex-col gap-2'>
-                                    <h2 className='text-2xl pb-3'>
+                                    <h2 className='text-2xl mb-3'>
                                         {user.personal_information.first_name} <span className='h-bold'>{`${user.personal_information.last_name}, ${getAge(user.personal_information.date_of_birth)}`}</span>
                                     </h2>
                                     <h2 className='text-2xl font-bold'>
@@ -331,8 +331,8 @@ const MyProfile = ({
                             Other Credentials
                         </h2>
                         {
-                            user.extras.other_credentials ?
-                            user.extras.other_credentials && user.extras.other_credentials.map((credential, index) => (
+                            user.extras.certificates ?
+                            user.extras.certificates.map((credential, index) => (
                                 <div key={index}>
                                     <p className='capitalize'>
                                         {credential.certificate}

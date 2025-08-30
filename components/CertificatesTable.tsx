@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { updateProfile, uploadMedia } from "@/lib/protected-api";
-import { CertificateType, IndustriesAvailable, professional_information, TalentTypeAcf } from "@/types";
+import { CertificateType, IndustriesAvailable, professional_information } from "@/types";
 import { format } from "date-fns";
 import Modal from "@/components/Modal";
 
@@ -9,12 +9,14 @@ type PropsType = {
     userId: string;
     industries: professional_information['industries'];
     onLoadCompleted: (certificates: CertificateType[]) => void;
+    certificateParent?: 'extras' | 'professional_information';
 }
 
 const CertificateTable = ({
     certificates,
     userId,
     industries,
+    certificateParent = 'professional_information',
     onLoadCompleted,
 }: PropsType) => {
     const [talentCertificates, setTalentCertificates] = useState<CertificateType[]>(certificates || []);
@@ -39,7 +41,7 @@ const CertificateTable = ({
             const newCertificates = certificates.filter((_, index) => index !== selectedCertificateToRemoveIndex);
 
             const body = {
-                professional_information: {
+                [certificateParent]: {
                     certificates: newCertificates,
                 }
             }
@@ -67,7 +69,7 @@ const CertificateTable = ({
                 };
 
                 const apiValues = {
-                    professional_information: {
+                    [certificateParent]: {
                         certificates: currentCertificates,
                     }
                 };
@@ -101,7 +103,7 @@ const CertificateTable = ({
                 currentCertificates.push(newCertificateToPush);
 
                 const apiValues = {
-                    professional_information: {
+                    [certificateParent]: {
                         certificates: currentCertificates,
                     }
                 };

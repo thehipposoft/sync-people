@@ -374,11 +374,11 @@ const TalentProfile = ({
                         <p className='capitalize mb-3'>
                             {!talentData.extras.education_level ? '-' : talentData.extras.education_level}
                         </p>
-                        <h4 className={`${!talentData.extras.other_credentials ? 'hidden' : ''} text-lg mt-2 font-bold`}>
+                        <h4 className={`${!talentData.extras.certificates ? 'hidden' : ''} text-lg mt-2 font-bold`}>
                             Other Credentials
                         </h4>
                         {
-                            talentData.extras.other_credentials && talentData.extras.other_credentials.map((credential, index) => (
+                            talentData.extras.certificates && talentData.extras.certificates.map((credential, index) => (
                                 <div key={index}>
                                     <p className='capitalize'>
                                         {credential.certificate}

@@ -81,13 +81,7 @@ export type ExtraInformationType = {
     preferred_language: string;
     other_languages: string;
     education_level: EducationLevelType;
-    other_credentials: {
-        file_url: string;
-        certificate: string;
-        name: string;
-        expiry_date: string;
-        partialFile?: File;
-    }[];
+    certificates: CertificateType[];
     transport: string;
     social_media_links: {
         platform: SocialMediaLinksType;

@@ -129,7 +129,7 @@ const PersonalInformation = ({
 
     return (
         <>
-        <form
+            <form
                 className='grid grid-cols-2 gap-4'
                 onSubmit={handleUpdatePersonalInformationClick}
             >

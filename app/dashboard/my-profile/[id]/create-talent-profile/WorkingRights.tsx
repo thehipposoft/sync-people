@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TalentTypeAcf } from '@/types';
+import { updateProfile } from '@/lib/protected-api';
 
 type WorkingRightsPropsType = {
     currentIndex: number;
@@ -7,6 +8,7 @@ type WorkingRightsPropsType = {
     showNext: () => void;
     showPrev: () => void;
     setMainFormValues: (values: TalentTypeAcf) => void;
+    userId: string;
 }
 
 const WorkingRights = ({
@@ -15,8 +17,11 @@ const WorkingRights = ({
     showNext,
     showPrev,
     setMainFormValues,
+    userId,
 }:WorkingRightsPropsType) => {
-    const [formValues, setFormValues] = useState<TalentTypeAcf['work_experience']>([]);
+    const [formValues, setFormValues] = useState<TalentTypeAcf['work_experience']>(initialValues.work_experience || []);
+    const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
+    const [apiError, setApiError] = useState<string | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>, index: number) => {
         const { name, value } = e.target;
@@ -55,13 +60,34 @@ const WorkingRights = ({
         setFormValues(newFormValues);
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsAPILoading(true);
 
         setMainFormValues({
             ...initialValues,
             work_experience: formValues,
         });
+
+        const body: any = {
+            work_experience: formValues,
+        }
+
+        const response = await updateProfile(userId, body);
+
+        if(response.status === 500) {
+            setIsAPILoading(true);
+            console.log('Internal Server Error');
+            return;
+        }
+
+        if(response.data && response.data.status === 403) {
+            setApiError(response.message);
+            setIsAPILoading(false);
+            return;
+        }
+
+        setIsAPILoading(false);
 
         showNext();
     };
@@ -74,11 +100,9 @@ const WorkingRights = ({
             }}
             onSubmit={handleSubmit}
         >
-            <div className='flex items-center justify-between pt-8'>
-                <h4 className='font-bold py-4 text-xl'>
-                   {`${currentIndex + 1}. Work Experience`}
-                </h4>
-            </div>
+            <h4 className='font-bold py-4 text-xl mt-8'>
+                {`${currentIndex + 1}. Work Experience`}
+            </h4>
             <p className='pb-4 text-primary text-lg font-bold'>
                 Tell us about your past work experience
             </p>
@@ -249,6 +273,16 @@ const WorkingRights = ({
             >
                 + Add Work Experience
             </button>
+
+            {
+                apiError && (
+                    <div className='col-span-2 p-2 border border-red-600 rounded-lg bg-red-200 mt-4'>
+                            <p className='text-red-500'>
+                                Error: {apiError}
+                            </p>
+                        </div>
+                    )
+            }
             <div className='flex gap-4 items-center justify-center mt-4'>
                 <button
                     className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
@@ -256,6 +290,7 @@ const WorkingRights = ({
                         e.preventDefault();
                         showPrev();
                     }}
+                    disabled={isAPILoading}
                 >
                     Back
                 </button>
@@ -265,6 +300,7 @@ const WorkingRights = ({
                 <button
                     className='text-[#FF8149] py-2 px-4 rounded-3xl border border-[#FF8149] hover:text-white hover:bg-[#FF8149] hover:border-white duration-700'
                     type='submit'
+                    disabled={isAPILoading}
                 >
                     Next
                 </button>

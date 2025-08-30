@@ -1,33 +1,31 @@
 import { useState } from 'react';
 import { updateProfile } from '@/lib/protected-api';
-import { ExtraInformationType } from '@/types';
+import { ExtraInformationType,IndustryType, CertificateType } from '@/types';
 import { LEVEL_OF_ENGLISH, EDUCATION_LEVEL, LANGUAGES } from '@/app/constants';
-import UploadFileModal from '@/components/UploadFileModal';
 import Modal from '@/components/Modal';
 import { SOCIAL_MEDIA_PLATFORMS } from '@/app/constants';
-import { format } from 'date-fns';
 import { Select, SelectItem } from "@heroui/select";
+import CertificateTable from '@/components/CertificatesTable';
 
 type PersonalInformationPropsType = {
     initialValues: ExtraInformationType;
     userId: string;
+    availableIndustries: IndustryType[];
 };
 
 const ExtraInformation = ({
     initialValues,
     userId,
+    availableIndustries
 }:PersonalInformationPropsType) => {
-    const [openUploadModal, setOpenUploadModal] = useState<boolean>(false);
     const [formValues, setFormValues] = useState<ExtraInformationType>({
         ...initialValues,
-        other_credentials: initialValues.other_credentials || [],
+        certificates: initialValues.certificates || [],
         languages: initialValues.languages || [],
         social_media_links: initialValues.social_media_links || [],
         other_urls: initialValues.other_urls || [],
     });
-    const [openRemoveCredentialModal, setOpenRemoveCredentialModal] = useState<boolean>(false);
     const [isAPILoading, setIsAPILoading] = useState<boolean>(false);
-    const [credentialToRemove, setCredentialToRemove] = useState<number>(0);
     const [openUpdatedDataModal, setOpenUpdatedDataModal] = useState<boolean>(false);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -35,59 +33,6 @@ const ExtraInformation = ({
             ...formValues,
             [e.target.name]: e.target.value,
         });
-    };
-
-    const handleModalCancelClick = () => {
-        setOpenUploadModal(false);
-    };
-
-    const handleUploadCredentialClick = async (fileId: string, name: string, file_url: string, expiry_date?: string) => {
-        const otherCredentials = [
-            ...formValues.other_credentials,
-            {
-                certificate: fileId,
-                name,
-                file_url,
-                expiry_date: expiry_date || '',
-            },
-        ];
-
-        setFormValues({
-            ...formValues,
-            other_credentials: otherCredentials,
-        });
-
-        const apiValues = {
-            extras: {
-                other_credentials: otherCredentials,
-            }
-        };
-
-        const response = await updateProfile(userId, apiValues);
-
-        setOpenUploadModal(false);
-    };
-
-    const handleRemoveCredential = async () => {
-        setIsAPILoading(true);
-
-        const otherCredentials = formValues.other_credentials.filter((_, i) => i !== credentialToRemove);
-
-        setFormValues({
-            ...formValues,
-            other_credentials: otherCredentials,
-        });
-
-        const apiValues = {
-            extras: {
-                other_credentials: otherCredentials,
-            }
-        };
-
-        const response = await updateProfile(userId, apiValues);
-
-        setOpenRemoveCredentialModal(false);
-        setIsAPILoading(false);
     };
 
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -110,6 +55,13 @@ const ExtraInformation = ({
         setFormValues({
             ...formValues,
             languages,
+        });
+    };
+
+    const handleCertificateLoaded = (certificates: CertificateType[]) => {
+        setFormValues({
+            ...formValues,
+            certificates: certificates,
         });
     };
 
@@ -205,84 +157,13 @@ const ExtraInformation = ({
                     <p className="mb-3 text-sm">
                         You can upload any other credentials or referrals that you think might be relevant to your profile.
                     </p>
-                    {
-                        formValues.other_credentials.length
-                        ? <table className="w-full p-3 mb-2">
-                            <thead>
-                                <tr>
-                                    <th
-                                        className={`text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tl-lg`}
-                                    >
-                                        Name
-                                    </th>
-                                    <th
-                                        className={`text-left py-2 px-4 md:px-2 bg-gray-300`}
-                                    >
-                                        Expiry date
-                                    </th>
-                                    <th  className={`text-left py-2 px-4 md:px-2 bg-gray-300 rounded-tr-lg`}>
-
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {formValues.other_credentials.map((credential, index) => (
-                                    <tr key={index} className='py-4 border'>
-                                        <td
-                                            className={`text-left py-3 text-sm px-4 md:px-2`}
-                                        >
-                                            {credential.name}
-                                        </td>
-                                        <td
-                                            className={`text-left py-3 text-sm px-4 md:px-2`}
-                                        >
-                                            {
-                                                credential.expiry_date && format(credential.expiry_date, 'dd/MM/yyyy')
-                                                ? format(credential.expiry_date, 'dd/MM/yyyy')
-                                                : '-'
-                                            }
-                                        </td>
-                                        <td className='text-right pr-4'>
-                                            <button
-                                                className="bg-red-500 p-1 rounded-md h-fit"
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    setCredentialToRemove(index);
-                                                    setOpenRemoveCredentialModal(true);
-                                                }}
-                                            >
-                                                <svg
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width={20}
-                                                    height={20}
-                                                >
-                                                    <g id="SVGRepo_iconCarrier">
-                                                        <path d="M5.73708 6.54391V18.9857C5.73708 19.7449 6.35257 20.3604 7.11182 20.3604H16.8893C17.6485 20.3604 18.264 19.7449 18.264 18.9857V6.54391M2.90906 6.54391H21.0909" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
-                                                        </path>
-                                                        <path d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6" stroke="#fff" strokeWidth="1.7" strokeLinecap="round">
-                                                        </path>
-                                                    </g>
-                                                </svg>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        : null
-                    }
-
-                    <button
-                        className='primary-btn text-sm ml-0 my-3'
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setOpenUploadModal(true)
-                        }}
-                    >
-                        Add File
-                    </button>
+                    <CertificateTable
+                        certificates={formValues.certificates}
+                        industries={availableIndustries}
+                        onLoadCompleted={handleCertificateLoaded}
+                        userId={userId}
+                        certificateParent='extras'
+                    />
                 </div>
 
                 <div className="col-span-2">
@@ -515,39 +396,6 @@ const ExtraInformation = ({
                     </button>
                 </div>
             </form>
-            <UploadFileModal
-                modalTitle='Upload Credential'
-                isOpen={openUploadModal}
-                handleUploadClick={handleUploadCredentialClick}
-                handleCancelClick={handleModalCancelClick}
-            />
-            <Modal
-                isOpen={openRemoveCredentialModal}
-                onClose={() => setOpenRemoveCredentialModal(false)}
-            >
-                <h4 className="mb-2 text-xl">
-                    Are you sure you can remove the credential?
-                </h4>
-                <p className="mb-3">
-                    This action can not be undone.
-                </p>
-                <div className="flex gap-4">
-                    <button
-                        className="secondary-btn"
-                        onClick={() => setOpenRemoveCredentialModal(false)}
-                        disabled={isAPILoading}
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        className="primary-btn"
-                        disabled={isAPILoading}
-                        onClick={() => handleRemoveCredential()}
-                    >
-                        Yes
-                    </button>
-                </div>
-            </Modal>
             <Modal
                 isOpen={openUpdatedDataModal}
                 onClose={() => setOpenUpdatedDataModal(false)}
