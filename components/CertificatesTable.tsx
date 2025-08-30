@@ -347,7 +347,7 @@ const CertificateTable = ({
                         </label>
                         <div className="flex gap-2 flex-wrap mb-4">
                             {
-                                industries.map((industry) => {
+                                industries && industries.map((industry) => {
                                     const selectedIndustry = certificateVisibleFor.find((ind) => ind === industry.industry);
 
                                     return (

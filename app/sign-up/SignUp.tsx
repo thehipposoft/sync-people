@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { ROUTES } from '@/app/constants';
 import { createTalentNew } from "@/lib/api";
@@ -34,9 +33,6 @@ const SignUpMenu = () => {
         if (apiResponse.status === 200) {
             setIsApiLoading(false);
             setErrorMessage('');
-            //TODO: Clean fields
-            //TODO: Redirect to login page or display pop-up message about successful registration
-            //TODO: Implement email verification
             setOpenSuccessModal(true);
         } else {
             setIsApiLoading(false);
