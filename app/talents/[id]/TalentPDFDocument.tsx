@@ -1,5 +1,5 @@
 import React from 'react';
-import { TalentTypeAcf, IndustryType } from '@/types';
+import { TalentTypeAcf, IndustryType, WorkExperienceType } from '@/types';
 import {
   Document,
   Page,
@@ -8,9 +8,9 @@ import {
   Image,
   Font,
   Link,
+  StyleSheet,
 } from '@react-pdf/renderer';
 import { createTw } from 'react-pdf-tailwind';
-import { INDUSTRIES_BANNER } from '@/app/constants';
 import { parseISO, format } from 'date-fns';
 import { handleRenderTimeInJobs } from '@/lib/utils';
 
@@ -33,153 +33,232 @@ const tw = createTw({
             },
         },
     },
-  });
+});
+
+const styles = StyleSheet.create({
+    page: {
+        backgroundColor: '#ffffff',
+        fontSize: 11,
+        color: '#1A335D',
+    },
+    header: {
+        flexDirection: 'row',
+        marginBottom: 20,
+        alignItems: 'center',
+        backgroundColor: '#1A335D',
+        padding: 32,
+    },
+    avatar: {
+        width: 90,
+        height: 90,
+        borderRadius: 45,
+        borderWidth: 3,
+        borderColor: '#fff',
+        objectFit: 'cover',
+        marginRight: 16,
+    },
+    nameBlock: {
+        flex: 1,
+    },
+    name: {
+        fontSize: 20,
+        fontWeight: 700,
+        marginBottom: 4,
+        color: '#fff',
+    },
+    about: {
+        fontSize: 11,
+        fontStyle: 'italic',
+        color: '#fff',
+        maxWidth: '90%',
+    },
+    qr: {
+        width: 70,
+        height: 70,
+        marginLeft: 10,
+    },
+    section: {
+        marginBottom: 16,
+    },
+    sectionHeader: {
+        fontSize: 14,
+        fontWeight: 700,
+        marginBottom: 6,
+        paddingBottom: 3,
+    },
+    value: {
+        fontSize: 11,
+    },
+    link: {
+        fontSize: 10,
+        color: '#1A335D',
+        textDecoration: 'underline',
+        marginBottom: 2,
+    },
+});
 
 type Props = {
     talentData: TalentTypeAcf;
     selectedIndustry: IndustryType;
+    selectedIndustryWorkExperience: WorkExperienceType[];
+    userId: string;
 };
 
 const TalentPDFDocument = ({
     talentData,
-    selectedIndustry
+    selectedIndustry,
+    selectedIndustryWorkExperience,
+    userId
 }:Props) => {
     return (
         <Document>
-            <Page size="A4" style={tw('bg-white px-6 py-8 font-sans')}>
-                {
-                    selectedIndustry.industry === 'other' ?
-                    <View style={tw('relative bg-primary h-24 rounded-t-2xl  w-full flex justify-center')}>
+            <Page size="A4" style={styles.page}>
+                {/* Header */}
+                <View style={styles.header}>
+                    <Image
+                        style={styles.avatar}
+                        src={talentData.personal_information.profile_pic || '/assets/images/profile-avatar.png'}
+                    />
+                    <View style={styles.nameBlock}>
+                        <Text style={styles.name}>
+                            {talentData.personal_information.first_name}{' '}
+                            {talentData.personal_information.last_name} –{' '}
+                            {talentData.personal_information.country_of_birth}
+                        </Text>
+                        {talentData.personal_information.about_myself && (
+                        <Text style={styles.about}>
+                            {talentData.personal_information.about_myself}
+                        </Text>
+                        )}
                     </View>
-                    :
-                    <View style={tw('rounded-t-2xl overflow-hidden h-24')}>
-                        <Image
-                            style={tw('object-cover w-full h-full')}
-                            src={`${INDUSTRIES_BANNER[selectedIndustry.industry]}`}
-                        />
-                    </View>
-                }
-                <View style={tw('flex flex-col mt-6')}>
-                    <View style={tw('flex-row items-start gap-4 mb-4')}>
-                        <Image
-                            style={tw('rounded-full border-4 border-white w-24 h-24')}
-                            src={talentData.personal_information.profile_pic
-                                ? talentData.personal_information.profile_pic
-                                : '/assets/images/profile-avatar.png'
-                            }
-                        />
-                        <View style={tw('mb-4 max-w-[400px]')}>
-                            <Text style={tw('text-3xl font-bold text-primary')}>
-                                {talentData.personal_information.first_name} {talentData.personal_information.last_name} - {selectedIndustry.position}
-                            </Text>
-                            <Text style={tw('text-base text-primary max-w-[400px]')}>
-                                {talentData.personal_information.about_myself
-                                ? `" ${talentData.personal_information.about_myself} "`
-                                : ''}
-                            </Text>
-                        </View>
-                    </View>
+                    <Image
+                        src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https://insyncx.com/talents/${userId}?industry=${selectedIndustry.industry}&margin=30`}
+                        style={styles.qr}
+                    />
+                </View>
 
-                    <View style={tw('flex-row justify-between my-4')}>
+                <View style={[{ paddingHorizontal: 32 }]}>
+                    {/* Location & Work Preference */}
+                    <View style={[styles.section, { flexDirection: 'row', justifyContent: 'space-between' }]}>
                         <View>
-                            <Text style={tw('text-xl text-primary')}>Current Location</Text>
-                            <Text style={tw('text-sm text-primary')}>
-                                {talentData.personal_information.current_location?.suburb}, {talentData.personal_information.current_location?.state}
+                            <Text style={styles.sectionHeader}>Current Location</Text>
+                            <Text style={styles.value}>
+                                {talentData.personal_information.current_location?.suburb},{' '}
+                                {talentData.personal_information.current_location?.state}
                             </Text>
                         </View>
-                        <View style={tw('min-w-[150px]')}>
-                            <Text style={tw('text-xl text-primary')}>Country of Birth</Text>
-                            <Text style={tw('text-sm text-primary')}>
-                                {talentData.personal_information.country_of_birth || '-'}
-                            </Text>
-                        </View>
-                    </View>
-
-                    <View style={tw('flex-row justify-between mb-4')}>
-                        <View >
-                            <Text style={tw('text-xl text-primary')}>Licenses</Text>
-                            <Text style={tw('text-sm text-primary')}>
-                            {selectedIndustry.certificates && selectedIndustry.certificates?.map(c => c.name).join(', ') || '-'}
-                            </Text>
-                        </View>
-                        <View style={tw('min-w-[150px]')}>
-                            <Text style={tw('text-xl text-primary')}>
-                                Work Preference
-                            </Text>
-                            <Text style={tw('text-sm capitalize text-primary')}>
-                                {talentData.professional_information.work_preference || '-'}
+                        <View style={[styles.section, { flexDirection: 'column', alignItems: 'flex-end' }]}>
+                            <Text style={styles.sectionHeader}>Work Preference</Text>
+                            <Text style={styles.value}>
+                            {talentData.professional_information.work_preference || '-'}
                             </Text>
                         </View>
                     </View>
 
-                    <View style={tw('mt-4')}>
-                        <Text style={tw('text-xl mb-2 text-primary')}>Contact me</Text>
-                        {talentData.personal_information.mobile && (
-                            <Text style={tw('text-sm text-primary')}>{talentData.personal_information.mobile}</Text>
-                        )}
-                        {talentData.personal_information.email && (
-                            <Text style={tw('text-sm text-primary')}>{talentData.personal_information.email}</Text>
-                        )}
+                    {/* Licenses & Contact */}
+                    <View style={[styles.section, { flexDirection: 'row', justifyContent: 'space-between' }]}>
+                        <View>
+                            <Text style={tw('text-xl text-primary font-bold')}>
+                                Licenses
+                            </Text>
+                            <Text style={tw('text-sm text-primary')}>
+                                {talentData.professional_information.certificates && talentData.professional_information.certificates.filter(c => c.visible_for.includes(selectedIndustry.industry)).map(c => c.name).join(', ') || '-'}
+                            </Text>
+                        </View>
+                        <View style={[styles.section, { flexDirection: 'column', alignItems: 'flex-end' }]}>
+                            <Text style={tw('text-xl text-primary font-bold text-right')}>
+                                Contact
+                            </Text>
+                            {talentData.personal_information.mobile && (
+                                <Link
+                                    style={tw('text-sm text-primary underline text-right mb-2')}
+                                    href={`tel:${talentData.personal_information.mobile}`}
+                                >
+                                        {talentData.personal_information.mobile}
+                                </Link>
+                            )}
+                            {talentData.personal_information.email && (
+                                <Text style={tw('text-sm text-primary text-right')}>{talentData.personal_information.email}</Text>
+                            )}
+                        </View>
                     </View>
 
-                    {talentData.work_experience?.length > 0 && (
-                    <View style={tw('mt-8')}>
-                        <Text style={tw('text-2xl font-bold mb-2 text-primary')}>Work Experience</Text>
-                        {
-                            [...talentData.work_experience]
-                                .sort((a, b) => parseISO(b.start_date).getTime() - parseISO(a.start_date).getTime())
-                                .map((experience, index) => {
-                                    const startDate = parseISO(experience.start_date);
-                                    const endDate = experience.currently_working ? new Date() : parseISO(experience.end_date);
+                    {/* Work Experience */}
+                    {selectedIndustryWorkExperience?.length > 0 && (
+                        <View style={tw('my-2')}>
+                            <Text style={tw('text-2xl font-bold text-primary')}>
+                                Work Experience
+                            </Text>
+                            {
+                                [...selectedIndustryWorkExperience]
+                                    .map((experience, index) => {
+                                        const startDate = parseISO(experience.start_date);
+                                        const endDate = experience.currently_working ? new Date() : parseISO(experience.end_date);
 
-                                    return (
-                                        <View key={index} style={tw('flex flex-col gap-2 mb-2')}>
-                                            <Text style={tw('text-xl font-bold text-primary')}>
-                                                {experience.position} - <Text style={tw('text-lg')}>{experience.company_name}</Text>
-                                            </Text>
-                                            <Text style={tw('text-base text-primary')}>
-                                                {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current ' : format(experience.end_date, 'dd/MM/yyyy')}
-                                                <Text style={tw('ml-1 text-sm')}>
-                                                    ({handleRenderTimeInJobs(startDate, endDate)})
+                                        return (
+                                            <View key={index} style={tw('flex flex-col mb-2')}>
+                                                <Text style={tw('text-xl font-bold text-primary')}>
+                                                    {experience.position} - <Text style={tw('text-lg font-normal')}>{experience.company_name}</Text>
                                                 </Text>
-                                            </Text>
-                                            <Text style={tw('text-sm text-primary')}>{experience.description}</Text>
-                                        </View>
-                                    );
-                                })
-                        }
-                    </View>
+                                                <Text style={tw('text-base text-primary')}>
+                                                    {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current ' : format(experience.end_date, 'dd/MM/yyyy')}
+                                                    <Text style={tw('ml-1 text-sm')}>
+                                                        ({handleRenderTimeInJobs(startDate, endDate)})
+                                                    </Text>
+                                                </Text>
+                                                <Text style={tw('text-sm text-primary')}>{experience.description}</Text>
+                                            </View>
+                                        );
+                                    })
+                            }
+                        </View>
                     )}
-{/*                     {talentData.professional_information.skills_set?.length > 0 && (
-                        <View style={tw('mt-8')}>
-                            <Text style={tw('text-2xl font-bold text-primary')}>Key Skills</Text>
+
+                    {/* Skills */}
+                    {talentData.professional_information.skills_set?.length > 0 && (
+                        <View style={tw('my-2')}>
+                            <Text style={tw('text-2xl font-bold text-primary font-bold')}>
+                                Key Skills
+                            </Text>
                             <View style={tw('flex-col flex-wrap gap-2')}>
                                 {talentData.professional_information.skills_set.map((skill, index) => (
-                                    <Text key={index} style={tw('text-sm text-primary py-1')}>
-                                        {skill.skill}
+                                    <Text key={index} style={tw('text-sm text-primary')}>
+                                        - {skill.skill}
                                     </Text>
                                 ))}
                             </View>
                         </View>
-                    )} */}
-                    <View style={tw('mt-6')}>
-                        <Text style={tw('text-2xl font-bold mb-2 text-primary')}>Extras</Text>
-                        <Text style={tw('text-lg text-primary')}>
-                            Level of English
+                    )}
+
+                    {/* Extras */}
+                    <View style={tw('my-2')}>
+                        <Text style={tw('text-2xl font-bold text-primary')}>
+                            Extras
                         </Text>
-                        <Text style={tw('capitalize text-sm mb-5 text-primary')}>
-                            {talentData.extras.level_of_english || '-'}
-                        </Text>
+                        <View style={styles.section}>
+                            <Text style={styles.sectionHeader}>
+                                Level of English
+                            </Text>
+                            <Text style={tw('capitalize text-sm text-primary')}>
+                                {talentData.extras.level_of_english || '-'}
+                            </Text>
+                        </View>
+
                         {talentData.extras.transport && (
-                            <>
-                                <Text style={tw('text-lg text-primary')}>Own Transport</Text>
-                                <Text style={tw('capitalize mb-5 text-sm text-primary')}>{talentData.extras.transport}</Text>
-                            </>
+                            <View style={styles.section}>
+                                <Text style={styles.sectionHeader}>
+                                    Own Transport
+                                </Text>
+                                <Text style={tw('capitalize text-sm text-primary')}>
+                                    {talentData.extras.transport}
+                                </Text>
+                            </View>
                         )}
+
                         {
                             talentData.extras.languages?.length > 0 && (
-                                <>
-                                    <Text style={tw('text-lg text-primary')}>
+                                <View style={styles.section}>
+                                    <Text style={styles.sectionHeader}>
                                         Languages
                                     </Text>
                                     <Text style={tw('capitalize text-sm text-primary')}>
@@ -187,58 +266,43 @@ const TalentPDFDocument = ({
                                         ? talentData.extras.languages.join(', ')
                                         : '-'}
                                     </Text>
-                                </>
+                                </View>
                             )
                         }
-                        <Text style={tw('text-lg text-primary')}>
-                            Education Level
-                        </Text>
-                        <Text style={tw('capitalize text-sm text-primary')}>
-                            {talentData.extras.education_level || '-'}
-                        </Text>
-                        {
-                            talentData.extras.other_urls?.length > 0 && (
-                            <View style={tw('mt-6')}>
-                                <Text style={tw('text-xl text-primary')}>Other URLs</Text>
-                                {talentData.extras.other_urls && talentData.extras.other_urls.length > 0 ? (
-                                    <View style={tw('flex-row flex-wrap gap-2')}>
-                                            {talentData.extras.other_urls.map((item, index) => (
-                                                <View key={index} style={tw('mr-2 mb-2')}>
-                                                    <Link
-                                                        src={item.url}
-                                                        style={tw('text-sm text-primary underline')}
-                                                    >
-                                                        {item.name}
-                                                    </Link>
-                                                </View>
-                                            ))}
-                                            </View>
-                                        ) : (
-                                            <Text style={tw('text-sm text-primary')}>-</Text>
-                                        )}
-                                    </View>
-                                )
-                        }
-                        {
-                            talentData.extras.social_media_links?.length > 0 && (
-                            <View style={tw('mt-6')}>
-                                <Text style={tw('text-xl mb-2 text-primary')}>Other URLs</Text>
-                                {talentData.extras.social_media_links && talentData.extras.social_media_links.length > 0 ? (
-                                    <View style={tw('flex-row flex-wrap gap-2')}>
-                                            {talentData.extras.social_media_links.map((item, index) => (
-                                                <View key={index} style={tw('mr-2 mb-2')}>
-                                                    <Text style={tw('text-sm text-primary')}>
-                                                        {item.url}
-                                                    </Text>
-                                                </View>
-                                            ))}
-                                            </View>
-                                        ) : (
-                                            <Text style={tw('text-sm text-primary')}>-</Text>
-                                        )}
-                                    </View>
-                                )
-                        }
+
+                        <View style={styles.section}>
+                            <Text style={styles.sectionHeader}>
+                                Education Level
+                            </Text>
+                            <Text style={tw('capitalize text-sm text-primary')}>
+                                {talentData.extras.education_level || '-'}
+                            </Text>
+                        </View>
+
+                        {/* Links */}
+                        {talentData.extras.other_urls?.length > 0 && (
+                            <View style={styles.section}>
+                                <Text style={styles.sectionHeader}>
+                                    Other URLs
+                                </Text>
+                                {talentData.extras.other_urls.map((u, i) => (
+                                    <Link key={i} src={u.url} style={styles.link}>
+                                        {u.name}
+                                    </Link>
+                                ))}
+                            </View>
+                        )}
+
+                        {talentData.extras.social_media_links?.length > 0 && (
+                            <View style={styles.section}>
+                                <Text style={styles.sectionHeader}>
+                                    Social Media
+                                </Text>
+                                {talentData.extras.social_media_links.map((u, i) => (
+                                    <Text key={i} style={styles.link}>{u.url}</Text>
+                                ))}
+                            </View>
+                        )}
                     </View>
                 </View>
             </Page>

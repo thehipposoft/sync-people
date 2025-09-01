@@ -278,11 +278,9 @@ const TalentForm = ({
                     <p className='text-center mb-4'>
                         Your profile has been successfully updated
                     </p>
-                    <div className='flex justify-center primary-btn mx-auto'>
-                        <a className='text-white' href={`${ROUTES.MY_PROFILE}/${userId}`}>
-                            Go to my dashboard
-                        </a>
-                    </div>
+                    <a className='flex justify-center primary-btn mx-auto' href={`${ROUTES.MY_PROFILE}/${userId}`}>
+                        Go to my dashboard
+                    </a>
                 </div>
             </Modal>
         </div>

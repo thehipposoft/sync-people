@@ -3,10 +3,10 @@ import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
-import { TalentTypeAcf, IndustryType, CertificateType } from '@/types';
+import { TalentTypeAcf, IndustryType, CertificateType, WorkExperienceType } from '@/types';
 import { INDUSTRIES_BANNER, ROUTES } from '@/app/constants';
 import { renderSocialMediaIcon, handleRenderTimeInJobs } from '@/lib/utils';
-import { pdf, PDFViewer } from '@react-pdf/renderer';
+import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 import TalentPDFDocument from './TalentPDFDocument';
 import { format, parseISO } from 'date-fns';
@@ -28,6 +28,7 @@ const TalentProfile = ({
     const pathname = useSearchParams();
     const queryIndustry = pathname.get('industry') || '';
     const [selectedIndustry, setSelectedIndustry] = useState<IndustryType>(talentData.professional_information.industries[0]);
+    const [selectedIndustryWorkExperience, setSelectedIndustryWorkExperience] = useState<WorkExperienceType[]>([]);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const [credentials, setCredentials] = useState<CertificateType[]>([]);
@@ -49,12 +50,25 @@ const TalentProfile = ({
                 );
                 setCredentials(filteredCertificates);
             }
+
+            if(talentData.work_experience && talentData.work_experience.length) {
+                const filteredWorkExperience = talentData.work_experience.filter((experience) =>
+                    experience.visible_for.includes(selectedIndustry.industry)
+                );
+
+                setSelectedIndustryWorkExperience(filteredWorkExperience.sort((a, b) => parseISO(b.start_date).getTime() - parseISO(a.start_date).getTime()));
+            }
         }
     }, [selectedIndustry]);
 
     const generatePDF = async () => {
         const blob = await pdf(
-          <TalentPDFDocument talentData={talentData} selectedIndustry={selectedIndustry} />
+          <TalentPDFDocument
+            talentData={talentData}
+            selectedIndustry={selectedIndustry}
+            selectedIndustryWorkExperience={selectedIndustryWorkExperience}
+            userId={id}
+          />
         ).toBlob();
 
         saveAs(blob, `Insyncx_${talentData.personal_information.first_name}_${talentData.personal_information.last_name}_Profile.pdf`);
@@ -108,7 +122,7 @@ const TalentProfile = ({
                                     className='rounded-full border-[6px] border-white -top-[4rem] md:-top-[6rem] w-36 h-36 relative md:absolute object-cover left-[50%] transform -translate-x-1/2 lg:left-0 lg:translate-x-0'
                                 />
                                 <p className={`${!talentData.personal_information.about_myself ? 'hidden' : ''} relative -top-10 md:top-0 md:pl-[10rem]`}>
-                                    " {talentData.personal_information.about_myself} "
+                                    {talentData.personal_information.about_myself}
                                 </p>
                             </div>
 
@@ -147,7 +161,7 @@ const TalentProfile = ({
                                                 Current Location
                                             </h4>
                                             <p className='text-primary'>
-                                                    {talentData.personal_information.current_location.state && talentData.personal_information.current_location.suburb
+                                                {talentData.personal_information.current_location.state && talentData.personal_information.current_location.suburb
                                                     ? `${talentData.personal_information.current_location.suburb}, ${talentData.personal_information.current_location.state}`
                                                     : `-`
                                                 }
@@ -295,14 +309,10 @@ const TalentProfile = ({
                             </h4>
                             <div className='flex flex-col gap-2'>
                                 {
-                                [...talentData.work_experience]
-                                    .sort((a, b) => parseISO(b.start_date).getTime() - parseISO(a.start_date).getTime())
+                                selectedIndustryWorkExperience
                                     .map((experience, index) => {
                                         const startDate = parseISO(experience.start_date);
                                         const endDate = experience.currently_working ? new Date() : parseISO(experience.end_date);
-                                        const isVisibleForIndustry = experience.visible_for.includes(selectedIndustry.industry);
-
-                                        if (!isVisibleForIndustry) return null;
 
                                         return (
                                             <div key={index} className='flex flex-col gap-2'>
@@ -443,11 +453,6 @@ const TalentProfile = ({
                     Download Profile
                 </button>
             </div>
-{/*             <div className='min-h-screen'>
-                <PDFViewer>
-                    <TalentPDFDocument talentData={talentData} selectedIndustry={selectedIndustry} />
-                </PDFViewer>
-            </div> */}
         </div>
     );
 };
