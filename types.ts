@@ -67,7 +67,7 @@ export type WorkExperienceType = {
     visible_for: IndustriesAvailable[];
 };
 
-export type LevelOfEnglishType =  'beginner' | 'elementary' | 'intermediate' | 'upper_intermediate' | 'advanced' | 'proficient' | 'native';
+export type LevelOfEnglishType = 'beginner' | 'elementary' | 'intermediate' | 'upper_intermediate' | 'advanced' | 'proficient' | 'native';
 
 export type EducationLevelType = 'No Formal Education' | 'Primary Education' | 'Secondary Education' | 'High School Diploma' | 'Associate Degree' | 'Bachelor’s Degree' | 'Master’s Degree' | 'Doctorate (PhD)' | 'Vocational Training' | 'Other';
 
