@@ -42,8 +42,13 @@ const LoginMenu = () => {
 
     return (
         <div className='flex items-center justify-center w-full my-6 lg:my-20'>
-            <div className='bg-white mx-4 rounded-2xl border p-8 shadow-xl'>
-                <h1 className='text-5xl text-center'>Welcome back!</h1>
+            <div className='bg-white mx-4 rounded-2xl border p-8 shadow-xl max-w-[40rem]'>
+                <h1 className='text-3xl lg:text-5xl text-center mb-6'>
+                    Login to Insyncx
+                </h1>
+                <p>
+                    Welcome back! Log in to your Insyncx account to update your digital passport, manage your skills, and explore work opportunities across Australia.
+                </p>
                 <form className='md:pt-6' onSubmit={handleSubmit}>
                     <section className='flex flex-col'>
                         <label

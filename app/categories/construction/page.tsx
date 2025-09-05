@@ -3,13 +3,56 @@ import Image from "next/image";
 import PublicLayout from "@/components/PublicLayout";
 
 export const metadata: Metadata = {
-  title: "Insyncx | Construction",
-  description: "Connecting talents with opportunities in the construction industry",
-};
+    title: "Why Choose a Career in Construction? | Insyncx",
+    description: "Explore the benefits of starting a career in construction. Learn about opportunities, growth potential, and why this industry is perfect for backpackers, students, and newcomers to Australia.",
+    openGraph: {
+        title: "Why Choose a Career in Construction? | Insyncx",
+        description: "Discover the advantages of working in the construction industry. From flexibility to career growth, construction offers great opportunities for newcomers in Australia.",
+        url: "https://insyncx.com/categories/construction",
+        siteName: "Insyncx",
+        images: [
+        {
+            url: "/og-image.png",
+            width: 1200,
+            height: 630,
+            alt: "Construction Careers in Australia",
+        },
+        ],
+        locale: "en_AU",
+        type: "article",
+    },
+}
 
 export default function ConstructionPage() {
     return (
         <PublicLayout>
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    "headline": "Why Choose a Career in Construction?",
+                    "description": "Learn why construction is a top career choice in Australia. Find out about opportunities, skills required, and why it suits backpackers, students, and immigrants.",
+                    "author": {
+                        "@type": "Organization",
+                        "name": "Insyncx"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Insyncx",
+                        "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://insyncx.com/logo.png"
+                        }
+                    },
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": "https://insyncx.com/categories/construction"
+                    },
+                    "datePublished": "2025-08-30",
+                    "dateModified": "2025-08-30",
+                    "inLanguage": "en-AU"
+                })}
+            </script>
             <div className="my-20 flex flex-col md:flex-row gap-16 max-w-[80vw] md:max-w-none">
                 <div>
                     <h1 className="md:text-5xl mb-10 tracking-tight md:tracking-normal">

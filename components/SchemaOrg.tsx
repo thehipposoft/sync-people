@@ -14,8 +14,13 @@ const SchemaOrg = () => {
                         "@context": "https://schema.org",
                         "@type": "Organization",
                         "name": "Insyncx",
-                        "url": "https://insyncx.co",
-                        "logo": "https://insyncx.co/assets/logo.png"
+                        "url": "https://insyncx.com",
+                        "logo": "https://insyncx.com/assets/logo.png",
+                        "sameAs": [
+                            "https://www.facebook.com/profile.php?id=61561044445028",
+                            "https://www.instagram.com/insyncx.au/",
+                            "https://www.linkedin.com/company/insyncx/"
+                        ]
                     }`,
                 }}
             />

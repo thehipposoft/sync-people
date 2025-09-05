@@ -1,5 +1,5 @@
 import React from 'react'
-import SignUpMenu from '@/app/sign-up/SignUp'
+import SignUpMenu from '@/app/signup/SignUp'
 
 export default async function BusinessSignUpPage() {
     return(

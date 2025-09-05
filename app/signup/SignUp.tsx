@@ -43,7 +43,9 @@ const SignUpMenu = () => {
     return (
         <div className='flex items-center justify-center h-screen px-4 w-full'>
             <div className='bg-white rounded-2xl border p-8 shadow-xl'>
-                <h1 className='text-5xl text-center'>Sign up</h1>
+                <h1 className='text-3xl text-center'>
+                    Sign Up and <br /> Create Your Digital Passport
+                </h1>
                 <form onSubmit={handleSubmit} className='md:pt-6 pt-4'>
                     <section className='flex gap-4 flex-col md:flex-row'>
                         <div className='lg:w-1/2 flex flex-col gap-1'>

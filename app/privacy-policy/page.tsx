@@ -1,9 +1,44 @@
 import PublicLayout from "@/components/PublicLayout";
 import { format } from "date-fns";
 
+export const metadata = {
+    title: "Privacy Policy | Insyncx",
+    description: "Learn how Insyncx collects, uses, and protects your personal information. Read our Privacy Policy to understand your data rights and how we keep your information safe.",
+    openGraph: {
+        title: "Privacy Policy | Insyncx",
+        description: "Read the Insyncx Privacy Policy. Understand how we handle your personal data, ensure your privacy, and comply with Australian data protection laws.",
+        url: "https://insyncx.com/privacy-policy",
+        siteName: "Insyncx",
+        images: [
+        {
+            url: "/assets/og-image.png",
+            width: 1200,
+            height: 630,
+            alt: "Insyncx Privacy Policy",
+        },
+        ],
+        locale: "en_AU",
+        type: "website",
+    },
+}
+
 export default async function PrivacyPolicyPage() {
     return(
         <PublicLayout>
+            {JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "PrivacyPolicy",
+                "name": "Insyncx Privacy Policy",
+                "url": "https://insyncx.com/privacy-policy",
+                "description": "The official Privacy Policy of Insyncx, explaining how we collect, use, and safeguard user data in compliance with Australian privacy laws.",
+                "provider": {
+                    "@type": "Organization",
+                    "name": "Insyncx",
+                    "url": "https://insyncx.com",
+                    "logo": "https://insyncx.com/logo.png"
+                },
+                "inLanguage": "en-AU"
+            })}
             <div className="my-8 px-6">
                 <h1>Privacy Policy - Insyncx</h1>
                 <p className="my-4">

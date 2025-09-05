@@ -84,7 +84,7 @@ const Footer = () => {
                         <Link target='_blank' href={'https://www.facebook.com/profile.php?id=61561044445028'} className='md:mx-2'>
                             <Image src={'/assets/images/vectors/facebook.svg'} alt='icon' width={30} height={30}  />
                         </Link>
-                        <Link target='_blank' href={'https://www.linkedin.com/company/insyncx/about/'} className='md:mx-2'>
+                        <Link target='_blank' href={'https://www.linkedin.com/company/insyncx/'} className='md:mx-2'>
                             <Image src={'/assets/images/vectors/linkedin.svg'} alt='icon' width={30} height={30} />
                         </Link>
                     </div>

@@ -2,13 +2,54 @@ import { Metadata } from "next";
 import PublicLayout from "@/components/PublicLayout";
 
 export const metadata: Metadata = {
-    title: "Insyncx | Why Create a Presentation Video?",
-    description: "Learn why creating a presentation video is essential for showcasing your skills and experience to potential employers.",
-};
+    title: "Why Create a Presentation Video? | Insyncx",
+    description: "Discover why creating a presentation video can boost your chances of finding opportunities. Learn how a short video helps talents stand out and connect with employers on Insyncx.",
+    openGraph: {
+        title: "Why Create a Presentation Video? | Insyncx",
+        description: "A presentation video is your chance to make a great first impression. See why it matters and how it helps you connect with opportunities on Insyncx.",
+        url: "https://insyncx.com/blog/why-create-a-presentation-video",
+        siteName: "Insyncx",
+        images: [
+        {
+            url: "/assets/og-image.png", // add in /public
+            width: 1200,
+            height: 630,
+            alt: "Why Create a Presentation Video",
+        },
+        ],
+        locale: "en_AU",
+        type: "article",
+    },
+}
 
 export default function PresentationVideo() {
     return (
         <PublicLayout>
+            {JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Article",
+                "headline": "Why Create a Presentation Video?",
+                "description": "Learn why a presentation video is powerful for talents on Insyncx. A short video helps showcase personality, communication skills, and connect with employers.",
+                "author": {
+                    "@type": "Organization",
+                    "name": "Insyncx"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Insyncx",
+                    "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://insyncx.com/logo.png"
+                    }
+                },
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "https://insyncx.com/blog/why-create-a-presentation-video"
+                },
+                "datePublished": "2025-08-30",
+                "dateModified": "2025-08-30",
+                "inLanguage": "en-AU"
+            })}
             <div className="my-20 flex flex-col md:flex-row gap-16 max-w-[80vw] md:max-w-none">
                 <div>
                     <h1 className="md:text-5xl mb-10">

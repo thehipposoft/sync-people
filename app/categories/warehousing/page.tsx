@@ -3,13 +3,56 @@ import PublicLayout from "@/components/PublicLayout";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Insyncx | Warehousing",
-  description: "Connecting talents with opportunities in the warehousing industry",
+    title: "Why Choose a Career in Warehousing? | Insyncx",
+    description: "Explore the benefits of starting a career in warehousing. Learn about opportunities, growth potential, and why this industry is perfect for backpackers, students, and newcomers to Australia.",
+    openGraph: {
+        title: "Why Choose a Career in Warehousing? | Insyncx",
+        description: "Discover the advantages of working in the warehousing industry. From flexibility to career growth, warehousing offers great opportunities for newcomers in Australia.",
+        url: "https://insyncx.com/categories/warehousing",
+        siteName: "Insyncx",
+        images: [
+        {
+            url: "/og-image.png",
+            width: 1200,
+            height: 630,
+            alt: "Warehousing Careers in Australia",
+        },
+        ],
+        locale: "en_AU",
+        type: "article",
+    },
 };
 
 export default function WarehousingPage() {
     return (
         <PublicLayout>
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    "headline": "Why Choose a Career in Warehousing?",
+                    "description": "Learn why warehousing is a top career choice in Australia. Find out about opportunities, skills required, and why it suits backpackers, students, and immigrants.",
+                    "author": {
+                        "@type": "Organization",
+                        "name": "Insyncx"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Insyncx",
+                        "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://insyncx.com/logo.png"
+                        }
+                    },
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": "https://insyncx.com/categories/warehousing"
+                    },
+                    "datePublished": "2025-08-30",
+                    "dateModified": "2025-08-30",
+                    "inLanguage": "en-AU"
+                })}
+            </script>
             <div className="my-20 flex flex-col md:flex-row gap-16 max-w-[80vw] md:max-w-none">
                 <div>
                     <h1 className="lg:text-5xl text-4xl mb-10 tracking-tight md:tracking-normal">

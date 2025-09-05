@@ -2,9 +2,46 @@ import PublicLayout from "@/components/PublicLayout";
 import { format } from "date-fns";
 import { ROUTES } from "../constants";
 
+export const metadata = {
+    title: "Terms & Conditions | Insyncx",
+    description: "Read the Insyncx Terms & Conditions. Learn about your rights, responsibilities, and the rules for using our platform to connect with employers in Australia.",
+    openGraph: {
+        title: "Terms & Conditions | Insyncx",
+        description: "Understand the rules for using Insyncx. Review our terms of service covering accounts, usage, privacy, and legal obligations.",
+        url: "https://insyncx.com/terms-and-conditions",
+        siteName: "Insyncx",
+        images: [
+        {
+            url: "/assets/og-image.png",
+            width: 1200,
+            height: 630,
+            alt: "Insyncx Terms & Conditions",
+        },
+        ],
+        locale: "en_AU",
+        type: "website",
+    },
+}
+
 export default async function TermsPage() {
     return(
         <PublicLayout>
+            <script type="application/ld+json">
+                {JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "TermsOfService",
+                "name": "Insyncx Terms & Conditions",
+                "url": "https://insyncx.com/terms-and-conditions",
+                "description": "The official Terms & Conditions of Insyncx, outlining rules, user rights, and responsibilities when using our platform.",
+                "provider": {
+                    "@type": "Organization",
+                    "name": "Insyncx",
+                    "url": "https://insyncx.com",
+                    "logo": "https://insyncx.com/logo.png"
+                },
+                "inLanguage": "en-AU"
+                })}
+            </script>
             <div className="my-8 px-6">
                 <h1>Terms and Conditions</h1>
                 <p className="my-4">

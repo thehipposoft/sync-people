@@ -39,7 +39,7 @@ const poppinsBold = localFont({
 });
 
 export const metadata: Metadata = {
-    title: 'Insyncx | Home',
+    title: 'Insyncx - Connecting talents with opportunities',
     description: 'Connecting talents with opportunities',
     manifest: '/manifest.json',
     keywords: [
@@ -65,8 +65,8 @@ export const metadata: Metadata = {
     ],
     authors: [
         {
-        name: 'The Hipposoft',
-        url: 'https://www.thehipposoft.com',
+            name: 'The Hipposoft',
+            url: 'https://www.thehipposoft.com',
         },
     ],
     viewport:

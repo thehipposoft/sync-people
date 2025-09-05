@@ -3,13 +3,57 @@ import PublicLayout from "@/components/PublicLayout";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-    title: "Insyncx | Cleaning",
-    description: "Connecting talents with opportunities in the cleaning industry",
-};
+    title: "Why Choose a Career in Cleaning Services? | Insyncx",
+    description: "Explore the benefits of starting a career in cleaning services. Learn about opportunities, growth potential, and why this industry is perfect for backpackers, students, and newcomers to Australia.",
+    openGraph: {
+        title: "Why Choose a Career in Cleaning Services? | Insyncx",
+        description: "Discover the advantages of working in the cleaning industry. From flexibility to career growth, cleaning services offer great opportunities for newcomers in Australia.",
+        url: "https://insyncx.com/categories/cleaning",
+        siteName: "Insyncx",
+        images: [
+        {
+            url: "/og-image.png",
+            width: 1200,
+            height: 630,
+            alt: "Cleaning Services Careers in Australia",
+        },
+        ],
+        locale: "en_AU",
+        type: "article",
+    },
+}
+
 
 export default function CleaningPage() {
     return (
         <PublicLayout>
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    "headline": "Why Choose a Career in Cleaning Services?",
+                    "description": "Learn why cleaning services is a top career choice in Australia. Find out about opportunities, skills required, and why it suits backpackers, students, and immigrants.",
+                    "author": {
+                        "@type": "Organization",
+                        "name": "Insyncx"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Insyncx",
+                        "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://insyncx.com/logo.png"
+                        }
+                    },
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": "https://insyncx.com/categories/cleaning"
+                    },
+                    "datePublished": "2025-08-30",
+                    "dateModified": "2025-08-30",
+                    "inLanguage": "en-AU"
+                })}
+            </script>
             <div className="my-20 flex flex-col md:flex-row gap-16 max-w-[80vw] md:max-w-none">
                 <div>
                     <h1 className="md:text-5xl mb-10 tracking-tight md:tracking-normal">
