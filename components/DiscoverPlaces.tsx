@@ -1,9 +1,25 @@
+import { useEffect }  from 'react';
 import Image from 'next/image';
-import React from 'react';
 
-const DiscoverPlaces = ({isOpen, closeDiscover}:any) => {
+type Props = {
+    isOpen: boolean;
+    closeDiscover: () => void;
+};
+
+const DiscoverPlaces = ({
+    isOpen,
+    closeDiscover
+}: Props) => {
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }, [isOpen]);
+
     return (
-        <div className={`${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'} bg-[#8D78E0] h-screen w-full md:rounded-bl-[200px]  fixed top-0 left-0 duration-1000 z-50`}>
+        <div className={`${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'} bg-secondary h-screen w-full md:rounded-bl-[200px] fixed top-0 left-0 duration-1000 z-50`}>
             <div className='md:max-w-[1300px] max-w-[90vw] mx-auto md:pl-0 pl-4 md:pt-[5vh] pt-8 relative'>
                 <div className='flex justify-between items-center py-4'>
                     <Image src={'/logo-white.svg'} alt='Logo in white' width={180} height={90} className='w-[160px] md:w-[200px] md:w-auto' />
@@ -12,7 +28,7 @@ const DiscoverPlaces = ({isOpen, closeDiscover}:any) => {
                         <rect className='fill-white origin-left -rotate-45 translate-y-[6px]' y="12.25" width="30" height="3.5" rx="1.375" fill="#1A335D"/>
                     </svg>
                 </div>
-                <h2 className='md:text-6xl text-5xl tracking-tighter md:tracking-normal'>Discover Places</h2>
+                <h3 className='md:text-6xl text-5xl tracking-tighter md:tracking-normal'>Discover Places</h3>
                 <div className='grid grid-cols-1 md:grid-cols-4 md:py-8 my-8 md:my-0 md:gap-3 gap-6 overflow-scroll h-[500px] md:h-auto relative'>
                     <div className='flex flex-col mb-4 md:mb-0'>
                         <Image src={'/assets/images/discover/sydney.webp'} className='rounded-2xl h-[245px] object-cover w-full md:w-auto' alt='' width={320} height={290} />

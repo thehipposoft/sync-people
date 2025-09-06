@@ -19,7 +19,11 @@ const config: Config = {
             'bg-primary': '#FAFAFB',
             'primary': '#1A335D',
             'secondary': '#7052E5',
+            'accent': '#8D78E0',
             'green' : '#0095A9',
+            'light-green' : '#3EC1AA',
+            'text-light': '#798196',
+            'orange': '#FF8149',
         },
         fontFamily: {
             "regular": ['var(--font-poppins-regular)'],

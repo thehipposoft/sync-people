@@ -1,6 +1,5 @@
-import Image from 'next/image'
-import React from 'react'
-import { Form } from './Form'
+import Image from 'next/image';
+import { Form } from './Form';
 
 const Contact = () => {
   return (
@@ -46,7 +45,13 @@ const Contact = () => {
         </div>
         <div className='relative w-full md:w-[450px] md:h-[525px] mx-auto xl:mx-0'>
             <div className='absolute left-0 z-10 h-full w-full rounded-tl-[250px] bg-gradient-to-l opacity-30 rounded-br-[250px] from-[#8D78E0] to-[#15DFBB] ' />
-            <Image src={'/assets/images/contact-new.webp'} alt='' fill className='object-cover rounded-br-[250px] rounded-tl-[250px]'/>
+            <Image
+                src={'/assets/images/contact-new.webp'}
+                alt='Conctact us'
+                width={450}
+                height={525}
+                className='object-cover rounded-br-[250px] rounded-tl-[250px] w-full h-full'
+            />
         </div>
     </div>
   )
