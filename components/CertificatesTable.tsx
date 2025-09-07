@@ -81,50 +81,62 @@ const CertificateTable = ({
                 setOpenAddEditCertificateModal(false);
             }
         } else {
-            const formData = new FormData();
-            formData.append("file", certificateToUpload as File);
-            formData.append("title", "Profile Picture");
-            formData.append("alt_text", "Profile Image");
-            formData.append("status", "publish");
+            const fileData = {
+                id: '',
+                url: '',
+            };
 
-            const uploadResponse = await uploadMedia(formData);
+            if (certificateToUpload) {
+                const formData = new FormData();
 
-            if (uploadResponse) {
-                const currentCertificates = [...talentCertificates];
-                const newCertificateToPush: CertificateType = {
-                    certificate: uploadResponse.id,
-                    name: certificateName,
-                    file_url: uploadResponse.url,
-                    expiry_date: certificateExpiryDate,
-                    visible_for: certificateVisibleFor,
-                    keep_file_private: keepFilePrivate,
-                };
+                formData.append("file", certificateToUpload as File);
+                formData.append("title", "Profile Picture");
+                formData.append("alt_text", "Profile Image");
+                formData.append("status", "publish");
 
-                currentCertificates.push(newCertificateToPush);
+                const uploadResponse = await uploadMedia(formData);
 
-                const apiValues = {
-                    [certificateParent]: {
-                        certificates: currentCertificates,
-                    }
-                };
-
-                const response = await updateProfile(userId, apiValues);
-
-                setTalentCertificates(currentCertificates);
-                onLoadCompleted(currentCertificates);
-
-                setCertificateToUpload(null);
-                setCertificateExpiryDate('');
-                setCertificateName('');
-                setCertificateVisibleFor([]);
-                setCertificateToUpdateIndex(null);
-
-                if (fileInputRef.current) {
-                    fileInputRef.current.value = '';
+                if (uploadResponse) {
+                    fileData.id = uploadResponse.id;
+                    fileData.url = uploadResponse.url;
                 }
-                setIsAPILoading(false);
-                setOpenAddEditCertificateModal(false);
             }
+
+            const currentCertificates = [...talentCertificates];
+            const newCertificateToPush: CertificateType = {
+                certificate: fileData.id,
+                name: certificateName,
+                file_url: fileData.url,
+                expiry_date: certificateExpiryDate,
+                visible_for: certificateVisibleFor,
+                keep_file_private: keepFilePrivate,
+            };
+
+            currentCertificates.push(newCertificateToPush);
+
+            const apiValues = {
+                [certificateParent]: {
+                    certificates: currentCertificates,
+                }
+            };
+
+            const response = await updateProfile(userId, apiValues);
+
+            setTalentCertificates(currentCertificates);
+            onLoadCompleted(currentCertificates);
+
+            setCertificateToUpload(null);
+            setCertificateExpiryDate('');
+            setCertificateName('');
+            setCertificateVisibleFor([]);
+            setCertificateToUpdateIndex(null);
+
+            if (fileInputRef.current) {
+                fileInputRef.current.value = '';
+            }
+            setIsAPILoading(false);
+            setOpenAddEditCertificateModal(false);
+
         }
     };
 
@@ -189,7 +201,7 @@ const CertificateTable = ({
                                     <td className={`text-left py-3 text-sm px-4 md:px-2 min-w-[6rem]`}>
                                         <div className="flex flex-col lg:flex-row items-center gap-1">
                                             {
-                                                certificate.keep_file_private
+                                                certificate.keep_file_private && certificate.file_url
                                                 ?  <svg
                                                     viewBox="0 0 24 24"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -202,8 +214,8 @@ const CertificateTable = ({
                                                 : null
                                             }
                                             <a
-                                                href={certificate.file_url}
-                                                className="underline"
+                                                href={certificate.file_url || ''}
+                                                className={`${certificate.file_url ? 'underline' : 'cursor-default'}`}
                                                 target="_blank"
                                             >
                                                 {certificate.name}

@@ -186,8 +186,7 @@ const TalentProfile = ({
                                                     {
                                                         credentials.map((certificate, index) => {
                                                             if (certificate.visible_for.includes(selectedIndustry.industry)) {
-
-                                                                if (certificate.keep_file_private) {
+                                                                if (certificate.keep_file_private || !certificate.file_url) {
                                                                     return (
                                                                         <p key={`certificate-${index}`}>
                                                                             {certificate.name}

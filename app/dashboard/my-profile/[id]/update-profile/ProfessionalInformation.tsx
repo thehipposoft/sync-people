@@ -211,7 +211,7 @@ const ProfessionalInformation = ({
                 </div>
                 <div className='col-span-2'>
                     <h4 className='font-bold my-1'>
-                        Certificates/Licenses
+                        Licenses or Certificates
                     </h4>
                     <CertificateTable
                         certificates={formValues.certificates}

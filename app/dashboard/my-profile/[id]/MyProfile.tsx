@@ -229,7 +229,7 @@ const MyProfile = ({
                                         return (
                                             <a
                                                 key={`certificate-${index}`}
-                                                className='underline flex gap-1 items-center w-fit'
+                                                className={`${certificate.file_url ? 'underline' : 'cursor-default'} flex gap-1 items-center w-fit`}
                                                 target='_blank'
                                                 href={certificate.file_url}
                                             >
@@ -240,6 +240,7 @@ const MyProfile = ({
                                                     enableBackground="new 0 0 52 52"
                                                     width={12}
                                                     height={12}
+                                                    className={`${certificate.file_url ? '' : 'hidden'}`}
                                                 >
                                                     <g>
                                                         <path d="M48.7,2H29.6C28.8,2,28,2.5,28,3.3v3C28,7.1,28.7,8,29.6,8h7.9c0.9,0,1.4,1,0.7,1.6l-17,17 c-0.6,0.6-0.6,1.5,0,2.1l2.1,2.1c0.6,0.6,1.5,0.6,2.1,0l17-17c0.6-0.6,1.6-0.2,1.6,0.7v7.9c0,0.8,0.8,1.7,1.6,1.7h2.9 c0.8,0,1.5-0.9,1.5-1.7v-19C50,2.5,49.5,2,48.7,2z"></path>
