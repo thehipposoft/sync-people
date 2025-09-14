@@ -206,6 +206,7 @@ const PersonalInformation = ({
                                 value="Male"
                                 onChange={handleInputChange}
                                 checked={formValues.gender === 'Male'}
+                                className='w-auto'
                             />
                             <span>Male</span>
                         </label>
@@ -216,6 +217,7 @@ const PersonalInformation = ({
                                 value="Female"
                                 onChange={handleInputChange}
                                 checked={formValues.gender === 'Female'}
+                                className='w-auto'
                             />
                             <span>Female</span>
                         </label>
@@ -226,6 +228,7 @@ const PersonalInformation = ({
                                 value="Other"
                                 onChange={handleInputChange}
                                 checked={formValues.gender === 'Other'}
+                                className='w-auto'
                             />
                             <span>Other</span>
                         </label>
