@@ -198,8 +198,8 @@ const PersonalInformation = ({
                     <label className="block pb-2">
                         To which gender identity do you most identify?
                     </label>
-                    <div className='flex md:flex-row flex-col items-start gap-4 mt-1'>
-                        <label className='flex gap-1'>
+                    <div className="flex md:flex-row flex-col items-start gap-4 mt-1">
+                        <label className="flex items-center gap-1">
                             <input
                                 type="radio"
                                 name="gender"
@@ -207,9 +207,9 @@ const PersonalInformation = ({
                                 onChange={handleInputChange}
                                 checked={formValues.gender === 'Male'}
                             />
-                            Male
+                            <span>Male</span>
                         </label>
-                        <label className='flex gap-1'>
+                        <label className="flex items-center gap-1">
                             <input
                                 type="radio"
                                 name="gender"
@@ -217,9 +217,9 @@ const PersonalInformation = ({
                                 onChange={handleInputChange}
                                 checked={formValues.gender === 'Female'}
                             />
-                            Female
+                            <span>Female</span>
                         </label>
-                        <label className='flex gap-1 '>
+                        <label className="flex items-center gap-1">
                             <input
                                 type="radio"
                                 name="gender"
@@ -227,7 +227,7 @@ const PersonalInformation = ({
                                 onChange={handleInputChange}
                                 checked={formValues.gender === 'Other'}
                             />
-                                Other
+                            <span>Other</span>
                         </label>
                     </div>
                 </div>
