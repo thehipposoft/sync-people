@@ -148,9 +148,9 @@ const TalentPDFDocument = ({
                             </Text>
                         </View>
                         <View style={[styles.section, { flexDirection: 'column', alignItems: 'flex-end' }]}>
-                            <Text style={styles.sectionHeader}>Work Preference</Text>
+                            <Text style={styles.sectionHeader}>Work Preferences</Text>
                             <Text style={styles.value}>
-                            {talentData.professional_information.work_preference || '-'}
+                                {talentData.professional_information.work_preference.join(', ') || '-'}
                             </Text>
                         </View>
                     </View>

@@ -48,7 +48,7 @@ export type CertificateType = {
 export type professional_information = {
     industries: IndustryType[];
     current_status: 'available' | 'working' | 'offline';
-    work_preference: 'parti-time' | 'full-time' | 'casual' | 'contract' | 'internship';
+    work_preference: work_preference_options[];
     skills_set: {
         skill: string;
     }[];
@@ -66,6 +66,8 @@ export type WorkExperienceType = {
     other_industry: string;
     visible_for: IndustriesAvailable[];
 };
+
+export type work_preference_options = 'part-time' | 'full-time' | 'casual' | 'contract' | 'internship' | 'apprenticeship';
 
 export type LevelOfEnglishType = 'beginner' | 'elementary' | 'intermediate' | 'upper_intermediate' | 'advanced' | 'proficient' | 'native';
 

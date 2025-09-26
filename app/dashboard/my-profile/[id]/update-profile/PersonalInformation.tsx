@@ -406,7 +406,7 @@ const PersonalInformation = ({
                         type='submit'
                         disabled={isAPILoading}
                     >
-                        Update Personal Information
+                        Save Personal Information
                     </button>
                 </div>
             </form>

@@ -131,7 +131,7 @@ const ExtraInformation = ({
                         Languages
                     </label>
                     <Select
-                        className="col-span-2 mb-3 border rounded-xl border-[#656ED3]"
+                        className="col-span-2 multiselect"
                         placeholder="Select one or more languages"
                         selectionMode="multiple"
                         onChange={handleMultiSelectChange}
@@ -392,7 +392,7 @@ const ExtraInformation = ({
                         type='submit'
                         disabled={isAPILoading}
                     >
-                        Update Extras
+                        Save Extras
                     </button>
                 </div>
             </form>

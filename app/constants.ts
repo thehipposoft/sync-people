@@ -234,4 +234,8 @@ export const TALENT_WORK_PREFERENCE_DROPDOWN = [
         label: 'Internship',
         value: 'internship',
     },
+    {
+        label: 'Apprenticeship',
+        value: 'apprenticeship',
+    },
 ];

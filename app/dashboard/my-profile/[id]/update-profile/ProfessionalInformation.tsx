@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { updateProfile } from "@/lib/protected-api";
 import { INDUSTRIES } from "@/app/constants";
-import { IndustriesAvailable, professional_information, IndustryType, CertificateType } from "@/types";
+import { IndustriesAvailable, professional_information, IndustryType, CertificateType, work_preference_options } from "@/types";
 import Modal from "@/components/Modal";
 import CertificateTable from "@/components/CertificatesTable";
-import { set } from "date-fns";
+import { Select, SelectItem } from "@heroui/select";
+import { TALENT_WORK_PREFERENCE_DROPDOWN } from "@/app/constants";
 
 type ProfessionalPropsType = {
     initialValues: professional_information;
@@ -15,6 +16,7 @@ const ProfessionalInformation = ({
     initialValues,
     userId,
 }:ProfessionalPropsType) => {
+    console.log(">>>initial values",initialValues);
     const [formValues, setFormValues] = useState<professional_information>({
         ...initialValues,
         industries: initialValues.industries || [],
@@ -69,6 +71,17 @@ const ProfessionalInformation = ({
         setIsAPILoading(false);
         setOpenUpdatedDataModal(true);
     };
+
+    const handleMultiSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const { value } = e.target;
+        const work_preference: any[] = value.split(',');
+
+        setFormValues({
+            ...formValues,
+            work_preference,
+        });
+    };
+
 
     const handleChipSelection = (industry: IndustriesAvailable) => {
         const existingIndustry = formValues.industries.find((ind) => ind.industry === industry);
@@ -145,20 +158,30 @@ const ProfessionalInformation = ({
                 </div>
 
                 <div className="col-span-2 md:col-span-1">
-                    <label htmlFor="work_preference" className="block pb-2">Work Preference</label>
-                    <select
-                        id="work_preference"
-                        name="work_preference"
-                        required
-                        value={formValues.work_preference}
-                        onChange={handleInputChange}
+                    <label
+                        htmlFor="work_preference"
+                        className="block pb-2"
                     >
-                        <option value="part-time">Part-time</option>
-                        <option value="full-time">Full-time</option>
-                        <option value="casual">Casual</option>
-                        <option value="contract">Contract</option>
-                        <option value="internship">Internship</option>
-                    </select>
+                        Work Preferences
+                    </label>
+                    <Select
+                        className="col-span-2 multiselect"
+                        placeholder="Select one or more"
+                        selectionMode="multiple"
+                        onChange={handleMultiSelectChange}
+                        required
+                        items={TALENT_WORK_PREFERENCE_DROPDOWN.map((workType) => ({
+                            key: workType.value,
+                            value: workType.value,
+                        }))}
+                        selectedKeys={formValues.work_preference.map((workType) => workType)}
+                    >
+                        {TALENT_WORK_PREFERENCE_DROPDOWN.map((workType) => (
+                            <SelectItem key={workType.value}>
+                                {workType.label}
+                            </SelectItem>
+                        ))}
+                    </Select>
                 </div>
 
                 <div className='col-span-2'>
@@ -306,7 +329,7 @@ const ProfessionalInformation = ({
                         type='submit'
                         disabled={isAPILoading}
                     >
-                        Update Professional Information
+                        Save Professional Information
                     </button>
                 </div>
             </form>

@@ -23,7 +23,7 @@ const Industries = ({
 }:IndustriesPropsType) => {
     const [formValues, setFormValues] = useState<TalentTypeAcf['professional_information']>({
         ...initialValues.professional_information,
-        work_preference: 'full-time',
+        work_preference: ['full-time'],
         industries: initialValues.professional_information.industries || [],
         skills_set: initialValues.professional_information.skills_set || [],
         certificates: initialValues.professional_information.certificates || [],

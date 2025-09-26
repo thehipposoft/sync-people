@@ -357,6 +357,12 @@ dialog::backdrop {
         @apply -translate-y-full lg:translate-y-0 before:opacity-50;
     }
 
+    .multiselect {
+        button {
+            @apply bg-white mb-3 border rounded-3xl border-secondary;
+        }
+    }
+
     //FAQs
     .faq-container {
         a {

@@ -170,10 +170,13 @@ const TalentProfile = ({
 
                                         <div className='flex flex-col mb-5'>
                                             <h4 className='text-lg font-bold'>
-                                                Work Preference
+                                                Work Preferences
                                             </h4>
                                             <p className={`capitalize`}>
-                                                {talentData.professional_information.work_preference ? talentData.professional_information.work_preference : '-'}
+                                                {talentData.professional_information.work_preference
+                                                    ? talentData.professional_information.work_preference.join(', ')
+                                                    : '-'
+                                                }
                                             </p>
                                         </div>
                                         {

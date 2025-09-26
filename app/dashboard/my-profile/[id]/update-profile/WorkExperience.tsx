@@ -241,7 +241,7 @@ const WorkExperience = ({
                         type='submit'
                         disabled={isAPILoading}
                     >
-                        Update Work Experience
+                        Save Work Experience
                     </button>
                 </div>
             </form>

@@ -162,10 +162,10 @@ const MyProfile = ({
                             {user.professional_information.current_status}
                         </p>
                         <h2 className='text-lg'>
-                            Working preferences
+                            Work Preferences
                         </h2>
                         <p className='pb-4 capitalize'>
-                            {user.professional_information.work_preference}
+                            {user.professional_information.work_preference.join(', ')}
                         </p>
                         <h2 className='text-2xl pb-4 font-bold'>
                             My Industries
