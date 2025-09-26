@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { SocialMediaLinksType, IndustriesAvailable } from "@/types";
+import { SocialMediaLinksType, TalentTypeAcf } from "@/types";
 import { differenceInYears, differenceInMonths, differenceInDays } from "date-fns";
 
 export const getAge = (birthDate: string) => {
@@ -126,46 +126,6 @@ export const renderSocialMediaIcon = (platform: SocialMediaLinksType) => {
     }
 };
 
-export const renderDescriptionPlaceholderByIndustry = (industry: IndustriesAvailable) => {
-    if (industry === 'construction') {
-        return "Briefly describe your responsibilities, achievements, and key projects. Example: Supervised site operations, ensured safety compliance, and assisted in building residential structures.";
-    }
-
-    if (industry === 'cleaning') {
-        return "Briefly describe your responsibilities, achievements, and key projects. Example: Maintained high cleanliness standards, handled industrial cleaning equipment, and improved sanitation efficiency";
-    }
-
-    if (industry === 'warehousing') {
-        return "Briefly describe your responsibilities, achievements, and key projects. Example: Managed inventory, operated forklifts, and optimized storage space to improve efficiency.";
-    }
-
-    if (industry === 'logistics') {
-        return "Briefly describe your responsibilities, achievements, and key projects. Example: Coordinated shipments, tracked deliveries, and reduced transport delays";
-    };
-
-    if (industry === 'farming') {
-        return "Briefly describe your responsibilities, achievements, and key projects. Example: Operated machinery, harvested crops, and implemented sustainable farming techniques.";
-    };
-
-    if (industry === 'hospitality') {
-        return "Briefly describe your responsibilities, achievements, and key projects. Example: Provided excellent customer service, managed reservations, and increased guest satisfaction ratings.";
-    };
-
-    if (industry === 'retail') {
-        return "Briefly describe your responsibilities, achievements, and key projects. Example: Assisted customers, managed stock, and boosted sales through personalized recommendations.";
-    };
-
-    if (industry === 'age_care') {
-        return "Briefly describe your responsibilities, achievements, and key projects. Example: Assisted elderly residents with daily tasks, provided companionship, and ensured high-quality care.";
-    };
-
-    if (industry === 'other') {
-        return "Briefly describe your responsibilities, achievements, and key projects. Example: Adapted to various tasks, collaborated with teams, and contributed to overall business success.";
-    };
-
-    return "Briefly describe your responsibilities, achievements, and key projects. Example: Managed a team of 5, increased sales by 20%, and led a successful product launch.";
-};
-
 export const handleDownloadQR = (url: string, first_name: string, last_name: string) => {
     fetch(`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${url}&margin=30`)
         .then(response => {
@@ -185,42 +145,13 @@ export const handleDownloadQR = (url: string, first_name: string, last_name: str
         })
 };
 
-//Function to check if a URL is a YouTube link
-export function isYouTubeUrl(urlString: string): boolean {
-    try {
-      const url = new URL(urlString);
-
-      // Puede ser youtube.com o youtu.be
-      return (
-        url.hostname === 'www.youtube.com' ||
-        url.hostname === 'youtube.com' ||
-        url.hostname === 'youtu.be'
-      );
-    } catch (error) {
-      // No es una URL válida
-      return false;
-    }
-  }
-
-// Function to extract YouTube video ID from a URL
-export function extractYouTubeVideoId(urlString: string): string | null {
-    try {
-        const url = new URL(urlString);
-
-        if (url.hostname === 'youtu.be') {
-        return url.pathname.slice(1); // /abc123 -> abc123
-        }
-
-        if (
-        url.hostname === 'www.youtube.com' ||
-        url.hostname === 'youtube.com'
-        ) {
-        return url.searchParams.get('v');
-        }
-
-        return null;
-    } catch {
-        return null;
-    }
-}
-
+export const getTalentAddress = (talentData: TalentTypeAcf) => {
+    const { address_1, suburb, state, postcode } = talentData.personal_information.current_location;
+  
+    let address = '';
+    if (address_1) address += address_1;
+    if (suburb) address += (address ? ', ' : '') + suburb;
+    if (state) address += (address ? ', ' : '') + state;
+    if (postcode) address += (address ? ', ' : '') + postcode;
+    return address || '-';
+};

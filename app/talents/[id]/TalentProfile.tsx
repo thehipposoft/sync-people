@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf, IndustryType, CertificateType, WorkExperienceType } from '@/types';
 import { INDUSTRIES_BANNER, ROUTES } from '@/app/constants';
-import { renderSocialMediaIcon, handleRenderTimeInJobs } from '@/lib/utils';
+import { renderSocialMediaIcon, handleRenderTimeInJobs, getTalentAddress } from '@/lib/utils';
 import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 import TalentPDFDocument from './TalentPDFDocument';
@@ -71,7 +71,7 @@ const TalentProfile = ({
           />
         ).toBlob();
 
-        saveAs(blob, `Insyncx_${talentData.personal_information.first_name}_${talentData.personal_information.last_name}_Profile.pdf`);
+        saveAs(blob, `Insyncx-${talentData.personal_information.first_name}-${talentData.personal_information.last_name}-Profile.pdf`);
     };
 
     const handlePlay = () => {
@@ -98,18 +98,19 @@ const TalentProfile = ({
                         {
                             selectedIndustry.industry === 'other' ?
                             <div className='relative bg-primary h-[7rem] rounded-t-2xl md:h-[10rem] w-full flex justify-end'>
-                                <Image src={'/assets/images/vectors/hero-pic.svg'} alt='Syncto colors' width={45} height={30} className='md:w-20 w-12 md:mr-12 mr-8'/>
-                            </div>
-                            :
-                            <div className='relative h-[7rem] md:h-[10rem] md:w-[900px]'>
                                 <Image
-                                    src={INDUSTRIES_BANNER[selectedIndustry.industry]}
-                                    alt={`Banner for ${talentData.personal_information.first_name}`}
-                                    width={900}
-                                    height={200}
-                                    className={`object-cover rounded-t-2xl object-center max-h-[7rem] md:max-h-[10rem] w-full`}
+                                    src={'/assets/images/vectors/hero-pic.svg'}
+                                    alt='Insyncx vector'
+                                    width={45} height={30} className='md:w-20 w-12 md:mr-12 mr-8'
                                 />
                             </div>
+                            : <Image
+                                src={INDUSTRIES_BANNER[selectedIndustry.industry]}
+                                alt={`Banner for ${talentData.personal_information.first_name}`}
+                                width={900}
+                                height={128}
+                                className={`object-cover rounded-t-2xl object-center max-h-[7rem] md:max-h-[8rem] w-full`}
+                            />
                         }
 
                         <div className='relative flex flex-col justify-between md:px-12 px-6 py-6'>
@@ -119,7 +120,7 @@ const TalentProfile = ({
                                     alt={`Profile picture for ${talentData.personal_information.first_name}`}
                                     width={140}
                                     height={140}
-                                    className='rounded-full border-[6px] border-white -top-[4rem] md:-top-[6rem] w-36 h-36 relative md:absolute object-cover left-[50%] transform -translate-x-1/2 lg:left-0 lg:translate-x-0'
+                                    className='rounded-full border-[6px] border-white -top-[4rem] md:-top-[6rem] w-36 h-36 relative md:absolute object-cover left-[50%] transform -translate-x-1/2 md:left-0 md:translate-x-0'
                                 />
                                 <p className={`${!talentData.personal_information.about_myself ? 'hidden' : ''} relative -top-10 md:top-0 md:pl-[10rem]`}>
                                     {talentData.personal_information.about_myself}
@@ -160,11 +161,8 @@ const TalentProfile = ({
                                             <h4 className='text-lg font-bold'>
                                                 Current Location
                                             </h4>
-                                            <p className='text-primary'>
-                                                {talentData.personal_information.current_location.state && talentData.personal_information.current_location.suburb
-                                                    ? `${talentData.personal_information.current_location.suburb}, ${talentData.personal_information.current_location.state}`
-                                                    : `-`
-                                                }
+                                            <p className='text-primary capitalize'>
+                                                {getTalentAddress(talentData)}
                                             </p>
                                         </div>
 

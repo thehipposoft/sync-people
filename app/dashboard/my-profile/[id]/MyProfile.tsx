@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
 import { TalentTypeAcf } from '@/types';
-import { getAge, renderSocialMediaIcon, handleRenderTimeInJobs, handleDownloadQR } from '@/lib/utils';
+import { getAge, renderSocialMediaIcon, handleRenderTimeInJobs, handleDownloadQR, getTalentAddress } from '@/lib/utils';
 import { ROUTES } from '@/app/constants';
 import { parseISO, format } from 'date-fns';
 
@@ -71,8 +71,8 @@ const MyProfile = ({
                                     <p>
                                         {user.working_rights.current_visa.label}
                                     </p>
-                                    <p className={`${user.personal_information.current_location && user.personal_information.current_location.state && user.personal_information.current_location.address_1 ? '' : 'hidden'}`}>
-                                        {user.personal_information.current_location.address_1}, {user.personal_information.current_location.suburb}, {user.personal_information.current_location.state} {user.personal_information.current_location.postcode}
+                                    <p className={`${getTalentAddress(user) ? 'capitalize' : 'hidden'}`}>
+                                        {getTalentAddress(user)}
                                     </p>
                                     <p>
                                         {`DOB: ${user.personal_information.date_of_birth ? format(user.personal_information.date_of_birth, 'dd/MM/yyyy') : '-'}`}

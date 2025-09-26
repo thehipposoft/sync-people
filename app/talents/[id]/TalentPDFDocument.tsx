@@ -12,7 +12,7 @@ import {
 } from '@react-pdf/renderer';
 import { createTw } from 'react-pdf-tailwind';
 import { parseISO, format } from 'date-fns';
-import { handleRenderTimeInJobs } from '@/lib/utils';
+import { handleRenderTimeInJobs, getTalentAddress } from '@/lib/utils';
 
 Font.register({ family: 'Poppins', fonts: [
     { src: '/assets/fonts/Poppins-Regular.ttf' },
@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         alignItems: 'center',
         backgroundColor: '#1A335D',
-        padding: 32,
+        paddingHorizontal: 32,
+        paddingVertical: 16,
     },
     avatar: {
         width: 90,
@@ -75,7 +76,6 @@ const styles = StyleSheet.create({
     qr: {
         width: 70,
         height: 70,
-        marginLeft: 10,
     },
     section: {
         marginBottom: 16,
@@ -126,15 +126,28 @@ const TalentPDFDocument = ({
                             {talentData.personal_information.country_of_birth}
                         </Text>
                         {talentData.personal_information.about_myself && (
-                        <Text style={styles.about}>
-                            {talentData.personal_information.about_myself}
-                        </Text>
+                            <Text style={styles.about}>
+                                {talentData.personal_information.about_myself}
+                            </Text>
                         )}
                     </View>
-                    <Image
-                        src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https://insyncx.com/talents/${userId}?industry=${selectedIndustry.industry}&margin=30`}
-                        style={styles.qr}
-                    />
+                    <View style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Image
+                            src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://insyncx.com/talents/${userId}?industry=${selectedIndustry.industry}&margin=30`}
+                            style={styles.qr}
+                        />
+                        {talentData.personal_information.mobile && (
+                            <Link
+                                style={tw('text-sm text-primary underline text-right mb-1 mt-2 text-white')}
+                                href={`tel:${talentData.personal_information.mobile}`}
+                            >
+                                    {talentData.personal_information.mobile}
+                            </Link>
+                        )}
+                        {talentData.personal_information.email && (
+                            <Text style={tw('text-sm text-primary text-white')}>{talentData.personal_information.email}</Text>
+                        )}
+                    </View>
                 </View>
 
                 <View style={[{ paddingHorizontal: 32 }]}>
@@ -143,8 +156,7 @@ const TalentPDFDocument = ({
                         <View>
                             <Text style={styles.sectionHeader}>Current Location</Text>
                             <Text style={styles.value}>
-                                {talentData.personal_information.current_location?.suburb},{' '}
-                                {talentData.personal_information.current_location?.state}
+                                {getTalentAddress(talentData) || '-'}
                             </Text>
                         </View>
                         <View style={[styles.section, { flexDirection: 'column', alignItems: 'flex-end' }]}>
@@ -156,31 +168,13 @@ const TalentPDFDocument = ({
                     </View>
 
                     {/* Licenses & Contact */}
-                    <View style={[styles.section, { flexDirection: 'row', justifyContent: 'space-between' }]}>
-                        <View>
-                            <Text style={tw('text-xl text-primary font-bold')}>
-                                Licenses
-                            </Text>
-                            <Text style={tw('text-sm text-primary')}>
-                                {talentData.professional_information.certificates && talentData.professional_information.certificates.filter(c => c.visible_for.includes(selectedIndustry.industry)).map(c => c.name).join(', ') || '-'}
-                            </Text>
-                        </View>
-                        <View style={[styles.section, { flexDirection: 'column', alignItems: 'flex-end' }]}>
-                            <Text style={tw('text-xl text-primary font-bold text-right')}>
-                                Contact
-                            </Text>
-                            {talentData.personal_information.mobile && (
-                                <Link
-                                    style={tw('text-sm text-primary underline text-right mb-2')}
-                                    href={`tel:${talentData.personal_information.mobile}`}
-                                >
-                                        {talentData.personal_information.mobile}
-                                </Link>
-                            )}
-                            {talentData.personal_information.email && (
-                                <Text style={tw('text-sm text-primary text-right')}>{talentData.personal_information.email}</Text>
-                            )}
-                        </View>
+                    <View>
+                        <Text style={tw('text-xl text-primary font-bold')}>
+                            Licenses
+                        </Text>
+                        <Text style={tw('text-sm text-primary')}>
+                            {talentData.professional_information.certificates && talentData.professional_information.certificates.filter(c => c.visible_for.includes(selectedIndustry.industry)).map(c => c.name).join(', ') || '-'}
+                        </Text>
                     </View>
 
                     {/* Work Experience */}
