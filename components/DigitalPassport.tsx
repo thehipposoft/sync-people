@@ -6,18 +6,24 @@ const DigitalPassport = () => {
   return (
         <div className='md:h-screen flex md:justify-between justify-center items-center mx-auto max-w-[1250px] px-8 md:p-0 flex-wrap mt-16 md:mt-0'>
             <div className='md:w-1/2 flex flex-col justify-center gap-2'>
-                <h2 className='font-semibold tracking-tight md:tracking-normal mb-6 md:mb-0'>
+                <h2 className='font-semibold tracking-tight md:tracking-normal mb-6 md:mb-2'>
                     What is a Skills Portfolio?
                 </h2>
-                <p className='text-text-light w-11/12 md:w-full leading-6 md:pt-4 mb-4 md:mb-0'>
-                    Do you have a work visa, are you a foreign student or just looking for a job? <br/>
-                    Your Skills Portfolio is more than a resume: it's your ticket to the Australian working world. Tailored to your talents, the industry you want to work in and the job you dream of getting.
-                    <br/>
+                <p>
+                    Are you on a work visa, studying in Australia, or simply looking for your next job?
                 </p>
-                <strong className='text-text-light md:pt-4'>Sign up for free, your next job is coming soon. </strong>
+                <p>
+                    Your <span className='font-bold'>Skills Portfolio</span> is more than just a resume—it’s your personal showcase of experience, certificates, and talents. Think of it as your digital passport to the Australian job market, designed to highlight what you can do and connect you with industries that are hiring.
+                </p>
+                <p>
+                    Create your free portfolio today—it only takes a few minutes, and it could open the door to your next opportunity.
+                </p>
+                <p className='md:pt-4 font-bold'>
+                    Sign up for free, your next job is coming soon.
+                </p>
                 <Link
                     href={ROUTES.SIGN_UP}
-                    className='w-fit font-semibold md:mx-2 md:mt-4 mt-6 secondary-btn'
+                    className='w-fit font-semibold md:mt-4 mt-6 secondary-btn'
                 >
                     Sign Up
                 </Link>

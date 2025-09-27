@@ -303,7 +303,7 @@ const TalentProfile = ({
                         </div>
                     </div>
                     {
-                        talentData.work_experience && <div className='flex flex-col mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>
+                        selectedIndustryWorkExperience && selectedIndustryWorkExperience.length ? <div className='flex flex-col mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>
                             <h4 className='text-2xl pb-4 font-bold'>
                                 Work Experience
                             </h4>
@@ -332,6 +332,7 @@ const TalentProfile = ({
                                 }
                             </div>
                         </div>
+                        : null
                     }
 
                     <div className='flex flex-col mx-auto md:w-[900px] bg-white md:px-12 px-6 py-6 border-t'>

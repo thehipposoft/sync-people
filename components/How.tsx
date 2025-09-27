@@ -21,7 +21,7 @@ const HowWorks = () => {
                     </p>
                     <Link
                         href={ROUTES.SIGN_UP}
-                        className='flex mt-4 w-fit lg:mx-2 lg:mt-8 text-white border-white border px-6 py-2 rounded-3xl hover:text-accent hover:bg-white duration-300'
+                        className='accent-btn mt-4'
                     >
                         Let's get started!
                     </Link>
