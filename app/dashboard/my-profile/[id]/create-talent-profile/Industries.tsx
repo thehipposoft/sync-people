@@ -139,9 +139,6 @@ const Industries = ({
                     {
                         industry,
                         preferred_salary: '',
-                        position: '',
-                        certificates: [],
-                        industry_description: '',
                         is_new: true,
                     },
                 ],

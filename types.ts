@@ -2,15 +2,6 @@ export type IndustryType = {
     industry: IndustriesAvailable;
     other_industry?: string;
     preferred_salary: string;
-    position: string;
-    industry_description: string;
-    certificates: {
-        partialFile?: File;
-        certificate?: string;
-        name: string;
-        file_url: string;
-        expiry_date: string;
-    }[];
     is_new?: boolean;
 };
 

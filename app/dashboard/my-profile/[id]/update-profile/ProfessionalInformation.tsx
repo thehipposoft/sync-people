@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { updateProfile } from "@/lib/protected-api";
 import { INDUSTRIES } from "@/app/constants";
-import { IndustriesAvailable, professional_information, IndustryType, CertificateType, work_preference_options } from "@/types";
+import { IndustriesAvailable, professional_information, IndustryType, CertificateType } from "@/types";
 import Modal from "@/components/Modal";
 import CertificateTable from "@/components/CertificatesTable";
 import { Select, SelectItem } from "@heroui/select";
@@ -16,7 +16,6 @@ const ProfessionalInformation = ({
     initialValues,
     userId,
 }:ProfessionalPropsType) => {
-    console.log(">>>initial values",initialValues);
     const [formValues, setFormValues] = useState<professional_information>({
         ...initialValues,
         industries: initialValues.industries || [],
@@ -106,9 +105,6 @@ const ProfessionalInformation = ({
                     {
                         industry,
                         preferred_salary: '',
-                        position: '',
-                        certificates: [],
-                        industry_description: '',
                         is_new: true,
                     },
                 ],
