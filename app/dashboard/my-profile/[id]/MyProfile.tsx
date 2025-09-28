@@ -156,7 +156,7 @@ const MyProfile = ({
                             Professional Preferences
                         </h2>
                         <h2 className='text-lg'>
-                            Employment Status
+                            Profile Status
                         </h2>
                         <p className='pb-4 capitalize'>
                             {user.professional_information.current_status}

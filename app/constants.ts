@@ -204,7 +204,7 @@ export const TALENT_CURRENT_STATUS_DROPDOWN = [
         value: 'available',
     },
     {
-        label: 'Working',
+        label: 'Working but open for opportunities',
         value: 'working',
     },
     {

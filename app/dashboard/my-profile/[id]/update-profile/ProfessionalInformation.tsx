@@ -142,7 +142,9 @@ const ProfessionalInformation = ({
         <div>
             <form onSubmit={handleFormSubmit} className='grid grid-cols-2 gap-4'>
                 <div className="col-span-2 md:col-span-1">
-                    <label htmlFor="current_status" className="block pb-2">Employment Status</label>
+                    <label htmlFor="current_status" className="block pb-2">
+                        Profile Status
+                    </label>
                     <select
                         id="current_status"
                         name="current_status"
@@ -151,7 +153,7 @@ const ProfessionalInformation = ({
                         onChange={handleInputChange}
                     >
                         <option value="available">Available</option>
-                        <option value="working">Working</option>
+                        <option value="working">Working but open for opportunities</option>
                         <option value="offline">Offline</option>
                     </select>
                 </div>
