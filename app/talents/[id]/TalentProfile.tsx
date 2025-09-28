@@ -155,6 +155,19 @@ const TalentProfile = ({
                                         )
                                     }
                                 </div>
+                                {
+                                    talentData.personal_information.working_rights.current_visa
+                                    ? <div>
+                                        <h4 className='text-lg font-bold'>
+                                            Current visa
+                                        </h4>
+                                        <p className='text-primary capitalize'>
+                                            {talentData.personal_information.working_rights.current_visa.label}
+                                        </p>
+                                        </div>
+                                    : null
+                                }
+
                                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                                     <div className='order-2 md:order-1'>
                                         <div className='flex justify-between flex-col mb-5'>

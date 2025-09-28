@@ -75,12 +75,15 @@ const ProfessionalInformation = ({
         const { value } = e.target;
         const work_preference: any[] = value.split(',');
 
+        if(!value) {
+            return;
+        }
+
         setFormValues({
             ...formValues,
             work_preference,
         });
     };
-
 
     const handleChipSelection = (industry: IndustriesAvailable) => {
         const existingIndustry = formValues.industries.find((ind) => ind.industry === industry);

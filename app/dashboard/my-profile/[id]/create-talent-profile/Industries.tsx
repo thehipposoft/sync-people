@@ -3,6 +3,7 @@ import { TalentTypeAcf, IndustryType, IndustriesAvailable, CertificateType } fro
 import { TALENT_CURRENT_STATUS_DROPDOWN, TALENT_WORK_PREFERENCE_DROPDOWN, INDUSTRIES } from '@/app/constants';
 import CertificateTable from '@/components/CertificatesTable';
 import { updateProfile } from '@/lib/protected-api';
+import { Select, SelectItem } from "@heroui/select";
 
 type IndustriesPropsType = {
     currentIndex: number;
@@ -113,7 +114,20 @@ const Industries = ({
 
             return updatedValues;
         });
+    };
 
+    const handleMultiSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const { value } = e.target;
+        const work_preference: any[] = value.split(',');
+
+        if(!value) {
+            return;
+        }
+
+        setFormValues({
+            ...formValues,
+            work_preference,
+        });
     };
 
     const handleChipSelection = (industry: IndustriesAvailable) => {
@@ -208,23 +222,26 @@ const Industries = ({
 
                     <div className='col-span-2 lg:col-span-1'>
                         <label htmlFor="current_status" className="block pb-2">
-                            Preferred work types*
+                            Work Preferences*
                         </label>
-                        <select
-                            name="work_preference"
-                            id="work_preference"
-                            className="w-full"
-                            onChange={handleInputChange}
-                            value={formValues.work_preference}
+                        <Select
+                            className="col-span-2 multiselect"
+                            placeholder="Select one or more"
+                            selectionMode="multiple"
+                            onChange={handleMultiSelectChange}
+                            required
+                            items={TALENT_WORK_PREFERENCE_DROPDOWN.map((workType) => ({
+                                key: workType.value,
+                                value: workType.value,
+                            }))}
+                            selectedKeys={formValues.work_preference.map((workType) => workType)}
                         >
-                            {
-                                TALENT_WORK_PREFERENCE_DROPDOWN.map((status) => (
-                                    <option key={status.value} value={status.value}>
-                                        {status.label}
-                                    </option>
-                                ))
-                            }
-                        </select>
+                            {TALENT_WORK_PREFERENCE_DROPDOWN.map((workType) => (
+                                <SelectItem key={workType.value}>
+                                    {workType.label}
+                                </SelectItem>
+                            ))}
+                        </Select>
                     </div>
                     <div className='col-span-2 mt-4'>
                         <p className='font-bold'>

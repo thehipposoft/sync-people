@@ -151,24 +151,44 @@ const TalentPDFDocument = ({
                 </View>
 
                 <View style={[{ paddingHorizontal: 32 }]}>
-                    {/* Location & Work Preference */}
+                    {/* Visa Status & Work Preference */}
                     <View style={[styles.section, { flexDirection: 'row', justifyContent: 'space-between' }]}>
-                        <View>
-                            <Text style={styles.sectionHeader}>Current Location</Text>
-                            <Text style={styles.value}>
-                                {getTalentAddress(talentData) || '-'}
+                        {
+                            talentData.personal_information.working_rights.current_visa && (
+                                <View style={[{ flexDirection: 'column', alignItems: 'flex-start' }]}>
+                                    <Text style={styles.sectionHeader}>Visa Status</Text>
+                                    <Text style={styles.value}>
+                                        {talentData.personal_information.working_rights.current_visa.label || '-'}
+                                    </Text>
+                                </View>
+                            )
+                        }
+
+                        <View
+                            style={[{
+                                flexDirection: 'column',
+                                alignItems: talentData.personal_information.working_rights.current_visa ? 'flex-end' : 'flex-start'
+                            }]}
+                        >
+                            <Text style={styles.sectionHeader}>
+                                Work Preferences
                             </Text>
-                        </View>
-                        <View style={[styles.section, { flexDirection: 'column', alignItems: 'flex-end' }]}>
-                            <Text style={styles.sectionHeader}>Work Preferences</Text>
                             <Text style={styles.value}>
                                 {talentData.professional_information.work_preference.join(', ') || '-'}
                             </Text>
                         </View>
                     </View>
 
+                    {/* Location */}
+                    <View style={styles.section}>
+                        <Text style={styles.sectionHeader}>Current Location</Text>
+                        <Text style={styles.value}>
+                            {getTalentAddress(talentData) || '-'}
+                        </Text>
+                    </View>
+
                     {/* Licenses & Contact */}
-                    <View>
+                    <View style={styles.section}>
                         <Text style={tw('text-xl text-primary font-bold')}>
                             Licenses
                         </Text>
@@ -179,7 +199,7 @@ const TalentPDFDocument = ({
 
                     {/* Work Experience */}
                     {selectedIndustryWorkExperience?.length > 0 && (
-                        <View style={tw('my-2')}>
+                        <View style={tw('mb-2')}>
                             <Text style={tw('text-2xl font-bold text-primary')}>
                                 Work Experience
                             </Text>

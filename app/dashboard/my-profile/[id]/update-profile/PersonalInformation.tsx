@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'next-view-transitions';
 import { updateProfile } from '@/lib/protected-api';
 import { PersonalInformationType } from '@/types';
-import { AUSTRALIAN_STATES, ROUTES } from '@/app/constants';
+import { AUSTRALIAN_STATES, ROUTES, VISA_OPTIONS } from '@/app/constants';
 import Modal from '@/components/Modal';
 import VideoRecorder from '@/components/VideoRecorder';
 import { uploadPresentationVideo } from '@/lib/api';
@@ -127,6 +127,19 @@ const PersonalInformation = ({
         });
     };
 
+    const handleWorkingRightsChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setFormValues({
+            ...formValues,
+            working_rights: {
+                ...formValues.working_rights,
+                current_visa: {
+                    ...formValues.working_rights.current_visa,
+                    value: e.target.value,
+                },
+            },
+        });
+    };
+
     return (
         <>
             <form
@@ -235,7 +248,48 @@ const PersonalInformation = ({
                     </div>
                 </div>
 
-                <div className='col-span-2'>
+                <div className='col-span-1'>
+                    <label htmlFor="country_of_birth" className="block pb-2">
+                        Current Visa
+                    </label>
+                    <select
+                        id="current_visa"
+                        name="current_visa"
+                        value={formValues.working_rights.current_visa.value}
+                        onChange={handleWorkingRightsChange}
+                    >
+                        {VISA_OPTIONS.map((option) => (
+                            <option key={option.value} value={option.value}>
+                                {option.label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
+                {
+                    formValues.working_rights.current_visa.value === 'other' && (
+                        <div className='col-span-1'>
+                            <label htmlFor="other_visa" className="block pb-2">
+                                Please specify your visa
+                            </label>
+                            <input
+                                type="text"
+                                id="other_visa"
+                                name="other_visa"
+                                value={formValues.working_rights.other_visa || ''}
+                                onChange={(e) => setFormValues({
+                                    ...formValues,
+                                    working_rights: {
+                                        ...formValues.working_rights,
+                                        other_visa: e.target.value,
+                                    },
+                                })}
+                            />
+                        </div>
+                    )
+                }
+
+                <div className='col-span-1'>
                     <label htmlFor="country_of_birth" className="block pb-2">
                         Country of Birth
                     </label>

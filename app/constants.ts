@@ -239,3 +239,11 @@ export const TALENT_WORK_PREFERENCE_DROPDOWN = [
         value: 'apprenticeship',
     },
 ];
+
+export const VISA_OPTIONS = [
+    { label: 'Work and Holiday', value: 'work_and_holiday' },
+    { label: 'Student', value: 'student' },
+    { label: 'Permanent Resident', value: 'permanent_resident' },
+    { label: 'De Facto', value: 'de_facto' },
+    { label: 'Other', value: 'other' },
+];

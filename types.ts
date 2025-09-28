@@ -24,6 +24,15 @@ export type PersonalInformationType = {
         state: string,
         postcode: string,
     };
+    working_rights: {
+        visa_number: string;
+        visa_doc: string;
+        current_visa: {
+            label: string;
+            value: string;
+        };
+        other_visa?: string;
+    };
 };
 
 export type CertificateType = {
@@ -92,14 +101,6 @@ export type TalentTypeAcf = {
     id: number;
     personal_information: PersonalInformationType;
     professional_information: professional_information;
-    working_rights: {
-        visa_number: string;
-        visa_doc: string;
-        current_visa: {
-            label: string;
-            value: string;
-        };
-    };
     extras: ExtraInformationType;
     work_experience: WorkExperienceType[];
 };

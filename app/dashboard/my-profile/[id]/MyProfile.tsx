@@ -68,11 +68,11 @@ const MyProfile = ({
                                     <h2 className='text-2xl font-bold'>
                                         Personal information
                                     </h2>
-                                    <p>
-                                        {user.working_rights.current_visa.label}
-                                    </p>
                                     <p className={`${getTalentAddress(user) ? 'capitalize' : 'hidden'}`}>
                                         {getTalentAddress(user)}
+                                    </p>
+                                    <p>
+                                        {user.personal_information.working_rights.current_visa && user.personal_information.working_rights.current_visa.label}
                                     </p>
                                     <p>
                                         {`DOB: ${user.personal_information.date_of_birth ? format(user.personal_information.date_of_birth, 'dd/MM/yyyy') : '-'}`}
