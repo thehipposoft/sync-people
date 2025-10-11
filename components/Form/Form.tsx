@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import axios from 'axios';
+import Script from 'next/script';
 
 const initialValues = {
     name: '',
@@ -32,6 +33,18 @@ type FormValues = {
     message: string;
 };
 
+declare global {
+    const grecaptcha: {
+        enterprise: {
+            ready: (cb: () => void) => void;
+            execute: (
+                siteKey: string,
+                options: { action: string }
+        ) => Promise<string>;
+        };
+    };
+}
+
 const MyCustomForm = ({
     fields,
     onSuccessMessage,
@@ -48,6 +61,8 @@ const MyCustomForm = ({
         customerEmail: '',
         message: '',
     });
+    const [googleToken, setGoogleToken] = useState<string>('');
+    const [captchaError, setCaptchaError] = useState<string>('');
 
     const renderSentMessage = () => {
         if (messageSent === 'succeed') {
@@ -79,6 +94,11 @@ const MyCustomForm = ({
     const handleSubmit = (event:any) => {
         if (event) event.preventDefault();
 
+        if (!googleToken) {
+            setCaptchaError('Please, verify the captcha');
+            return;
+        }
+
         setIsAPILoading(true);
         axios.post(
             emailServiceURL,
@@ -107,78 +127,108 @@ const MyCustomForm = ({
             });
     };
 
-    return (
-        <form
-            className={`flex flex-wrap justify-between md:mt-6 mt-12 mx-auto md:w-[550px] w-[85vw]`}
-            onSubmit={(event) => handleSubmit(event)}
-        >
-            {
-                fields.map((field, index)=> {
-                    const { name, type, label, placeholder } = field;
+    const executeRecaptcha = () => {
+        if (typeof grecaptcha !== "undefined") {
+            grecaptcha.enterprise.ready(async () => {
+                try {
+                    const token = await grecaptcha.enterprise.execute(
+                        "6LeeA-YrAAAAAGpbSzd7rGRYTKb2JxWVZOUpsOk6",
+                        { action: "submit" }
+                    );
+                    const tokenInput = document.getElementById("recaptcha-token") as HTMLInputElement;
+                    if (tokenInput) tokenInput.value = token;
+                    setGoogleToken(token);
+                } catch (e) {
+                    console.error("Recaptcha error", e);
+                }
+            });
+        }
+    };
 
-                    switch (type) {
-                        case 'textArea':
-                            return (
-                                <section className={'mb-4 w-full'} key={name}>
-                                    <label className={'contact-label'}>{label}</label>
-                                    <textarea
-                                        name={name}
-                                        id={name}
-                                        value={values[name]}
-                                        rows={6}
-                                        cols={40}
-                                        className='resize-none py-3 px-8 lg:w-full md:max-w-[550px] w-full placeholder-[#8D78E0]'
-                                        placeholder={placeholder}
-                                        onChange={handleChange}
-                                        required={field.required}
-                                    />
-                                </section>
-                            );
-                        case 'email':
-                            return (
-                                <section className='mb-4 w-full' key={index}>
-                                    <label className={'contact-label'}>{label}</label>
-                                    <input
-                                        type={type}
-                                        name={name}
-                                        id={name}
-                                        className={'py-3 px-8 lg:w-full md:max-w-[550px] w-full  placeholder-[#8D78E0] rounded-[2em]'}
-                                        onChange={handleChange}
-                                        value={values[name]}
-                                        placeholder={placeholder}
-                                        required={field.required}
-                                    />
-                                </section>
-                            );
-                        default:
-                            return (
-                                <section className='mb-4 md:w-[49%] w-full' key={index}>
-                                    <label className={'contact-label'}>{label}</label>
-                                    <input
-                                        type={type}
-                                        name={name}
-                                        id={name}
-                                        className={'py-3 px-8 lg:w-full lg:max-w-[500px] w-full md:max-w-[525px] placeholder-[#8D78E0] rounded-[2em]'}
-                                        onChange={handleChange}
-                                        value={values[name]}
-                                        placeholder={placeholder}
-                                        required={field.required}
-                                    />
-                                </section>
-                            )
-                    }
-                })
-            }
-            {renderSentMessage()}
-            <button
-                disabled={isAPILoading}
-                value={submitButtonLabel ? submitButtonLabel : 'Send'}
-                type="submit"
-                className={` ${isAPILoading ? 'opacity-50' : ''} purple-b rounded-3xl px-8 py-2 text-white text-lg font-semibold w-fit`}
+    return (
+        <>
+            <Script
+                src="https://www.google.com/recaptcha/enterprise.js?render=6LeeA-YrAAAAAGpbSzd7rGRYTKb2JxWVZOUpsOk6"
+                strategy="afterInteractive"
+                onLoad={executeRecaptcha}
+            />
+            <form
+                className={`flex flex-wrap justify-between md:mt-6 mt-12 mx-auto md:w-[550px] w-[85vw]`}
+                onSubmit={(event) => handleSubmit(event)}
             >
-                {submitButtonLabel}
-            </button>
-        </form>
+                {
+                    fields.map((field, index)=> {
+                        const { name, type, label, placeholder } = field;
+
+                        switch (type) {
+                            case 'textArea':
+                                return (
+                                    <section className={'mb-4 w-full'} key={name}>
+                                        <label className={'contact-label'}>{label}</label>
+                                        <textarea
+                                            name={name}
+                                            id={name}
+                                            value={values[name]}
+                                            rows={6}
+                                            cols={40}
+                                            className='resize-none py-3 px-8 lg:w-full md:max-w-[550px] w-full placeholder-[#8D78E0]'
+                                            placeholder={placeholder}
+                                            onChange={handleChange}
+                                            required={field.required}
+                                        />
+                                    </section>
+                                );
+                            case 'email':
+                                return (
+                                    <section className='mb-4 w-full' key={index}>
+                                        <label className={'contact-label'}>{label}</label>
+                                        <input
+                                            type={type}
+                                            name={name}
+                                            id={name}
+                                            className={'py-3 px-8 lg:w-full md:max-w-[550px] w-full  placeholder-[#8D78E0] rounded-[2em]'}
+                                            onChange={handleChange}
+                                            value={values[name]}
+                                            placeholder={placeholder}
+                                            required={field.required}
+                                        />
+                                    </section>
+                                );
+                            default:
+                                return (
+                                    <section className='mb-4 md:w-[49%] w-full' key={index}>
+                                        <label className={'contact-label'}>{label}</label>
+                                        <input
+                                            type={type}
+                                            name={name}
+                                            id={name}
+                                            className={'py-3 px-8 lg:w-full lg:max-w-[500px] w-full md:max-w-[525px] placeholder-[#8D78E0] rounded-[2em]'}
+                                            onChange={handleChange}
+                                            value={values[name]}
+                                            placeholder={placeholder}
+                                            required={field.required}
+                                        />
+                                    </section>
+                                )
+                        }
+                    })
+                }
+                {renderSentMessage()}
+                {
+                    captchaError && <div className={`w-full text-center mb-6 !text-red-500 border border-red-600 rounded-lg p-3 bg-red-200 font-bold`}>
+                        <p>{captchaError}</p>
+                    </div>
+                }
+                <button
+                    disabled={isAPILoading}
+                    value={submitButtonLabel ? submitButtonLabel : 'Send'}
+                    type="submit"
+                    className={` ${isAPILoading ? 'opacity-50' : ''} purple-b rounded-3xl px-8 py-2 text-white text-lg font-semibold w-fit`}
+                >
+                    {submitButtonLabel}
+                </button>
+            </form>
+        </>
     )
 };
 
