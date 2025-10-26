@@ -40,7 +40,7 @@ const Contact = () => {
                 onSuccessMessage={'Your message was submited succesfully. We will contact you soon.'}
                 onErrorMessage={'Please, try again in some minutes'}
                 submitButtonLabel={'Send'}
-                emailServiceURL={'https://thehippoapi.netlify.app/.netlify/functions/api/insyncx-email'}
+                emailServiceURL={'https://admin.insyncx.com/wp-json/insyncx/v1/contact'}
             />
         </div>
         <div className='relative w-full md:w-[450px] md:h-[525px] mx-auto xl:mx-0'>

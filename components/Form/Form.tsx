@@ -91,7 +91,7 @@ const MyCustomForm = ({
         });
     };
 
-    const handleSubmit = (event:any) => {
+    const handleSubmit = (event: any) => {
         if (event) event.preventDefault();
 
         if (!googleToken) {
@@ -100,28 +100,39 @@ const MyCustomForm = ({
         }
 
         setIsAPILoading(true);
+
+        // Create FormData for Contact Form 7
+        const formData = new FormData();
+        formData.append('your-name', values.name);
+        formData.append('your-last-name', values.lastName);
+        formData.append('your-email', values.customerEmail);
+        formData.append('your-message', values.message);
+        formData.append('g-recaptcha-response', googleToken);
+
         axios.post(
-            emailServiceURL,
-            {
-                message: values.message,
-                name: values.name,
-                lastName: values.lastName,
-                customerEmail: values.customerEmail,
-            },
+            emailServiceURL, // This should be your CF7 form endpoint
+            formData,
             {
                 headers: {
-                    'Content-Type': 'application/json',
-                    'accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         )
             .then(function (response) {
-                setValues(initialValues);
-                setMessageSent('succeed');
+                // Check CF7 response structure
+                if (response.data && response.data.status === 'mail_sent') {
+                    setValues(initialValues);
+                    setMessageSent('succeed');
+                    setGoogleToken(''); // Reset captcha
+                    setCaptchaError('');
+                } else {
+                    setMessageDescription(response.data?.message || 'Submission failed');
+                    setMessageSent('error');
+                }
                 setIsAPILoading(false);
             })
             .catch(function (error) {
-                setMessageDescription(error.toString());
+                setMessageDescription(error.response?.data?.message || error.toString());
                 setMessageSent('error');
                 setIsAPILoading(false);
             });
@@ -154,7 +165,7 @@ const MyCustomForm = ({
             />
             <form
                 className={`flex flex-wrap justify-between md:mt-6 mt-12 mx-auto md:w-[550px] w-[85vw]`}
-                onSubmit={(event) => handleSubmit(event)}
+                onSubmit={handleSubmit}
             >
                 {
                     fields.map((field, index)=> {
