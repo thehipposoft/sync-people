@@ -5,8 +5,4 @@
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
     "editor.detectIndentation": false,
-    "files.associations": {
-        "*.html": "html-hubl",
-        "*.css": "css-hubl"
-    }
 }

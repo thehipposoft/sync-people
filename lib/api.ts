@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { storeToken, cleanCookies, storeTalentId } from "./actions";
 import { getUserProfile } from "./protected-api";
 import { redirect } from "next/navigation";
+import { TalentTypeAcf } from "@/types";
 
 type ApiType = {
     endpoint: string;
@@ -237,6 +238,68 @@ export const getTalents = async () => {
             ...t.acf,
             id: t.id,
             status: t.status
+        }
+    })
+
+    return cleanTalents
+};
+
+export const getTalentsGraphQL = async () => {
+    const apiURL = `https://admin.insyncx.com`;
+    const response = await fetch(`${apiURL}/graphql`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            query: `
+            {
+                talents(first: 100,
+                where: {
+                    orderby: { field: DATE, order: DESC }
+                }) {
+                    nodes {
+                        databaseId
+                        talents {
+                            personalInformation {
+                                firstName
+                                profilePic {
+                                    node {
+                                        id
+                                        sourceUrl
+                                    }
+                                }
+                                currentLocation {
+                                    state
+                                }
+                            }
+                            professionalInformation {
+                                industries {
+                                    industry
+                                    otherIndustry
+                                    position
+                                    preferredSalary
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            `
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error('failed to fetch talents')
+    }
+
+    const jsonResponse = await response.json();
+
+    const talents = jsonResponse.data.talents.nodes;
+    const cleanTalents: TalentTypeAcf[] = talents.map((t:any) => {
+        return {
+            id: t.databaseId,
+            ...t.talents,
         }
     })
 
