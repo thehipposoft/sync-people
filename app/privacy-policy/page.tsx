@@ -25,20 +25,22 @@ export const metadata = {
 export default async function PrivacyPolicyPage() {
     return(
         <PublicLayout>
-            {JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "PrivacyPolicy",
-                "name": "Insyncx Privacy Policy",
-                "url": "https://insyncx.com/privacy-policy",
-                "description": "The official Privacy Policy of Insyncx, explaining how we collect, use, and safeguard user data in compliance with Australian privacy laws.",
-                "provider": {
-                    "@type": "Organization",
-                    "name": "Insyncx",
-                    "url": "https://insyncx.com",
-                    "logo": "https://insyncx.com/logo.png"
-                },
-                "inLanguage": "en-AU"
-            })}
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "PrivacyPolicy",
+                    "name": "Insyncx Privacy Policy",
+                    "url": "https://insyncx.com/privacy-policy",
+                    "description": "The official Privacy Policy of Insyncx, explaining how we collect, use, and safeguard user data in compliance with Australian privacy laws.",
+                    "provider": {
+                        "@type": "Organization",
+                        "name": "Insyncx",
+                        "url": "https://insyncx.com",
+                        "logo": "https://insyncx.com/logo.png"
+                    },
+                    "inLanguage": "en-AU"
+                })}
+            </script>
             <div className="my-8 px-6">
                 <h1>Privacy Policy - Insyncx</h1>
                 <p className="my-4">
