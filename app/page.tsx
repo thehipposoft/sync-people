@@ -1,4 +1,6 @@
 
+import type { Metadata } from 'next';
+
 import Banner from '@/components/Banner';
 import HowWorks from '@/components/How';
 import DigitalPassport from '@/components/DigitalPassport';
@@ -7,7 +9,7 @@ import Discover from '@/components/Discover';
 import Contact from '@/components/Contact';
 import PublicLayout from '@/components/PublicLayout';
 
-export const metadata = {
+export const metadata: Metadata = {
     title: "Insyncx | Connect Talents with Opportunities in Australia",
     description: "Insyncx helps backpackers, students, and skilled workers in Australia showcase their talents with a digital passport and connect with employers across hospitality, tourism, and more.",
     openGraph: {
@@ -42,5 +44,5 @@ export default async function Home() {
                 <Contact />
             </div>
         </PublicLayout>
-    )
+    );
 }
