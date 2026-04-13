@@ -61,7 +61,7 @@ const Filters = ({
         });
 
         setFilteredTalents(filteredTalents);
-    }, [selectedFilters]);
+    }, [selectedFilters, talents, setFilteredTalents]);
 
     const handleIndustryFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value, checked } = event.target;
@@ -90,9 +90,12 @@ const Filters = ({
 
     return (
         <>
-            <div
+            <button
+                type='button'
                 className={`flex lg:hidden items-center gap-2 border p-2 rounded-md cursor-pointer transition-all justify-center`}
                 onClick={toggleFilters}
+                aria-expanded={openFilters}
+                aria-controls='talents-filters-panel'
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M23 3.81836V5.63651H1V3.81836H23Z" fill="currentColor"/>
@@ -105,8 +108,9 @@ const Filters = ({
                 <span className={`font-medium ${openFilters ? 'tw-text-secondary-500' : ''}`}>
                     Filter results
                 </span>
-            </div>
+            </button>
             <div
+                id='talents-filters-panel'
                 className={`bg-white border rounded-md transition-all duration-300 ease-in-out aside ${
                     openFilters
                     ? 'lg:max-h-auto opacity-100 translate-y-0 z-10 open'
