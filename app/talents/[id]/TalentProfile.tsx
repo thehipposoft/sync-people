@@ -6,9 +6,7 @@ import { Link } from 'next-view-transitions';
 import { TalentTypeAcf, IndustryType, CertificateType, WorkExperienceType } from '@/types';
 import { INDUSTRIES_BANNER, ROUTES } from '@/app/constants';
 import { renderSocialMediaIcon, handleRenderTimeInJobs, getTalentAddress } from '@/lib/utils';
-import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
-import TalentPDFDocument from './TalentPDFDocument';
 import { format, parseISO } from 'date-fns';
 
 type TalentProfileProps = {
@@ -32,6 +30,7 @@ const TalentProfile = ({
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const [credentials, setCredentials] = useState<CertificateType[]>([]);
+    const [isGeneratingPdf, setIsGeneratingPdf] = useState<boolean>(false);
 
     useEffect(() => {
         if (queryIndustry) {
@@ -62,16 +61,29 @@ const TalentProfile = ({
     }, [selectedIndustry]);
 
     const generatePDF = async () => {
-        const blob = await pdf(
-          <TalentPDFDocument
-            talentData={talentData}
-            selectedIndustry={selectedIndustry}
-            selectedIndustryWorkExperience={selectedIndustryWorkExperience}
-            userId={id}
-          />
-        ).toBlob();
+        if (isGeneratingPdf) return;
 
-        saveAs(blob, `Insyncx-${talentData.personal_information.first_name}-${talentData.personal_information.last_name}-Profile.pdf`);
+        setIsGeneratingPdf(true);
+
+        try {
+            const [{ pdf }, { default: TalentPDFDocument }] = await Promise.all([
+                import('@react-pdf/renderer'),
+                import('./TalentPDFDocument')
+            ]);
+
+            const blob = await pdf(
+                <TalentPDFDocument
+                    talentData={talentData}
+                    selectedIndustry={selectedIndustry}
+                    selectedIndustryWorkExperience={selectedIndustryWorkExperience}
+                    userId={id}
+                />
+            ).toBlob();
+
+            saveAs(blob, `Insyncx-${talentData.personal_information.first_name}-${talentData.personal_information.last_name}-Profile.pdf`);
+        } finally {
+            setIsGeneratingPdf(false);
+        }
     };
 
     const handlePlay = () => {
@@ -461,10 +473,11 @@ const TalentProfile = ({
             </div>
             <div className='flex pb-8 justify-end flex-wrap gap-4 md:gap-6 md:mb-0 w-[80vw] md:w-[900px] mx-auto'>
                 <button
-                    className='secondary-btn w-full md:w-auto px-8'
+                    className='secondary-btn w-full md:w-auto px-8 disabled:opacity-70 disabled:cursor-not-allowed'
                     onClick={generatePDF}
+                    disabled={isGeneratingPdf}
                 >
-                    Download Profile
+                    {isGeneratingPdf ? 'Generating...' : 'Download Profile'}
                 </button>
             </div>
         </div>

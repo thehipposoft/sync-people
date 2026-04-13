@@ -1,5 +1,5 @@
 import './globals.scss'
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import localFont from 'next/font/local';
 import { ViewTransitions } from 'next-view-transitions';
@@ -39,7 +39,19 @@ const poppinsBold = localFont({
     variable: '--font-poppins-bold'
 });
 
+export const viewport: Viewport = {
+    themeColor: [
+        { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+        { media: '(prefers-color-scheme: dark)', color: '#7052E5' },
+    ],
+    minimumScale: 1,
+    initialScale: 1,
+    width: 'device-width',
+    viewportFit: 'cover',
+};
+
 export const metadata: Metadata = {
+    metadataBase: new URL('https://insyncx.com'),
     title: 'Insyncx - Connecting talents with opportunities',
     description: 'Connecting talents with opportunities',
     manifest: '/manifest.json',
@@ -60,18 +72,12 @@ export const metadata: Metadata = {
         "backpackers",
         "international students",
     ],
-    themeColor: [
-        { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-        { media: '(prefers-color-scheme: dark)', color: '#7052E5' },
-    ],
     authors: [
         {
             name: 'The Hipposoft',
             url: 'https://www.thehipposoft.com',
         },
     ],
-    viewport:
-        'minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover',
     icons: {
         icon: '/icons/favicon.ico',
         apple: ['/icons/apple-touch-icon.png', '/icons/ios-512.png'],

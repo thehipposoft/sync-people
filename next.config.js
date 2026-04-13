@@ -9,14 +9,39 @@ const withPWA = require('next-pwa')({
 const nextConfig = {
     turbopack: {},
     images: {
-      domains: [
-        "localhost",
-        "placehold.co",
-        "admin.insyncx.co",
-        "admin.insyncx.com",
-        "insyncx.co",
-        "res.cloudinary.com",
-        "api.qrserver.com",
+      remotePatterns: [
+        {
+          protocol: "http",
+          hostname: "localhost",
+        },
+        {
+          protocol: "https",
+          hostname: "localhost",
+        },
+        {
+          protocol: "https",
+          hostname: "placehold.co",
+        },
+        {
+          protocol: "https",
+          hostname: "admin.insyncx.co",
+        },
+        {
+          protocol: "https",
+          hostname: "admin.insyncx.com",
+        },
+        {
+          protocol: "https",
+          hostname: "insyncx.co",
+        },
+        {
+          protocol: "https",
+          hostname: "res.cloudinary.com",
+        },
+        {
+          protocol: "https",
+          hostname: "api.qrserver.com",
+        },
       ],
     },
   };

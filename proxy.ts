@@ -2,12 +2,10 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { ROUTES } from "./app/constants";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
     const authToken = request.cookies.get("wp_accessToken")?.value;
     const talentId = request.cookies.get("talentId")?.value;
     const path = request.nextUrl.pathname;
-
-    console.log(">>authToken", authToken);
 
     if (request.nextUrl.pathname.startsWith('/dashboard') && !authToken) {
         const loginUrl = new URL(ROUTES.LOGIN, request.url);

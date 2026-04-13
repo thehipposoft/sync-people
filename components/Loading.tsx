@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
 
 const Loading = () => {
     const svgRef = useRef<SVGSVGElement>(null);
@@ -11,90 +10,101 @@ const Loading = () => {
     const dotsRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const svg = svgRef.current;
-        const tealSection = tealSectionRef.current;
-        const purpleSection = purpleSectionRef.current;
-        const orangeSection = orangeSectionRef.current;
-        const dots = dotsRef.current;
+        let isMounted = true;
+        let tl: any = null;
 
-        if (!svg || !tealSection || !purpleSection || !orangeSection || !dots) return;
+        const initAnimation = async () => {
+            const { gsap } = await import('gsap');
 
-        // Initial state - hide all elements
-        gsap.set([tealSection, purpleSection, orangeSection], {
-            opacity: 0,
-            scale: 0.8,
-            transformOrigin: "center center"
-        });
-        gsap.set(svg, { scale: 0.8, opacity: 0 });
-        gsap.set(dots.children, { y: 20, opacity: 0 });
+            if (!isMounted) return;
 
-        // Create master timeline
-        const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.5 });
+            const svg = svgRef.current;
+            const tealSection = tealSectionRef.current;
+            const purpleSection = purpleSectionRef.current;
+            const orangeSection = orangeSectionRef.current;
+            const dots = dotsRef.current;
 
-        // Animate SVG container entrance
-        tl.to(svg, {
-            scale: 1,
-            opacity: 1,
-            duration: 0.6,
-            ease: "back.out(1.7)"
-        })
+            if (!svg || !tealSection || !purpleSection || !orangeSection || !dots) return;
 
-        // Animate sections sequentially with morphing effect
-        .to(purpleSection, {
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: "elastic.out(1, 0.3)"
-        }, "-=0.2")
+            // Initial state - hide all elements
+            gsap.set([tealSection, purpleSection, orangeSection], {
+                opacity: 0,
+                scale: 0.8,
+                transformOrigin: "center center"
+            });
+            gsap.set(svg, { scale: 0.8, opacity: 0 });
+            gsap.set(dots.children, { y: 20, opacity: 0 });
 
-        .to(tealSection, {
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: "elastic.out(1, 0.3)"
-        }, "-=0.4")
+            // Create master timeline
+            tl = gsap.timeline({ repeat: -1, repeatDelay: 0.5 });
 
-        .to(orangeSection, {
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: "elastic.out(1, 0.3)"
-        }, "-=0.4")
+            // Animate SVG container entrance
+            tl.to(svg, {
+                scale: 1,
+                opacity: 1,
+                duration: 0.6,
+                ease: "back.out(1.7)"
+            })
 
-        // Add floating animation to the whole SVG
-        .to(svg, {
-            y: -10,
-            duration: 1.5,
-            ease: "power2.inOut",
-            yoyo: true,
-            repeat: 1
-        }, "-=0.5")
+            // Animate sections sequentially with morphing effect
+            .to(purpleSection, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.8,
+                ease: "elastic.out(1, 0.3)"
+            }, "-=0.2")
 
-        // Animate dots
-        .to(dots.children, {
-            y: 0,
-            opacity: 1,
-            duration: 0.4,
-            stagger: 0.1,
-            ease: "back.out(1.7)"
-        }, "-=1")
+            .to(tealSection, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.8,
+                ease: "elastic.out(1, 0.3)"
+            }, "-=0.4")
 
-        // Add pulsing effect to sections
-        .to([tealSection, purpleSection, orangeSection], {
-            scale: 1.1,
-            duration: 0.6,
-            ease: "power2.inOut",
-            stagger: 0.2,
-            yoyo: true,
-            repeat: 1
-        }, "-=0.5")
+            .to(orangeSection, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.8,
+                ease: "elastic.out(1, 0.3)"
+            }, "-=0.4")
 
-        // Pause before restart
-        .to({}, { duration: 1 });
+            // Add floating animation to the whole SVG
+            .to(svg, {
+                y: -10,
+                duration: 1.5,
+                ease: "power2.inOut",
+                yoyo: true,
+                repeat: 1
+            }, "-=0.5")
 
-        // Cleanup
+            // Animate dots
+            .to(dots.children, {
+                y: 0,
+                opacity: 1,
+                duration: 0.4,
+                stagger: 0.1,
+                ease: "back.out(1.7)"
+            }, "-=1")
+
+            // Add pulsing effect to sections
+            .to([tealSection, purpleSection, orangeSection], {
+                scale: 1.1,
+                duration: 0.6,
+                ease: "power2.inOut",
+                stagger: 0.2,
+                yoyo: true,
+                repeat: 1
+            }, "-=0.5")
+
+            // Pause before restart
+            .to({}, { duration: 1 });
+        };
+
+        void initAnimation();
+
         return () => {
-            tl.kill();
+            isMounted = false;
+            tl?.kill();
         };
     }, []);
 
