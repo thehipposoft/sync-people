@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { storeToken, cleanCookies, storeTalentId } from "./actions";
 import { getUserProfile } from "./protected-api";
 import { redirect } from "next/navigation";
-import { TalentTypeAcf } from "@/types";
+import { TalentType, TalentTypeAcf } from "@/types";
 
 type ApiType = {
     endpoint: string;
@@ -46,26 +46,6 @@ type ComingSoonEmailType = {
     industry: string;
     lookingFor: string;
     company_name?: string;
-};
-
-export const sendComingSoonEmail = async (data: ComingSoonEmailType) => {
-    const response: any = await api({
-        endpoint: "/insyncx-email-soon",
-        method: "POST",
-        body: data,
-    });
-
-    if (response.status === 500) {
-        return {
-            status: 500,
-            message: 'Something went wrong. Please try again later.',
-        };
-    } else {
-        return {
-            status: 200,
-            message: 'Ok',
-        };
-    }
 };
 
 export const getJWTToken = async (email?: string, password?: string) => {
@@ -200,16 +180,11 @@ export const createTalentNew = async (data: CreateTalentBodyType) => {
     }
 };
 
-export const getTalent = async (id: string) => {
+export const getTalent = async (id: string): Promise<TalentType | null> => {
     const apiURL = process.env.NEXT_PUBLIC_WP_URL;
     const response = await fetch(`${apiURL}/talents/${id}?acf_format=standard`);
-    const responseJson = await response.json();
-
     if (response.status === 404) {
-        return NextResponse.json({
-            message: responseJson.message,
-        },
-        { status: 404 });
+        return null;
     }
 
     if (response.status === 401) {
@@ -220,7 +195,7 @@ export const getTalent = async (id: string) => {
         throw new Error('failed to fetch talent')
     }
 
-    const talent = responseJson;
+    const talent = await response.json();
 
     return talent;
 };

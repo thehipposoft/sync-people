@@ -1,4 +1,4 @@
-import { getJWTToken, sendComingSoonEmail } from '@/lib/api'; // Adjust the import path as needed
+import { getJWTToken } from '@/lib/api'; // Adjust the import path as needed
 import { NextResponse, NextRequest } from "next/server";
 
 type ComingSoonEmailType = {
@@ -65,8 +65,6 @@ export async function POST(request: NextRequest) {
         },
         { status: response.status });
     }
-
-    const emailSentResponse = sendComingSoonEmail(data);
 
     return NextResponse.json({ message: "Talent Created" }, { status: 200 });
 }

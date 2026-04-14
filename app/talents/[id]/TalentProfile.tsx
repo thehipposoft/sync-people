@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Link } from 'next-view-transitions';
@@ -14,51 +14,98 @@ type TalentProfileProps = {
     id: string;
 };
 
-const hideEmailDomain = (email: string) => {
-	if (!email) return "";
-  	return email.split("@")[0] + "@...";
+const maskEmail = (email: string) => {
+    if (!email) return '';
+
+    const [localPart, domainPart] = email.split('@');
+
+    if (!localPart || !domainPart) {
+        return email;
+    }
+
+    const visibleLocal = localPart.slice(0, 2);
+
+    return `${visibleLocal}${'*'.repeat(Math.max(localPart.length - 2, 1))}@${domainPart}`;
+};
+
+const maskMobile = (mobile: string) => {
+    if (!mobile) return '';
+
+    const visibleDigits = 3;
+    const digits = mobile.replace(/\D/g, '');
+
+    if (digits.length <= visibleDigits) {
+        return '*'.repeat(digits.length);
+    }
+
+    let hiddenDigitsSeen = 0;
+    const digitsToMask = digits.length - visibleDigits;
+
+    return mobile.replace(/\d/g, (digit) => {
+        if (hiddenDigitsSeen < digitsToMask) {
+            hiddenDigitsSeen += 1;
+            return '*';
+        }
+
+        return digit;
+    });
+};
+
+const formatIndustryLabel = (industry: IndustryType) => {
+    if (industry.industry === 'other') {
+        return industry.other_industry?.toUpperCase() || 'OTHER';
+    }
+
+    return industry.industry.replace(/_/g, ' ').toUpperCase();
 };
 
 const TalentProfile = ({
     talentData,
     id
 }:TalentProfileProps) => {
-    const pathname = useSearchParams();
-    const queryIndustry = pathname.get('industry') || '';
-    const [selectedIndustry, setSelectedIndustry] = useState<IndustryType>(talentData.professional_information.industries[0]);
-    const [selectedIndustryWorkExperience, setSelectedIndustryWorkExperience] = useState<WorkExperienceType[]>([]);
+    const searchParams = useSearchParams();
+    const queryIndustry = searchParams.get('industry') || '';
+    const industries = talentData.professional_information.industries || [];
+    const availableIndustryKeys = useMemo(() => new Set(industries.map((industry) => industry.industry)), [industries]);
+    const isQueryIndustryValid = queryIndustry ? availableIndustryKeys.has(queryIndustry as IndustryType['industry']) : false;
+    const [selectedIndustryKey, setSelectedIndustryKey] = useState<string | null>(isQueryIndustryValid ? queryIndustry : industries[0]?.industry || null);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const videoRef = useRef<HTMLVideoElement | null>(null);
-    const [credentials, setCredentials] = useState<CertificateType[]>([]);
     const [isGeneratingPdf, setIsGeneratingPdf] = useState<boolean>(false);
 
     useEffect(() => {
-        if (queryIndustry) {
-            const selected = talentData.professional_information.industries.find((industry) => industry.industry === queryIndustry);
-            if (selected) {
-                setSelectedIndustry(selected);
-            }
+        if (queryIndustry && isQueryIndustryValid) {
+            setSelectedIndustryKey(queryIndustry);
+            return;
         }
-    }, []);
 
-    useEffect(() => {
-        if(selectedIndustry) {
-            if(talentData.professional_information.certificates && talentData.professional_information.certificates.length) {
-                const filteredCertificates = talentData.professional_information.certificates.filter((certificate) =>
-                    certificate.visible_for.includes(selectedIndustry.industry)
-                );
-                setCredentials(filteredCertificates);
-            }
-
-            if(talentData.work_experience && talentData.work_experience.length) {
-                const filteredWorkExperience = talentData.work_experience.filter((experience) =>
-                    experience.visible_for.includes(selectedIndustry.industry)
-                );
-
-                setSelectedIndustryWorkExperience(filteredWorkExperience.sort((a, b) => parseISO(b.start_date).getTime() - parseISO(a.start_date).getTime()));
-            }
+        if (!queryIndustry && industries.length > 0 && !selectedIndustryKey) {
+            setSelectedIndustryKey(industries[0].industry);
         }
-    }, [selectedIndustry]);
+    }, [queryIndustry, isQueryIndustryValid, industries, selectedIndustryKey]);
+
+    const selectedIndustry = industries.find((industry) => industry.industry === selectedIndustryKey) || industries[0];
+    const credentials: CertificateType[] = useMemo(() => selectedIndustry
+        ? (talentData.professional_information.certificates || []).filter((certificate) =>
+            certificate.visible_for.includes(selectedIndustry.industry)
+        )
+        : [], [selectedIndustry, talentData.professional_information.certificates]);
+    const selectedIndustryWorkExperience: WorkExperienceType[] = useMemo(() => selectedIndustry
+        ? (talentData.work_experience || [])
+            .filter((experience) => experience.visible_for.includes(selectedIndustry.industry))
+            .sort((a, b) => parseISO(b.start_date).getTime() - parseISO(a.start_date).getTime())
+        : [], [selectedIndustry, talentData.work_experience]);
+
+    if (!selectedIndustry) {
+        return <div className='flex flex-col md:w-full w-[80vw] h-[60vh] justify-center'>
+            <h5 className='text-center font-bold text-xl mb-4'>
+                We couldn't find any industry associated with this talent.
+            </h5>
+            <p className='text-center'>
+                If this is your profile, please login to your account and <Link className='underline' href={`${ROUTES.MY_PROFILE}/${id}`}>update your profile</Link>.
+            </p>
+        </div>;
+    }
 
     const generatePDF = async () => {
         if (isGeneratingPdf) return;
@@ -94,16 +141,7 @@ const TalentProfile = ({
     };
 
     return (
-        !talentData.professional_information.industries
-        ? <div className='flex flex-col md:w-full w-[80vw] h-[60vh] justify-center'>
-            <h5 className='text-center font-bold text-xl mb-4'>
-                We couldn't found any industry associated with this talent.
-            </h5>
-            <p className='text-center'>
-                If this is your profile, please login to your account and <Link className='underline' href={`${ROUTES.MY_PROFILE}/${id}`}>update your profile</Link>.
-            </p>
-        </div>
-        : <div className='flex flex-col md:w-full'>
+        <div className='flex flex-col md:w-full'>
             <div className='md:w-full w-[90vw] mx-auto md:mx-0 md:flex justify-center gap-12 my-8'>
                 <div className='border rounded-2xl bg-white'>
                     <div className='relative flex flex-col mx-auto md:w-[900px] bg-white'>
@@ -145,22 +183,20 @@ const TalentProfile = ({
                                         {talentData.personal_information.first_name} {talentData.personal_information.last_name} <span className='h-bold capitalize'> - {talentData.personal_information.country_of_birth}</span>
                                     </h4>
                                     {
-                                        !queryIndustry && talentData.professional_information.industries.length > 1 && (
+                                        (!queryIndustry || !isQueryIndustryValid) && talentData.professional_information.industries.length > 1 && (
                                             <select
                                                 className='bg-[#f3f4f6] rounded-lg p-2 w-full md:w-[200px] text-primary text-center ml-auto flex'
+                                                    value={selectedIndustry.industry}
                                                 onChange={(e) => {
-                                                    const selected = talentData.professional_information.industries.find((industry) => industry.industry === e.target.value);
-                                                    if (selected) {
-                                                        setSelectedIndustry(selected);
-                                                    }
+                                                        setSelectedIndustryKey(e.target.value);
                                                 }}
                                             >
-                                                {talentData.professional_information.industries.map((industry, index) => (
+                                                {talentData.professional_information.industries.map((industry) => (
                                                     <option
-                                                        key={index}
+                                                        key={`${industry.industry}-${industry.other_industry || ''}`}
                                                         value={industry.industry}
                                                     >
-                                                        {industry.industry === 'other' ? industry.other_industry?.toUpperCase() : industry.industry.replace(/_/g, ' ').toUpperCase()}
+                                                            {formatIndustryLabel(industry)}
                                                     </option>
                                                 ))}
                                             </select>
@@ -210,11 +246,11 @@ const TalentProfile = ({
                                                 </h4>
                                                 <div className='flex flex-col gap-1 mt-1'>
                                                     {
-                                                        credentials.map((certificate, index) => {
+                                                        credentials.map((certificate) => {
                                                             if (certificate.visible_for.includes(selectedIndustry.industry)) {
                                                                 if (certificate.keep_file_private || !certificate.file_url) {
                                                                     return (
-                                                                        <p key={`certificate-${index}`}>
+                                                                        <p key={`certificate-${certificate.name}-${certificate.expiry_date}`}>
                                                                             {certificate.name}
                                                                         </p>
                                                                     )
@@ -222,9 +258,10 @@ const TalentProfile = ({
 
                                                                 return (
                                                                     <a
-                                                                        key={`certificate-${index}`}
+                                                                        key={`certificate-${certificate.name}-${certificate.file_url}`}
                                                                         className='underline flex gap-1 items-center w-fit'
                                                                         target='_blank'
+                                                                        rel='noreferrer'
                                                                         href={certificate.file_url}
                                                                     >
                                                                         {certificate.name}
@@ -256,7 +293,7 @@ const TalentProfile = ({
                                                 </h4>
                                                 <div className='flex gap-4 md:gap-2 flex-wrap'>
 
-                                                    <Link
+                                                    <a
                                                         href={`tel:${talentData.personal_information.mobile}`}
                                                         className={`${talentData.personal_information.mobile === '' ? 'hidden' : ''} ml-0 flex items-center gap-2 primary-btn group text-sm`}
                                                     >
@@ -264,9 +301,9 @@ const TalentProfile = ({
                                                             <path d="M11 18H13M9.2 21H14.8C15.9201 21 16.4802 21 16.908 20.782C17.2843 20.5903 17.5903 20.2843 17.782 19.908C18 19.4802 18 18.9201 18 17.8V6.2C18 5.0799 18 4.51984 17.782 4.09202C17.5903 3.71569 17.2843 3.40973 16.908 3.21799C16.4802 3 15.9201 3 14.8 3H9.2C8.0799 3 7.51984 3 7.09202 3.21799C6.71569 3.40973 6.40973 3.71569 6.21799 4.09202C6 4.51984 6 5.07989 6 6.2V17.8C6 18.9201 6 19.4802 6.21799 19.908C6.40973 20.2843 6.71569 20.5903 7.09202 20.782C7.51984 21 8.07989 21 9.2 21Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                             </path>
                                                         </svg>
-                                                        {talentData.personal_information.mobile}
-                                                    </Link>
-                                                    <Link
+                                                        {maskMobile(talentData.personal_information.mobile)}
+                                                    </a>
+                                                    <a
                                                         href={`mailto:${talentData.personal_information.email}`}
                                                         className='flex items-center gap-2 primary-btn group text-sm mr-0 ml-0'
                                                     >
@@ -276,8 +313,8 @@ const TalentProfile = ({
                                                                 <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></rect>
                                                             </g>
                                                         </svg>
-                                                        {hideEmailDomain(talentData.personal_information.email)}
-                                                    </Link>
+                                                        {maskEmail(talentData.personal_information.email)}
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -335,17 +372,17 @@ const TalentProfile = ({
                             <div className='flex flex-col gap-2'>
                                 {
                                 selectedIndustryWorkExperience
-                                    .map((experience, index) => {
+                                    .map((experience) => {
                                         const startDate = parseISO(experience.start_date);
                                         const endDate = experience.currently_working ? new Date() : parseISO(experience.end_date);
 
                                         return (
-                                            <div key={index} className='flex flex-col gap-2'>
+                                            <div key={`${experience.company_name}-${experience.position}-${experience.start_date}-${experience.end_date}`} className='flex flex-col gap-2'>
                                                 <h2 className='text-xl font-bold'>
                                                     {experience.position} - <span className='text-lg'>{experience.company_name}</span>
                                                 </h2>
                                                 <p>
-                                                    {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(experience.end_date, 'dd/MM/yyyy')}
+                                                    {format(startDate, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(endDate, 'dd/MM/yyyy')}
                                                     <span className='ml-1 text-sm'>
                                                         ({handleRenderTimeInJobs(startDate, endDate)})
                                                     </span>
@@ -367,8 +404,8 @@ const TalentProfile = ({
                         <ul className={`list-inside list-disc pb-4 ${talentData.professional_information.skills_set.length > 0 ? '' : 'hidden'}`}>
                             {
                                 talentData.professional_information.skills_set && talentData.professional_information.skills_set.length > 0
-                                    ? talentData.professional_information.skills_set.map((skill, index) => (
-                                        <li key={index} className='capitalize'>
+                                    ? talentData.professional_information.skills_set.map((skill) => (
+                                        <li key={skill.skill} className='capitalize'>
                                             {skill.skill}
                                         </li>
                                     ))
@@ -414,8 +451,8 @@ const TalentProfile = ({
                             Other Credentials
                         </h4>
                         {
-                            talentData.extras.certificates && talentData.extras.certificates.map((credential, index) => (
-                                <div key={index}>
+                            talentData.extras.certificates && talentData.extras.certificates.map((credential) => (
+                                <div key={`${credential.name}-${credential.expiry_date}`}>
                                     <p className='capitalize'>
                                         {credential.certificate}
                                     </p>
@@ -434,8 +471,8 @@ const TalentProfile = ({
                                 <div className='flex gap-2 flex-wrap'>
                                     {
                                         talentData.extras.other_urls ?
-                                        talentData.extras.other_urls && talentData.extras.other_urls.map((item, index) => (
-                                            <div key={index}>
+                                        talentData.extras.other_urls && talentData.extras.other_urls.map((item) => (
+                                            <div key={`${item.name}-${item.url}`}>
                                                 <Link
                                                     href={item.url}
                                                     target='_blank' rel='noreferrer'
@@ -458,9 +495,9 @@ const TalentProfile = ({
                         <div className='flex gap-3 flex-wrap mb-3'>
                             {
                                 talentData.extras.social_media_links ?
-                                talentData.extras.social_media_links && talentData.extras.social_media_links.map((link, index) => (
-                                    <div key={index}>
-                                        <Link href={link.url} target='_blank' className='underline'>
+                                talentData.extras.social_media_links && talentData.extras.social_media_links.map((link) => (
+                                    <div key={`${link.platform}-${link.url}`}>
+                                        <Link href={link.url} target='_blank' rel='noreferrer' className='underline'>
                                             {renderSocialMediaIcon(link.platform)}
                                         </Link>
                                     </div>
