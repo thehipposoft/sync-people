@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 type FaqItem = {
     answer: string;
@@ -26,9 +26,13 @@ const FaqAccordion = ({ items }: FaqAccordionProps) => {
                         key={index}
                         className="flex flex-col border rounded-3xl px-4 py-2 border-[#8D78E0] transition-all duration-300"
                     >
-                        <div
-                            className="flex justify-between items-center md:gap-4 cursor-pointer"
+                        <button
+                            type="button"
+                            className="flex w-full justify-between items-center md:gap-4 text-left"
                             onClick={() => toggleItem(index)}
+                            aria-expanded={isOpen}
+                            aria-controls={`faq-answer-${index}`}
+                            id={`faq-question-${index}`}
                         >
                             <p className="md:text-base text-sm poppins font-semibold blue">
                                 {item.question}
@@ -45,10 +49,13 @@ const FaqAccordion = ({ items }: FaqAccordionProps) => {
                                 fill="#5F34F5"
                                 />
                             </svg>
-                        </div>
+                        </button>
                         <div
+                            id={`faq-answer-${index}`}
+                            role="region"
+                            aria-labelledby={`faq-question-${index}`}
                             className={`faq-container transition-all duration-500 ease-in-out overflow-hidden blue text-sm md:text-base ${
-                                isOpen ? 'opacity-100 translate-y-0 mt-2' : 'opacity-0 max-h-0 -translate-y-6'
+                                isOpen ? 'opacity-100 translate-y-0 mt-2 max-h-[500px]' : 'opacity-0 max-h-0 -translate-y-6'
                             }`}
                             dangerouslySetInnerHTML={{ __html: item.answer }}
                         />
