@@ -4,10 +4,10 @@ import { ROUTES } from '@/app/constants';
 
 const HowWorks = () => {
   return (
-        <div id='about' className='lg:h-screen bg-secondary flex lg:pl-20 px-8 lg:p-0 pt-12'>
+        <div id='about' className='lg:h-screen bg-secondary flex px-8 pt-12 lg:pl-20 lg:pr-0 lg:pt-0 lg:pb-0'>
             <div className='lg:gap-14 max-w-[1300px] grid grid-cols-1 lg:grid-cols-2 items-center'>
                 <div className='flex flex-col justify-center'>
-                    <h1 className='font-bold text-white mb-8 text-4xl'>How it works</h1>
+                    <h2 className='font-bold text-white mb-8 text-4xl'>How it works</h2>
                     <div className='words overflow-hidden h-[40px] lg:my-4'>
                         <h3 className={'block h-full text-[20px] lg:text-3xl orange'}>Fill the form</h3>
                         <h3 className={'block h-full text-[20px] lg:text-3xl '}>Set your preferences</h3>

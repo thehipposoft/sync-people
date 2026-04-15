@@ -37,7 +37,7 @@ const Contact = () => {
                         required: true,
                     },
                 ]}
-                onSuccessMessage={'Your message was submited succesfully. We will contact you soon.'}
+                onSuccessMessage={'Your message was submitted successfully. We will contact you soon.'}
                 onErrorMessage={'Please, try again in some minutes'}
                 submitButtonLabel={'Send'}
                 emailServiceURL={'https://admin.insyncx.com/wp-json/insyncx/v1/contact'}
@@ -47,7 +47,7 @@ const Contact = () => {
             <div className='absolute left-0 z-10 h-full w-full rounded-tl-[250px] bg-gradient-to-l opacity-30 rounded-br-[250px] from-[#8D78E0] to-[#15DFBB] ' />
             <Image
                 src={'/assets/images/contact-new.webp'}
-                alt='Conctact us'
+                alt='Contact us'
                 width={450}
                 height={525}
                 className='object-cover rounded-br-[250px] rounded-tl-[250px] w-full h-full'

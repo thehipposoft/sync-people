@@ -12,6 +12,13 @@ import PublicLayout from '@/components/PublicLayout';
 export const metadata: Metadata = {
     title: "Insyncx | Connect Talents with Opportunities in Australia",
     description: "Insyncx helps backpackers, students, and skilled workers in Australia showcase their talents with a digital passport and connect with employers across hospitality, tourism, and more.",
+    alternates: {
+        canonical: "https://insyncx.com",
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
     openGraph: {
         title: "Insyncx | Connect Talents with Opportunities in Australia",
         description: "Build your digital portfolio, get discovered, and find work opportunities in Australia.",
@@ -19,7 +26,7 @@ export const metadata: Metadata = {
         siteName: "Insyncx",
         images: [
         {
-            url: "/assets/og-image.png",
+            url: "https://insyncx.com/assets/og-image.png",
             width: 1200,
             height: 630,
             alt: "Insyncx digital portfolio",
@@ -27,6 +34,12 @@ export const metadata: Metadata = {
         ],
         locale: "en_AU",
         type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Insyncx | Connect Talents with Opportunities in Australia",
+        description: "Build your digital portfolio, get discovered, and find work opportunities in Australia.",
+        images: ["https://insyncx.com/assets/og-image.png"],
     },
 }
 

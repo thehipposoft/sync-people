@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
 const VideoModal = ({isModalOpen, closeModalFunc}:any) => {
     const videoRef = useRef<HTMLVideoElement>(null);

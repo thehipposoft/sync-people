@@ -1,29 +1,29 @@
 'use client'
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import VideoModal from './VideoModal';
-import ComingSoonModal from './ComingSoonModal';
 
 const Banner = () => {
-    const [openComingSoonModal, setOpenComingSoonModal] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState<boolean>(false);
 
     const toggleModal = () => {
-        setOpenModal(!openModal)
+        setOpenModal((prevState) => !prevState)
     }
 
     return (
         <div className='max-w-[1250px] mx-auto px-8 md:px-0 py-6 md:py-0 md:h-[90vh] md:gap-32 grid grid-cols-1 md:grid-cols-2 items-center justify-between'>
             <div className='flex flex-col'>
-                <h2 className='md:tracking-normal tracking-tighter text-[52px] md:text-6xl md:w-full w-3/4'>
+                <h1 className='md:tracking-normal tracking-tighter text-[52px] md:text-6xl md:w-full w-3/4'>
                     Connecting you with your future
-                </h2>
-                <h1 className='md:pt-4 pt-8 md:tracking-normal tracking-tight light text-lg md:text-xl leading-7 md:w-full w-11/12'>
-                    Looking to work while you explore Australia? <span>We will design for you a Skills Portfolio specifically tailored to <br/> the industry you want to apply for so that you get the job you are looking for, without stress or cost.</span>
                 </h1>
+                <p className='md:pt-4 pt-8 md:tracking-normal tracking-tight light text-lg md:text-xl leading-7 md:w-full w-11/12'>
+                    Looking to work while you explore Australia? <span>We will design for you a Skills Portfolio specifically tailored to the industry you want to apply for so that you get the job you are looking for, without stress or cost.</span>
+                </p>
             </div>
-            <div
-                className='group cursor-pointer relative flex justify-center items-center w-full h-72 md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-8 mt-8 md:mt-0'
+            <button
+                type='button'
+                aria-label='Play introduction video'
+                className='group relative flex justify-center items-center w-full h-72 md:h-[408px] rounded-3xl duration-500 rounded-br-[8rem] mb-8 mt-8 md:mt-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary'
                 onClick={toggleModal}
             >
                 <Image
@@ -39,9 +39,8 @@ const Banner = () => {
                 </svg>
                 <p className='text-white text-2xl md:rotate-12 group-hover:rotate-0 z-20 md:opacity-0 md:translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 duration-500 delay-100 poppins font-semibold'>Watch Video!</p>
                 </div>
-            </div>
+            </button>
             <VideoModal isModalOpen={openModal} closeModalFunc={toggleModal}/>
-            <ComingSoonModal isOpen={openComingSoonModal} onClose={() => setOpenComingSoonModal(false)} />
         </div>
     )
 }
