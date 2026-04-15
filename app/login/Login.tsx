@@ -25,18 +25,20 @@ const LoginMenu = () => {
             password,
         };
 
-        setIsApiLoading(true);
+        try {
+            const apiResponse = await login(data);
 
-        const apiResponse = await login(data);
+            if (apiResponse.status === 200) {
+                setErrorMessage('');
+                router.push(`${ROUTES.MY_PROFILE}/${apiResponse.talent_id}`);
+                return;
+            }
 
-        if (apiResponse.status === 200) {
+            setErrorMessage(apiResponse.message || 'Unable to login. Please try again.');
+        } catch (error) {
+            setErrorMessage('Unable to login right now. Please try again in a few minutes.');
+        } finally {
             setIsApiLoading(false);
-            setErrorMessage('');
-
-            router.push(`${ROUTES.MY_PROFILE}/${apiResponse.talent_id}`);
-        } else {
-            setIsApiLoading(false);
-            setErrorMessage(apiResponse.message);
         }
     };
 
@@ -49,7 +51,7 @@ const LoginMenu = () => {
                 <p>
                     Welcome back! Log in to your Insyncx account to update your digital passport, manage your skills, and explore work opportunities across Australia.
                 </p>
-                <form className='md:pt-6' onSubmit={handleSubmit}>
+                <form className='md:pt-6' onSubmit={handleSubmit} aria-busy={isApiLoading}>
                     <section className='flex flex-col'>
                         <label
                             htmlFor="email"
@@ -58,24 +60,32 @@ const LoginMenu = () => {
                             Email:
                         </label>
                         <input
+                            id="email"
                             type="email"
                             name="email"
                             required
+                            autoComplete='email'
                         />
                     </section>
                     <section className='flex flex-col'>
                         <label
-                            htmlFor="text"
+                            htmlFor="password"
                             className='pb-1'
                         >
                             Password:
                         </label>
                         <div className='relative'>
                             <input
+                                id="password"
                                 type={viewPassword ? 'text' : 'password'}
                                 name="password"
+                                required
+                                autoComplete='current-password'
                             />
-                            <div
+                            <button
+                                type='button'
+                                aria-label={viewPassword ? 'Hide password' : 'Show password'}
+                                aria-pressed={viewPassword}
                                 className='absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer opacity-50'
                                 onClick={() => setViewPassword(!viewPassword)}>
                                 {
@@ -98,21 +108,20 @@ const LoginMenu = () => {
                                         </svg>
                                     )
                                 }
-                            </div>
+                            </button>
                         </div>
                     </section>
                     {
-                        errorMessage && <p className="text-red-500 mt-3 bg-red-200 border border-red-500 p-4 rounded-md mb-3">
+                        errorMessage && <p role='alert' className="text-red-500 mt-3 bg-red-200 border border-red-500 p-4 rounded-md mb-3">
                             {errorMessage}
                         </p>
                     }
                     <button
                         type="submit"
-                        value="Sign up"
                         className='primary-btn mx-0 w-full lg:w-auto'
                         disabled={isApiLoading}
                     >
-                        Login
+                        {isApiLoading ? 'Logging in...' : 'Login'}
                     </button>
                     <div className=' flex-col items-center hidden'>
                         <div className='flex gap-4 items-center'>
@@ -143,6 +152,7 @@ const LoginMenu = () => {
                     <Link
                         target={'_blank'}
                         href={'https://admin.insyncx.com/wp-login.php?action=lostpassword'}
+                        rel='noopener noreferrer'
                         className='font-semibold text-secondary hover:underline'
                     >Forgot your password?
                     </Link>

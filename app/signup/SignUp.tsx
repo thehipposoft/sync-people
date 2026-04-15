@@ -16,27 +16,32 @@ const SignUpMenu = () => {
         setErrorMessage('');
         setIsApiLoading(true);
         const formData = new FormData(e.currentTarget);
-        const email = formData.get('email') as string;
+        const email = ((formData.get('email') as string) || '').trim().toLowerCase();
         const username = email.split('@')[0];
 
         const data = {
             first_name: formData.get('first-name') as string,
             last_name: formData.get('last-name') as string,
-            email: formData.get('email') as string,
+            email,
             password: formData.get('password') as string,
             lookingFor: 'job',
             username: username,
         };
 
-        const apiResponse = await createTalentNew(data);
+        try {
+            const apiResponse = await createTalentNew(data);
 
-        if (apiResponse.status === 200) {
+            if (apiResponse.status === 200) {
+                setErrorMessage('');
+                setOpenSuccessModal(true);
+                return;
+            }
+
+            setErrorMessage(apiResponse.details || apiResponse.message || 'Unable to create your account. Please try again.');
+        } catch (error) {
+            setErrorMessage('Unable to create your account right now. Please try again in a few minutes.');
+        } finally {
             setIsApiLoading(false);
-            setErrorMessage('');
-            setOpenSuccessModal(true);
-        } else {
-            setIsApiLoading(false);
-            setErrorMessage(apiResponse.details ? apiResponse.details : apiResponse.message);
         }
     };
 
@@ -44,9 +49,9 @@ const SignUpMenu = () => {
         <div className='flex items-center justify-center h-screen px-4 w-full'>
             <div className='bg-white rounded-2xl border p-8 shadow-xl'>
                 <h1 className='text-3xl text-center'>
-                    Sign Up and <br /> Create Your Digital Passport
+                    Sign Up and <br /> Create Your Skills Portfolio
                 </h1>
-                <form onSubmit={handleSubmit} className='md:pt-6 pt-4'>
+                <form onSubmit={handleSubmit} className='md:pt-6 pt-4' aria-busy={isApiLoading}>
                     <section className='flex gap-4 flex-col md:flex-row'>
                         <div className='lg:w-1/2 flex flex-col gap-1'>
                             <label
@@ -55,9 +60,11 @@ const SignUpMenu = () => {
                                 First name
                             </label>
                             <input
+                                id='first-name'
                                 type="text"
                                 name="first-name"
                                 required
+                                autoComplete='given-name'
                             />
                         </div>
                         <div className='lg:w-1/2 flex flex-col gap-1'>
@@ -67,8 +74,10 @@ const SignUpMenu = () => {
                                 Last name
                             </label>
                             <input
+                                id='last-name'
                                 type="text"
                                 name="last-name"
+                                autoComplete='family-name'
                             />
                         </div>
                     </section>
@@ -80,9 +89,11 @@ const SignUpMenu = () => {
                             Email
                         </label>
                         <input
+                            id='email'
                             type="email"
                             name="email"
                             required
+                            autoComplete='email'
                         />
                     </section>
                     <section className='flex flex-col'>
@@ -94,10 +105,16 @@ const SignUpMenu = () => {
                         </label>
                         <div className='relative'>
                             <input
+                                id='password'
                                 type={viewPassword ? 'text' : 'password'}
                                 name="password"
+                                required
+                                autoComplete='new-password'
                             />
-                            <div
+                            <button
+                                type='button'
+                                aria-label={viewPassword ? 'Hide password' : 'Show password'}
+                                aria-pressed={viewPassword}
                                 className='absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer opacity-50'
                                 onClick={() => setViewPassword(!viewPassword)}>
                                 {
@@ -120,7 +137,7 @@ const SignUpMenu = () => {
                                         </svg>
                                     )
                                 }
-                            </div>
+                            </button>
                         </div>
                     </section>
                     <section className='flex gap-2'>
@@ -135,17 +152,16 @@ const SignUpMenu = () => {
                         </label>
                     </section>
                     {
-                        errorMessage && <p className="text-red-500 mt-3 bg-red-200 border border-red-500 p-4 rounded-md mb-3">
+                        errorMessage && <p role='alert' className="text-red-500 mt-3 bg-red-200 border border-red-500 p-4 rounded-md mb-3">
                             {errorMessage}
                         </p>
                     }
                     <button
                         type="submit"
-                        value="Sign up"
                         className='primary-btn mx-0 w-full lg:w-auto'
                         disabled={isApiLoading}
                     >
-                        Sign up
+                        {isApiLoading ? 'Creating account...' : 'Sign up'}
                     </button>
                 </form>
                 <p className='text-center pt-6'>
