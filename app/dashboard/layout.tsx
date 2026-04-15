@@ -1,7 +1,6 @@
 import type { Metadata } from "next";;
 import PrivateLayout from "@/components/PrivateLayout";
 import { getTalent } from "@/lib/api";
-import { TalentType } from "@/types";
 import { redirect } from "next/navigation";
 import { ROUTES } from "@/app/constants";
 import { getTalentId } from "@/lib/actions";
@@ -13,9 +12,9 @@ export async function generateMetadata(): Promise<Metadata> {
             title: 'Insyncx - Talent Portal',
         }
     }
-    const userData: TalentType = await getTalent(id);
+    const userData = await getTalent(id);
 
-    if(userData.acf) {
+    if(userData?.acf) {
         return {
             title: `${userData.acf.personal_information.first_name} | Talent Portal`,
         }
@@ -32,7 +31,11 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     if (!id) {
         redirect(ROUTES.HOME);
     }
-    const userData:TalentType = await getTalent(id);
+    const userData = await getTalent(id);
+
+    if (!userData) {
+        redirect(ROUTES.HOME);
+    }
 
     return (
         <div className={`min-h-screen flex flex-col`}>

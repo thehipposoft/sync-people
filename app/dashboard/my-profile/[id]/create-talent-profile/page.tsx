@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { getTalent } from "@/lib/api";
-import { TalentType } from "@/types";
 import TalentForm from "./TalentForm";
 import { redirect } from "next/navigation";
 import { ROUTES } from "@/app/constants";
@@ -13,7 +12,7 @@ type MetadataPropsType = {
 
 export async function generateMetadata({ params }: MetadataPropsType): Promise<Metadata> {
     const resolvedParams = await params;
-    const userData: TalentType = await getTalent(resolvedParams.id);
+    const userData = await getTalent(resolvedParams.id);
 
     if(userData) {
         return {
@@ -35,7 +34,11 @@ type Props = {
 const CreateTalentProfile = async ({ params }: Props) => {
     const resolvedParams = await params;
     const { id } = resolvedParams;
-    const userData:TalentType = await getTalent(id);
+    const userData = await getTalent(id);
+
+    if(!userData) {
+        redirect(ROUTES.MY_PROFILE);
+    }
 
     if(userData.acf.professional_information.industries && userData.acf.professional_information.industries.length) {
         redirect(`${ROUTES.MY_PROFILE}/${id}`);

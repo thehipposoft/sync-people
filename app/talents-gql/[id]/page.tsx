@@ -18,9 +18,9 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const resolvedParams = await params;
     const { id } = resolvedParams;
-    const talentData: TalentType = await getTalent(id).then((res) => res);
+    const talentData: TalentType | null = await getTalent(id).then((res) => res);
 
-    if(talentData.id) {
+    if(talentData?.id) {
         const previousImages = (await parent).openGraph?.images || []
 
         return {
@@ -44,9 +44,9 @@ const TalentProfilePage = async ({
 }:TalentProfilePageProps) => {
     const resolvedParams = await params;
     const { id } = resolvedParams;
-	const talentData:TalentType = await getTalent(id);
+    const talentData:TalentType | null = await getTalent(id);
 
-    if(!talentData.id) {
+    if(!talentData?.id) {
         redirect(ROUTES.HOME);
     }
 

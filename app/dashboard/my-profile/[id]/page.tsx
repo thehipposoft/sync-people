@@ -13,9 +13,9 @@ type MetadataPropsType = {
 
 export async function generateMetadata({ params }: MetadataPropsType): Promise<Metadata> {
     const resolvedParams = await params;
-    const userData: TalentType = await getTalent(resolvedParams.id);
+    const userData: TalentType | null = await getTalent(resolvedParams.id);
 
-    if(userData.acf) {
+    if(userData?.acf) {
         return {
             title: `${userData.acf.personal_information.first_name} | Talent Portal`,
         }
@@ -35,9 +35,9 @@ type Props = {
 const MyProfilePage = async ({ params }: Props) => {
     const resolvedParams = await params;
     const { id } = resolvedParams;
-    const userData:TalentType = await getTalent(id);
+    const userData: TalentType | null = await getTalent(id);
 
-    if(!userData.acf) {
+    if(!userData || !userData.acf) {
         redirect(ROUTES.CURRENT_TALENT_NOT_FOUND);
     };
 

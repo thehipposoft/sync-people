@@ -12,7 +12,7 @@ type MetadataPropsType = {
 
 export async function generateMetadata({ params }: MetadataPropsType): Promise<Metadata> {
     const resolvedParams = await params;
-    const userData: TalentType = await getTalent(resolvedParams.id);
+    const userData: TalentType | null = await getTalent(resolvedParams.id);
 
     if(userData) {
         return {
@@ -34,7 +34,11 @@ type Props = {
 const MyProfilePage = async ({ params }: Props) => {
     const resolvedParams = await params;
     const { id } = resolvedParams;
-    const userData:TalentType = await getTalent(id);
+    const userData: TalentType | null = await getTalent(id);
+
+    if(!userData) {
+        return null;
+    }
 
     return (
         <ProfileForm
