@@ -89,7 +89,6 @@ const ExtraInformation = ({
                         type="text"
                         id="preferred_language"
                         name="preferred_language"
-                        required
                         value={formValues.preferred_language}
                         onChange={handleInputChange}
                     />

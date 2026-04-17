@@ -34,7 +34,7 @@ const TalentForm = ({
 
     const showNext = () => {
         setCurrentIndex((index) => {
-            if (index === 4) return 0;
+            if (index >= 3) return 3;
             return index + 1;
         })
         registrationFormRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -42,9 +42,7 @@ const TalentForm = ({
 
     const showPrev = () => {
         setCurrentIndex((index) => {
-            if (index === 0)
-                return 3;
-
+            if (index <= 0) return 0;
             return index - 1;
         })
         registrationFormRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -53,8 +51,9 @@ const TalentForm = ({
     const handleUploadProfileImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files || e.target.files.length === 0) return;
 
-            setIsAPILoading(true);
+        setIsAPILoading(true);
 
+        try {
             const file = e.target.files[0];
             const formData = new FormData();
             formData.append("file", file);
@@ -64,50 +63,61 @@ const TalentForm = ({
 
             const uploadResponse = await uploadMedia(formData);
 
-            if (uploadResponse) {
-                const apiValues = {
-                    ...formValues,
-                    personal_information: {
-                        ...formValues.personal_information,
-                        profile_pic: uploadResponse.id,
-                    },
-                };
-
-                const response = await updateProfile(userId, apiValues);
-
-                setFormValues({
-                    ...formValues,
-                    personal_information: {
-                        ...formValues.personal_information,
-                        profile_pic: uploadResponse.url,
-                    },
-                });
-
-                setIsAPILoading(false);
+            if (!uploadResponse) {
+                return;
             }
+
+            const apiValues = {
+                ...formValues,
+                personal_information: {
+                    ...formValues.personal_information,
+                    profile_pic: uploadResponse.id,
+                },
+            };
+
+            await updateProfile(userId, apiValues);
+
+            setFormValues({
+                ...formValues,
+                personal_information: {
+                    ...formValues.personal_information,
+                    profile_pic: uploadResponse.url,
+                },
+            });
+        } catch (error) {
+            console.error('Error uploading profile image:', error);
+        } finally {
+            setIsAPILoading(false);
+        }
     }
 
     const handleFinishForm = async (apiFormValues: TalentTypeAcf) => {
         setOpenLoadingModal(true);
 
-        if (recordedVideoBlob) {
-            uploadPresentationVideo(recordedVideoBlob)
-            .then(response => {
-                if (response.status === 200) {
-                    apiFormValues.personal_information.presentation_video = response.data.secure_url;
+        try {
+            if (recordedVideoBlob) {
+                const videoUploadResponse = await uploadPresentationVideo(recordedVideoBlob);
+
+                if (videoUploadResponse.status === 200) {
+                    apiFormValues.personal_information.presentation_video = videoUploadResponse.data.secure_url;
                 } else {
-                    console.error('Failed to upload video:', response.message);
+                    console.error('Failed to upload video:', videoUploadResponse.message);
                 }
-            })
-            .catch(error => {
-                console.error('Error uploading video:', error);
-            });
-        };
+            }
 
-        const response = await updateProfile(userId, apiFormValues);
+            const response = await updateProfile(userId, apiFormValues);
 
-        setOpenLoadingModal(false);
-        setOpenSuccessModal(true);
+            if (response?.status === 500 || response?.data?.status === 403) {
+                console.error('Failed to update profile:', response?.message);
+                return;
+            }
+
+            setOpenSuccessModal(true);
+        } catch (error) {
+            console.error('Error finishing talent profile:', error);
+        } finally {
+            setOpenLoadingModal(false);
+        }
     };
 
     return (

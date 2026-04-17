@@ -16,12 +16,22 @@ export async function generateMetadata({ params }: MetadataPropsType): Promise<M
 
     if(userData) {
         return {
-            title: `${userData.acf.personal_information.first_name} | Talent Portal`,
+            title: `Create Talent Profile | ${userData.acf.personal_information.first_name} | Insyncx`,
+            description: 'Complete your Skills Portfolio to get discovered by employers and unlock relevant opportunities.',
+            robots: {
+                index: false,
+                follow: false,
+            },
         }
     };
 
     return {
-        title: 'Insyncx - Talent Portal',
+        title: 'Create Talent Profile | Insyncx',
+        description: 'Complete your Skills Portfolio to get discovered by employers and unlock relevant opportunities.',
+        robots: {
+            index: false,
+            follow: false,
+        },
     }
 };
 

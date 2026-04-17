@@ -43,6 +43,8 @@ const BasicInformation = ({
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setApiError(null);
+        setIsAPILoading(true);
 
         setMainFormValues({
             ...initialValues,
@@ -62,23 +64,25 @@ const BasicInformation = ({
 
         delete body.personal_information.profile_pic;
 
-        const response = await updateProfile(userId, body);
+        try {
+            const response = await updateProfile(userId, body);
 
-        if(response.status === 500) {
-            setIsAPILoading(true);
-            console.log('Internal Server Error');
-            return;
-        }
+            if(response.status === 500) {
+                setApiError('Internal Server Error. Please try again.');
+                return;
+            }
 
-        if(response.data && response.data.status === 403) {
-            setApiError(response.message);
+            if(response.data && response.data.status === 403) {
+                setApiError(response.message);
+                return;
+            }
+
+            showNext();
+        } catch (error) {
+            setApiError('Unable to save your personal information right now. Please try again.');
+        } finally {
             setIsAPILoading(false);
-            return;
         }
-
-        setIsAPILoading(false);
-
-        showNext();
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -354,7 +358,8 @@ const BasicInformation = ({
                                 </div>
                             </div>
                             : <div className='flex items-center gap-2 mx-auto my-6'>
-                                <div
+                                <button
+                                    type='button'
                                     onClick={() => setRecordVideoModalOpen(true)}
                                     className="group cursor-pointer h-28 px-10 bg-primary hover:bg-white border-2 border-primary duration-500 flex gap-2 items-center text-white hover:text-primary rounded-3xl flex-col justify-center"
                                 >
@@ -374,7 +379,7 @@ const BasicInformation = ({
                                         </svg>
                                     </div>
                                     Record Video
-                                </div>
+                                </button>
                             </div>
                         }
                     </div>
@@ -468,7 +473,7 @@ const BasicInformation = ({
                 )
             }
             <div className='flex flex-col gap-4'>
-                <div className='flex justify-center mt-6'>
+                <div className='flex justify-center mt-6 text-primary'>
                     {currentIndex + 1} | 4
                 </div>
                 <button

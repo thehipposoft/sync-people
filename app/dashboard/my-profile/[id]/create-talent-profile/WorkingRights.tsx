@@ -62,6 +62,7 @@ const WorkingRights = ({
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setApiError(null);
         setIsAPILoading(true);
 
         setMainFormValues({
@@ -73,23 +74,25 @@ const WorkingRights = ({
             work_experience: formValues,
         }
 
-        const response = await updateProfile(userId, body);
+        try {
+            const response = await updateProfile(userId, body);
 
-        if(response.status === 500) {
-            setIsAPILoading(true);
-            console.log('Internal Server Error');
-            return;
-        }
+            if(response.status === 500) {
+                setApiError('Internal Server Error. Please try again.');
+                return;
+            }
 
-        if(response.data && response.data.status === 403) {
-            setApiError(response.message);
+            if(response.data && response.data.status === 403) {
+                setApiError(response.message);
+                return;
+            }
+
+            showNext();
+        } catch (error) {
+            setApiError('Unable to save your work experience right now. Please try again.');
+        } finally {
             setIsAPILoading(false);
-            return;
         }
-
-        setIsAPILoading(false);
-
-        showNext();
     };
 
     return (
@@ -294,7 +297,7 @@ const WorkingRights = ({
                 >
                     Back
                 </button>
-                <div className='md:flex hidden justify-center'>
+                <div className='md:flex hidden justify-center text-primary'>
                     {currentIndex + 1} | 4
                 </div>
                 <button

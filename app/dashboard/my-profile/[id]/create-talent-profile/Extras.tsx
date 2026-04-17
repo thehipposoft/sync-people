@@ -125,7 +125,6 @@ type ExtrasPropsType = {
                             type="text"
                             id="preferred_language"
                             name="preferred_language"
-                            required
                             value={formValues.preferred_language}
                             onChange={handleInputChange}
                         />
@@ -433,7 +432,7 @@ type ExtrasPropsType = {
                     >
                         Back
                     </button>
-                    <div className='md:flex hidden justify-center'>
+                    <div className='md:flex hidden justify-center text-primary'>
                         {currentIndex + 1} | 4
                     </div>
                     <button

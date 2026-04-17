@@ -3,8 +3,8 @@ import LoginMenu from '@/app/login/Login';
 import PublicLayout from '@/components/PublicLayout';
 
 export const metadata: Metadata = {
-    title: "Login | Insyncx - Access Your Digital Portfolio",
-    description: "Log in to your Insyncx account to access your digital portfolio, update your profile, and connect with employers across Australia.",
+    title: "Login | Insyncx - Access Your Skills Portfolio",
+    description: "Log in to your Insyncx account to access your Skills Portfolio, update your profile, and connect with employers across Australia.",
     alternates: {
         canonical: "https://insyncx.com/login",
     },
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
         follow: true,
     },
     openGraph: {
-        title: "Login | Insyncx - Access Your Digital Portfolio",
-        description: "Login to Insyncx and manage your digital portfolio. Showcase your skills and connect with employers in Australia.",
+        title: "Login | Insyncx - Access Your Skills Portfolio",
+        description: "Login to Insyncx and manage your Skills Portfolio. Showcase your skills and connect with employers in Australia.",
         url: "https://insyncx.com/login",
         siteName: "Insyncx",
         images: [
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Login | Insyncx - Access Your Digital Portfolio",
-        description: "Login to Insyncx and manage your digital portfolio. Showcase your skills and connect with employers in Australia.",
+        title: "Login | Insyncx - Access Your Skills Portfolio",
+        description: "Login to Insyncx and manage your Skills Portfolio. Showcase your skills and connect with employers in Australia.",
         images: ["https://insyncx.com/assets/og-login.png"],
     },
 }
@@ -42,7 +42,7 @@ export default async function LoginPage() {
         "@type": "WebPage",
         "name": "Login - Insyncx",
         "url": "https://insyncx.com/login",
-        "description": "Log in to your Insyncx account and access your digital portfolio to connect with employers in Australia.",
+        "description": "Log in to your Insyncx account and access your Skills Portfolio to connect with employers in Australia.",
         "isPartOf": {
             "@type": "WebSite",
             "name": "Insyncx",

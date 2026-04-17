@@ -17,7 +17,7 @@ const LoginMenu = () => {
         setErrorMessage('');
         setIsApiLoading(true);
         const formData = new FormData(e.currentTarget);
-        const email = formData.get('email') as string;
+        const email = ((formData.get('email') as string) || '').trim().toLowerCase();
         const password = formData.get('password') as string;
 
         const data = {
@@ -49,7 +49,7 @@ const LoginMenu = () => {
                     Login to Insyncx
                 </h1>
                 <p>
-                    Welcome back! Log in to your Insyncx account to update your digital passport, manage your skills, and explore work opportunities across Australia.
+                    Welcome back! Log in to your Insyncx account to update your Skills Portfolio, manage your skills, and explore work opportunities across Australia.
                 </p>
                 <form className='md:pt-6' onSubmit={handleSubmit} aria-busy={isApiLoading}>
                     <section className='flex flex-col'>

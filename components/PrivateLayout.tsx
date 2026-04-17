@@ -35,7 +35,7 @@ const PrivateLayout = ({
     };
 
     return (
-        <div className='flex'>
+        <div className='flex bg-white'>
             {
                 hideSideNav || (pathname && pathname.includes('create-talent-profile'))
                     ? null
