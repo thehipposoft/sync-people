@@ -16,13 +16,25 @@ export async function generateMetadata({ params }: MetadataPropsType): Promise<M
     const userData: TalentType | null = await getTalent(resolvedParams.id);
 
     if(userData?.acf) {
+        const firstName = userData.acf.personal_information.first_name;
+        const lastName = userData.acf.personal_information.last_name;
         return {
-            title: `${userData.acf.personal_information.first_name} | Talent Portal`,
+            title: `${firstName} ${lastName} | Skills Portfolio | Insyncx`,
+            description: `Manage and update your Skills Portfolio on Insyncx.`,
+            robots: {
+                index: false,
+                follow: false,
+            },
         }
     };
 
     return {
-        title: 'Insyncx - Talent Portal',
+        title: 'Skills Portfolio | Insyncx',
+        description: 'Manage and update your Skills Portfolio on Insyncx.',
+        robots: {
+            index: false,
+            follow: false,
+        },
     }
 };
 

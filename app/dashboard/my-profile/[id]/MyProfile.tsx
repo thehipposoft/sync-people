@@ -37,7 +37,7 @@ const MyProfile = ({
                     Skills Portfolio
                 </h1>
                 <p className='text-center mb-6'>
-                    Welcome to your <strong>Talent Dashboard!</strong> Here, you can manage and update your Digital Skills Portfolio.
+                    Welcome to your <strong>Talent Dashboard!</strong> Here, you can manage and update your Skills Portfolio.
                     You can also preview your public profile to see how others view your skills and experience.
                 </p>
             </div>
@@ -104,12 +104,13 @@ const MyProfile = ({
                                         height={150}
                                         className='w-36 h-36 object-cover mx-auto'
                                     />
-                                    <p
+                                    <button
+                                        type='button'
                                         className='text-center cursor-pointer underline'
                                         onClick={() => handleCopyLink(`${window.location.origin}${ROUTES.TALENTS}/${userId}`)}
                                     >
                                         Copy public profile URL
-                                    </p>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -143,6 +144,7 @@ const MyProfile = ({
                                             className='text-primary underline'
                                             href={ROUTES.PRESENTATION_VIDEO}
                                             target='_blank'
+                                            rel='noopener noreferrer'
                                         >
                                             Click here
                                         </Link>
@@ -186,7 +188,7 @@ const MyProfile = ({
                                         </h4>
                                         <Image
                                             src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://insyncx.com${ROUTES.TALENTS}/${userId}?industry=${industry.industry}&margin=30`}
-                                            alt={`Profile picture of ${user.personal_information.first_name}`}
+                                            alt={`QR code for ${user.personal_information.first_name}'s ${industry.industry === 'other' ? industry.other_industry : industry.industry.replace(/_/g, ' ')} portfolio`}
                                             width={150}
                                             height={150}
                                             className='w-36 h-36 object-cover mx-auto'
@@ -194,11 +196,13 @@ const MyProfile = ({
                                         <a
                                             href={`${ROUTES.TALENTS}/${userId}?industry=${industry.industry}`}
                                             target='_blank'
+                                            rel='noopener noreferrer'
                                             className='primary-btn text-center'
                                         >
                                             View Portfolio
                                         </a>
-                                        <span
+                                        <button
+                                            type='button'
                                             className='mt-6 mb-2 lg:mb-0 lg:mt-3 flex items-center gap-1 text-sm underline cursor-pointer'
                                             onClick={() => handleCopyLink(`${window.location.origin}${ROUTES.TALENTS}/${userId}?industry=${industry.industry}`)}
                                         >
@@ -214,7 +218,7 @@ const MyProfile = ({
                                                     <path d="M6 19C4.34315 19 3 17.6569 3 16V10C3 6.22876 3 4.34315 4.17157 3.17157C5.34315 2 7.22876 2 11 2H15C16.6569 2 18 3.34315 18 5" stroke="#1C274C" strokeWidth="1.5"></path>
                                                 </g>
                                             </svg>
-                                        </span>
+                                        </button>
                                     </div>
                                 ))
                             }
@@ -231,6 +235,7 @@ const MyProfile = ({
                                                 key={`certificate-${index}`}
                                                 className={`${certificate.file_url ? 'underline' : 'cursor-default'} flex gap-1 items-center w-fit`}
                                                 target='_blank'
+                                                rel='noopener noreferrer'
                                                 href={certificate.file_url}
                                             >
                                                 {certificate.name}
@@ -288,7 +293,7 @@ const MyProfile = ({
                                                     {experience.position} - <span className='text-lg'>{experience.company_name}</span>
                                                 </h2>
                                                 <p>
-                                                    {format(experience.start_date, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(experience.end_date, 'dd/MM/yyyy')}
+                                                    {format(startDate, 'dd/MM/yyyy')} - {experience.currently_working ? 'Current' : format(endDate, 'dd/MM/yyyy')}
                                                     <span className='ml-1 text-sm'>
                                                         ({handleRenderTimeInJobs(startDate, endDate)})
                                                     </span>
@@ -341,6 +346,7 @@ const MyProfile = ({
                                     <Link
                                         href={credential.file_url}
                                         target='_blank'
+                                        rel='noopener noreferrer'
                                         className='underline flex gap-1 items-center w-fit'
                                     >
                                         {credential.name}
@@ -369,7 +375,7 @@ const MyProfile = ({
                                 user.extras.social_media_links ?
                                 user.extras.social_media_links && user.extras.social_media_links.map((link, index) => (
                                     <div key={index}>
-                                        <Link href={link.url} target='_blank' className='underline'>
+                                        <Link href={link.url} target='_blank' rel='noopener noreferrer' className='underline'>
                                             {renderSocialMediaIcon(link.platform)}
                                         </Link>
                                     </div>
@@ -388,6 +394,7 @@ const MyProfile = ({
                                         <Link
                                             href={item.url}
                                             target='_blank'
+                                            rel='noopener noreferrer'
                                             className='underline flex gap-1 items-center'
                                         >
                                             {item.name}

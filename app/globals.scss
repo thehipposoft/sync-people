@@ -232,6 +232,10 @@ textarea {
     color: $title-blue;
 }
 
+div {
+    color: $title-blue;
+}
+
 textarea::spelling-error {
     text-decoration: underline wavy red;
 }
